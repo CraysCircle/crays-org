@@ -1,0 +1,144 @@
+{
+  "ref": {
+    "font": "17.675px",
+    "lineHeight": "28.6335px",
+    "text": "Crays connects Nostr identity, OpenClaw AI, in-venue mesh networks, Bitcoin and Lightning "
+  },
+  "missing": [],
+  "allMatch": false,
+  "mapped": [
+    {
+      "prefix": "Crays connects Nostr identity",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Crays connects Nostr identity, OpenClaw AI, in-venue mesh networks, Bitcoin and Lightning "
+    },
+    {
+      "prefix": "Users are matched automatically",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Users are matched automatically. Demand is generated instead of searched for. Payments hap"
+    },
+    {
+      "prefix": "The stack starts with human signals",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The stack starts with human signals and ends with real actions: access, introductions, res"
+    },
+    {
+      "prefix": "External booking infrastructure",
+      "found": true,
+      "font": "16px",
+      "lineHeight": "26.4px",
+      "text": "External booking infrastructure such as Amadeus can be treated as execution only: availabi"
+    },
+    {
+      "prefix": "A portable profile and social layer",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "A portable profile and social layer for posts, follows, zaps, badges, creator content, ven"
+    },
+    {
+      "prefix": "Direct deposits, tips, reservations",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Direct deposits, tips, reservations, content purchases, POS payments and partner settlemen"
+    },
+    {
+      "prefix": "Future content licenses, memberships",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Future content licenses, memberships, access rights, RWA participation and proof objects c"
+    },
+    {
+      "prefix": "Smartphones become local light nodes",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Smartphones become local light nodes. Super Nodes coordinate traffic, range, identity and "
+    },
+    {
+      "prefix": "A critical agent layer",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "A critical agent layer that interprets profiles, posts, location, payments and reputation,"
+    },
+    {
+      "prefix": "An intended asset-backed",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "An intended asset-backed, SDR-oriented payment and liquidity layer for Crays ecosystem use"
+    },
+    {
+      "prefix": "The Crays Super Node is the venue-side",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The Crays Super Node is the venue-side hardware and software layer: local mesh, venue Nost"
+    },
+    {
+      "prefix": "Inside a Crays Club",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Inside a Crays Club, access, identity, product movement, coworking time, room entry and pa"
+    },
+    {
+      "prefix": "The partner stack connects PMS",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The partner stack connects PMS, booking engine, Lightning-native POS, cashierless retail, "
+    },
+    {
+      "prefix": "Crays separates private identity",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Crays separates private identity from operational intelligence. User data and sensitive re"
+    },
+    {
+      "prefix": "The documents point to a long-term model",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The documents point to a long-term model where brand IP, memberships, content licenses, RW"
+    },
+    {
+      "prefix": "The Swiss association anchors",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The Swiss association anchors the technology in roles, rights, standards and accountabilit"
+    },
+    {
+      "prefix": "The uploaded roadmap",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The uploaded roadmap and the current Nomads reference point to a practical sequence: profi"
+    },
+    {
+      "prefix": "The videos are included",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "The videos are included as product evidence for the two surfaces described in the source m"
+    },
+    {
+      "prefix": "Venue operators get demand",
+      "found": true,
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "text": "Venue operators get demand and operating infrastructure. Investors see how real-world asse"
+    }
+  ]
+}

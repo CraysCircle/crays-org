@@ -1,0 +1,379 @@
+/* Contact gradient system.
+   Principle: one dark-to-light transition, then a hard new-section cut before CTA. */
+
+.contact-direct {
+  background:
+    linear-gradient(180deg, #fffdfa 0%, #f2f5f4 18%, #b6c4c5 42%, #426174 66%, #102d42 84%, #06111d 100%) !important;
+}
+
+.contact-direct::after {
+  height: 0 !important;
+  background: none !important;
+}
+
+.contact-direct .contact-section-title {
+  color: #06111d !important;
+}
+
+.contact-direct .contact-section-intro {
+  color: rgba(7, 26, 45, 0.78) !important;
+}
+
+.contact-entities {
+  background:
+    linear-gradient(180deg, #06111d 0%, #092033 44%, #071725 100%) !important;
+}
+
+.contact-entities::after {
+  display: none !important;
+}
+
+.contact-faq {
+  background:
+    radial-gradient(circle at 10% 18%, rgba(0, 229, 255, 0.18), transparent 20%),
+    linear-gradient(135deg, #0b2f68 0%, #122564 42%, #4c56c5 100%) !important;
+}
+
+.contact-faq::before,
+.contact-faq::after {
+  display: none !important;
+}
+
+.contact-faq-head {
+  background:
+    linear-gradient(180deg, rgba(6, 17, 29, 0.74), rgba(6, 17, 29, 0.96)) !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.contact-faq-head::before {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)) !important;
+}
+
+.contact-cta-band {
+  margin-top: 0 !important;
+  padding: clamp(56px, 6vw, 82px) 0 clamp(44px, 5vw, 64px) !important;
+  border-top: 1px solid rgba(7, 26, 45, 0.08);
+  box-shadow: none !important;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(243, 18, 72, 0.06), transparent 28%),
+    linear-gradient(180deg, #fffdfa 0%, #f8f4ef 100%) !important;
+}
+
+.contact-cta-band::before {
+  display: none !important;
+}
+
+.contact-cta-band::after {
+  display: none !important;
+}
+
+.contact-cta-card {
+  background:
+    radial-gradient(circle at 88% 14%, rgba(243, 18, 72, 0.2), transparent 26%),
+    radial-gradient(circle at 18% 12%, rgba(94, 207, 255, 0.1), transparent 28%),
+    linear-gradient(135deg, #06111d 0%, #0d2336 50%, #26324d 100%) !important;
+  box-shadow: 0 34px 90px rgba(7, 21, 35, 0.22) !important;
+}
+
+.contact-footer {
+  background: #fffdfa !important;
+}
+
+@media (max-width: 640px) {
+  .contact-entities {
+    background:
+      linear-gradient(180deg, #06111d 0%, #092033 44%, #071725 100%) !important;
+  }
+
+  .contact-faq {
+    background:
+      radial-gradient(circle at 10% 18%, rgba(0, 229, 255, 0.18), transparent 20%),
+      linear-gradient(135deg, #0b2f68 0%, #122564 42%, #4c56c5 100%) !important;
+  }
+
+  .contact-cta-band {
+    padding: 42px 0 52px !important;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(243, 18, 72, 0.06), transparent 32%),
+      linear-gradient(180deg, #fffdfa 0%, #f8f4ef 100%) !important;
+  }
+}
+
+/* Final Contact block color system: hard, readable sections. */
+.contact-main {
+  background: #fffdfa !important;
+}
+
+.contact-hero {
+  background: #06111d !important;
+  border-bottom: 0 !important;
+}
+
+.contact-hero::after {
+  display: none !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+.contact-community-band {
+  margin-top: 0 !important;
+  padding: clamp(64px, 5.6vw, 88px) 0 clamp(62px, 5.2vw, 86px) !important;
+  border-top: 0 !important;
+  border-bottom: 1px solid rgba(7, 26, 45, 0.1) !important;
+  background:
+    radial-gradient(ellipse at 12% 22%, rgba(94, 207, 255, 0.11), transparent 34%),
+    radial-gradient(ellipse at 88% 18%, rgba(243, 18, 72, 0.08), transparent 32%),
+    linear-gradient(180deg, #f4f8f7 0%, #fffdfa 100%) !important;
+}
+
+.contact-community-band + .contact-direct {
+  margin-top: 0 !important;
+}
+
+.contact-direct {
+  margin-top: 0 !important;
+  padding: clamp(82px, 7vw, 116px) 0 clamp(86px, 7vw, 122px) !important;
+  color: #fff !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background:
+    radial-gradient(circle at 10% 18%, rgba(0, 229, 255, 0.18), transparent 20%),
+    linear-gradient(135deg, #0b2f68 0%, #122564 42%, #4c56c5 100%) !important;
+}
+
+.contact-direct .contact-section-head,
+.contact-direct .contact-section-title {
+  color: #fff !important;
+}
+
+.contact-direct .contact-section-intro {
+  color: rgba(255, 255, 255, 0.74) !important;
+}
+
+.contact-direct .contact-route-card:not(.contact-route-card--dark),
+.contact-direct .contact-route-card--dark {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 20px 40px rgba(4, 12, 26, 0.18) !important;
+  backdrop-filter: blur(18px);
+}
+
+.contact-direct .contact-route-card h3,
+.contact-direct .contact-route-card--dark h3 {
+  color: #fff !important;
+}
+
+.contact-direct .contact-route-body,
+.contact-direct .contact-route-card--dark .contact-route-body {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.contact-direct .contact-route-link,
+.contact-direct .contact-route-card--dark .contact-route-link {
+  color: #fff !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.contact-entities {
+  margin-top: 0 !important;
+  padding: clamp(82px, 7vw, 118px) 0 clamp(76px, 6.2vw, 108px) !important;
+  border-top: 1px solid rgba(7, 26, 45, 0.08) !important;
+  border-bottom: 1px solid rgba(7, 26, 45, 0.08) !important;
+  background:
+    radial-gradient(ellipse at 14% 16%, rgba(243, 18, 72, 0.08), transparent 30%),
+    radial-gradient(ellipse at 82% 18%, rgba(94, 207, 255, 0.08), transparent 36%),
+    linear-gradient(180deg, #fffdfa 0%, #f5f0ec 100%) !important;
+}
+
+.contact-entities::before,
+.contact-entities::after {
+  display: none !important;
+}
+
+.contact-entities .contact-section-head,
+.contact-entities .contact-section-title {
+  color: #06111d !important;
+}
+
+.contact-entities .contact-section-intro {
+  color: rgba(7, 26, 45, 0.72) !important;
+}
+
+.contact-entities .contact-entity-card {
+  background:
+    radial-gradient(ellipse at 86% 0%, rgba(243, 18, 72, 0.08), transparent 30%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 242, 236, 0.94)) !important;
+  border-color: rgba(7, 26, 45, 0.08) !important;
+  box-shadow: 0 22px 58px rgba(7, 21, 35, 0.08) !important;
+}
+
+.contact-entities .contact-entity-card h3.contact-entity-title--single-line {
+  font-size: clamp(20px, 1.38vw, 24px) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  white-space: nowrap !important;
+}
+
+.contact-faq {
+  margin-top: 0 !important;
+  padding: clamp(82px, 7vw, 118px) 0 clamp(86px, 7vw, 124px) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  background:
+    radial-gradient(ellipse at 14% 18%, rgba(0, 229, 255, 0.16), transparent 26%),
+    radial-gradient(ellipse at 86% 12%, rgba(243, 18, 72, 0.12), transparent 30%),
+    linear-gradient(135deg, #0b2f68 0%, #122564 46%, #4c56c5 100%) !important;
+}
+
+.contact-faq::before,
+.contact-faq::after {
+  display: none !important;
+}
+
+.contact-video-resources {
+  margin-top: 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(243, 18, 72, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 10%, rgba(94, 207, 255, 0.14), transparent 30%),
+    linear-gradient(180deg, #071725 0%, #102438 58%, #07101a 100%) !important;
+}
+
+.contact-cta-band {
+  margin-top: 0 !important;
+  padding: clamp(58px, 6vw, 86px) 0 clamp(52px, 5vw, 72px) !important;
+  border-top: 1px solid rgba(7, 26, 45, 0.1) !important;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(243, 18, 72, 0.06), transparent 28%),
+    linear-gradient(180deg, #fffdfa 0%, #f8f4ef 100%) !important;
+}
+
+.contact-cta-band::before,
+.contact-cta-band::after {
+  display: none !important;
+}
+
+.contact-footer {
+  border-top: 1px solid rgba(7, 26, 45, 0.08) !important;
+  background: #fffdfa !important;
+}
+
+.contact-association-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  justify-self: end;
+}
+
+.contact-association-action {
+  text-decoration: none;
+}
+
+.contact-association-action--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: none !important;
+}
+
+.contact-direct .contact-section-head {
+  max-width: 1080px !important;
+}
+
+.contact-direct .contact-section-intro {
+  max-width: 1080px !important;
+  font-size: clamp(17px, 1.05vw, 19px) !important;
+  line-height: 1.45 !important;
+}
+
+.contact-entities .contact-entity-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+}
+
+.contact-entities .contact-entity-card {
+  min-height: 292px !important;
+  padding: 24px !important;
+}
+
+.contact-entities .contact-entity-card h3 {
+  font-size: clamp(17px, 1.03vw, 20px) !important;
+  line-height: 1.14 !important;
+  letter-spacing: 0 !important;
+}
+
+.contact-entities .contact-entity-card h3.contact-entity-title--single-line {
+  font-size: clamp(15px, 0.92vw, 18px) !important;
+}
+
+.contact-entities .contact-entity-card address,
+.contact-entities .contact-entity-card p {
+  font-size: 13px !important;
+  line-height: 1.55 !important;
+}
+
+.contact-entity-card--socimi h3 {
+  max-width: 18ch;
+}
+
+.contact-entity-title-note {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.72em;
+  line-height: 1.05;
+  font-weight: 800;
+}
+
+@media (max-width: 1180px) {
+  .contact-association-actions {
+    justify-self: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .contact-entities .contact-entity-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-community-band {
+    padding: 42px 0 48px !important;
+  }
+
+  .contact-direct {
+    padding: 72px 0 82px !important;
+  }
+
+  .contact-entities {
+    padding: 72px 0 78px !important;
+  }
+
+  .contact-direct .contact-section-intro br {
+    display: none;
+  }
+
+  .contact-entities .contact-entity-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .contact-entities .contact-entity-card h3.contact-entity-title--single-line {
+    font-size: clamp(19px, 5.2vw, 22px) !important;
+  }
+
+  .contact-faq {
+    padding: 78px 0 90px !important;
+  }
+
+  .contact-video-resources {
+    padding: 64px 0 58px !important;
+  }
+
+  .contact-cta-band {
+    padding: 44px 0 54px !important;
+  }
+}

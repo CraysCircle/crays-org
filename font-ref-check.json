@@ -1,0 +1,102 @@
+{
+  "ref": {
+    "text": "Physical living rooms for cities, hotels and destination venues.",
+    "tag": "P",
+    "class": "",
+    "font": "16px",
+    "lineHeight": "27.52px",
+    "width": 0,
+    "height": 0
+  },
+  "tech": [
+    {
+      "prefix": "Social Network -> Coordination Engine -> Real-World Demand",
+      "text": "Social Network -> Coordination Engine -> Real-World Demand",
+      "tag": "H2",
+      "class": "crays-tech-title",
+      "font": "54px",
+      "lineHeight": "58.32px",
+      "width": 666,
+      "height": 233.25,
+      "top": 5787.859375
+    },
+    {
+      "prefix": "The stack starts with human signals",
+      "text": "The stack starts with human signals and ends with real actions: access, introductions, reservations, room keys, tips, purchases, deposits, t",
+      "tag": "P",
+      "class": "crays-tech-copy",
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "width": 518,
+      "height": 114.5,
+      "top": 5906.609375
+    },
+    {
+      "prefix": "Intent appears on Nostr",
+      "text": "Intent appears on Nostr. OpenClaw matches people and places. Crays sends the introduction or venue action. Booking rails execute when needed",
+      "tag": "H3",
+      "class": "",
+      "font": "28px",
+      "lineHeight": "34.16px",
+      "width": 980,
+      "height": 136.625,
+      "top": 6439.703125
+    },
+    {
+      "prefix": "External booking infrastructure",
+      "text": "External booking infrastructure such as Amadeus can be treated as execution only: availability, pricing and ticketing after Crays has alread",
+      "tag": "P",
+      "class": "",
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "width": 860,
+      "height": 85.875,
+      "top": 6594.328125
+    },
+    {
+      "prefix": "Crays builds the infrastructure",
+      "text": "Crays builds the infrastructure that translates intention into economic activity.",
+      "tag": "H2",
+      "class": "crays-tech-title",
+      "font": "54px",
+      "lineHeight": "58.32px",
+      "width": 531.890625,
+      "height": 408.1875,
+      "top": 4934.421875
+    },
+    {
+      "prefix": "Users are matched automatically",
+      "text": "Users are matched automatically. Demand is generated instead of searched for. Payments happen directly. Venues become intelligent local netw",
+      "tag": "P",
+      "class": "crays-tech-copy",
+      "font": "17.675px",
+      "lineHeight": "28.6335px",
+      "width": 531.890625,
+      "height": 171.75,
+      "top": 5364.609375
+    },
+    {
+      "prefix": "Nutzer",
+      "text": "Nutzer",
+      "tag": "H3",
+      "class": "",
+      "font": "24.038px",
+      "lineHeight": "28.3648px",
+      "width": 268.046875,
+      "height": 28.34375,
+      "top": 4959.421875
+    },
+    {
+      "prefix": "Nachfrage",
+      "text": "Nachfrage",
+      "tag": "H3",
+      "class": "",
+      "font": "24.038px",
+      "lineHeight": "28.3648px",
+      "width": 268.0625,
+      "height": 28.34375,
+      "top": 4959.421875
+    },
+    null
+  ]
+}

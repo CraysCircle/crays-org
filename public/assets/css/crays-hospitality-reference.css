@@ -1,0 +1,1754 @@
+/* Hospitality page visual reference pass. Visible copy stays unchanged. */
+body.crays-mirror.route-hospitality {
+  --hosp-red: #ff1550;
+  --hosp-night: #04111b;
+  --hosp-night-2: #071c2a;
+  --hosp-blue: #0b3346;
+  --hosp-cream: #fffaf4;
+  --hosp-ink: #06121e;
+  --hosp-soft: rgba(255, 250, 244, 0.82);
+  --hosp-muted: rgba(255, 250, 244, 0.66);
+  --hosp-line: rgba(255, 255, 255, 0.18);
+  --hosp-glass: rgba(7, 24, 36, 0.78);
+  --hosp-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+  background: var(--hosp-night) !important;
+  color: var(--hosp-cream) !important;
+}
+
+/* Final Hospitality hero composition: keep the same images and copy, but separate the typography from the collage. */
+body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+  max-width: none !important;
+  font-size: clamp(60px, 6.6vw, 94px) !important;
+  line-height: 0.9 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title span {
+  display: block !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+  width: min(100%, 560px) !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-rows: auto auto auto auto !important;
+  gap: 12px !important;
+  align-self: center !important;
+  padding: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-left: 6px solid var(--hosp-red) !important;
+  border-radius: 8px !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035)),
+    rgba(4, 15, 24, 0.86) !important;
+  box-shadow: 0 28px 84px rgba(0, 0, 0, 0.34) !important;
+  backdrop-filter: blur(12px) saturate(1.08) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+  position: relative !important;
+  inset: auto !important;
+  order: 1 !important;
+  height: clamp(250px, 31vh, 315px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr) !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media img,
+body.crays-mirror.route-hospitality .crays-hosp-panel-media::after {
+  border-radius: 7px !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  filter: saturate(1.1) contrast(1.04) brightness(0.98) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-label {
+  order: 2 !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  margin: 2px 0 0 !important;
+  color: var(--hosp-red) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2,
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+  order: 3 !important;
+  max-width: 14ch !important;
+  color: #fff !important;
+  font-size: clamp(28px, 2.35vw, 38px) !important;
+  line-height: 1.02 !important;
+  font-weight: 900 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  order: 4 !important;
+  max-width: 58ch !important;
+  color: rgba(255, 255, 255, 0.84) !important;
+  font-size: clamp(14px, 0.96vw, 16px) !important;
+  line-height: 1.42 !important;
+  font-weight: 750 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-flow {
+  display: none !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    width: min(100%, 500px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+    height: clamp(230px, 29vh, 285px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+    font-size: clamp(25px, 2.6vw, 32px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    font-size: clamp(44px, 13vw, 60px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    padding: 12px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+    height: 260px !important;
+    grid-template-columns: 1fr 0.84fr !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+    max-width: 100% !important;
+    font-size: 25px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+    font-size: 14px !important;
+  }
+}
+
+/* True final Hospitality lock after all legacy final blocks. Lifestyle is the reference. */
+body.crays-mirror.route-hospitality .crays-hosp-page {
+  --hosp-final-ink: #06111d;
+  --hosp-final-paper: #f7f4ef;
+  --hosp-final-paper-2: #e8eef0;
+  --hosp-final-h1: clamp(50px, 5.3vw, 76px);
+  --hosp-final-h2: clamp(34px, 4vw, 54px);
+  --hosp-final-h3: clamp(20px, 1.7vw, 25px);
+  --hosp-final-lead: clamp(17px, 1.25vw, 19px);
+  --hosp-final-body: 16px;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-hero__title {
+  max-width: none !important;
+  font-size: var(--hosp-final-h1) !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-hero__title span {
+  display: block !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--definition .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--anchors .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--journey .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--modules .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--tech .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--demand .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--wealth .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--partners .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--network .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-closing .crays-hosp-title {
+  max-width: 16ch !important;
+  font-size: var(--hosp-final-h2) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-lead,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section-head--split > .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-closing .crays-hosp-copy {
+  font-size: var(--hosp-final-body) !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-lead {
+  font-size: var(--hosp-final-lead) !important;
+  font-weight: 700 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-card h3, .crays-hosp-step h3, .crays-hosp-metric strong, .crays-hosp-loop-card h3, .crays-hosp-partner-card h3, .crays-hosp-module-card h3, .crays-hosp-network-card h3, .crays-hosp-stack-step h3, .crays-hosp-retail-step h3, .crays-hosp-anchor-card h3, .crays-hosp-retail__revenue strong) {
+  font-size: var(--hosp-final-h3) !important;
+  line-height: 1.18 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-card p, .crays-hosp-step p, .crays-hosp-loop-card p, .crays-hosp-partner-card p, .crays-hosp-module-card p, .crays-hosp-network-card p, .crays-hosp-stack-step p, .crays-hosp-retail-step p, .crays-hosp-retail__revenue p) {
+  font-size: var(--hosp-final-body) !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero__panel > h2 {
+  max-width: 15ch !important;
+  font-size: clamp(28px, 2.2vw, 34px) !important;
+  line-height: 1.1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero__panel > p {
+  max-width: 58ch !important;
+  font-size: 15.5px !important;
+  line-height: 1.58 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) {
+  color: var(--hosp-final-ink) !important;
+  background:
+    linear-gradient(rgba(6, 17, 29, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 17, 29, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, var(--hosp-final-paper) 0%, var(--hosp-final-paper-2) 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--modules, .crays-hosp-section--tech, .crays-hosp-section--demand, .crays-hosp-section--network) {
+  color: #fffaf4 !important;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.043) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.036) 1px, transparent 1px),
+    radial-gradient(circle at 82% 16%, rgba(45, 137, 190, 0.12), transparent 34%),
+    linear-gradient(180deg, #0f2d42 0%, #07131d 100%) !important;
+  background-size: 88px 88px, 88px 88px, auto, auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: var(--hosp-final-ink) !important;
+  -webkit-text-fill-color: var(--hosp-final-ink) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-copy, p) {
+  color: rgba(6, 17, 29, 0.72) !important;
+  -webkit-text-fill-color: rgba(6, 17, 29, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-card, .crays-hosp-step, .crays-hosp-loop-card, .crays-hosp-partner-card, .crays-hosp-module-card, .crays-hosp-network-card, .crays-hosp-stack-step, .crays-hosp-retail-step, .crays-hosp-retail__revenue article),
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) .crays-hosp-section-head--split > .crays-hosp-copy {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-color: rgba(6, 17, 29, 0.12) !important;
+  border-left-color: rgba(6, 17, 29, 0.12) !important;
+  box-shadow: 0 24px 70px rgba(6, 17, 29, 0.11) !important;
+}
+
+@media (max-width: 620px) {
+  body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-hero__title {
+    font-size: 34px !important;
+    line-height: 1.08 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section .crays-hosp-title,
+  body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-closing .crays-hosp-title {
+    font-size: 30px !important;
+    line-height: 1.14 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-hero .crays-hosp-lead,
+  body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-copy {
+    font-size: 15.5px !important;
+    line-height: 1.64 !important;
+  }
+}
+
+/* Absolute final Hospitality page audit lock: one explicit typography and color system. */
+body.crays-mirror.route-hospitality .crays-hosp-page {
+  --hosp-final-ink: #06111d;
+  --hosp-final-paper: #f7f4ef;
+  --hosp-final-paper-2: #e8eef0;
+  --hosp-final-h1: clamp(50px, 5.3vw, 76px);
+  --hosp-final-h2: clamp(34px, 4vw, 54px);
+  --hosp-final-h3: clamp(20px, 1.7vw, 25px);
+  --hosp-final-lead: clamp(17px, 1.25vw, 19px);
+  --hosp-final-body: 16px;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+  max-width: none !important;
+  font-size: var(--hosp-final-h1) !important;
+  line-height: 1 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title span {
+  display: block !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-section--demand .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__copy > .crays-hosp-title,
+body.crays-mirror.route-hospitality .crays-hosp-closing .crays-hosp-title {
+  max-width: 16ch !important;
+  font-size: var(--hosp-final-h2) !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-lead,
+body.crays-mirror.route-hospitality .crays-hosp-hero .crays-hosp-lead {
+  max-width: 720px !important;
+  font-size: var(--hosp-final-lead) !important;
+  line-height: 1.72 !important;
+  font-weight: 700 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-section-head--split > .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__copy > .crays-hosp-copy:not(.crays-hosp-retail__strong-copy) {
+  font-size: var(--hosp-final-body) !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card h3, .crays-hosp-step h3, .crays-hosp-metric strong, .crays-hosp-loop-card h3, .crays-hosp-partner-card h3, .crays-hosp-module-card h3, .crays-hosp-network-card h3, .crays-hosp-stack-step h3, .crays-hosp-retail-step h3, .crays-hosp-retail__revenue strong) {
+  font-size: var(--hosp-final-h3) !important;
+  line-height: 1.18 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card p, .crays-hosp-step p, .crays-hosp-loop-card p, .crays-hosp-partner-card p, .crays-hosp-module-card p, .crays-hosp-network-card p, .crays-hosp-stack-step p, .crays-hosp-retail-step p, .crays-hosp-retail__revenue p) {
+  font-size: var(--hosp-final-body) !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-proof :is(.crays-hosp-metric p) {
+  font-size: 15.5px !important;
+  line-height: 1.58 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+  max-width: 15ch !important;
+  font-size: clamp(28px, 2.2vw, 34px) !important;
+  line-height: 1.1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  max-width: 58ch !important;
+  font-size: 15.5px !important;
+  line-height: 1.58 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) {
+  color: var(--hosp-final-ink) !important;
+  background:
+    linear-gradient(rgba(6, 17, 29, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 17, 29, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, var(--hosp-final-paper) 0%, var(--hosp-final-paper-2) 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--modules, .crays-hosp-section--tech, .crays-hosp-section--demand, .crays-hosp-section--network) {
+  color: #fffaf4 !important;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.043) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.036) 1px, transparent 1px),
+    radial-gradient(circle at 82% 16%, rgba(45, 137, 190, 0.12), transparent 34%),
+    linear-gradient(180deg, #0f2d42 0%, #07131d 100%) !important;
+  background-size: 88px 88px, 88px 88px, auto, auto !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: var(--hosp-final-ink) !important;
+  -webkit-text-fill-color: var(--hosp-final-ink) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-copy, p) {
+  color: rgba(6, 17, 29, 0.72) !important;
+  -webkit-text-fill-color: rgba(6, 17, 29, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-card, .crays-hosp-step, .crays-hosp-loop-card, .crays-hosp-partner-card, .crays-hosp-module-card, .crays-hosp-network-card, .crays-hosp-stack-step, .crays-hosp-retail-step, .crays-hosp-retail__revenue article),
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) .crays-hosp-section-head--split > .crays-hosp-copy {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-color: rgba(6, 17, 29, 0.12) !important;
+  border-left-color: rgba(6, 17, 29, 0.12) !important;
+  box-shadow: 0 24px 70px rgba(6, 17, 29, 0.11) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--modules, .crays-hosp-section--tech, .crays-hosp-section--demand, .crays-hosp-section--network) :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: #fffaf4 !important;
+  -webkit-text-fill-color: #fffaf4 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--modules, .crays-hosp-section--tech, .crays-hosp-section--demand, .crays-hosp-section--network) :is(.crays-hosp-copy, p) {
+  color: rgba(255, 250, 244, 0.78) !important;
+  -webkit-text-fill-color: rgba(255, 250, 244, 0.78) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__strong-copy {
+  color: #fffaf4 !important;
+  -webkit-text-fill-color: #fffaf4 !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(7, 24, 36, 0.92) !important;
+  border-left-color: rgba(255, 255, 255, 0.18) !important;
+}
+
+@media (max-width: 620px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    font-size: 34px !important;
+    line-height: 1.08 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-title,
+  body.crays-mirror.route-hospitality .crays-hosp-closing .crays-hosp-title {
+    font-size: 30px !important;
+    line-height: 1.14 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-lead,
+  body.crays-mirror.route-hospitality .crays-hosp-copy {
+    font-size: 15.5px !important;
+    line-height: 1.64 !important;
+  }
+}
+
+/* Final Hospitality polish: match Lifestyle text scale and keep light sections neutral. */
+body.crays-mirror.route-hospitality .crays-hosp-eyebrow,
+body.crays-mirror.route-hospitality .crays-hosp-kicker,
+body.crays-mirror.route-hospitality .crays-hosp-panel-label {
+  font-size: 11px !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0.13em !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+  font-size: clamp(50px, 5.3vw, 76px) !important;
+  line-height: 1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-title {
+  font-size: clamp(34px, 4vw, 54px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-lead {
+  font-size: clamp(17px, 1.25vw, 19px) !important;
+  line-height: 1.72 !important;
+  font-weight: 700 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-section-head--split > .crays-hosp-copy {
+  font-size: 16px !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card h3, .crays-hosp-step h3, .crays-hosp-metric strong, .crays-hosp-loop-card h3, .crays-hosp-partner-card h3, .crays-hosp-module-card h3, .crays-hosp-network-card h3, .crays-hosp-stack-step h3, .crays-hosp-retail-step h3, .crays-hosp-retail__revenue strong) {
+  font-size: clamp(20px, 1.7vw, 25px) !important;
+  line-height: 1.18 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card p, .crays-hosp-step p, .crays-hosp-metric p, .crays-hosp-loop-card p, .crays-hosp-partner-card p, .crays-hosp-module-card p, .crays-hosp-network-card p, .crays-hosp-stack-step p, .crays-hosp-retail-step p, .crays-hosp-retail__revenue p) {
+  font-size: 16px !important;
+  line-height: 1.72 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) {
+  color: #06111d !important;
+  background:
+    linear-gradient(rgba(6, 17, 29, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 17, 29, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, #f7f4ef 0%, #e8eef0 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: #06111d !important;
+  -webkit-text-fill-color: #06111d !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-copy, p) {
+  color: rgba(6, 17, 29, 0.72) !important;
+  -webkit-text-fill-color: rgba(6, 17, 29, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-card, .crays-hosp-step, .crays-hosp-loop-card, .crays-hosp-partner-card, .crays-hosp-module-card, .crays-hosp-network-card, .crays-hosp-stack-step, .crays-hosp-retail-step, .crays-hosp-retail__revenue article) {
+  background: rgba(255, 255, 255, 0.78) !important;
+  border-color: rgba(6, 17, 29, 0.12) !important;
+  border-left-color: rgba(6, 17, 29, 0.12) !important;
+  box-shadow: 0 24px 70px rgba(6, 17, 29, 0.11) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__strong-copy {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
+    rgba(7, 24, 36, 0.92) !important;
+}
+
+@media (max-width: 620px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    font-size: 34px !important;
+    line-height: 1.08 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-title {
+    font-size: 30px !important;
+    line-height: 1.14 !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-lead,
+  body.crays-mirror.route-hospitality .crays-hosp-copy {
+    font-size: 15.5px !important;
+    line-height: 1.64 !important;
+  }
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page {
+  background: var(--hosp-night) !important;
+  color: var(--hosp-cream) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-shell {
+  width: min(calc(100% - 48px), 1240px) !important;
+  margin-inline: auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(h1, h2, h3, h4, p, span, strong, li) {
+  -webkit-text-fill-color: currentColor !important;
+  letter-spacing: 0 !important;
+  overflow-wrap: anywhere !important;
+  text-wrap: pretty !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-eyebrow,
+body.crays-mirror.route-hospitality .crays-hosp-kicker,
+body.crays-mirror.route-hospitality .crays-hosp-panel-label {
+  color: var(--hosp-red) !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: clamp(12px, 0.86vw, 14px) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-title {
+  max-width: 13ch !important;
+  color: inherit !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: clamp(46px, 5.4vw, 78px) !important;
+  font-weight: 900 !important;
+  line-height: 0.94 !important;
+  text-wrap: balance !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-copy,
+body.crays-mirror.route-hospitality .crays-hosp-lead {
+  max-width: 64ch !important;
+  color: currentColor !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: clamp(17px, 1.15vw, 20px) !important;
+  line-height: 1.54 !important;
+  font-weight: 600 !important;
+  opacity: 0.82 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero {
+  position: relative !important;
+  min-height: 690px !important;
+  height: 100svh !important;
+  display: grid !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  padding: 94px 0 34px !important;
+  isolation: isolate !important;
+  color: var(--hosp-cream) !important;
+  background: var(--hosp-night) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__media {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -3 !important;
+  margin: 0 !important;
+  background: #071622 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__media::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background-image: url("/assets/stock-lifestyle/crays-hospitality-ref-hero-dinner.jpg") !important;
+  background-size: cover !important;
+  background-position: center 45% !important;
+  opacity: 0.86 !important;
+  filter: saturate(1.12) contrast(1.04) brightness(0.82) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__media img {
+  opacity: 0 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__shade {
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -2 !important;
+  background:
+    linear-gradient(90deg, rgba(3, 12, 20, 0.96) 0%, rgba(4, 16, 25, 0.88) 44%, rgba(7, 25, 38, 0.72) 100%),
+    radial-gradient(circle at 90% 18%, rgba(255, 255, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 76% 65%, rgba(21, 174, 205, 0.2), transparent 34%),
+    radial-gradient(circle at 15% 76%, rgba(255, 21, 80, 0.18), transparent 32%) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__inner {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.98fr) minmax(460px, 0.9fr) !important;
+  gap: clamp(36px, 5vw, 72px) !important;
+  align-items: center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+  max-width: 10.5ch !important;
+  margin: 0 0 24px !important;
+  color: var(--hosp-cream) !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: clamp(62px, 7vw, 94px) !important;
+  font-weight: 900 !important;
+  line-height: 0.9 !important;
+  text-wrap: balance !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero .crays-hosp-lead {
+  max-width: 58ch !important;
+  color: var(--hosp-soft) !important;
+  opacity: 1 !important;
+  font-size: clamp(18px, 1.35vw, 21px) !important;
+  line-height: 1.45 !important;
+  font-weight: 700 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-actions {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-top: clamp(24px, 3vh, 34px) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-button,
+body.crays-mirror.route-hospitality .crays-hosp-actions a {
+  min-height: 54px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+  padding: 15px 22px !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  border: 1px solid rgba(255, 255, 255, 0.32) !important;
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-button--primary {
+  color: #fff !important;
+  background: linear-gradient(135deg, #ff1550, #f51c58) !important;
+  border-color: rgba(255, 21, 80, 0.95) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-button--secondary {
+  color: var(--hosp-ink) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-color: rgba(255, 21, 80, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-button--text {
+  color: var(--hosp-cream) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__metrics,
+body.crays-mirror.route-hospitality .crays-hosp-panel-label,
+body.crays-mirror.route-hospitality .crays-hosp-panel-flow {
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+  position: relative !important;
+  display: grid !important;
+  min-height: clamp(430px, 61vh, 520px) !important;
+  padding: 0 !important;
+  align-self: center !important;
+  color: var(--hosp-cream) !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+  position: absolute !important;
+  inset: 0 0 78px !important;
+  display: grid !important;
+  grid-template-columns: 1.22fr 0.9fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 14px !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media img,
+body.crays-mirror.route-hospitality .crays-hosp-panel-media::after {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  display: block !important;
+  object-fit: cover !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3) !important;
+  filter: saturate(1.08) contrast(1.04) brightness(0.95) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media img:nth-of-type(1) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-ref-roadster.jpg") !important;
+  grid-column: 1 !important;
+  grid-row: 1 / 3 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media img:nth-of-type(2) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-ref-travel-map.jpg") !important;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media::after {
+  content: "" !important;
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+  background: url("/assets/stock-lifestyle/crays-hospitality-ref-resort-pool.jpg") center / cover no-repeat !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media figcaption {
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2,
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  position: relative !important;
+  z-index: 4 !important;
+  margin-inline: 0 !important;
+  color: #fff !important;
+  background: var(--hosp-glass) !important;
+  border-inline: 1px solid var(--hosp-line) !important;
+  backdrop-filter: blur(15px) saturate(1.12) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+  align-self: end !important;
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  padding: 16px 22px 2px !important;
+  border-top: 1px solid var(--hosp-line) !important;
+  border-left: 7px solid var(--hosp-red) !important;
+  border-radius: 8px 8px 0 0 !important;
+  font-size: clamp(20px, 1.55vw, 24px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  margin-top: 0 !important;
+  padding: 4px 22px 16px 29px !important;
+  border-bottom: 1px solid var(--hosp-line) !important;
+  border-left: 7px solid var(--hosp-red) !important;
+  border-radius: 0 0 8px 8px !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(13px, 0.92vw, 15px) !important;
+  line-height: 1.34 !important;
+  font-weight: 800 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-strip {
+  padding-block: 22px !important;
+  background: linear-gradient(180deg, #04111b, #061522) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-strip__grid {
+  width: min(calc(100% - 48px), 1240px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-strip-card,
+body.crays-mirror.route-hospitality .crays-hosp-inline-media,
+body.crays-mirror.route-hospitality .crays-hosp-retail__media,
+body.crays-mirror.route-hospitality .crays-hosp-video-card,
+body.crays-mirror.route-hospitality .crays-hosp-collage,
+body.crays-mirror.route-hospitality .crays-hosp-partners__media,
+body.crays-mirror.route-hospitality .crays-hosp-network-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--hosp-line) !important;
+  background: rgba(7, 24, 36, 0.72) !important;
+  box-shadow: var(--hosp-shadow) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-strip-card {
+  aspect-ratio: 1 / 1.12 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-strip-card, .crays-hosp-inline-media, .crays-hosp-retail__media, .crays-hosp-collage, .crays-hosp-partners__media, .crays-hosp-network-card) img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 220px !important;
+  object-fit: cover !important;
+  filter: saturate(1.08) contrast(1.03) brightness(0.9) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page figure figcaption {
+  position: absolute !important;
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  z-index: 2 !important;
+  color: var(--hosp-cream) !important;
+  background: rgba(5, 15, 24, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  border-left: 5px solid var(--hosp-red) !important;
+  border-radius: 8px !important;
+  padding: 12px 14px !important;
+  backdrop-filter: blur(12px) !important;
+  font-size: clamp(13px, 0.95vw, 16px) !important;
+  line-height: 1.28 !important;
+  font-weight: 800 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-proof {
+  padding: 34px 0 !important;
+  color: var(--hosp-cream) !important;
+  background: linear-gradient(180deg, #061522 0%, #072334 100%) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-proof__grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section,
+body.crays-mirror.route-hospitality .crays-hosp-closing {
+  position: relative !important;
+  overflow: hidden !important;
+  padding: clamp(112px, 8vw, 138px) 0 clamp(76px, 7vw, 116px) !important;
+  color: var(--hosp-cream) !important;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+    radial-gradient(circle at 82% 16%, rgba(43, 143, 185, 0.19), transparent 34%),
+    linear-gradient(180deg, #06131d 0%, #0b2231 54%, #050d16 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto, auto !important;
+  scroll-margin-top: 92px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--definition,
+body.crays-mirror.route-hospitality .crays-hosp-section--journey,
+body.crays-mirror.route-hospitality .crays-hosp-section--retail,
+body.crays-mirror.route-hospitality .crays-hosp-section--wealth {
+  color: var(--hosp-ink) !important;
+  background:
+    linear-gradient(rgba(7, 21, 34, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(7, 21, 34, 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, #f7f4ee 0%, #e8eff2 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth) :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: var(--hosp-ink) !important;
+  -webkit-text-fill-color: var(--hosp-ink) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--definition.crays-hosp-section--definition :is(.crays-hosp-title, h2, h3, h4, strong),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--journey.crays-hosp-section--journey :is(.crays-hosp-title, h2, h3, h4, strong),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail.crays-hosp-section--retail :is(.crays-hosp-title, h2, h3, h4, strong),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--wealth.crays-hosp-section--wealth :is(.crays-hosp-title, h2, h3, h4, strong) {
+  color: var(--hosp-ink) !important;
+  -webkit-text-fill-color: var(--hosp-ink) !important;
+  opacity: 1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--definition.crays-hosp-section--definition :is(.crays-hosp-copy, p),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--journey.crays-hosp-section--journey :is(.crays-hosp-copy, p),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail.crays-hosp-section--retail :is(.crays-hosp-copy, p),
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--wealth.crays-hosp-section--wealth :is(.crays-hosp-copy, p) {
+  color: rgba(6, 18, 30, 0.76) !important;
+  -webkit-text-fill-color: rgba(6, 18, 30, 0.76) !important;
+  opacity: 1 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth) :is(.crays-hosp-copy, p) {
+  color: rgba(6, 18, 30, 0.76) !important;
+  -webkit-text-fill-color: rgba(6, 18, 30, 0.76) !important;
+  opacity: 1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section-head--split,
+body.crays-mirror.route-hospitality .crays-hosp-definition__grid,
+body.crays-mirror.route-hospitality .crays-hosp-tech__grid,
+body.crays-mirror.route-hospitality .crays-hosp-demand__grid,
+body.crays-mirror.route-hospitality .crays-hosp-partners__grid,
+body.crays-mirror.route-hospitality .crays-hosp-retail__grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr) !important;
+  gap: clamp(28px, 4vw, 58px) !important;
+  align-items: start !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card-grid, .crays-hosp-anchor-grid, .crays-hosp-journey-grid, .crays-hosp-module-grid, .crays-hosp-stack-list, .crays-hosp-demand-loop, .crays-hosp-wealth-flow, .crays-hosp-partner-grid, .crays-hosp-network-grid, .crays-hosp-retail__flow, .crays-hosp-retail__revenue) {
+  display: grid !important;
+  gap: clamp(14px, 1.45vw, 22px) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card-grid, .crays-hosp-anchor-grid, .crays-hosp-journey-grid, .crays-hosp-demand-loop, .crays-hosp-partner-grid, .crays-hosp-retail__flow, .crays-hosp-retail__revenue) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-module-grid, .crays-hosp-stack-list, .crays-hosp-wealth-flow, .crays-hosp-network-grid, .crays-hosp-card-grid--three) {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--tech .crays-hosp-stack-list {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card, .crays-hosp-step, .crays-hosp-metric, .crays-hosp-loop-card, .crays-hosp-partner-card, .crays-hosp-module-card, .crays-hosp-stack-step, .crays-hosp-retail-step, .crays-hosp-retail__revenue article, .crays-hosp-panel-flow article) {
+  min-height: 0 !important;
+  color: inherit !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.045)),
+    rgba(8, 24, 36, 0.76) !important;
+  border: 1px solid var(--hosp-line) !important;
+  border-left: 5px solid var(--hosp-red) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 22px 66px rgba(0, 0, 0, 0.22) !important;
+  backdrop-filter: blur(12px) saturate(1.08) !important;
+  padding: clamp(20px, 2vw, 30px) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth) :is(.crays-hosp-card, .crays-hosp-step, .crays-hosp-metric, .crays-hosp-loop-card, .crays-hosp-partner-card, .crays-hosp-module-card, .crays-hosp-stack-step, .crays-hosp-retail-step, .crays-hosp-retail__revenue article) {
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(7, 21, 34, 0.12) !important;
+  box-shadow: 0 24px 70px rgba(7, 21, 34, 0.12) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card h3, .crays-hosp-step h3, .crays-hosp-metric strong, .crays-hosp-loop-card h3, .crays-hosp-partner-card h3, .crays-hosp-module-card h3, .crays-hosp-stack-step h3, .crays-hosp-retail-step h3, .crays-hosp-retail__revenue strong) {
+  color: currentColor !important;
+  font-size: clamp(21px, 1.65vw, 30px) !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-card p, .crays-hosp-step p, .crays-hosp-metric p, .crays-hosp-loop-card p, .crays-hosp-partner-card p, .crays-hosp-module-card p, .crays-hosp-stack-step p, .crays-hosp-retail-step p, .crays-hosp-retail__revenue p) {
+  color: currentColor !important;
+  font-size: clamp(15px, 1vw, 18px) !important;
+  line-height: 1.55 !important;
+  opacity: 0.76 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-step__number {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 38px !important;
+  height: 38px !important;
+  flex: 0 0 38px !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  background: var(--hosp-red) !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card {
+  display: grid !important;
+  grid-template-rows: minmax(260px, 34vw) auto !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--hosp-line) !important;
+  background: rgba(8, 24, 36, 0.78) !important;
+  box-shadow: var(--hosp-shadow) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card img {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 260px !important;
+  object-fit: cover !important;
+  filter: saturate(1.08) contrast(1.02) brightness(0.92) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card--club > img {
+  content: url("/assets/stock-lifestyle/crays-tech-venue-coworking-lounge-stock-20260508.jpg") !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card--coffee > img {
+  content: url("/assets/stock-lifestyle/crays-home-project-crays-coffee-neighborhood-lifestyle.jpg") !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card--coffee::before {
+  content: none !important;
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-anchor-card > div {
+  padding: clamp(22px, 2.4vw, 34px) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section-head--split > .crays-hosp-copy {
+  align-self: end !important;
+  padding: clamp(18px, 2vw, 28px) !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--hosp-line) !important;
+  border-left: 5px solid var(--hosp-red) !important;
+  background: rgba(7, 24, 36, 0.78) !important;
+  color: var(--hosp-soft) !important;
+  opacity: 1 !important;
+  box-shadow: var(--hosp-shadow) !important;
+}
+
+body.crays-mirror.route-hospitality :is(.crays-hosp-section--definition, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth) .crays-hosp-section-head--split > .crays-hosp-copy {
+  color: rgba(6, 18, 30, 0.78) !important;
+  -webkit-text-fill-color: rgba(6, 18, 30, 0.78) !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+  border-color: rgba(6, 18, 30, 0.12) !important;
+  border-left-color: var(--hosp-red) !important;
+  box-shadow: 0 24px 70px rgba(7, 21, 34, 0.12) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div {
+  color: var(--hosp-cream) !important;
+  background: rgba(7, 24, 36, 0.92) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card,
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card--club {
+  display: grid !important;
+  grid-template-columns: minmax(220px, 0.86fr) minmax(0, 1fr) !important;
+  grid-template-rows: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card--coffee > img {
+  display: block !important;
+  content: url("/assets/stock-lifestyle/crays-home-project-crays-coffee-neighborhood-lifestyle.jpg") !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card--coffee::before {
+  content: none !important;
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card :is(h3, p, span, strong) {
+  color: currentColor !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card p {
+  opacity: 0.82 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-mini-row {
+  display: grid !important;
+  gap: 8px !important;
+  margin-top: 18px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-mini-row span {
+  padding: 10px 12px !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.09) !important;
+  border: 1px solid var(--hosp-line) !important;
+  font-size: 13px !important;
+  font-weight: 800 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--journey .crays-hosp-step,
+body.crays-mirror.route-hospitality .crays-hosp-section--wealth .crays-hosp-step,
+body.crays-mirror.route-hospitality .crays-hosp-retail-step {
+  display: grid !important;
+  grid-template-columns: 44px minmax(0, 1fr) !important;
+  column-gap: 16px !important;
+  align-items: start !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--journey .crays-hosp-step .crays-hosp-step__number,
+body.crays-mirror.route-hospitality .crays-hosp-section--wealth .crays-hosp-step .crays-hosp-step__number,
+body.crays-mirror.route-hospitality .crays-hosp-retail-step .crays-hosp-step__number {
+  grid-row: 1 / 3 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-retail__media {
+  min-height: 620px !important;
+  display: grid !important;
+  grid-template-rows: 1fr !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__copy {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-auto-rows: auto !important;
+  align-content: start !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__media > img {
+  grid-area: 1 / 1 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 620px !important;
+  object-fit: cover !important;
+  content: url("/assets/stock-lifestyle/crays-tech-retail-club-work-lounge-stock-20260508.jpg") !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__strong-copy {
+  width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(22px, 2.4vw, 30px) !important;
+  color: var(--hosp-cream) !important;
+  -webkit-text-fill-color: var(--hosp-cream) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 21, 80, 0.24), rgba(255, 255, 255, 0.05)),
+    rgba(7, 24, 36, 0.92) !important;
+  border-left: 5px solid var(--hosp-red) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__revenue {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  width: 100% !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__media figcaption {
+  color: var(--hosp-cream) !important;
+  -webkit-text-fill-color: var(--hosp-cream) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--retail .crays-hosp-retail__media figcaption :is(span, strong) {
+  color: currentColor !important;
+  -webkit-text-fill-color: currentColor !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-retail__media .crays-hosp-retail__partner {
+  position: absolute !important;
+  top: 18px !important;
+  right: 18px !important;
+  z-index: 4 !important;
+  width: min(220px, calc(100% - 36px)) !important;
+  min-height: 0 !important;
+  display: grid !important;
+  gap: 6px !important;
+  justify-items: center !important;
+  padding: 12px 14px !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.22) !important;
+  text-decoration: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-retail__media .crays-hosp-retail__partner img {
+  width: 92px !important;
+  height: auto !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  filter: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-retail__media .crays-hosp-retail__partner span {
+  color: var(--hosp-ink) !important;
+  -webkit-text-fill-color: var(--hosp-ink) !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  text-align: center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-retail__copy,
+body.crays-mirror.route-hospitality .crays-hosp-tech__media {
+  display: grid !important;
+  gap: 18px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-video-card {
+  display: grid !important;
+  grid-template-rows: auto auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-video-card__media video {
+  display: block !important;
+  width: 100% !important;
+  max-height: 360px !important;
+  object-fit: cover !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-video-card figcaption {
+  position: static !important;
+  color: inherit !important;
+  background: rgba(8, 24, 36, 0.76) !important;
+  border: 0 !important;
+  border-top: 1px solid var(--hosp-line) !important;
+  border-radius: 0 !important;
+  padding: 20px !important;
+  backdrop-filter: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-collage {
+  min-height: 620px !important;
+  display: grid !important;
+  grid-template-columns: 1.1fr 0.9fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 12px !important;
+  padding: 12px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-collage img {
+  min-height: 0 !important;
+  border-radius: 8px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-collage img:first-child {
+  grid-row: 1 / 3 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--demand .crays-hosp-collage img:nth-child(1) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-demand-yacht-friends.jpg") !important;
+  object-position: center center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--demand .crays-hosp-collage img:nth-child(2) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-demand-dinner-community.jpg") !important;
+  object-position: center center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--demand .crays-hosp-collage img:nth-child(3) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-demand-sailing-community.jpg") !important;
+  object-position: center center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--demand .crays-hosp-collage img:nth-child(4) {
+  content: url("/assets/stock-lifestyle/crays-hospitality-demand-limo-lifestyle.jpg") !important;
+  object-position: center center !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-partners__media {
+  min-height: 620px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-partners__media figcaption {
+  max-width: calc(100% - 28px) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-partners__media figcaption :is(span, strong) {
+  color: var(--hosp-cream) !important;
+  -webkit-text-fill-color: var(--hosp-cream) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--partners.crays-hosp-section--partners .crays-hosp-partners__media figcaption :is(span, strong) {
+  color: #fffaf4 !important;
+  -webkit-text-fill-color: #fffaf4 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-network-card {
+  display: grid !important;
+  grid-template-rows: 220px auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-network-card div {
+  padding: 20px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-network-card img {
+  min-height: 220px !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-closing {
+  text-align: center !important;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.038) 1px, transparent 1px),
+    radial-gradient(circle at 50% 0%, rgba(255, 21, 80, 0.2), transparent 42%),
+    linear-gradient(180deg, #071c2a 0%, #030911 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto, auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-closing__inner {
+  max-width: 980px !important;
+  margin-inline: auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-closing .crays-hosp-title {
+  max-width: 15ch !important;
+  margin-inline: auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-retail__copy {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-auto-flow: row !important;
+  grid-auto-rows: auto !important;
+  align-content: start !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-retail__copy > * {
+  grid-column: 1 / -1 !important;
+  grid-row: auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-copy.crays-hosp-retail__strong-copy {
+  width: 100% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin-top: 8px !important;
+  padding: clamp(22px, 2.4vw, 30px) !important;
+  color: var(--hosp-cream) !important;
+  -webkit-text-fill-color: var(--hosp-cream) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-retail__revenue {
+  align-items: stretch !important;
+  grid-auto-rows: auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-retail__revenue article {
+  height: auto !important;
+  min-height: 170px !important;
+  align-self: stretch !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page .crays-hosp-section.crays-hosp-section--retail .crays-hosp-retail__media figcaption :is(span, strong) {
+  color: var(--hosp-cream) !important;
+  -webkit-text-fill-color: var(--hosp-cream) !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.82fr) !important;
+    gap: 28px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    font-size: clamp(56px, 7.5vw, 82px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-strip__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 991px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero {
+    height: auto !important;
+    min-height: 100svh !important;
+    padding-top: 104px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__inner,
+  body.crays-mirror.route-hospitality .crays-hosp-section-head--split,
+  body.crays-mirror.route-hospitality .crays-hosp-definition__grid,
+  body.crays-mirror.route-hospitality .crays-hosp-tech__grid,
+  body.crays-mirror.route-hospitality .crays-hosp-demand__grid,
+  body.crays-mirror.route-hospitality .crays-hosp-partners__grid,
+  body.crays-mirror.route-hospitality .crays-hosp-retail__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    min-height: 460px !important;
+  }
+
+  body.crays-mirror.route-hospitality :is(.crays-hosp-module-grid, .crays-hosp-stack-list, .crays-hosp-wealth-flow, .crays-hosp-network-grid, .crays-hosp-card-grid--three, .crays-hosp-proof__grid) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-hospitality .crays-hosp-shell,
+  body.crays-mirror.route-hospitality .crays-hosp-strip__grid {
+    width: min(calc(100% - 28px), 1240px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero {
+    padding-top: 92px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    max-width: 10.8ch !important;
+    font-size: clamp(46px, 14vw, 64px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-title {
+    max-width: 100% !important;
+    font-size: clamp(36px, 10.4vw, 52px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-lead,
+  body.crays-mirror.route-hospitality .crays-hosp-copy {
+    font-size: 16px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-actions,
+  body.crays-mirror.route-hospitality .crays-hosp-card-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-anchor-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-journey-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-module-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-stack-list,
+  body.crays-mirror.route-hospitality .crays-hosp-demand-loop,
+  body.crays-mirror.route-hospitality .crays-hosp-wealth-flow,
+  body.crays-mirror.route-hospitality .crays-hosp-partner-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-network-grid,
+  body.crays-mirror.route-hospitality .crays-hosp-retail__flow,
+  body.crays-mirror.route-hospitality .crays-hosp-retail__revenue,
+  body.crays-mirror.route-hospitality .crays-hosp-proof__grid,
+  body.crays-mirror.route-hospitality .crays-hosp-strip__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-actions {
+    display: grid !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card,
+  body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card--club,
+  body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card--coffee {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div,
+  body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card :is(h3, p, span, strong) {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    min-height: 390px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+    inset-bottom: 102px !important;
+    grid-template-columns: 1fr 0.78fr !important;
+    gap: 10px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+    padding: 14px 17px 2px !important;
+    font-size: 20px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+    padding: 4px 17px 14px 24px !important;
+    font-size: 13px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-retail__media,
+  body.crays-mirror.route-hospitality .crays-hosp-collage,
+  body.crays-mirror.route-hospitality .crays-hosp-partners__media {
+    min-height: 420px !important;
+  }
+}
+
+/* Absolute final Hospitality hero composition: this file loads last, so keep the panel typography off the images. */
+body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+  max-width: none !important;
+  font-size: clamp(50px, 5.3vw, 76px) !important;
+  line-height: 1 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__title span {
+  display: block !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+  width: min(100%, 560px) !important;
+  min-height: 0 !important;
+  display: grid !important;
+  grid-template-rows: auto auto auto auto !important;
+  gap: 12px !important;
+  align-self: center !important;
+  padding: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-left: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 8px !important;
+  color: var(--hosp-cream) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035)),
+    rgba(4, 15, 24, 0.86) !important;
+  box-shadow: 0 28px 84px rgba(0, 0, 0, 0.34) !important;
+  backdrop-filter: blur(12px) saturate(1.08) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+  position: relative !important;
+  inset: auto !important;
+  order: 1 !important;
+  height: clamp(250px, 31vh, 315px) !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.18fr) minmax(0, 0.82fr) !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-media img,
+body.crays-mirror.route-hospitality .crays-hosp-panel-media::after {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 7px !important;
+  box-shadow: none !important;
+  object-fit: cover !important;
+  filter: saturate(1.1) contrast(1.04) brightness(0.98) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-label {
+  order: 2 !important;
+  display: inline-flex !important;
+  width: fit-content !important;
+  margin: 2px 0 0 !important;
+  color: rgba(255, 250, 244, 0.72) !important;
+  -webkit-text-fill-color: rgba(255, 250, 244, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2,
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  position: relative !important;
+  z-index: 2 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+  order: 3 !important;
+  max-width: 14ch !important;
+  color: #fff !important;
+  font-size: clamp(28px, 2.18vw, 34px) !important;
+  line-height: 1.08 !important;
+  font-weight: 900 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+  order: 4 !important;
+  max-width: 58ch !important;
+  color: rgba(255, 255, 255, 0.84) !important;
+  font-size: clamp(14.5px, 0.98vw, 15.5px) !important;
+  line-height: 1.54 !important;
+  font-weight: 750 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-panel-flow {
+  display: none !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-hero .crays-hosp-eyebrow,
+body.crays-mirror.route-hospitality .crays-hosp-hero .crays-hosp-panel-label {
+  color: var(--hosp-red) !important;
+  -webkit-text-fill-color: var(--hosp-red) !important;
+}
+
+/* Final light-section cleanup: no red veil, readable dark cards. */
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) {
+  background:
+    linear-gradient(rgba(6, 17, 29, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(6, 17, 29, 0.028) 1px, transparent 1px),
+    linear-gradient(180deg, #f7f4ef 0%, #e8eef0 100%) !important;
+  background-size: 86px 86px, 86px 86px, auto !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-page :is(.crays-hosp-section--definition, .crays-hosp-section--anchors, .crays-hosp-section--journey, .crays-hosp-section--retail, .crays-hosp-section--wealth, .crays-hosp-section--partners) :is(.crays-hosp-eyebrow, .crays-hosp-kicker) {
+  color: rgba(6, 17, 29, 0.58) !important;
+  -webkit-text-fill-color: rgba(6, 17, 29, 0.58) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div {
+  color: #fffaf4 !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)),
+    rgba(8, 27, 40, 0.94) !important;
+  border-left-color: rgba(255, 255, 255, 0.14) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div :is(h3, strong, span) {
+  color: #fffaf4 !important;
+  -webkit-text-fill-color: #fffaf4 !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div p {
+  color: rgba(255, 250, 244, 0.76) !important;
+  -webkit-text-fill-color: rgba(255, 250, 244, 0.76) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-anchor-card > div .crays-hosp-kicker {
+  color: rgba(255, 250, 244, 0.72) !important;
+  -webkit-text-fill-color: rgba(255, 250, 244, 0.72) !important;
+}
+
+body.crays-mirror.route-hospitality .crays-hosp-section--anchors .crays-hosp-mini-row span {
+  color: #fffaf4 !important;
+  -webkit-text-fill-color: #fffaf4 !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    width: min(100%, 500px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+    height: clamp(230px, 29vh, 285px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+    font-size: clamp(25px, 2.6vw, 32px) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-hospitality .crays-hosp-hero__title {
+    font-size: clamp(44px, 13vw, 60px) !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel {
+    padding: 12px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-panel-media {
+    height: 260px !important;
+    grid-template-columns: 1fr 0.84fr !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > h2 {
+    max-width: 100% !important;
+    font-size: 25px !important;
+  }
+
+  body.crays-mirror.route-hospitality .crays-hosp-hero__panel > p {
+    font-size: 14px !important;
+  }
+}
+/* Hospitality final type lock 2026-05-10: duplicate at page CSS tail to beat all legacy page blocks. */
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero #crays-hosp-title.crays-hosp-hero__title {
+  max-width: 12.5ch !important;
+  font-size: 48px !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0 !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero #crays-hosp-title.crays-hosp-hero__title span {
+  display: block !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-lead {
+  max-width: 620px !important;
+  margin-top: 18px !important;
+  font-size: 14.5px !important;
+  line-height: 1.62 !important;
+  font-weight: 500 !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-hero__panel {
+  width: min(100%, 500px) !important;
+  gap: 10px !important;
+  padding: 22px !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-panel-media {
+  height: 225px !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-hero__panel > h2 {
+  max-width: 17ch !important;
+  font-size: 28px !important;
+  line-height: 1.08 !important;
+  font-weight: 900 !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-hero__panel > p {
+  margin-top: 4px !important;
+  font-size: 13.2px !important;
+  line-height: 1.6 !important;
+  font-weight: 600 !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-strip,
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-proof {
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(135deg, #0b4369 0%, #073458 42%, #071b31 100%) !important;
+  background-size: 92px 92px, 92px 92px, auto !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-strip {
+  padding-block: 34px 16px !important;
+}
+
+html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-proof {
+  margin-top: 0 !important;
+  padding: 16px 0 52px !important;
+}
+
+@media (max-width: 1180px) {
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero #crays-hosp-title.crays-hosp-hero__title {
+    font-size: 44px !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-hero__panel > h2 {
+    font-size: 26px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero #crays-hosp-title.crays-hosp-hero__title {
+    font-size: 36px !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-hero .crays-hosp-hero__panel > h2 {
+    font-size: 22px !important;
+  }
+}

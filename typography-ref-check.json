@@ -1,0 +1,399 @@
+{
+  "lifestyle": [
+    {
+      "prefix": "Physical living rooms",
+      "matches": []
+    },
+    {
+      "prefix": "The future is not remote",
+      "matches": []
+    },
+    {
+      "prefix": "Lifestyle",
+      "matches": [
+        {
+          "text": "Lifestyle brands",
+          "tag": "SPAN",
+          "class": "",
+          "font": "12px",
+          "lineHeight": "20px",
+          "weight": "900",
+          "width": 138,
+          "height": 38,
+          "top": 5522
+        }
+      ]
+    },
+    {
+      "prefix": "Crays Lifestyle",
+      "matches": []
+    },
+    {
+      "prefix": "Your profile becomes",
+      "matches": []
+    },
+    {
+      "prefix": "Live where",
+      "matches": []
+    }
+  ],
+  "hospitality": [
+    {
+      "prefix": "Physical living rooms",
+      "matches": [
+        {
+          "text": "Physical living rooms for cities, hotels and destination venues.",
+          "tag": "P",
+          "class": "",
+          "font": "16px",
+          "lineHeight": "27.52px",
+          "weight": "400",
+          "width": 226,
+          "height": 83,
+          "top": 1550
+        }
+      ]
+    },
+    {
+      "prefix": "Your room becomes",
+      "matches": [
+        {
+          "text": "Your room becomes a network.",
+          "tag": "H2",
+          "class": "crays-hosp-title",
+          "font": "61.509px",
+          "lineHeight": "62.7392px",
+          "weight": "400",
+          "width": 505,
+          "height": 188,
+          "top": 7881
+        }
+      ]
+    },
+    {
+      "prefix": "Community is the demand layer",
+      "matches": [
+        {
+          "text": "Community is the demand layer.",
+          "tag": "H2",
+          "class": "crays-hosp-title",
+          "font": "53.025px",
+          "lineHeight": "54.0855px",
+          "weight": "400",
+          "width": 520,
+          "height": 162,
+          "top": 9019
+        }
+      ]
+    },
+    {
+      "prefix": "Inside Crays Hospitality",
+      "matches": [
+        {
+          "text": "Inside Crays Hospitality, you meet creators, fans, entrepreneurs, investors, nomads, local professionals, artists, tech people, lifestyle brands and premium travelers. The venue be",
+          "tag": "P",
+          "class": "crays-hosp-copy",
+          "font": "16px",
+          "lineHeight": "24.8px",
+          "weight": "400",
+          "width": 537,
+          "height": 124,
+          "top": 9215
+        }
+      ]
+    },
+    {
+      "prefix": "Digital world meets real world",
+      "matches": []
+    }
+  ],
+  "tech": [
+    {
+      "prefix": "Technology that turns",
+      "matches": [
+        {
+          "text": "Technology that turns intent into real-world demand.",
+          "tag": "H1",
+          "class": "crays-tech-hero__title",
+          "font": "54px",
+          "lineHeight": "56.16px",
+          "weight": "400",
+          "width": 693,
+          "height": 168,
+          "top": 419
+        }
+      ]
+    },
+    {
+      "prefix": "Crays connects Nostr",
+      "matches": [
+        {
+          "text": "Crays connects Nostr identity, OpenClaw AI, in-venue mesh networks, Bitcoin and Lightning payments, RGB-based ownership rails and a hospitality operating stack. The result is not a",
+          "tag": "P",
+          "class": "crays-tech-lead",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 693,
+          "height": 115,
+          "top": 611
+        }
+      ]
+    },
+    {
+      "prefix": "A clear technology path",
+      "matches": [
+        {
+          "text": "A clear technology path from\nsocial signal to real-world\nhospitality action.",
+          "tag": "H2",
+          "class": "crays-tech-title",
+          "font": "34.643px",
+          "lineHeight": "37.4144px",
+          "weight": "400",
+          "width": 741,
+          "height": 112,
+          "top": 2505
+        }
+      ]
+    },
+    {
+      "prefix": "Crays becomes easier",
+      "matches": [
+        {
+          "text": "Crays becomes easier to understand when the stack is read as one operating system: social identity creates demand, OpenClaw coordinates context, the local mesh connects venues, and",
+          "tag": "P",
+          "class": "crays-tech-copy",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 412,
+          "height": 172,
+          "top": 2445
+        }
+      ]
+    },
+    {
+      "prefix": "The stack does one thing",
+      "matches": [
+        {
+          "text": "The stack does one thing: move social intent into real action.",
+          "tag": "H2",
+          "class": "crays-tech-title",
+          "font": "54px",
+          "lineHeight": "58.32px",
+          "weight": "400",
+          "width": 629,
+          "height": 233,
+          "top": 3997
+        }
+      ]
+    },
+    {
+      "prefix": "Crays technology starts",
+      "matches": [
+        {
+          "text": "Crays technology starts with a person, a place and a signal. Nostr makes identity portable. OpenClaw interprets intent. The in-venue mesh gives the space a local nervous system. Bi",
+          "tag": "P",
+          "class": "crays-tech-copy",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 629,
+          "height": 115,
+          "top": 4252
+        }
+      ]
+    },
+    {
+      "prefix": "Social Network -> Coordination",
+      "matches": [
+        {
+          "text": "Social Network -> Coordination Engine -> Real-World Demand",
+          "tag": "H2",
+          "class": "crays-tech-title",
+          "font": "54px",
+          "lineHeight": "58.32px",
+          "weight": "400",
+          "width": 666,
+          "height": 233,
+          "top": 5788
+        }
+      ]
+    },
+    {
+      "prefix": "The stack starts with human",
+      "matches": [
+        {
+          "text": "The stack starts with human signals and ends with real actions: access, introductions, reservations, room keys, tips, purchases, deposits, ticketing, loyalty and venue operations.",
+          "tag": "P",
+          "class": "crays-tech-copy",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 518,
+          "height": 115,
+          "top": 5907
+        }
+      ]
+    },
+    {
+      "prefix": "Social Network",
+      "matches": [
+        {
+          "text": "Social Network -> Coordination Engine -> Real-World Demand",
+          "tag": "H2",
+          "class": "crays-tech-title",
+          "font": "54px",
+          "lineHeight": "58.32px",
+          "weight": "400",
+          "width": 666,
+          "height": 233,
+          "top": 5788
+        },
+        {
+          "text": "Social Network",
+          "tag": "H3",
+          "class": "",
+          "font": "21px",
+          "lineHeight": "24.78px",
+          "weight": "900",
+          "width": 345,
+          "height": 25,
+          "top": 6123
+        }
+      ]
+    },
+    {
+      "prefix": "Coordination Engine",
+      "matches": [
+        {
+          "text": "Coordination Engine",
+          "tag": "H3",
+          "class": "",
+          "font": "21px",
+          "lineHeight": "24.78px",
+          "weight": "900",
+          "width": 345,
+          "height": 25,
+          "top": 6123
+        }
+      ]
+    },
+    {
+      "prefix": "Real-World Demand",
+      "matches": [
+        {
+          "text": "Real-World Demand",
+          "tag": "H3",
+          "class": "",
+          "font": "21px",
+          "lineHeight": "24.78px",
+          "weight": "900",
+          "width": 345,
+          "height": 25,
+          "top": 6123
+        }
+      ]
+    },
+    {
+      "prefix": "Intent appears on Nostr",
+      "matches": [
+        {
+          "text": "Intent appears on Nostr. OpenClaw matches people and places. Crays sends the introduction or venue action. Booking rails execute when needed. Lightning settles deposits and payment",
+          "tag": "H3",
+          "class": "",
+          "font": "28px",
+          "lineHeight": "34.16px",
+          "weight": "400",
+          "width": 980,
+          "height": 137,
+          "top": 6440
+        }
+      ]
+    },
+    {
+      "prefix": "External booking infrastructure",
+      "matches": [
+        {
+          "text": "External booking infrastructure such as Amadeus can be treated as execution only: availability, pricing and ticketing after Crays has already understood the desire and matched it t",
+          "tag": "P",
+          "class": "",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 860,
+          "height": 86,
+          "top": 6594
+        }
+      ]
+    },
+    {
+      "prefix": "Crays builds the infrastructure",
+      "matches": [
+        {
+          "text": "Crays builds the infrastructure that translates intention into economic activity.",
+          "tag": "H2",
+          "class": "crays-tech-title",
+          "font": "54px",
+          "lineHeight": "58.32px",
+          "weight": "400",
+          "width": 532,
+          "height": 408,
+          "top": 4934
+        }
+      ]
+    },
+    {
+      "prefix": "Users are matched automatically",
+      "matches": [
+        {
+          "text": "Users are matched automatically. Demand is generated instead of searched for. Payments happen directly. Venues become intelligent local networks. Content can be monetized without e",
+          "tag": "P",
+          "class": "crays-tech-copy",
+          "font": "17.675px",
+          "lineHeight": "28.6335px",
+          "weight": "400",
+          "width": 532,
+          "height": 172,
+          "top": 5365
+        }
+      ]
+    },
+    {
+      "prefix": "Nutzer",
+      "matches": [
+        {
+          "text": "Nutzer",
+          "tag": "H3",
+          "class": "",
+          "font": "24.038px",
+          "lineHeight": "28.3648px",
+          "weight": "900",
+          "width": 268,
+          "height": 28,
+          "top": 4959
+        }
+      ]
+    },
+    {
+      "prefix": "Nachfrage",
+      "matches": [
+        {
+          "text": "Nachfrage",
+          "tag": "H3",
+          "class": "",
+          "font": "24.038px",
+          "lineHeight": "28.3648px",
+          "weight": "900",
+          "width": 268,
+          "height": 28,
+          "top": 4959
+        }
+      ]
+    },
+    {
+      "prefix": "Translation layer",
+      "matches": []
+    }
+  ]
+}
