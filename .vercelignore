@@ -1,0 +1,6 @@
+artifacts/
+server.log
+server.err
+*.log
+*.err.log
+*.out.log
