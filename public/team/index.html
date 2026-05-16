@@ -743,6 +743,40 @@
         grid-row: auto !important;
       }
     }
+
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-section.crays-team-section--structure p.crays-team-copy:not(#crays-team-reader-copy-size-lock),
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-section.crays-team-section--steering p.crays-team-copy:not(#crays-team-reader-copy-size-lock),
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-section.crays-team-section--extended p.crays-team-copy:not(#crays-team-reader-copy-size-lock),
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-section.crays-team-section--workstreams p.crays-team-copy:not(#crays-team-reader-copy-size-lock),
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-manifesto p.crays-team-copy:not(#crays-team-reader-copy-size-lock),
+    html body.body.crays-mirror.route-team main.crays-team-page > section.crays-team-closing p.crays-team-copy:not(#crays-team-reader-copy-size-lock) {
+      font-size: clamp(16px, 1.25vw, 18px) !important;
+      line-height: 1.62 !important;
+      letter-spacing: 0 !important;
+      font-weight: 500 !important;
+    }
+
+    html body.body.crays-mirror.route-team main.crays-team-page .crays-team-closing .crays-team-title {
+      max-width: min(62vw, 780px) !important;
+      font-size: clamp(38px, 4vw, 62px) !important;
+      line-height: 1.06 !important;
+      text-wrap: balance !important;
+    }
+
+    html body.body.crays-mirror.route-team main.crays-team-page .crays-team-closing .crays-team-copy {
+      max-width: min(66vw, 820px) !important;
+    }
+
+    @media (max-width: 767px) {
+      html body.body.crays-mirror.route-team main.crays-team-page .crays-team-closing .crays-team-title,
+      html body.body.crays-mirror.route-team main.crays-team-page .crays-team-closing .crays-team-copy {
+        max-width: 100% !important;
+      }
+
+      html body.body.crays-mirror.route-team main.crays-team-page .crays-team-closing .crays-team-title {
+        font-size: clamp(32px, 9vw, 42px) !important;
+      }
+    }
   </style>
   <script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -918,6 +952,21 @@
     button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
   });
 })();</script></footer><aside class="crays-live-text-preserve" aria-hidden="true"><p>Crays Award</p><p>Explore Coffee Shops</p><p>Terms and Conditions</p><p>Privacy Policy</p></aside>
+<script id="crays-team-reader-copy-lock">
+(function () {
+  var page = document.querySelector('main.crays-team-page');
+  if (!page) return;
+
+  function setText(selector, text) {
+    var element = page.querySelector(selector);
+    if (element) element.textContent = text;
+  }
+
+  setText('.crays-team-closing .crays-team-eyebrow', 'What you can judge here');
+  setText('.crays-team-closing .crays-team-title', 'You can see what the Crays team is built to handle.');
+  setText('.crays-team-closing .crays-team-copy', 'Use this page to understand the capabilities behind Crays before you join, partner, invest or propose a location: governance, capital-market experience, real estate, hospitality, legal discipline, Web5 infrastructure, events, community and operating talent. Names can come later; first you should see how the work is organized and how an idea can move into execution.');
+})();
+</script>
 <script src="/assets/js/site.js"></script>
 </body>
 </html>
