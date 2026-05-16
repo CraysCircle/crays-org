@@ -2,6 +2,7 @@
 node_modules/
 
 # Local runtime output
+artifacts/
 *.log
 server.err
 server.log
