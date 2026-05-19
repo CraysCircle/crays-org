@@ -227,7 +227,7 @@ body.crays-mirror {
   right: 0;
   z-index: 80;
   display: none;
-  min-width: 202px;
+  min-width: 204px;
   flex-direction: column;
   gap: 4px;
   padding: 10px;
@@ -266,12 +266,47 @@ body.crays-mirror {
 
 .crays-mirror .navbar10_menu-right .crays-top-nav-language-flag {
   display: block;
-  width: 23px;
-  height: 16px;
+  width: 26px;
+  height: 18px;
+  min-width: 26px;
   flex: 0 0 auto;
   border-radius: 2px;
   object-fit: cover;
+  overflow: hidden;
   box-shadow: 0 0 0 1px rgba(7, 26, 45, 0.08);
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--css {
+  display: inline-block;
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--ca {
+  background: repeating-linear-gradient(180deg, #ffd43b 0 2.6px, #d9272e 2.6px 5.2px);
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--fr {
+  background: linear-gradient(90deg, #0055a4 0 33.33%, #fff 33.33% 66.66%, #ef4135 66.66% 100%);
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--it {
+  background: linear-gradient(90deg, #009246 0 33.33%, #fff 33.33% 66.66%, #ce2b37 66.66% 100%);
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--pt {
+  position: relative;
+  background: linear-gradient(90deg, #006600 0 40%, #ff0000 40% 100%);
+}
+
+.crays-mirror .navbar10_menu-right .crays-top-nav-language-flag--pt::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 40%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffd100;
+  transform: translate(-50%, -50%);
 }
 
 .crays-mirror .w-icon-dropdown-toggle {

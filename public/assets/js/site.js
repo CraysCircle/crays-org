@@ -33,6 +33,53 @@ document.querySelectorAll(".w-dropdown-toggle").forEach((button) => {
   });
 });
 
+const craysLanguageItems = [
+  {
+    code: "en",
+    label: "English",
+    flag: '<img src="/assets/brand/flag-en.svg" alt="" class="crays-top-nav-language-flag" width="60" height="40" loading="lazy">',
+    active: true,
+  },
+  {
+    code: "de",
+    label: "Deutsch",
+    flag: '<img src="/assets/brand/flag-de.svg" alt="" class="crays-top-nav-language-flag" width="60" height="40" loading="lazy">',
+  },
+  {
+    code: "es",
+    label: "Espa&ntilde;ol",
+    flag: '<img src="/assets/brand/flag-es.svg" alt="" class="crays-top-nav-language-flag" width="60" height="40" loading="lazy">',
+  },
+  {
+    code: "ca",
+    label: "Catal&agrave;",
+    flag: '<span class="crays-top-nav-language-flag crays-top-nav-language-flag--css crays-top-nav-language-flag--ca" aria-hidden="true"></span>',
+  },
+  {
+    code: "fr",
+    label: "Fran&ccedil;ais",
+    flag: '<span class="crays-top-nav-language-flag crays-top-nav-language-flag--css crays-top-nav-language-flag--fr" aria-hidden="true"></span>',
+  },
+  {
+    code: "pt",
+    label: "Portugu&ecirc;s",
+    flag: '<span class="crays-top-nav-language-flag crays-top-nav-language-flag--css crays-top-nav-language-flag--pt" aria-hidden="true"></span>',
+  },
+  {
+    code: "it",
+    label: "Italiano",
+    flag: '<span class="crays-top-nav-language-flag crays-top-nav-language-flag--css crays-top-nav-language-flag--it" aria-hidden="true"></span>',
+  },
+];
+
+document.querySelectorAll(".crays-top-nav-language-menu").forEach((menu) => {
+  menu.innerHTML = craysLanguageItems
+    .map((item) => (
+      `<button class="crays-top-nav-language-item" type="button" data-lang="${item.code}" aria-pressed="${item.active ? "true" : "false"}">${item.flag}<span>${item.label}</span></button>`
+    ))
+    .join("");
+});
+
 const clock = document.getElementById("js-clock");
 
 if (clock) {
