@@ -5817,7 +5817,8 @@
     --crays-page-copy: Montserrat, Arial, sans-serif;
     --crays-page-h1: clamp(40px, 3.4vw, 60px);
     --crays-page-h2: clamp(32px, 2.55vw, 48px);
-    --crays-page-h3: clamp(19px, 1.15vw, 24px);
+    --crays-page-h3: clamp(22px, 1.9vw, 28px);
+    --crays-page-h4: clamp(17px, 1.2vw, 20px);
     --crays-page-copy-size: clamp(16px, 0.92vw, 17px);
     --crays-page-label-size: 10.5px;
     font-family: var(--crays-page-copy) !important;
@@ -5879,7 +5880,8 @@
     html body.route-join-us main.crays-join-page {
       --crays-page-h1: clamp(34px, 9vw, 42px);
       --crays-page-h2: clamp(28px, 8vw, 36px);
-      --crays-page-h3: clamp(19px, 5.5vw, 23px);
+      --crays-page-h3: clamp(20px, 5.5vw, 24px);
+      --crays-page-h4: clamp(17px, 4.8vw, 20px);
       --crays-page-copy-size: 16px;
     }
   }
@@ -7563,7 +7565,8 @@
     --crays-join-type-copy: Montserrat, Arial, sans-serif;
     --crays-join-type-h1: clamp(40px, 3.4vw, 60px);
     --crays-join-type-h2: clamp(32px, 2.55vw, 48px);
-    --crays-join-type-h3: clamp(19px, 1.15vw, 24px);
+    --crays-join-type-h3: clamp(22px, 1.9vw, 28px);
+    --crays-join-type-h4: clamp(17px, 1.2vw, 20px);
     --crays-join-type-body: clamp(16px, 0.92vw, 17px);
     --crays-join-type-small: clamp(14px, 0.82vw, 15.5px);
     --crays-join-type-label: 10.5px;
@@ -7648,7 +7651,8 @@
     html body.body.crays-mirror.route-join-us main#crays-franchise.crays-join-page {
       --crays-join-type-h1: clamp(34px, 9vw, 42px);
       --crays-join-type-h2: clamp(28px, 8vw, 36px);
-      --crays-join-type-h3: clamp(19px, 5.5vw, 23px);
+      --crays-join-type-h3: clamp(20px, 5.5vw, 24px);
+      --crays-join-type-h4: clamp(17px, 4.8vw, 20px);
       --crays-join-type-body: 16px;
       --crays-join-type-small: 14.5px;
     }
@@ -9086,8 +9090,8 @@
     display: grid !important;
     grid-template-columns: auto minmax(0, 1fr) !important;
     gap: clamp(12px, 1.1vw, 18px) !important;
-    min-height: clamp(82px, 6vw, 100px) !important;
-    padding: clamp(16px, 1.45vw, 22px) clamp(18px, 1.7vw, 26px) !important;
+    min-height: clamp(76px, 5vw, 88px) !important;
+    padding: clamp(14px, 1.2vw, 18px) clamp(18px, 1.6vw, 24px) !important;
   }
 
   html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab span {
@@ -9098,11 +9102,11 @@
   html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab strong {
     align-self: center !important;
     display: block !important;
-    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
-    font-size: clamp(20px, 1.45vw, 27px) !important;
+    font-family: var(--crays-page-copy, Montserrat, Arial, sans-serif) !important;
+    font-size: clamp(19px, 1.45vw, 24px) !important;
     font-weight: 900 !important;
     letter-spacing: 0 !important;
-    line-height: 1.05 !important;
+    line-height: 1.08 !important;
     max-width: none !important;
     text-wrap: balance !important;
   }
@@ -9120,11 +9124,11 @@
 
   html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head h3 {
     font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
-    font-size: clamp(34px, 4vw, 58px) !important;
+    font-size: var(--crays-page-h3, clamp(22px, 1.9vw, 28px)) !important;
     font-weight: 900 !important;
     letter-spacing: 0 !important;
-    line-height: 0.98 !important;
-    max-width: 980px !important;
+    line-height: 1.12 !important;
+    max-width: 1040px !important;
     text-wrap: balance !important;
   }
 
@@ -9151,31 +9155,527 @@
     }
 
     html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab strong {
-      font-size: clamp(18px, 5.6vw, 24px) !important;
+      font-size: clamp(18px, 5.4vw, 22px) !important;
     }
 
     html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head h3 {
-      font-size: clamp(30px, 9vw, 42px) !important;
+      font-size: var(--crays-page-h3, clamp(20px, 5.5vw, 24px)) !important;
     }
   }
 
   html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__tab strong {
-    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
-    font-size: clamp(22px, 1.8vw, 31px) !important;
+    font-family: var(--crays-page-copy, Montserrat, Arial, sans-serif) !important;
+    font-size: clamp(19px, 1.45vw, 24px) !important;
     font-weight: 900 !important;
     letter-spacing: 0 !important;
-    line-height: 1.03 !important;
+    line-height: 1.08 !important;
   }
 
   html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__panel.is-active .crays-join-fit-tabs-v1__panel-head h3,
   html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__panel .crays-join-fit-tabs-v1__panel-head h3 {
     font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
-    font-size: clamp(36px, 4vw, 60px) !important;
+    font-size: var(--crays-page-h3, clamp(22px, 1.9vw, 28px)) !important;
     font-weight: 900 !important;
     letter-spacing: 0 !important;
-    line-height: 0.98 !important;
+    line-height: 1.12 !important;
     max-width: 1040px !important;
     text-wrap: balance !important;
+  }
+
+  /* Join-us type scale lock: mirrors the site-wide rhythm used on Lifestyle. */
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page {
+    --crays-page-heading: "Krona One", Montserrat, Arial, sans-serif;
+    --crays-page-copy: Montserrat, Arial, sans-serif;
+    --crays-page-h1: clamp(40px, 3.4vw, 60px);
+    --crays-page-h2: clamp(32px, 2.55vw, 48px);
+    --crays-page-h3: clamp(22px, 1.9vw, 28px);
+    --crays-page-h4: clamp(17px, 1.2vw, 20px);
+    --crays-page-copy-size: clamp(16px, 0.92vw, 17px);
+    --crays-page-label-size: 10.5px;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page :is(h1, #crays-franchise-title) {
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h1) !important;
+    font-weight: 900 !important;
+    line-height: 1.05 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page :is(h2, #crays-join-fit-title, #crays-owner-system-title, #crays-owner-alliance-title) {
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h2) !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page h3 {
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h3) !important;
+    font-weight: 900 !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page h4 {
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h4) !important;
+    font-weight: 900 !important;
+    line-height: 1.14 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page :is(p, li) {
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-copy-size) !important;
+    font-weight: 500 !important;
+    line-height: 1.62 !important;
+    letter-spacing: 0 !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__tab {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    min-height: clamp(76px, 5vw, 88px) !important;
+    padding: clamp(14px, 1.2vw, 18px) clamp(18px, 1.6vw, 24px) !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__tab strong {
+    font-family: var(--crays-page-copy) !important;
+    font-size: clamp(19px, 1.45vw, 24px) !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0 !important;
+    max-width: none !important;
+  }
+
+  @media (max-width: 720px) {
+    html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page {
+      --crays-page-h1: clamp(34px, 9vw, 42px);
+      --crays-page-h2: clamp(28px, 8vw, 36px);
+      --crays-page-h3: clamp(20px, 5.5vw, 24px);
+      --crays-page-h4: clamp(17px, 4.8vw, 20px);
+      --crays-page-copy-size: 16px;
+    }
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit :is(#join-fit-panel-0, #join-fit-panel-1, #join-fit-panel-2, #join-fit-panel-3) .crays-join-fit-tabs-v1__panel-head {
+    display: block !important;
+    width: 100% !important;
+    max-width: 1120px !important;
+    margin-right: auto !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit :is(#join-fit-panel-0, #join-fit-panel-1, #join-fit-panel-2, #join-fit-panel-3) .crays-join-fit-tabs-v1__panel-head h3 {
+    font-family: var(--crays-page-heading) !important;
+    font-size: clamp(26px, 2.35vw, 34px) !important;
+    font-weight: 900 !important;
+    line-height: 1.08 !important;
+    letter-spacing: 0 !important;
+    max-width: 1120px !important;
+    width: 100% !important;
+    text-wrap: balance !important;
+  }
+
+  @media (max-width: 720px) {
+    html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit :is(#join-fit-panel-0, #join-fit-panel-1, #join-fit-panel-2, #join-fit-panel-3) .crays-join-fit-tabs-v1__panel-head h3 {
+      font-size: clamp(23px, 6.4vw, 30px) !important;
+    }
+  }
+</style>
+<style id="crays-join-us-luxury-typography-final-v6">
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page {
+    --crays-page-heading: "Krona One", Montserrat, Arial, sans-serif;
+    --crays-page-copy: Montserrat, Arial, sans-serif;
+    --crays-page-h1: clamp(40px, 3.4vw, 60px);
+    --crays-page-h2: clamp(32px, 2.55vw, 48px);
+    --crays-page-h3: clamp(22px, 1.9vw, 28px);
+    --crays-page-h4: clamp(19px, 1.25vw, 23px);
+    --crays-page-copy-size: clamp(16px, 0.92vw, 17px);
+    --crays-page-small-size: clamp(14.5px, 0.82vw, 15.5px);
+    --crays-page-label-size: 10.5px;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system {
+    position: relative !important;
+    isolation: isolate !important;
+    margin: 0 !important;
+    padding: clamp(58px, 5.8vw, 92px) 0 clamp(70px, 6.4vw, 104px) !important;
+    overflow: hidden !important;
+    color: #ffffff !important;
+    background-color: #06121d !important;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.052) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.044) 1px, transparent 1px),
+      radial-gradient(circle at 72% 12%, rgba(31, 126, 196, 0.28), transparent 34%),
+      linear-gradient(135deg, #06121d 0%, #082b48 42%, #0b5eab 76%, #087a8e 100%) !important;
+    background-position: 0 0, 0 0, center, center !important;
+    background-size: 92px 92px, 92px 92px, auto, auto !important;
+    border-top: 0 !important;
+    border-bottom: 0 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background:
+      linear-gradient(90deg, rgba(6, 18, 29, 0.7) 0%, rgba(6, 18, 29, 0.36) 48%, rgba(6, 18, 29, 0) 100%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0) 38%) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system::after {
+    content: "" !important;
+    position: absolute !important;
+    right: 0 !important;
+    bottom: -1px !important;
+    left: 0 !important;
+    z-index: 0 !important;
+    height: clamp(120px, 12vw, 190px) !important;
+    pointer-events: none !important;
+    background: linear-gradient(180deg, rgba(6, 18, 29, 0) 0%, #06121d 100%) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__shell {
+    position: relative !important;
+    z-index: 1 !important;
+    width: min(1320px, calc(100% - 72px)) !important;
+    max-width: min(1320px, calc(100% - 72px)) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__intro {
+    display: grid !important;
+    grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.78fr) !important;
+    gap: clamp(38px, 5vw, 82px) !important;
+    align-items: center !important;
+    margin: 0 0 clamp(42px, 4.8vw, 70px) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system #crays-owner-alliance-title {
+    max-width: 780px !important;
+    margin: 10px 0 0 !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h2) !important;
+    font-weight: 900 !important;
+    line-height: 1.06 !important;
+    letter-spacing: 0 !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__intro > p {
+    align-self: center !important;
+    max-width: 650px !important;
+    margin: 0 !important;
+    color: rgba(247, 251, 255, 0.82) !important;
+    -webkit-text-fill-color: rgba(247, 251, 255, 0.82) !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-copy-size) !important;
+    font-weight: 600 !important;
+    line-height: 1.62 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__layout {
+    display: grid !important;
+    grid-template-columns: minmax(280px, 320px) minmax(0, 1fr) !important;
+    gap: clamp(30px, 4vw, 56px) !important;
+    align-items: start !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__rail {
+    position: sticky !important;
+    top: 96px !important;
+    display: grid !important;
+    gap: 12px !important;
+    padding: 14px !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 8px !important;
+    background: rgba(4, 17, 29, 0.48) !important;
+    box-shadow: 0 28px 82px rgba(0, 0, 0, 0.22) !important;
+    backdrop-filter: blur(18px) saturate(1.12) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__tab {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    column-gap: 14px !important;
+    row-gap: 5px !important;
+    min-height: 86px !important;
+    padding: 16px 16px !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-left: 4px solid rgba(255, 31, 87, 0.82) !important;
+    border-radius: 8px !important;
+    background: rgba(10, 35, 55, 0.62) !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+    text-align: left !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__tab.is-active {
+    border-color: rgba(255, 31, 87, 0.92) !important;
+    border-left-color: #ff1f57 !important;
+    background: linear-gradient(135deg, rgba(255, 31, 87, 0.16), rgba(12, 47, 75, 0.84)) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__tab span {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    align-self: start !important;
+    justify-self: start !important;
+    color: #ff1f57 !important;
+    -webkit-text-fill-color: #ff1f57 !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-label-size) !important;
+    font-weight: 900 !important;
+    line-height: 1 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__tab strong {
+    grid-column: 2 !important;
+    display: block !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: clamp(15px, 1vw, 17px) !important;
+    font-weight: 900 !important;
+    line-height: 1.18 !important;
+    letter-spacing: 0 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__tab small {
+    grid-column: 2 !important;
+    display: block !important;
+    color: rgba(247, 251, 255, 0.66) !important;
+    -webkit-text-fill-color: rgba(247, 251, 255, 0.66) !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: 12.5px !important;
+    font-weight: 700 !important;
+    line-height: 1.36 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__panel {
+    min-height: 0 !important;
+    padding: clamp(30px, 3.4vw, 44px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-radius: 8px !important;
+    background:
+      linear-gradient(135deg, rgba(8, 25, 39, 0.94), rgba(14, 64, 96, 0.72)),
+      rgba(8, 25, 39, 0.9) !important;
+    box-shadow: 0 34px 95px rgba(0, 0, 0, 0.26) !important;
+    backdrop-filter: blur(16px) saturate(1.08) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__panel-head, .crays-owner-alliance-tabs-v1__panel-copy) {
+    max-width: 820px !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__kicker,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-franchise-eyebrow,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid, .crays-owner-alliance-tabs-v1__format-grid, .crays-owner-alliance-tabs-v1__package-grid, .crays-owner-alliance-tabs-v1__logic-grid, .crays-owner-alliance-tabs-v1__signal-grid) article > span {
+    color: #ff1f57 !important;
+    -webkit-text-fill-color: #ff1f57 !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-label-size) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.18 !important;
+    text-transform: uppercase !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__panel h3 {
+    max-width: 820px !important;
+    margin: 10px 0 16px !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading) !important;
+    font-size: clamp(24px, 2.05vw, 32px) !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__panel p {
+    color: rgba(247, 251, 255, 0.76) !important;
+    -webkit-text-fill-color: rgba(247, 251, 255, 0.76) !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-copy-size) !important;
+    font-weight: 500 !important;
+    line-height: 1.58 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__asset-grid,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__format-grid,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__package-grid,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__logic-grid {
+    gap: 16px !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid article, .crays-owner-alliance-tabs-v1__format-grid article, .crays-owner-alliance-tabs-v1__package-grid article, .crays-owner-alliance-tabs-v1__logic-grid article, .crays-owner-alliance-tabs-v1__signal-grid article) {
+    overflow: hidden !important;
+    border: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-left: 4px solid #ff1f57 !important;
+    border-radius: 8px !important;
+    background: rgba(255, 255, 255, 0.082) !important;
+    box-shadow: 0 22px 70px rgba(0, 0, 0, 0.2) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid article, .crays-owner-alliance-tabs-v1__format-grid article) img {
+    height: clamp(150px, 12vw, 180px) !important;
+    object-fit: cover !important;
+    filter: saturate(1.08) contrast(1.05) brightness(0.86) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid article, .crays-owner-alliance-tabs-v1__format-grid article) :is(span, h4, p) {
+    margin-left: 18px !important;
+    margin-right: 18px !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid article, .crays-owner-alliance-tabs-v1__format-grid article) h4,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system :is(.crays-owner-alliance-tabs-v1__package-grid article, .crays-owner-alliance-tabs-v1__logic-grid article, .crays-owner-alliance-tabs-v1__signal-grid article) h4 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h4) !important;
+    font-weight: 900 !important;
+    line-height: 1.14 !important;
+    letter-spacing: 0 !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__asset-grid article h4 {
+    margin-top: 8px !important;
+    margin-bottom: 20px !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__mosaic figure,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__feature-image,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__wide-image {
+    border-color: rgba(255, 255, 255, 0.18) !important;
+    border-radius: 8px !important;
+    background: rgba(5, 16, 27, 0.8) !important;
+    box-shadow: 0 28px 82px rgba(0, 0, 0, 0.24) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-hospitality-owner-collage-v1#hospitality-alliance {
+    padding: clamp(58px, 5vw, 76px) 0 clamp(58px, 5vw, 76px) !important;
+    background: #06121d !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta {
+    position: relative !important;
+    isolation: isolate !important;
+    margin-top: -1px !important;
+    border-top: 0 !important;
+    overflow: hidden !important;
+    background-color: #06121d !important;
+    background-image:
+      linear-gradient(180deg, rgba(6, 18, 29, 0.98) 0%, rgba(6, 18, 29, 0.86) 16%, rgba(6, 18, 29, 0.42) 48%, rgba(6, 18, 29, 0.78) 100%),
+      linear-gradient(90deg, rgba(6, 18, 29, 0.96) 0%, rgba(6, 18, 29, 0.84) 42%, rgba(6, 18, 29, 0.48) 100%),
+      linear-gradient(rgba(255, 255, 255, 0.042) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.034) 1px, transparent 1px),
+      url("/assets/stock-lifestyle/crays-hospitality-header-premium-lounge-bar.webp") !important;
+    background-position: center, center, 0 0, 0 0, center 54% !important;
+    background-size: auto, auto, 86px 86px, 86px 86px, cover !important;
+    background-repeat: no-repeat, no-repeat, repeat, repeat, no-repeat !important;
+    box-shadow: inset 0 130px 100px rgba(6, 18, 29, 0.94) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta::before {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    background:
+      linear-gradient(180deg, #06121d 0%, rgba(6, 18, 29, 0) 22%),
+      radial-gradient(circle at 70% 18%, rgba(26, 128, 180, 0.2), transparent 38%) !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta .crays-franchise-shell,
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta .crays-franchise-final-cta__inner {
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta h2 {
+    max-width: 900px !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading) !important;
+    font-size: var(--crays-page-h2) !important;
+    line-height: 1.06 !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-franchise-final-cta p:not(.crays-franchise-eyebrow) {
+    max-width: 830px !important;
+    color: rgba(247, 251, 255, 0.82) !important;
+    -webkit-text-fill-color: rgba(247, 251, 255, 0.82) !important;
+    font-family: var(--crays-page-copy) !important;
+    font-size: var(--crays-page-copy-size) !important;
+    line-height: 1.62 !important;
+  }
+
+  @media (max-width: 1100px) {
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__intro,
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__layout {
+      grid-template-columns: 1fr !important;
+    }
+
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__rail {
+      position: relative !important;
+      top: auto !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+  }
+
+  @media (max-width: 720px) {
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__shell {
+      width: min(100% - 28px, 1320px) !important;
+      max-width: min(100% - 28px, 1320px) !important;
+    }
+
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__rail,
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__asset-grid,
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__format-grid {
+      grid-template-columns: 1fr !important;
+    }
+
+    html body.body.body.route-join-us main#crays-franchise#crays-franchise.crays-join-page section.crays-owner-alliance-tabs-v1#owner-operating-system .crays-owner-alliance-tabs-v1__panel {
+      padding: 20px !important;
+    }
+  }
+</style>
+<style id="crays-join-us-owner-type-specificity-final-v7">
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-owner-alliance-tabs-v1#owner-operating-system#owner-operating-system .crays-owner-alliance-tabs-v1__panel h3 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading, "Krona One", Montserrat, Arial, sans-serif) !important;
+    font-size: clamp(24px, 2.05vw, 32px) !important;
+    font-weight: 900 !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-owner-alliance-tabs-v1#owner-operating-system#owner-operating-system :is(.crays-owner-alliance-tabs-v1__asset-grid article, .crays-owner-alliance-tabs-v1__format-grid article, .crays-owner-alliance-tabs-v1__package-grid article, .crays-owner-alliance-tabs-v1__logic-grid article, .crays-owner-alliance-tabs-v1__signal-grid article) h4 {
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    font-family: var(--crays-page-heading, "Krona One", Montserrat, Arial, sans-serif) !important;
+    font-size: clamp(19px, 1.25vw, 23px) !important;
+    line-height: 1.14 !important;
+    letter-spacing: 0 !important;
+    text-transform: none !important;
   }
 </style>
 </body>
