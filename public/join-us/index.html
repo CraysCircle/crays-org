@@ -6105,10 +6105,6 @@
         <h2 id="crays-owner-system-title">One brand layer. Multiple revenue engines.</h2>
         <div class="crays-franchise-stack-head__rule" aria-hidden="true"></div>
         <p class="crays-franchise-stack-head__copy">The &ldquo;Brand as a Service&rdquo; model is not just a logo on the wall. It is a practical operating stack for independent owners who want stronger demand and sharper execution.</p>
-        <div class="crays-franchise-actions crays-owner-stack-actions">
-          <a class="crays-franchise-button crays-franchise-button--primary" href="#project-fit">What we are looking for</a>
-          <a class="crays-franchise-button crays-franchise-button--secondary" href="#owner-operating-system">Hospitality Network</a>
-        </div>
       </div>
       <div class="crays-franchise-stack-grid">
         <article>
@@ -6276,7 +6272,7 @@
       <div class="crays-franchise-final-cta__inner">
         <p class="crays-franchise-eyebrow">Apply with a property</p>
         <h2>Bring a hotel, co-living house or hospitality asset into the Crays world.</h2>
-        <p>Send the property basics, current performance, number of rooms or beds, city, photos, owner goals and the Crays format you imagine. The association can review fit, brand potential and the next operating step.</p>
+        <p>Send us the basics &mdash; property details, current performance, room or bed count, city, photos, your goals as an owner, and which Crays format you have in mind. We'll review the fit, the brand potential, and figure out the right next step together.</p>
         <div class="crays-franchise-actions">
           <a class="crays-franchise-button crays-franchise-button--primary" href="/contact/">Start the conversation</a>
           <a class="crays-franchise-button crays-franchise-button--secondary" href="/contact/">Bring another project</a>
@@ -8916,6 +8912,270 @@
     html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model {
       overflow: visible !important;
     }
+  }
+
+  /* Final collage repair: clean right-column mosaic and balanced gallery spacing. */
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model {
+    padding-bottom: clamp(50px, 5vh, 70px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__inner {
+    row-gap: clamp(36px, 4vh, 52px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-owner-stack-actions {
+    margin-bottom: clamp(8px, 1.1vw, 14px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage {
+    width: min(100%, 568px) !important;
+    max-width: 568px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+    grid-template-rows: repeat(3, clamp(118px, 12vh, 148px)) !important;
+    gap: 12px !important;
+    align-items: stretch !important;
+    justify-items: stretch !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    aspect-ratio: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(4) {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(5) {
+    grid-column: 2 !important;
+    grid-row: 3 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    filter: saturate(1.08) contrast(1.04) brightness(0.96) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure::after {
+    content: none !important;
+    display: none !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(4) img {
+    object-position: center 32% !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance {
+    min-height: auto !important;
+    padding: clamp(70px, 5.6vw, 88px) 0 clamp(70px, 5.6vw, 88px) !important;
+    overflow: hidden !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery {
+    width: min(1320px, calc(100% - 72px)) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.9fr) minmax(0, 1.05fr) !important;
+    grid-template-rows: repeat(2, clamp(176px, 15vw, 240px)) !important;
+    gap: 14px !important;
+    margin: 0 auto !important;
+    align-items: stretch !important;
+    justify-items: stretch !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure {
+    position: relative !important;
+    inset: auto !important;
+    z-index: 0 !important;
+    width: auto !important;
+    height: 100% !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: auto !important;
+    transform: none !important;
+    margin: 0 !important;
+    align-self: stretch !important;
+    justify-self: stretch !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure:nth-child(4) {
+    grid-column: 3 !important;
+    grid-row: 1 / span 2 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  @media (max-width: 920px) {
+    html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery {
+      width: min(100% - 40px, 1320px) !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-rows: repeat(2, minmax(210px, auto)) !important;
+    }
+
+    html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-hospitality-owner-collage-v1#hospitality-alliance .crays-hospitality-owner-gallery figure {
+      grid-column: auto !important;
+      grid-row: auto !important;
+      min-height: 210px !important;
+    }
+  }
+
+  /* Final content polish before deployment: hero label, tab type, owner-stack spacing. */
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section#join-us-start.crays-join-start-hero .crays-join-start-hero__signal-card span {
+    color: #ff1f57 !important;
+    font-family: var(--crays-page-copy, "Montserrat", Arial, sans-serif) !important;
+    font-size: clamp(12px, 0.85vw, 14px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 1 !important;
+    margin-bottom: 8px !important;
+    text-transform: none !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tabs {
+    align-items: stretch !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab {
+    align-items: center !important;
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    gap: clamp(12px, 1.1vw, 18px) !important;
+    min-height: clamp(82px, 6vw, 100px) !important;
+    padding: clamp(16px, 1.45vw, 22px) clamp(18px, 1.7vw, 26px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab span {
+    align-self: start !important;
+    justify-self: start !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab strong {
+    align-self: center !important;
+    display: block !important;
+    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
+    font-size: clamp(20px, 1.45vw, 27px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.05 !important;
+    max-width: none !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head {
+    display: block !important;
+    max-width: 1040px !important;
+    margin: 0 0 clamp(30px, 3vw, 44px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head > div {
+    max-width: 1040px !important;
+    width: 100% !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head h3 {
+    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
+    font-size: clamp(34px, 4vw, 58px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 0.98 !important;
+    max-width: 980px !important;
+    text-wrap: balance !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__route-grid article span {
+    color: #ff1f57 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-stack-head {
+    align-self: center !important;
+    padding-bottom: clamp(8px, 1vw, 14px) !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-stack-head__copy {
+    margin-bottom: 0 !important;
+  }
+
+  html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-franchise-owner-stack-v2#franchise-model .crays-franchise-stack-grid {
+    margin-top: clamp(24px, 2.8vw, 40px) !important;
+  }
+
+  @media (max-width: 720px) {
+    html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab {
+      min-height: 78px !important;
+    }
+
+    html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__tab strong {
+      font-size: clamp(18px, 5.6vw, 24px) !important;
+    }
+
+    html body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit .crays-join-fit-tabs-v1__panel-head h3 {
+      font-size: clamp(30px, 9vw, 42px) !important;
+    }
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__tab strong {
+    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
+    font-size: clamp(22px, 1.8vw, 31px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 1.03 !important;
+  }
+
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__panel.is-active .crays-join-fit-tabs-v1__panel-head h3,
+  html body.body.body.body.crays-mirror.route-join-us.route-franchise.route-craysworld-franchise.route-new-projects main#crays-franchise#crays-franchise.crays-join-page.crays-franchise.crays-franchise-v18.crays-projects-page section.crays-join-fit-tabs-v1#project-fit#project-fit .crays-join-fit-tabs-v1__panel .crays-join-fit-tabs-v1__panel-head h3 {
+    font-family: var(--crays-page-heading, "Montserrat", Arial, sans-serif) !important;
+    font-size: clamp(36px, 4vw, 60px) !important;
+    font-weight: 900 !important;
+    letter-spacing: 0 !important;
+    line-height: 0.98 !important;
+    max-width: 1040px !important;
+    text-wrap: balance !important;
   }
 </style>
 </body>
