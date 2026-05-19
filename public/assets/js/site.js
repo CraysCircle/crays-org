@@ -72,11 +72,44 @@ const craysLanguageItems = [
   },
 ];
 
+const craysLocalizedRoutes = new Set([
+  "",
+  "association",
+  "team",
+  "tech",
+  "finance",
+  "lifestyle",
+  "hospitality",
+  "real-estate",
+  "contact",
+  "join-us",
+]);
+
+const craysLanguageCodes = new Set(craysLanguageItems.map((item) => item.code));
+
+function craysCurrentRoute() {
+  const parts = window.location.pathname.split("/").filter(Boolean);
+  const activeLanguage = craysLanguageCodes.has(parts[0]) ? parts[0] : "en";
+  const routeParts = craysLanguageCodes.has(parts[0]) ? parts.slice(1) : parts;
+  const route = routeParts.join("/");
+  return {
+    activeLanguage,
+    route: craysLocalizedRoutes.has(route) ? route : "",
+  };
+}
+
+function craysLocalizedHref(code, route) {
+  const suffix = route ? `${route}/` : "";
+  return `/${code}/${suffix}${window.location.hash || ""}`;
+}
+
 document.querySelectorAll(".crays-top-nav-language-menu").forEach((menu) => {
+  const current = craysCurrentRoute();
   menu.innerHTML = craysLanguageItems
-    .map((item) => (
-      `<button class="crays-top-nav-language-item" type="button" data-lang="${item.code}" aria-pressed="${item.active ? "true" : "false"}">${item.flag}<span>${item.label}</span></button>`
-    ))
+    .map((item) => {
+      const active = item.code === current.activeLanguage;
+      return `<a class="crays-top-nav-language-item" href="${craysLocalizedHref(item.code, current.route)}" data-lang="${item.code}" hreflang="${item.code}" lang="${item.code}" aria-pressed="${active ? "true" : "false"}">${item.flag}<span>${item.label}</span></a>`;
+    })
     .join("");
 });
 

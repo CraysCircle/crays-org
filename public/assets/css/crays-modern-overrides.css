@@ -257,6 +257,7 @@ body.crays-mirror {
   font-weight: 400;
   line-height: 1.2;
   text-align: left;
+  text-decoration: none;
 }
 
 .crays-mirror .navbar10_menu-right .crays-top-nav-language-item:hover,
@@ -307,6 +308,21 @@ body.crays-mirror {
   border-radius: 999px;
   background: #ffd100;
   transform: translate(-50%, -50%);
+}
+
+html:not([lang="en"]) .crays-mirror .navbar10_link,
+html:not([lang="en"]) .crays-mirror .button.nav {
+  letter-spacing: 0;
+}
+
+html:not([lang="en"]) .crays-hero-tile-title,
+html:not([lang="en"]) .crays-hero-tile-kicker {
+  overflow-wrap: anywhere;
+}
+
+html:not([lang="en"]) .crays-hero-tile-title {
+  font-size: 11px;
+  line-height: 1.12;
 }
 
 .crays-mirror .w-icon-dropdown-toggle {

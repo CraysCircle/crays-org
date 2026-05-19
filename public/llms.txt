@@ -1,0 +1,27 @@
+# Crays
+
+> Crays Business Nomads Club Association is the Swiss association and ecosystem layer for Crays: hospitality, lifestyle, finance, real estate, technology, DAO governance and partner projects.
+
+## Official Pages
+- [Crays Association](https://www.crays.org/en/)
+- [Association](https://www.crays.org/en/association/)
+- [Team](https://www.crays.org/en/team/)
+- [Tech](https://www.crays.org/en/tech/)
+- [Finance](https://www.crays.org/en/finance/)
+- [Lifestyle](https://www.crays.org/en/lifestyle/)
+- [Hospitality](https://www.crays.org/en/hospitality/)
+- [Real Estate](https://www.crays.org/en/real-estate/)
+- [Contact](https://www.crays.org/en/contact/)
+- [Join us](https://www.crays.org/en/join-us/)
+
+## Languages
+- English: https://www.crays.org/en/
+- Deutsch: https://www.crays.org/de/
+- Español: https://www.crays.org/es/
+- Català: https://www.crays.org/ca/
+- Français: https://www.crays.org/fr/
+- Português: https://www.crays.org/pt/
+- Italiano: https://www.crays.org/it/
+
+## Brand Notes
+Keep Crays, DAO, Web5, Web3, Bitcoin, Nostr, Lightning, RWA, Crays Circle, Crays Fund, Crays Clubs and Crays Coffee as named ecosystem terms.
