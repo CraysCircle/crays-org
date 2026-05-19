@@ -5620,5 +5620,86 @@ html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays
   html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-shell.crays-hosp-experience-system__modules {
     margin-top: 0 !important;
   }
+</style>
+<style id="crays-hospitality-current-module-grid-and-wealth-image-v2">
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-shell.crays-hosp-experience-system__modules {
+    width: min(1440px, calc(100vw - 64px)) !important;
+    max-width: 1440px !important;
+    row-gap: clamp(22px, 2.4vw, 34px) !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid {
+    grid-column: 1 / -1 !important;
+    display: grid !important;
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    gap: clamp(16px, 1.35vw, 22px) !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: clamp(18px, 1.7vw, 28px) !important;
+    align-items: stretch !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card {
+    grid-column: span 2 !important;
+    min-width: 0 !important;
+    min-height: clamp(296px, 18vw, 342px) !important;
+    padding: 0 clamp(20px, 1.55vw, 26px) clamp(23px, 1.75vw, 30px) !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card:nth-child(n+7) {
+    grid-column: span 3 !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card::before {
+    height: clamp(130px, 8.8vw, 152px) !important;
+    margin-left: calc(clamp(20px, 1.55vw, 26px) * -1) !important;
+    margin-right: calc(clamp(20px, 1.55vw, 26px) * -1) !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card h3 {
+    font-size: clamp(22px, 1.55vw, 29px) !important;
+    line-height: 1.08 !important;
+    max-width: 14ch !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card:nth-child(n+7) h3 {
+    max-width: 22ch !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card p {
+    max-width: 42ch !important;
+  }
+
+  html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--wealth.crays-hosp-section--wealth .crays-hosp-shell::before {
+    background:
+      linear-gradient(180deg, rgba(6, 17, 29, 0.02), rgba(6, 17, 29, 0.28)),
+      url("/assets/stock-lifestyle/crays-hospitality-aethos-mallorca-pool-terrace.jpeg") center 52% / cover no-repeat !important;
+    filter: saturate(1.08) contrast(1.04) brightness(0.98) !important;
+  }
+
+  @media (max-width: 991px) {
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-shell.crays-hosp-experience-system__modules {
+      width: min(100% - 40px, 920px) !important;
+    }
+
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card,
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid article.crays-hosp-module-card.crays-hosp-module-card:nth-child(n+7) {
+      grid-column: auto !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-shell.crays-hosp-experience-system__modules {
+      width: min(100% - 28px, 560px) !important;
+    }
+
+    html body.body.crays-mirror.route-hospitality main.crays-hosp-page section.crays-hosp-section.crays-hosp-section--experience-system.crays-hosp-section--journey.crays-hosp-section--modules .crays-hosp-module-grid.crays-hosp-module-grid {
+      grid-template-columns: minmax(0, 1fr) !important;
+    }
+  }
 </style></body>
 </html>
