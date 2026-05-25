@@ -25269,3 +25269,20 @@ html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-p
     font-size: 22px !important;
   }
 }
+
+/* Home hero mobile paragraph flow repair 2026-05-25. */
+@media (max-width: 640px) {
+  body.crays-mirror.route-home .section_header5 .text-size-medium.header {
+    width: 100% !important;
+    max-width: min(100%, calc(100vw - 32px)) !important;
+    margin: 0 !important;
+    font-size: clamp(15px, 4.05vw, 16px) !important;
+    line-height: 1.54 !important;
+    font-weight: 300 !important;
+    letter-spacing: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    text-wrap: pretty;
+  }
+}
