@@ -12188,3 +12188,148 @@ body.crays-mirror.route-finance .crays-finance-hero__inner {
   position: relative !important;
   z-index: 2 !important;
 }
+
+/* Mobile navigation containment repair 2026-05-25. */
+@media (max-width: 991px) {
+  .crays-mirror .navbar10_component {
+    overflow: visible !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open {
+    top: calc(100% + 8px) !important;
+    left: 16px !important;
+    right: 16px !important;
+    z-index: 10030 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 10px !important;
+    width: auto !important;
+    max-width: calc(100vw - 32px) !important;
+    max-height: calc(100svh - 104px) !important;
+    padding: 14px !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    border: 1px solid rgba(7, 26, 45, 0.12) !important;
+    border-radius: 14px !important;
+    background: rgba(255, 253, 250, 0.98) !important;
+    box-shadow: 0 26px 74px rgba(7, 15, 23, 0.18) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav,
+  .crays-mirror .navbar10_menu.w--open > div:first-child {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav .dropdown-toggle-2,
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav > .navbar10_link {
+    width: 100% !important;
+    min-height: 46px !important;
+    height: auto !important;
+    justify-content: flex-start !important;
+    padding: 0 12px !important;
+    border-bottom: 1px solid rgba(7, 26, 45, 0.1) !important;
+    color: #13273b !important;
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+    white-space: normal !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav > .navbar10_link:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav .dropdown-toggle-2::after,
+  .crays-mirror .navbar10_menu.w--open .crays-restructured-nav .navbar10_menu-dropdown-final.navbar10_link::after {
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 0 !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 48px !important;
+    gap: 10px !important;
+    align-items: center !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 6px 0 0 !important;
+    padding: 12px 0 0 !important;
+    border-top: 1px solid rgba(7, 26, 45, 0.1) !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .button-nav.hide,
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .divider-line {
+    display: none !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .button.nav {
+    grid-column: 1 !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    padding: 0 18px !important;
+    border-radius: 999px !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    transform: none !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-language {
+    grid-column: 2 !important;
+    position: relative !important;
+    display: inline-flex !important;
+    justify-self: end !important;
+    width: 48px !important;
+    height: 48px !important;
+    min-width: 0 !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-icon {
+    width: 48px !important;
+    height: 48px !important;
+    border: 1px solid rgba(7, 26, 45, 0.12) !important;
+    border-radius: 999px !important;
+    background: #fff !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-icon svg {
+    width: 28px !important;
+    height: 28px !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-language-menu {
+    top: calc(100% + 8px) !important;
+    right: 0 !important;
+    left: auto !important;
+    max-width: calc(100vw - 48px) !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .crays-mirror .navbar10_menu.w--open {
+    left: 12px !important;
+    right: 12px !important;
+    max-width: calc(100vw - 24px) !important;
+    padding: 12px !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right {
+    grid-template-columns: minmax(0, 1fr) 46px !important;
+  }
+
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-language,
+  .crays-mirror .navbar10_menu.w--open .navbar10_menu-right .crays-top-nav-icon {
+    width: 46px !important;
+    height: 46px !important;
+  }
+}
