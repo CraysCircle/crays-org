@@ -25272,6 +25272,16 @@ html body.body.crays-mirror.route-hospitality main.crays-hosp-page .crays-hosp-p
 
 /* Home hero mobile paragraph flow repair 2026-05-25. */
 @media (max-width: 640px) {
+  body.crays-mirror.route-home .navbar10_menu-button.w-nav-button {
+    left: auto !important;
+    right: 16px !important;
+  }
+
+  body.crays-mirror.route-home .section_header5 .heading-style-h1 {
+    max-width: calc(100% - 12px) !important;
+    padding-left: 12px !important;
+  }
+
   body.crays-mirror.route-home .section_header5 .text-size-medium.header {
     width: 100% !important;
     max-width: min(100%, calc(100vw - 32px)) !important;
@@ -25333,13 +25343,19 @@ body.crays-mirror.route-home .crays-tokenized-brand__pope-card span {
 @media (max-width: 760px) {
   body.crays-mirror.route-home .crays-tokenized-brand__pope-card {
     width: min(100% - 32px, 1240px) !important;
-    margin-bottom: 20px !important;
-    padding: 14px 15px 15px !important;
+    margin-bottom: 18px !important;
+    padding: 13px 14px 14px !important;
   }
 
   body.crays-mirror.route-home .crays-tokenized-brand__pope-card p {
-    font-size: 13px !important;
-    line-height: 1.56 !important;
+    font-size: 12.4px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.crays-mirror.route-home .crays-tokenized-brand__pope-card span {
+    margin-top: 10px !important;
+    font-size: 10.8px !important;
+    line-height: 1.15 !important;
   }
 
   body.crays-mirror.route-home .crays-tokenized-brand--after-hero {
