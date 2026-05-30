@@ -1040,4 +1040,17 @@
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
+  <url>
+    <loc>https://www.crays.org/nostr/</loc>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.crays.org/nostr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.crays.org/en/nostr/" />
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.crays.org/de/nostr/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.crays.org/es/nostr/" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://www.crays.org/ca/nostr/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.crays.org/fr/nostr/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://www.crays.org/pt/nostr/" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://www.crays.org/it/nostr/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
+  </url>
 </urlset>
