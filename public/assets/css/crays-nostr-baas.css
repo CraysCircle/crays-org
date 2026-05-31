@@ -13,6 +13,13 @@ body.crays-mirror.route-nostr main.crays-nostr-baas {
   --crays-nostr-paper: #f7f8fb;
   --crays-nostr-muted: rgba(255, 255, 255, 0.82);
   --crays-nostr-line: rgba(255, 255, 255, 0.18);
+  --crays-type-h1: clamp(58px, 6.2vw, 88px);
+  --crays-type-h2: clamp(36px, 3.55vw, 56px);
+  --crays-type-h3: clamp(24px, 2vw, 34px);
+  --crays-type-h4: 18px;
+  --crays-type-body: clamp(15px, 1.05vw, 17px);
+  --crays-type-body-small: 14px;
+  --crays-type-eyebrow: 11px;
   color: #ffffff !important;
   background: var(--crays-nostr-night) !important;
   font-family: Montserrat, Arial, sans-serif !important;
@@ -57,30 +64,30 @@ body.crays-mirror.route-nostr main.crays-nostr-baas :is(h1, h2, h3, h4, strong) 
 
 body.crays-mirror.route-nostr main.crays-nostr-baas h1 {
   max-width: 10ch !important;
-  font-size: clamp(58px, 6.2vw, 88px) !important;
+  font-size: var(--crays-type-h1) !important;
   line-height: 0.98 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas h2 {
   max-width: 22ch !important;
-  font-size: clamp(36px, 3.55vw, 56px) !important;
+  font-size: var(--crays-type-h2) !important;
   line-height: 1.04 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas h3 {
-  font-size: clamp(22px, 2.05vw, 42px) !important;
+  font-size: var(--crays-type-h3) !important;
   line-height: 1.08 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas h4 {
-  font-size: 18px !important;
+  font-size: var(--crays-type-h4) !important;
   line-height: 1.16 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas p {
   color: inherit !important;
   font-family: Montserrat, Arial, sans-serif !important;
-  font-size: clamp(15px, 1.05vw, 17px) !important;
+  font-size: var(--crays-type-body) !important;
   font-weight: 600 !important;
   line-height: 1.62 !important;
 }
@@ -89,7 +96,7 @@ body.crays-mirror.route-nostr main.crays-nostr-baas :is(.crays-franchise-eyebrow
   display: block !important;
   color: var(--crays-nostr-red) !important;
   font-family: Montserrat, Arial, sans-serif !important;
-  font-size: 11px !important;
+  font-size: var(--crays-type-eyebrow) !important;
   font-weight: 900 !important;
   line-height: 1.1 !important;
   text-transform: uppercase !important;
@@ -429,13 +436,6 @@ body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-s
   z-index: 1 !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--brand { background-image: url("/assets/stock-lifestyle/crays-home-project-circle-app-digital-community-lifestyle.jpg") !important; }
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--demand { background-image: url("/assets/stock-images/crays-nostr-community-creator-fan-growth.webp") !important; }
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--technology { background-image: url("/assets/stock-images/crays-nostr-badge-membership-status.webp") !important; }
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--distribution { background-image: url("/assets/stock-images/crays-nostr-venue-relay-hospitality-node.webp") !important; }
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--revenue { background-image: url("/assets/stock-lifestyle/crays-tech-06-hospitality-and-technology-operators-collaborating-on-venue-systems.webp") !important; }
-body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide--quality { background-image: url("/assets/stock-lifestyle/crays-home-association-partners-governance-meeting.jpg") !important; }
-
 body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-advantage-slide h3 {
   max-width: 14ch !important;
   font-size: clamp(28px, 2.25vw, 38px) !important;
@@ -641,8 +641,8 @@ body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media {
-  position: sticky !important;
-  top: 118px !important;
+  position: relative !important;
+  top: auto !important;
   aspect-ratio: 1.22 / 1 !important;
   overflow: hidden !important;
   border-radius: 8px !important;
@@ -1475,5 +1475,2067 @@ body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-final-cta__
 
   body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq p {
     margin-right: 0 !important;
+  }
+}
+
+/* Nostr page typography and BaaS section refinement */
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-franchise-fitomat-system__feature h3,
+  .crays-franchise-advantage-slide h3,
+  .crays-franchise-faq-fitomat__content > h3,
+  .crays-owner-alliance-tabs-v1__panel-head h3,
+  .crays-owner-alliance-tabs-v1__panel-copy h3,
+  .crays-owner-advantage-faq__intro h3,
+  .crays-join-fit-tabs-v1__panel-head h3,
+  .crays-nostr-foundation-card h3,
+  .crays-nostr-phase-card h3,
+  .crays-nostr-operating-card h3,
+  .crays-nostr-existing-grid article h3,
+  .crays-nostr-existing-faq__intro h3
+) {
+  max-width: none !important;
+  font-size: var(--crays-type-h3) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-franchise-panel-copy,
+  .crays-franchise-stack-head__copy,
+  .crays-franchise-fitomat-system__feature p,
+  .crays-franchise-advantage-slide p,
+  .crays-owner-alliance-tabs-v1__intro p,
+  .crays-owner-alliance-tabs-v1__panel-copy p,
+  .crays-owner-advantage-faq p,
+  .crays-join-fit-tabs-v1__panel-head p,
+  .crays-nostr-foundation-depth__subcopy,
+  .crays-nostr-phase-shell__intro > p,
+  .crays-nostr-operating-card p,
+  .crays-nostr-existing-depth__head p
+) {
+  font-size: var(--crays-type-body) !important;
+  line-height: 1.58 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-franchise-proof p,
+  .crays-franchise-pill p,
+  .crays-franchise-card p,
+  .crays-owner-alliance-tabs-v1__package-grid p,
+  .crays-nostr-foundation-card p,
+  .crays-nostr-phase-points p,
+  .crays-nostr-stack-list p,
+  .crays-nostr-spec-row span,
+  .crays-nostr-existing-grid article p,
+  .crays-nostr-existing-faq__grid details p
+) {
+  font-size: var(--crays-type-body-small) !important;
+  line-height: 1.52 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__head {
+  align-items: start !important;
+  margin-bottom: 56px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__title h2 {
+  max-width: 18ch !important;
+  margin-top: 18px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__subcopy {
+  max-width: 760px !important;
+  margin-top: 24px !important;
+  color: var(--crays-nostr-muted) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__lead {
+  align-self: end !important;
+  padding: 30px 32px !important;
+  background: rgba(3, 7, 12, 0.48) !important;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__lead strong {
+  font-size: var(--crays-type-h3) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow {
+  display: grid !important;
+  grid-template-columns: minmax(420px, 0.9fr) minmax(0, 1.1fr) !important;
+  gap: 30px !important;
+  align-items: stretch !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+  position: relative !important;
+  min-height: 690px !important;
+  overflow: hidden !important;
+  border-left: 6px solid var(--crays-nostr-red) !important;
+  border-radius: 8px !important;
+  background: rgba(3, 7, 12, 0.42) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  background: linear-gradient(180deg, rgba(3, 7, 12, 0.08), rgba(3, 7, 12, 0.28) 38%, rgba(3, 7, 12, 0.9)) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual figcaption {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 34px !important;
+  right: 34px !important;
+  bottom: 34px !important;
+  display: grid !important;
+  gap: 12px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual figcaption strong {
+  display: block !important;
+  max-width: 15ch !important;
+  font-size: var(--crays-type-h3) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual figcaption p {
+  max-width: 560px !important;
+  color: rgba(255, 255, 255, 0.86) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__cards {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-content: stretch !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-card {
+  position: relative !important;
+  min-height: 0 !important;
+  align-content: start !important;
+  gap: 13px !important;
+  padding: 24px 26px 24px 32px !important;
+  border-left: 6px solid var(--crays-nostr-red) !important;
+  background: rgba(3, 7, 12, 0.42) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-card--wide {
+  grid-column: span 2 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-world-card-cta {
+  width: fit-content !important;
+  margin-top: 4px !important;
+  border-color: rgba(255, 255, 255, 0.36) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell {
+  margin-top: 86px !important;
+  padding-top: 70px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell__intro {
+  max-width: none !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.88fr) minmax(360px, 0.62fr) !important;
+  gap: clamp(34px, 4vw, 62px) !important;
+  align-items: end !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell__intro h3 {
+  max-width: 24ch !important;
+  margin-top: 16px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell__intro > p {
+  max-width: 620px !important;
+  margin-top: 0 !important;
+  color: var(--crays-nostr-muted) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-grid {
+  grid-template-columns: 1fr !important;
+  gap: 18px !important;
+  margin-top: 42px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card {
+  min-height: 0 !important;
+  grid-template-columns: 210px minmax(0, 1fr) !important;
+  gap: 0 !important;
+  padding: 0 !important;
+  border-top: 0 !important;
+  border-left: 6px solid var(--crays-nostr-red) !important;
+  background: rgba(3, 7, 12, 0.42) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__marker {
+  display: grid !important;
+  align-content: center !important;
+  gap: 10px !important;
+  padding: 30px !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: rgba(247, 248, 251, 0.06) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__marker span {
+  color: var(--crays-nostr-red) !important;
+  font-size: var(--crays-type-eyebrow) !important;
+  font-weight: 900 !important;
+  text-transform: uppercase !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__marker strong {
+  display: block !important;
+  color: #ffffff !important;
+  font-size: 24px !important;
+  line-height: 1.05 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__body {
+  display: grid !important;
+  gap: 14px !important;
+  padding: 30px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-points {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+  margin-top: 8px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-points article {
+  padding: 15px !important;
+  border-left: 4px solid var(--crays-nostr-red) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-grid {
+  grid-template-columns: repeat(12, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+  margin-top: 78px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card {
+  padding: 28px 30px !important;
+  gap: 16px !important;
+  background: rgba(3, 7, 12, 0.42) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+  grid-column: span 8 !important;
+  grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1fr) !important;
+  grid-template-rows: 1fr !important;
+  align-items: stretch !important;
+  min-height: 420px !important;
+  padding: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image > img {
+  min-height: 100% !important;
+  align-self: stretch !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image div {
+  padding: 34px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--stack {
+  grid-column: span 4 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--specs {
+  grid-column: span 5 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--audience {
+  grid-column: span 7 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision {
+  grid-column: 1 / -1 !important;
+  grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.88fr) !important;
+  align-items: end !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-stack-list {
+  gap: 0 !important;
+  margin-top: 2px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-stack-list article {
+  display: grid !important;
+  gap: 6px !important;
+  padding: 14px 0 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-stack-list article:first-child {
+  border-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-stack-list strong {
+  color: #ffffff !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-audience-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 9px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-audience-list span {
+  display: inline-flex !important;
+  align-items: center !important;
+  min-height: 34px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-radius: 999px !important;
+  padding: 0 13px !important;
+  color: rgba(255, 255, 255, 0.88) !important;
+  background: rgba(255, 255, 255, 0.07) !important;
+  font-size: 12px !important;
+  font-weight: 800 !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell__intro,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    min-height: 520px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas :is(.crays-nostr-operating-card--image, .crays-nostr-operating-card--stack, .crays-nostr-operating-card--specs, .crays-nostr-operating-card--audience, .crays-nostr-operating-card--vision) {
+    grid-column: auto !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-points {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas {
+    --crays-type-h1: 44px;
+    --crays-type-h2: 32px;
+    --crays-type-h3: 25px;
+    --crays-type-body: 15px;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth__head {
+    margin-bottom: 34px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__cards,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-card--wide {
+    grid-column: auto !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    min-height: 430px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual figcaption {
+    left: 24px !important;
+    right: 24px !important;
+    bottom: 24px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__marker {
+    border-right: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.14) !important;
+    padding: 24px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__body,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image div {
+    padding: 24px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-points {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* BaaS reference parity: service icon module and advantages slider */
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system {
+  position: relative !important;
+  isolation: isolate !important;
+  padding: 92px 0 96px !important;
+  background:
+    radial-gradient(circle at 80% 8%, rgba(7, 129, 149, 0.3) 0%, rgba(7, 129, 149, 0.12) 30%, rgba(7, 18, 29, 0) 58%),
+    radial-gradient(circle at 18% 18%, rgba(91, 182, 255, 0.22) 0%, rgba(13, 95, 184, 0.14) 32%, rgba(7, 18, 29, 0) 62%),
+    linear-gradient(180deg, #0d5fb8 0%, #0b3555 32%, #07121d 70%, #07121d 100%) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  background:
+    linear-gradient(180deg, rgba(3, 7, 12, 0.22) 0%, rgba(7, 18, 29, 0.18) 35%, rgba(7, 18, 29, 0.36) 100%),
+    linear-gradient(90deg, rgba(237, 248, 251, 0.055), rgba(7, 18, 29, 0) 34%) !important;
+  pointer-events: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__shell {
+  width: min(1240px, calc(100% - clamp(32px, 7vw, 96px))) !important;
+  margin: 0 auto !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__head {
+  max-width: 850px !important;
+  margin: 0 auto !important;
+  text-align: center !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__head h2 {
+  max-width: none !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-family: "Krona One", Montserrat, Arial, sans-serif !important;
+  font-size: 48px !important;
+  font-weight: 900 !important;
+  line-height: 1.25 !important;
+  text-transform: uppercase !important;
+  text-wrap: balance !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__head p {
+  max-width: 840px !important;
+  margin: 24px auto 0 !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  line-height: 1.55 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__grid {
+  display: grid !important;
+  grid-template-columns: 580px minmax(0, 580px) !important;
+  justify-content: space-between !important;
+  align-items: start !important;
+  gap: 80px !important;
+  margin-top: 82px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image {
+  width: 100% !important;
+  height: 592px !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: #121212 !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__features {
+  display: grid !important;
+  align-content: start !important;
+  gap: 0 !important;
+  min-width: 0 !important;
+  padding-top: 8px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature {
+  display: grid !important;
+  grid-template-columns: 40px minmax(0, 1fr) !important;
+  gap: 16px !important;
+  margin: 0 !important;
+  padding: 0 0 30px !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(95, 142, 170, 0.26) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature + .crays-franchise-fitomat-system__feature {
+  padding-top: 42px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature::before,
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__icon::after {
+  content: none !important;
+  display: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__icon {
+  width: 40px !important;
+  height: 40px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(255, 31, 87, 0.62) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  background: rgba(255, 31, 87, 0.15) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__icon svg {
+  width: 26px !important;
+  height: 26px !important;
+  display: block !important;
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature h3 {
+  margin: 2px 0 14px !important;
+  color: #ffffff !important;
+  font-family: "Krona One", Montserrat, Arial, sans-serif !important;
+  font-size: 27px !important;
+  font-weight: 900 !important;
+  line-height: 1.18 !important;
+  text-transform: uppercase !important;
+  text-wrap: balance !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature p {
+  max-width: 560px !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__button {
+  width: fit-content !important;
+  min-width: 158px !important;
+  min-height: 54px !important;
+  margin: 28px 0 0 !important;
+  padding: 0 28px !important;
+  border: 1px solid rgba(255, 31, 87, 0.82) !important;
+  border-radius: 999px !important;
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #ff1f57 0%, #d9003f 100%) !important;
+  font-family: Montserrat, Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 900 !important;
+  line-height: 1 !important;
+  box-shadow: 0 18px 38px rgba(3, 7, 12, 0.32) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 {
+  background-color: #06364f !important;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.026) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px) !important;
+  background-size: 96px 96px, 96px 96px !important;
+  background-position: 0 0, 0 0 !important;
+  background-repeat: repeat, repeat !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider {
+  grid-area: cards !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: clamp(20px, 2vw, 32px) !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 0 6px !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+  scroll-behavior: smooth !important;
+  scroll-padding-inline: 0 !important;
+  scroll-snap-type: x mandatory !important;
+  scrollbar-width: none !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid::-webkit-scrollbar {
+  display: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-hero-crays-association-swiss-governance-dao-layer-hero-image.webp");
+  position: relative !important;
+  flex: 0 0 clamp(500px, calc((100% - 32px) / 1.98), 780px) !important;
+  min-width: 0 !important;
+  min-height: clamp(410px, 36vw, 545px) !important;
+  display: grid !important;
+  align-content: end !important;
+  gap: clamp(8px, 1vw, 12px) !important;
+  padding: clamp(28px, 2.6vw, 38px) !important;
+  overflow: hidden !important;
+  scroll-snap-align: start !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  background-color: #06131f !important;
+  background-image:
+    linear-gradient(180deg, rgba(2, 7, 14, 0.12) 0%, rgba(2, 7, 14, 0.26) 50%, rgba(2, 7, 14, 0.86) 100%),
+    linear-gradient(90deg, rgba(6, 24, 39, 0.72) 0%, rgba(6, 24, 39, 0.46) 48%, rgba(6, 24, 39, 0.18) 100%),
+    var(--crays-advantage-image) !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  box-shadow: none !important;
+  outline: 0 !important;
+  opacity: 0.62 !important;
+  transition: opacity 220ms ease, border-color 220ms ease, box-shadow 220ms ease !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide.is-active-slide {
+  background-image:
+    linear-gradient(180deg, rgba(2, 7, 14, 0) 0%, rgba(2, 7, 14, 0.1) 48%, rgba(2, 7, 14, 0.82) 100%),
+    linear-gradient(90deg, rgba(6, 24, 39, 0.28) 0%, rgba(6, 24, 39, 0.16) 48%, rgba(6, 24, 39, 0.04) 100%),
+    var(--crays-advantage-image) !important;
+  box-shadow: none !important;
+  opacity: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  border-left: 5px solid #ff1f57 !important;
+  background: linear-gradient(180deg, rgba(255, 31, 87, 0), rgba(255, 31, 87, 0.12)) !important;
+  pointer-events: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--brand {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-01-crays-members-and-partners-in-a-premium-community-setting.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--demand {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-21-crays-venue-layer-with-digital-coordination-and-community-access.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--technology {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-contact-08-crays-new-member-and-hospitality-brand-alliance-route-preview.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--distribution {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-20-premium-hospitality-environment-connected-to-crays-digital-rails-an.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--revenue {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-11-crays-investor-and-partner-conversation.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide--quality {
+  --crays-advantage-image: url("/assets/stock-lifestyle/crays-association-23-crays-association-members-preparing-a-project-decision.webp") !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide > * {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide > span {
+  width: fit-content !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  color: #ffffff !important;
+  background: transparent !important;
+  font-size: clamp(15px, 1.15vw, 18px) !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.78) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide h3 {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: #ffffff !important;
+  font-size: clamp(24px, 1.8vw, 30px) !important;
+  line-height: 1.06 !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 18px 46px rgba(0, 0, 0, 0.68) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantage-slide p {
+  max-width: 760px !important;
+  margin: 0 !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(15px, 1.08vw, 18px) !important;
+  line-height: 1.42 !important;
+  text-shadow: 0 12px 30px rgba(0, 0, 0, 0.72) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 18px !important;
+  margin-top: clamp(34px, 3.4vw, 58px) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots,
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__arrows {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button,
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__arrows button {
+  appearance: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 !important;
+  cursor: pointer !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: rgba(255, 255, 255, 0.58) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button.is-active {
+  width: 8px !important;
+  background: #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__arrows button {
+  width: 54px !important;
+  height: 54px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.52) !important;
+  border-radius: 999px !important;
+  color: #ffffff !important;
+  background: rgba(3, 7, 12, 0.42) !important;
+  font-size: 24px !important;
+  line-height: 1 !important;
+  box-shadow: 0 18px 38px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__arrows button:hover,
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__arrows button:focus-visible {
+  border-color: #ff1f57 !important;
+  background: #ff1f57 !important;
+  outline: none !important;
+}
+
+@media (min-width: 1121px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider {
+    --crays-fitomat-shell-offset: max(24px, calc((100vw - 1320px) / 2));
+    --crays-fitomat-slider-inset: 0px;
+    width: calc(100vw - var(--crays-fitomat-shell-offset) - var(--crays-fitomat-slider-inset)) !important;
+    max-width: none !important;
+    margin-left: var(--crays-fitomat-slider-inset) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid {
+    gap: 32px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide {
+    flex-basis: clamp(650px, 42.45vw, 815px) !important;
+    min-height: 543px !important;
+    height: 543px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__footer {
+    width: min(1240px, 100%) !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 46px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image {
+    max-width: 680px !important;
+    height: auto !important;
+    aspect-ratio: 580 / 592 !important;
+  }
+}
+
+@media (max-width: 980px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide {
+    flex-basis: clamp(420px, calc((100% - 24px) / 1.45), 600px) !important;
+    min-height: 500px !important;
+  }
+}
+
+@media (max-width: 720px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system {
+    padding: 70px 0 82px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__head h2 {
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__head p {
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__grid {
+    margin-top: 48px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature {
+    grid-template-columns: 38px minmax(0, 1fr) !important;
+    gap: 14px !important;
+    padding-bottom: 28px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature + .crays-franchise-fitomat-system__feature {
+    padding-top: 34px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__icon {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature h3 {
+    font-size: 20px !important;
+    line-height: 1.2 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__feature p {
+    font-size: 15px !important;
+    line-height: 1.46 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid {
+    gap: 14px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide {
+    flex-basis: calc(100vw - 42px) !important;
+    min-height: 520px !important;
+    padding: 24px 21px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide h3 {
+    font-size: clamp(23px, 6.8vw, 30px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide p {
+    font-size: 15px !important;
+    line-height: 1.46 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__footer {
+    align-items: center !important;
+    flex-direction: row !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button {
+    position: relative !important;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    background: transparent !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button::after {
+    content: "" !important;
+    width: 8px !important;
+    height: 8px !important;
+    border-radius: 999px !important;
+    background: rgba(255, 255, 255, 0.58) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider__dots button.is-active::after {
+    background: #ff1f57 !important;
+  }
+}
+
+/* BaaS reference parity: editorial owner stack and collage */
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-stack {
+  padding-top: clamp(82px, 7vw, 116px) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__inner {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.98fr) minmax(420px, 0.82fr) !important;
+  grid-template-areas:
+    "head collage"
+    "cards cards" !important;
+  column-gap: clamp(28px, 4vw, 64px) !important;
+  row-gap: clamp(34px, 4.5vw, 58px) !important;
+  align-items: start !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head {
+  grid-area: head !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 700px !important;
+  margin: 0 !important;
+  text-align: left !important;
+  align-self: start !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head .crays-franchise-eyebrow {
+  display: block !important;
+  margin: 0 0 14px !important;
+  color: #ff1f57 !important;
+  font: 800 12px/1.2 var(--crays-font-body) !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head h2 {
+  max-width: 100% !important;
+  margin: 0 !important;
+  color: #fff !important;
+  font-family: var(--crays-font-heading) !important;
+  font-size: clamp(42px, 4.15vw, 78px) !important;
+  font-weight: 400 !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head__rule {
+  display: block !important;
+  width: min(420px, 34vw) !important;
+  height: 2px !important;
+  margin: clamp(24px, 2.6vw, 34px) 0 clamp(20px, 2vw, 28px) !important;
+  background: #ff1f57 !important;
+  border-radius: 0 !important;
+  box-shadow: 0 0 28px rgba(255, 31, 87, 0.34) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head__copy {
+  max-width: 720px !important;
+  margin: 0 !important;
+  color: rgba(247, 248, 251, 0.82) !important;
+  font: 500 clamp(18px, 1.12vw, 22px)/1.58 var(--crays-font-body) !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage {
+  grid-area: collage !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr) !important;
+  grid-template-rows: repeat(3, minmax(108px, 126px)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  margin: 0 !important;
+  align-self: start !important;
+  overflow: visible !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure {
+  position: relative !important;
+  grid-column: auto !important;
+  grid-row: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure:first-child {
+  grid-column: 1 !important;
+  grid-row: 1 / span 2 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(2) {
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(3) {
+  grid-column: 2 !important;
+  grid-row: 2 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(4) {
+  grid-column: 1 !important;
+  grid-row: 3 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage figure:nth-child(5) {
+  grid-column: 2 !important;
+  grid-row: 3 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-advantages-slider {
+  grid-area: cards !important;
+  grid-column: auto !important;
+  justify-self: start !important;
+  margin-top: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model [data-crays-advantages-track].crays-franchise-stack-grid {
+  display: flex !important;
+  grid-template-columns: none !important;
+  grid-auto-flow: column !important;
+  align-items: stretch !important;
+  gap: clamp(24px, 2.8vw, 48px) !important;
+  overflow-x: auto !important;
+  overflow-y: visible !important;
+}
+
+@media (max-width: 980px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__inner {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "head"
+      "collage"
+      "cards" !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head {
+    max-width: 760px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head h2 {
+    font-size: clamp(34px, 7.2vw, 56px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head__rule {
+    width: min(360px, 72vw) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage {
+    grid-template-rows: repeat(3, minmax(104px, 24vw)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-stack {
+    padding-top: 72px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__collage {
+    grid-template-columns: 1fr 1fr !important;
+    grid-template-rows: repeat(3, minmax(92px, 28vw)) !important;
+    gap: 10px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head__copy {
+    font-size: 16px !important;
+  }
+}
+
+/* Final Nostr typography and media composition rules */
+body.crays-mirror.route-nostr main.crays-nostr-baas {
+  --crays-font-heading: "Krona One", Montserrat, Arial, sans-serif;
+  --crays-font-body: Montserrat, Arial, sans-serif;
+  --crays-type-h1: clamp(58px, 6.2vw, 88px);
+  --crays-type-h2: clamp(36px, 3.2vw, 56px);
+  --crays-type-h3: clamp(22px, 1.85vw, 32px);
+  --crays-type-body: clamp(15px, 0.98vw, 17px);
+  --crays-type-small: 14px;
+  font-family: var(--crays-font-body) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(h1, h2, h3, h4, strong) {
+  font-family: var(--crays-font-heading) !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas h1 {
+  font-size: var(--crays-type-h1) !important;
+  line-height: 0.98 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas h2 {
+  font-size: var(--crays-type-h2) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas h3 {
+  font-size: var(--crays-type-h3) !important;
+  line-height: 1.1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(p, li, details, summary) {
+  font-family: var(--crays-font-body) !important;
+  font-size: var(--crays-type-body) !important;
+  line-height: 1.56 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(.crays-franchise-eyebrow, .crays-franchise-kicker, figcaption span, article > span) {
+  font-family: var(--crays-font-body) !important;
+  font-size: 12px !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head h2 {
+  max-width: 100% !important;
+  font-family: var(--crays-font-heading) !important;
+  font-size: var(--crays-type-h2) !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-stack-head__copy {
+  max-width: 720px !important;
+  font-family: var(--crays-font-body) !important;
+  font-size: var(--crays-type-body) !important;
+  font-weight: 500 !important;
+  line-height: 1.58 !important;
+  color: rgba(247, 248, 251, 0.82) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage {
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  padding: clamp(18px, 2vw, 28px) 0 !important;
+  overflow: hidden !important;
+  border: 0 !important;
+  min-height: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage--owner-system {
+  background-color: #071827 !important;
+  background-image: linear-gradient(135deg, #06111d 0%, #071827 52%, #08243a 100%) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage--system-hospitality {
+  background-color: #08243a !important;
+  background-image: linear-gradient(135deg, #08243a 0%, #0a3148 54%, #0a4d6d 100%) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__inner {
+  width: min(100% - 32px, 1320px) !important;
+  height: clamp(136px, 11.5vw, 180px) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: 1.28fr 0.82fr 1.05fr 0.88fr !important;
+  grid-template-rows: repeat(2, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--large,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--wide {
+  position: relative !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #05121f !important;
+  box-shadow: 0 22px 58px rgba(0, 0, 0, 0.22) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--large,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--wide,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile:nth-child(5) {
+  grid-column: auto !important;
+  grid-row: 1 / 3 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  pointer-events: none !important;
+  background: linear-gradient(180deg, rgba(3, 12, 21, 0.12), rgba(3, 12, 21, 0.22)) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  filter: saturate(0.96) contrast(1.04) brightness(0.9) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance.crays-nostr-video-collage-v1 {
+  padding: clamp(88px, 7.5vw, 124px) 0 !important;
+  background-color: #061827 !important;
+  background-image: linear-gradient(145deg, #061827 0%, #08243a 58%, #06131f 100%) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__shell {
+  width: min(1320px, calc(100vw - 120px)) !important;
+  margin: 0 auto !important;
+  display: grid !important;
+  grid-template-columns: minmax(320px, 0.76fr) minmax(0, 1.24fr) !important;
+  gap: clamp(42px, 5vw, 78px) !important;
+  align-items: center !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__head {
+  max-width: 520px !important;
+  display: grid !important;
+  gap: 22px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__head h2 {
+  max-width: 100% !important;
+  color: #fff !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__head p:last-child {
+  color: rgba(247, 248, 251, 0.82) !important;
+  font-weight: 500 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.32fr) minmax(220px, 0.68fr) !important;
+  grid-template-rows: repeat(3, minmax(136px, 166px)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure {
+  position: relative !important;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.14) !important;
+  background: #03070c !important;
+  box-shadow: 0 34px 95px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:first-child {
+  grid-row: 1 / 4 !important;
+  grid-column: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:nth-child(n + 2) {
+  grid-column: 2 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery video {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  filter: saturate(0.98) contrast(1.04) brightness(0.88) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figcaption {
+  position: absolute !important;
+  left: 18px !important;
+  right: 18px !important;
+  bottom: 18px !important;
+  z-index: 2 !important;
+  display: grid !important;
+  gap: 8px !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  text-shadow: 0 12px 34px rgba(0, 0, 0, 0.66) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  background: linear-gradient(180deg, rgba(3, 7, 12, 0.03) 32%, rgba(3, 7, 12, 0.86) 100%) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figcaption strong {
+  max-width: 92% !important;
+  color: #ffffff !important;
+  font-size: clamp(18px, 1.7vw, 28px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:not(:first-child) figcaption {
+  left: 14px !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  gap: 5px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:not(:first-child) figcaption strong {
+  font-size: clamp(13px, 1.1vw, 17px) !important;
+  line-height: 1.15 !important;
+}
+
+@media (max-width: 980px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__shell {
+    width: min(100% - 40px, 760px) !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure,
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:first-child,
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:nth-child(n + 2) {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__inner {
+    width: min(100% - 28px, 760px) !important;
+    height: auto !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-rows: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--large,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile--wide,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__tile:nth-child(5) {
+    grid-row: auto !important;
+    aspect-ratio: 16 / 10 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas {
+    --crays-type-h1: clamp(42px, 12vw, 58px);
+    --crays-type-h2: clamp(30px, 8.2vw, 42px);
+    --crays-type-h3: clamp(22px, 6.4vw, 30px);
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage__inner {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__copy,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__lead,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__sublead {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    min-width: 0 !important;
+    overflow-wrap: anywhere !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-cta-row {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas :is(.crays-franchise-button, .crays-franchise-fitomat-system__button) {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
+
+/* Mobile-first Nostr experience */
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-mobile-journey {
+  display: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+  position: relative !important;
+  top: auto !important;
+  align-self: start !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media {
+  max-height: 460px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+  min-height: 520px !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media {
+    aspect-ratio: 16 / 10 !important;
+    max-height: 360px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    min-height: 360px !important;
+    max-height: 420px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas {
+    --crays-type-h1: clamp(40px, 11.2vw, 50px);
+    --crays-type-h2: clamp(28px, 7.6vw, 38px);
+    --crays-type-h3: clamp(21px, 5.8vw, 28px);
+    --crays-type-body: 16px;
+    overflow-x: clip !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-mobile-journey {
+    position: sticky !important;
+    top: 74px !important;
+    z-index: 90 !important;
+    display: flex !important;
+    gap: 8px !important;
+    width: 100% !important;
+    padding: 10px 12px !important;
+    overflow-x: auto !important;
+    overscroll-behavior-x: contain !important;
+    scrollbar-width: none !important;
+    background: rgba(3, 7, 12, 0.92) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.13) !important;
+    backdrop-filter: blur(18px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-mobile-journey::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-mobile-journey a {
+    flex: 0 0 auto !important;
+    min-height: 48px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 0 15px !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 999px !important;
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.07) !important;
+    font: 800 13px/1.1 var(--crays-font-body) !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-mobile-journey span {
+    color: var(--crays-nostr-red) !important;
+    font-size: 11px !important;
+    font-weight: 900 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero {
+    min-height: auto !important;
+    padding: 72px 0 40px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__inner {
+    width: min(100% - 28px, 430px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 0 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-start-hero__visual {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__lead {
+    margin-top: 22px !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    font-weight: 800 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-hero__sublead {
+    font-size: 15px !important;
+    line-height: 1.52 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+    .crays-franchise-fitomat-system,
+    section#franchise-model,
+    .crays-franchise-upgrade,
+    .crays-owner-alliance-tabs-v1,
+    .crays-nostr-foundation-depth,
+    section#hospitality-alliance,
+    .crays-join-fit-tabs-v1,
+    .crays-franchise-final-cta
+  ) {
+    padding-top: 64px !important;
+    padding-bottom: 70px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-divider-collage {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__shell,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-shell,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-upgrade__shell,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__shell {
+    width: min(100% - 28px, 430px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__head {
+    text-align: left !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__head h2,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__head p {
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+    margin-top: 34px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+    position: relative !important;
+    top: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    aspect-ratio: 16 / 10 !important;
+    align-self: start !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    max-height: 260px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual figcaption {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__features,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__cards,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-owner-alliance-tabs-v1__asset-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-owner-alliance-tabs-v1__package-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-fit-tabs-v1__product-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-fit-tabs-v1__image-grid,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-existing-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-fitomat-system__feature {
+    grid-template-columns: 40px minmax(0, 1fr) !important;
+    padding-bottom: 24px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-owner-stack-v2__collage {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-owner-stack-v2__inner {
+    grid-template-areas:
+      "head"
+      "cards" !important;
+    row-gap: 28px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-advantages-slider {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model [data-crays-advantages-track].crays-franchise-stack-grid {
+    display: grid !important;
+    grid-auto-flow: row !important;
+    grid-template-columns: 1fr !important;
+    overflow: visible !important;
+    gap: 14px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-advantage-slide {
+    flex-basis: auto !important;
+    width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    padding: 22px 22px 24px !important;
+    background-image: linear-gradient(180deg, rgba(8, 36, 58, 0.92), rgba(6, 17, 29, 0.96)) !important;
+    opacity: 1 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model .crays-franchise-advantages-slider__footer {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-shell__intro,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-existing-faq,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-video-collage-v1__shell {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-existing-faq__intro {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-owner-alliance-tabs-v1__rail,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-fit-tabs-v1__tabs {
+    display: flex !important;
+    gap: 10px !important;
+    overflow-x: auto !important;
+    padding-bottom: 6px !important;
+    scrollbar-width: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-owner-alliance-tabs-v1__rail::-webkit-scrollbar,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-fit-tabs-v1__tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-join-fit-tabs-v1__tab {
+    flex: 0 0 min(82vw, 300px) !important;
+    min-height: 62px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#hospitality-alliance .crays-franchise-gallery figure:not(:first-child) {
+    aspect-ratio: 16 / 9 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas :is(.crays-owner-alliance-tabs-v1__wide-image, .crays-join-fit-tabs-v1__image-card img, .crays-nostr-existing-grid article img) {
+    max-height: 220px !important;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-owner-stack-v2__inner {
+    display: block !important;
+    width: min(100% - 28px, 430px) !important;
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "head"
+      "cards" !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-head,
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider {
+    width: 100% !important;
+    max-width: 100% !important;
+    justify-self: stretch !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-owner-stack-v2__collage {
+    display: none !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider {
+    margin-top: 28px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 [data-crays-advantages-track].crays-franchise-stack-grid.crays-franchise-stack-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    grid-auto-flow: row !important;
+    gap: 14px !important;
+    width: 100% !important;
+    overflow: visible !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 [data-crays-advantages-track].crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    height: auto !important;
+    flex: none !important;
+    flex-basis: auto !important;
+    padding: 22px 22px 24px !important;
+    opacity: 1 !important;
+    background-image: linear-gradient(180deg, rgba(8, 36, 58, 0.92), rgba(6, 17, 29, 0.96)) !important;
+  }
+}
+
+/* Final media behavior: desktop images follow the section while scrolling */
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+  position: relative !important;
+  top: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  align-self: start !important;
+  transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image {
+  height: clamp(320px, 32vw, 430px) !important;
+  max-height: 430px !important;
+  min-height: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media {
+  height: clamp(260px, 28vw, 360px) !important;
+  max-height: 360px !important;
+  min-height: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow {
+  align-items: start !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+  height: clamp(320px, 32vw, 430px) !important;
+  max-height: 430px !important;
+  min-height: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+  min-height: 0 !important;
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    height: auto !important;
+    aspect-ratio: 16 / 10 !important;
+    max-height: 300px !important;
+  }
+}
+
+@media (min-width: 1181px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas,
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth {
+    overflow: visible !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media,
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    position: sticky !important;
+    top: 118px !important;
+    align-self: start !important;
+    z-index: 1 !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas section.crays-franchise-fitomat-system .crays-franchise-fitomat-system__image {
+    height: clamp(320px, 31vw, 430px) !important;
+    max-height: 430px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-franchise-faq-fitomat__media {
+    height: clamp(260px, 25vw, 350px) !important;
+    max-height: 350px !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual {
+    height: clamp(320px, 30vw, 420px) !important;
+    max-height: 420px !important;
+  }
+}
+
+/* Final readability repair for Nostr foundation and rollout blocks */
+body.crays-mirror.route-nostr main.crays-nostr-baas {
+  --crays-nostr-muted: rgba(255, 255, 255, 0.9);
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-nostr-foundation-depth,
+  .crays-nostr-foundation-depth *,
+  .crays-nostr-phase-shell,
+  .crays-nostr-phase-shell *,
+  .crays-nostr-operating-grid,
+  .crays-nostr-operating-grid *
+) {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-depth {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(135deg, #073f5c 0%, #052236 62%, #03070c 100%) !important;
+  background-size: 78px 78px, 78px 78px, auto !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-nostr-foundation-depth__lead,
+  .crays-nostr-foundation-card,
+  .crays-nostr-phase-card,
+  .crays-nostr-operating-card,
+  .crays-nostr-phase-points article,
+  .crays-nostr-stack-list article,
+  .crays-nostr-existing-grid article,
+  .crays-nostr-existing-faq__grid details
+) {
+  background: linear-gradient(180deg, rgba(13, 55, 78, 0.98), rgba(7, 28, 43, 0.98)) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  color: #ffffff !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-nostr-foundation-card h3,
+  .crays-nostr-phase-card h3,
+  .crays-nostr-operating-card h3,
+  .crays-nostr-existing-grid article h3,
+  .crays-nostr-existing-faq__intro h3,
+  .crays-nostr-foundation-flow__visual figcaption strong,
+  .crays-nostr-phase-card__marker strong
+) {
+  color: #ffffff !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas :is(
+  .crays-nostr-foundation-depth__lead p,
+  .crays-nostr-foundation-depth__subcopy,
+  .crays-nostr-foundation-card p,
+  .crays-nostr-phase-shell__intro > p,
+  .crays-nostr-phase-card p,
+  .crays-nostr-phase-points p,
+  .crays-nostr-operating-card p,
+  .crays-nostr-stack-list p,
+  .crays-nostr-spec-row span,
+  .crays-nostr-existing-grid article p,
+  .crays-nostr-existing-faq__grid details p
+) {
+  color: rgba(255, 255, 255, 0.92) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card__marker {
+  background: rgba(14, 61, 86, 0.98) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+  overflow: hidden !important;
+  background: #071c2b !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-foundation-flow__visual img,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  object-fit: cover !important;
+  filter: saturate(1.02) contrast(1.04) brightness(0.96) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+  grid-column: 1 / -1 !important;
+  grid-template-columns: minmax(340px, 0.55fr) minmax(0, 1fr) !important;
+  min-height: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image img {
+  height: clamp(260px, 25vw, 360px) !important;
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-phase-card {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image {
+    grid-template-columns: 1fr !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--image img {
+    height: 220px !important;
+  }
+}
+
+/* Final Nostr typography contract. The hero H1 is intentionally not touched here. */
+body.crays-mirror.route-nostr main.crays-nostr-baas {
+  --crays-nostr-contract-h2: 48px;
+  --crays-nostr-contract-h3: 28px;
+  --crays-nostr-contract-copy: 16px;
+  --crays-nostr-contract-label: 12px;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section:not(.crays-franchise-hero) h2,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model h2 {
+  max-width: 22ch !important;
+  font-family: var(--crays-font-heading) !important;
+  font-size: var(--crays-nostr-contract-h2) !important;
+  font-weight: 900 !important;
+  line-height: 1.08 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section:not(.crays-franchise-hero) h3,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model h3 {
+  max-width: none !important;
+  font-family: var(--crays-font-heading) !important;
+  font-size: var(--crays-nostr-contract-h3) !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide h3 {
+  max-width: none !important;
+  font-family: var(--crays-font-heading) !important;
+  font-size: var(--crays-nostr-contract-h3) !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-grid.crays-franchise-stack-grid article.crays-franchise-advantage-slide p {
+  font-family: var(--crays-font-body) !important;
+  font-size: var(--crays-nostr-contract-copy) !important;
+  font-weight: 600 !important;
+  line-height: 1.56 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section:not(.crays-franchise-hero) p:not(.crays-franchise-eyebrow):not(.crays-franchise-kicker):not(.crays-projects-eyebrow),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model p:not(.crays-franchise-eyebrow):not(.crays-franchise-kicker):not(.crays-projects-eyebrow),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section:not(.crays-franchise-hero) li,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section:not(.crays-franchise-hero) summary {
+  font-family: var(--crays-font-body) !important;
+  font-size: var(--crays-nostr-contract-copy) !important;
+  font-weight: 600 !important;
+  line-height: 1.56 !important;
+  letter-spacing: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas :is(
+  .crays-franchise-eyebrow,
+  .crays-franchise-kicker,
+  .crays-projects-eyebrow,
+  figcaption span,
+  article > span,
+  .crays-owner-alliance-tabs-v1__kicker,
+  .crays-join-fit-tabs-v1__kicker
+) {
+  font-family: var(--crays-font-body) !important;
+  font-size: var(--crays-nostr-contract-label) !important;
+  font-weight: 900 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-advantages-slider {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  contain: layout paint !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 [data-crays-advantages-track].crays-franchise-stack-grid.crays-franchise-stack-grid {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: hidden !important;
+  scrollbar-width: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 [data-crays-advantages-track].crays-franchise-stack-grid.crays-franchise-stack-grid::-webkit-scrollbar {
+  display: none !important;
+}
+
+@media (min-width: 1181px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+  }
+}
+
+@media (max-width: 1180px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas {
+    --crays-nostr-contract-h2: 40px;
+    --crays-nostr-contract-h3: 26px;
+    --crays-nostr-contract-copy: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas {
+    --crays-nostr-contract-h2: 34px;
+    --crays-nostr-contract-h3: 24px;
+    --crays-nostr-contract-copy: 16px;
+    --crays-nostr-contract-label: 11px;
   }
 }

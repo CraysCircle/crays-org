@@ -1,8 +1,12 @@
 .vercel
 node_modules/
+__pycache__/
+*.py[cod]
 
 # Local runtime output
 artifacts/
+.codex-screenshots/
+handover-crays-org-nostr-seo-hub.md
 *.log
 server.err
 server.log

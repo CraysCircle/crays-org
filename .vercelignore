@@ -1,4 +1,6 @@
 artifacts/
+.codex-screenshots/
+handover-crays-org-nostr-seo-hub.md
 server.log
 server.err
 *.log
