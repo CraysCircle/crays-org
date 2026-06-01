@@ -1218,6 +1218,18 @@ body.crays-nostr-hub-body {
   color: var(--nostr-hub-red);
 }
 
+.crays-nostr-hub-body .crays-article-toc a.is-active,
+.crays-nostr-hub-body .crays-article-toc a[aria-current="location"] {
+  background: rgba(255, 21, 80, 0.075);
+  box-shadow: inset 4px 0 0 var(--nostr-hub-red);
+  color: var(--nostr-hub-ink);
+}
+
+.crays-nostr-hub-body .crays-article-toc a.is-active span,
+.crays-nostr-hub-body .crays-article-toc a[aria-current="location"] span {
+  color: var(--nostr-hub-red);
+}
+
 .crays-nostr-hub-body .crays-article-content > p:first-child,
 .crays-nostr-hub-body .crays-nostr-article-masthead + p {
   color: var(--nostr-hub-ink);

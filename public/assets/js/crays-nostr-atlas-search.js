@@ -24,7 +24,22 @@
   }
 
   function tokenize(query) {
-    return normalize(query).split(" ").filter(Boolean);
+    var looksLikeUrl = /:\/\/|[a-z0-9-]+\.[a-z]{2,}/i.test(String(query || ""));
+    var urlStopTokens = {
+      http: true,
+      https: true,
+      www: true,
+      com: true,
+      org: true,
+      net: true,
+      app: true,
+      dev: true,
+      io: true,
+      co: true
+    };
+    return normalize(query).split(" ").filter(function (token) {
+      return token && (!looksLikeUrl || !urlStopTokens[token]);
+    });
   }
 
   function unique(values) {
@@ -45,6 +60,17 @@
 
   function includesAny(text, variants) {
     return variants.some(function (variant) { return text.indexOf(variant) !== -1; });
+  }
+
+  function urlHostNeedle(value) {
+    var raw = String(value || "").trim();
+    if (!/:\/\//.test(raw) && !/^[a-z0-9.-]+\.[a-z]{2,}/i.test(raw)) return "";
+    try {
+      var url = new URL(/:\/\//.test(raw) ? raw : "https://" + raw);
+      return normalize(url.hostname.replace(/^www\./i, ""));
+    } catch (error) {
+      return "";
+    }
   }
 
   function prepare(record) {
@@ -73,6 +99,13 @@
     if (!phrase || !tokens.length) return 0;
 
     var score = 0;
+    var hostNeedle = urlHostNeedle(rawQuery);
+    if (hostNeedle) {
+      if (record._title.indexOf(hostNeedle) !== -1) score += 2600;
+      if (record._slug.indexOf(hostNeedle) !== -1) score += 1200;
+      if (record._terms.indexOf(hostNeedle) !== -1) score += 900;
+    }
+
     if (record._title === phrase) score += 6000;
     else if (record._title.indexOf(phrase) === 0) score += 3800;
     else if (record._title.indexOf(phrase) !== -1) score += 1800;
@@ -292,13 +325,77 @@
     });
   }
 
+  function initArticleTocScrollspy() {
+    var toc = document.querySelector(".crays-article-toc");
+    if (!toc) return;
+
+    var pairs = Array.prototype.slice.call(toc.querySelectorAll('a[href^="#"]'))
+      .map(function (link) {
+        var hash = link.getAttribute("href") || "";
+        var id = "";
+        try {
+          id = decodeURIComponent(hash.slice(1));
+        } catch (error) {
+          id = hash.slice(1);
+        }
+        return { link: link, section: id ? document.getElementById(id) : null };
+      })
+      .filter(function (pair) { return pair.section; });
+
+    if (!pairs.length) return;
+
+    function setActive(activePair) {
+      pairs.forEach(function (pair) {
+        if (pair === activePair) {
+          pair.link.classList.add("is-active");
+          pair.link.setAttribute("aria-current", "location");
+        } else {
+          pair.link.classList.remove("is-active");
+          pair.link.removeAttribute("aria-current");
+        }
+      });
+    }
+
+    function updateActiveSection() {
+      var anchorLine = Math.max(120, window.innerHeight * 0.32);
+      var activePair = pairs[0];
+      pairs.forEach(function (pair) {
+        if (pair.section.getBoundingClientRect().top <= anchorLine) {
+          activePair = pair;
+        }
+      });
+      setActive(activePair);
+    }
+
+    var ticking = false;
+    function requestUpdate() {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function () {
+        ticking = false;
+        updateActiveSection();
+      });
+    }
+
+    pairs.forEach(function (pair) {
+      pair.link.addEventListener("click", function () {
+        setActive(pair);
+      });
+    });
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+    updateActiveSection();
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", function () {
       initAtlasFinder();
       filterLinks(document.querySelector("[data-nostr-index-filter]"), document.querySelector("[data-nostr-index]"));
+      initArticleTocScrollspy();
     });
   } else {
     initAtlasFinder();
     filterLinks(document.querySelector("[data-nostr-index-filter]"), document.querySelector("[data-nostr-index]"));
+    initArticleTocScrollspy();
   }
 }());

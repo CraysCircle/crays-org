@@ -802,6 +802,45 @@ PAGES = [
         keywords=["Nostr getting started", "Nostr onboarding", "Nostr keys", "Nostr client"],
     ),
     page(
+        "search-atlas",
+        "Search Atlas",
+        "One search door into the Crays Nostr hub: pages, people, apps, NIPs, source trails, Excel URLs, media archive entries and research branches.",
+        "The Search Atlas is the working memory of the Nostr hub. It lets a reader search by idea, NIP number, person, project, URL, domain, app name, source title or Crays route without guessing where the archive stored the page.",
+        [
+            section("What the atlas searches", [
+                "The live search reads the generated Nostr index, not a decorative page list. It covers article titles, slugs, decks, categories, shelves, key terms, source cards, research text and the exact workbook URLs preserved from the deep Nostr source audit.",
+                "That means a copied Excel URL, a domain like nostrapps.com, a NIP number, a project name or a person can all become an entry point into the same library. The search box above is the fastest route; this page exists so the route itself never disappears."
+            ], [
+                ("Pages", "Every generated Nostr article and route page in the hub."),
+                ("Research", "Deep-research source pages, workbook URL variants and source inventory entries."),
+                ("People and apps", "Profiles, app catalog entries, project research and builder context."),
+                ("NIPs and relays", "Protocol pages, NIP references, relay market pages and implementation routes."),
+            ]),
+            section("How to use it", [
+                "Start broad when you need orientation, then narrow with the exact term. Search for 'NIP-72', 'Primal', 'Lyn Alden', 'Blossom', 'nostrlogin.org', 'relay auth' or a full source URL. The strongest matches appear first, and each result keeps its category and shelf visible so you can see where it belongs.",
+                "If a term has no result, that is useful too. It tells us where the hub needs a new page, a deeper source trail or a better internal synonym."
+            ], [
+                ("Exact URL", "Paste a workbook or web URL when you want the audit trail."),
+                ("NIP number", "Use NIP-07, NIP-46, NIP-50, NIP-72, NIP-98 or any tracked standard."),
+                ("Project name", "Search apps, relay tools, signers, media projects and wallets."),
+                ("Person", "Use the People route when the public contribution context is clear."),
+            ]),
+            section("Why this matters", [
+                "A large archive becomes useful only when readers can move through it without memorizing the structure. The Search Atlas is the pressure valve: it keeps the 12 main routes intact while still letting a reader jump directly to the thing they came for.",
+                "For us, this also protects the research workflow. New crawler findings, project submissions and source-review entries can be added to the index before they become polished editorial pages, so the archive keeps its memory without publishing unreviewed material as finished Crays content."
+            ], cards=[
+                ("Archive Library", "Open the full route shelf when browsing is better than searching.", "/nostr/archive-library/"),
+                ("Source Inventory", "Use the research map when you need source provenance.", "/nostr/source-inventory/"),
+                ("Apps Catalog", "Use the app route for product and client discovery.", "/nostr/apps/catalog/"),
+                ("People", "Use the people route for builders, funders, media voices and public contributors.", "/nostr/people/"),
+            ]),
+        ],
+        sources=[GLOBAL_SOURCES[0], GLOBAL_SOURCES[1], GLOBAL_SOURCES[2], GLOBAL_SOURCES[7]],
+        related=["archive-library", "source-inventory", "apps/catalog", "nips/complete-index", "people"],
+        keywords=["Search Atlas", "Nostr search", "Crays Nostr index", "Excel URLs", "source inventory"],
+        read="8 min read",
+    ),
+    page(
         "keys-identity",
         "Nostr Keys and Identity",
         "How public keys, private keys, signatures, npub/nsec, NIP-05 and signers create a portable identity layer.",
@@ -3067,6 +3106,7 @@ SECTION_NAVS = {
             (
                 "Useful next",
                 [
+                    ("Search Atlas", "search-atlas"),
                     ("Privacy and security", "privacy-security"),
                     ("Search and trust", "search-and-web-of-trust"),
                     ("Moderation and discovery", "moderation-discovery"),
@@ -3486,6 +3526,7 @@ SECTION_NAVS = {
             (
                 "Whole archive",
                 [
+                    ("Search Atlas", "search-atlas"),
                     ("Library overview", "archive-library"),
                     ("Field guides", "field-guide/relay-selection"),
                     ("Reading paths", "reading-paths/beginner"),
@@ -5451,7 +5492,7 @@ def render_page(item, by_slug):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
-  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260601-nostr-learning-gate-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260601-nostr-learning-gate-v2" />
   <script type="application/ld+json">{json.dumps(article, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps(breadcrumb, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps({
@@ -5472,7 +5513,7 @@ def render_page(item, by_slug):
         {primary_nav}
       </nav>
       <div class="crays-article-header-actions" aria-label="Crays actions">
-        <a class="crays-article-header-cta" href="/en/join-us/">Join us</a>
+        <a class="crays-article-header-cta" href="/nostr/nostr-login/">Join us</a>
         <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
@@ -5522,7 +5563,7 @@ def render_page(item, by_slug):
   </main>
 
   {render_crays_footer()}
-<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v1" defer></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
 </body>
 </html>
 """
