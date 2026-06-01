@@ -1,0 +1,117 @@
+{
+  "page_count": 1420,
+  "search_count": 1420,
+  "category_counts": {
+    "Start": 12,
+    "People": 31,
+    "Apps": 278,
+    "Relays": 50,
+    "NIPs": 240,
+    "Privacy": 12,
+    "Wallets": 62,
+    "Media": 50,
+    "Commerce": 15,
+    "Governance": 18,
+    "Crays": 7,
+    "Library": 645
+  },
+  "route_directory_counts": {
+    "Start": {
+      "expected": 12,
+      "links": 12,
+      "file": "public\\nostr\\what-is-nostr\\index.html"
+    },
+    "People": {
+      "expected": 31,
+      "links": 31,
+      "file": "public\\nostr\\people\\index.html"
+    },
+    "Apps": {
+      "expected": 278,
+      "links": 278,
+      "file": "public\\nostr\\apps\\catalog\\index.html"
+    },
+    "Relays": {
+      "expected": 50,
+      "links": 50,
+      "file": "public\\nostr\\relay-market-directory\\index.html"
+    },
+    "NIPs": {
+      "expected": 240,
+      "links": 240,
+      "file": "public\\nostr\\nips\\complete-index\\index.html"
+    },
+    "Privacy": {
+      "expected": 12,
+      "links": 12,
+      "file": "public\\nostr\\privacy-security\\index.html"
+    },
+    "Wallets": {
+      "expected": 62,
+      "links": 62,
+      "file": "public\\nostr\\nip-47-wallet-connect\\index.html"
+    },
+    "Media": {
+      "expected": 50,
+      "links": 50,
+      "file": "public\\nostr\\music-video-media\\index.html"
+    },
+    "Commerce": {
+      "expected": 15,
+      "links": 15,
+      "file": "public\\nostr\\content-sale\\index.html"
+    },
+    "Governance": {
+      "expected": 18,
+      "links": 18,
+      "file": "public\\nostr\\dao-governance\\index.html"
+    },
+    "Crays": {
+      "expected": 7,
+      "links": 7,
+      "file": "public\\nostr\\nostr-and-crays\\index.html"
+    },
+    "Library": {
+      "expected": 645,
+      "links": 645,
+      "file": "public\\nostr\\archive-library\\index.html"
+    }
+  },
+  "excel_unique_urls": 450,
+  "missing_excel_in_media_count": 0,
+  "missing_excel_in_search_count": 0,
+  "missing_excel_in_media_sample": [],
+  "missing_excel_in_search_sample": [],
+  "external_link_violations_count": 0,
+  "external_link_violations_sample": [],
+  "visible_crays_net_count": 0,
+  "visible_crays_net_sample": [],
+  "forbidden_name_hits_count": 0,
+  "forbidden_name_hits_sample": [],
+  "voice_hits_count": 0,
+  "voice_hits_sample": [],
+  "generic_hits_count": 0,
+  "generic_hits_sample": [],
+  "missing_h1_count": 0,
+  "missing_h1_sample": [],
+  "missing_mastheads_count": 0,
+  "missing_mastheads_sample": [],
+  "source_nip_file_count": 191,
+  "source_nip_deep_count": 191,
+  "media_archive_video_iframes": 28,
+  "media_archive_cards": 489,
+  "js_checks": {
+    "uses_payload_pages": true,
+    "single_char_no_terms": true,
+    "fetches_index": true
+  },
+  "css_checks": {
+    "toc_sticky": true,
+    "toc_no_internal_scroll": true,
+    "article_full_column": true,
+    "card_icon_sized": true,
+    "route_cta": true
+  },
+  "gate_status": "PASS",
+  "fail_keys": []
+}

@@ -363,20 +363,37 @@ def make_entity_page(record: dict, page, section) -> dict:
         entity_page_slug(record),
         name,
         f"{name} in the Crays Nostr research atlas: where it fits, why it matters and which audited sources support it.",
-        f"{name} gets its own Crays research page because the workbook does not treat it as background noise. It appears in {categories}, usually around {subcategories}, and that means a reader should be able to find it without knowing which directory first mentioned it.",
+        f"{name} gets its own research page because the workbook does not treat it as background noise. It appears in {categories}, usually around {subcategories}, and that means you should be able to find it without knowing which directory first mentioned it.",
         [
             section("Why this belongs in the atlas", [
                 f"{name} sits in the {meta['label'].lower()} layer. The reader question is simple: {meta['question']}",
-                f"The workbook signal says: {notes} The Crays version keeps that signal, then turns it into a plain-language map point instead of another cold list entry.",
+                f"The workbook signal says: {notes} We keep that signal, then turn it into a plain-language map point instead of another cold list entry.",
             ], [
                 ("Route", meta["label"]),
                 ("Workbook area", categories),
                 ("Subcategory", subcategories),
                 ("Importance", importance),
             ]),
-            section("The Crays read", [
+            section(f"How {name} fits our map", [
                 meta["crays"],
                 "The writing rule is the same as the rest of the archive: explain the thing like a sharp friend would explain it over coffee, but keep the facts traceable enough that builders can follow up.",
+                f"For {name}, that means the page cannot stop at a directory label. It should tell you what layer this affects, what kind of user or builder touches it, which neighboring concepts matter and whether the source looks like a stable reference, an experimental project or a signal that needs more verification.",
+            ]),
+            section(f"What to verify around {name}", [
+                f"Before {name} graduates from research entry to product decision, check the evidence trail. Look for maintained repositories, clear documentation, NIP references, relay or client compatibility notes, security assumptions, license information and recent activity.",
+                f"If {name} is a tool, the practical question is whether it handles keys, signing, relays, events, wallets, storage or moderation in a way a normal reader can understand. If it is a standard or source, the question is which article should absorb the verified facts.",
+            ], [
+                ("Source count", str(len(source_items))),
+                ("Workbook signals", str(record.get("row_count", 0))),
+                ("Primary route", meta["label"]),
+            ]),
+            section("How to use the evidence", [
+                f"The cards below are not decorative links. They are the audit trail for {name}: where the source appeared, what kind of category it carried and which page can be opened when the article needs a fact check.",
+                "Use them in two passes. First, read for orientation: what is this and why is it in the atlas? Second, read for claims: what statement can we safely make in a deeper Crays article without inventing certainty the source does not support?",
+            ]),
+            section("Where this should feed next", [
+                f"{name} should feed the route where a reader would naturally need it: Start for basic mental models, Apps for product surfaces, Relays for infrastructure, NIPs for standards, Privacy for key and trust questions, Wallets for value flow, Media for publishing and storage, Commerce for revenue paths, Governance for reputation or moderation, and Library for traceable research.",
+                "That is how the archive becomes a guided learning system instead of a pile of pages. A source page records evidence; a route article turns the evidence into understanding; internal links let the reader move between both without losing the thread.",
             ]),
             section("Evidence trail", [
                 f"This derived page is connected to {len(source_items)} audited source URL(s) and {record.get('row_count', 0)} workbook row signal(s). Open the source cards when you want the crawl status, checked subpages and raw research trail."
@@ -481,9 +498,9 @@ def make_source_page(item: dict, page, section) -> dict:
             ],
         ),
         section(
-            "What Crays should carry forward",
+            "What we should carry forward",
             [
-                "The archive should pull the lesson out of the source and place it where a reader expects it: standards in the NIP path, products in the app path, relays in the infrastructure path, research in the library, and Crays-specific meaning in the product layer.",
+                "The archive should pull the lesson out of the source and place it where a reader expects it: standards in the NIP path, products in the app path, relays in the infrastructure path, research in the library, and our product meaning in the product layer.",
                 "The language has to stay calm and alive. A reader should feel guided by someone who knows the protocol and also remembers that most people do not wake up wanting to read implementation notes."
             ],
             [
@@ -514,6 +531,74 @@ def make_source_page(item: dict, page, section) -> dict:
             ],
         ),
     ]
+
+    if key == "nips":
+        source_url = item.get("url", "")
+        title_signal = title if title.lower().startswith("nip") else f"{title} in the NIP shelf"
+        paragraphs = [
+            section(
+                "What the NIP covers",
+                [
+                    f"{title_signal} is part of the standards route, so read it as an interoperability contract rather than a product announcement. The workbook places it in {categories}, with the subcategory {subcategories}, and the source status is {source_status(item)}.",
+                    f"The workbook note gives the first signal: {note_text} That note is not enough on its own; the useful work is to connect it to events, clients, relays, wallets, signers, media or governance behavior.",
+                    "A NIP page should answer three practical questions: which object or flow is being standardized, which actors must implement it, and what breaks when support is partial or inconsistent.",
+                ],
+                [
+                    ("Category", categories),
+                    ("Subcategory", subcategories),
+                    ("Importance", importance),
+                ],
+            ),
+            section(
+                "Plain-language interpretation",
+                [
+                    f"If you are not implementing the specification, the simple question is: what new user-facing behavior does {title} make possible? A good answer avoids raw standards language first and explains the effect: safer signing, clearer identity, better relay routing, media portability, wallet interaction, moderation signal, discovery, or another product consequence.",
+                    "NIPs are optional conventions in an open ecosystem. They become real only when clients, relays, wallets or services implement them well enough that users can trust the behavior.",
+                ],
+            ),
+            section(
+                "Data model, actors and responsibilities",
+                [
+                    f"The captured source structure points toward {heading_text}. Use that as evidence, then translate the shape into a clear actor map.",
+                    "The actor map should name who signs, who stores, who reads, who verifies, who pays, who moderates and who has to provide a fallback. For many NIPs the same event looks simple, but the responsibility is split across client UX, relay policy, wallet permissions, signer prompts and indexing behavior.",
+                    "That split is why standards pages need more than definitions. They need implementation pressure: what must be stable, what may vary and what the reader should not assume from the NIP number alone.",
+                ],
+            ),
+            section(
+                "Implementation questions",
+                [
+                    f"Before we treat {title} as ready for a product path, the page should ask whether current clients support it, whether relays preserve the relevant events, whether the security model is clear and whether the user can understand the prompt or action.",
+                    "A weak implementation can make a good NIP feel broken. A strong implementation hides enough detail to be usable while keeping the ownership, consent and portability boundaries visible.",
+                ],
+                [
+                    ("Client support", "Which clients expose the behavior and how mature is the interface?"),
+                    ("Relay behavior", "Do relays store, filter, count, authenticate or reject the relevant event flow?"),
+                    ("User safety", "Can a user understand what they are signing, publishing, authorizing or paying?"),
+                ],
+            ),
+            section(
+                "Common failure modes",
+                [
+                    "The common failure mode is treating a NIP as a guarantee. A NIP can describe the shape; it cannot force every client to support it, every relay to store it, every wallet to approve it or every app to explain it well.",
+                    f"For {title}, the page should watch for partial support, stale source links, confusing prompts, privacy leakage, weak fallback behavior and claims that sound stronger than the current ecosystem evidence.",
+                ],
+            ),
+            section(
+                "Workbook evidence",
+                [
+                    f"This source appears in {len(item.get('row_refs', []))} workbook reference row(s). Keep those rows visible because the same NIP can appear as standards evidence, product evidence, security evidence or developer-stack evidence depending on the sheet.",
+                ],
+                cards=workbook_cards,
+            ),
+            section(
+                "Source trail and next reading",
+                [
+                    f"The source URL is {source_url}. Use it as the canonical or workbook-backed evidence point, then continue into the NIP explainer route, the related product route and the practical article that shows what the standard changes for a reader.",
+                    "The right next step is not a generic pile of tabs. It is the neighboring concept that explains the consequence: identity, relay routing, signing, wallet access, media storage, discovery, moderation, governance or commerce.",
+                ],
+                cards=subpage_cards,
+            ),
+        ]
 
     return page(
         source_page_slug(item),
@@ -595,7 +680,7 @@ def make_index_page(inventory: dict, grouped: dict[str, list[dict]], page, secti
             section("Research shelves", [
                 "Each shelf below is generated from the workbook and live audit. The shelf pages then lead into individual source pages."
             ], cards=category_cards),
-            section("How Crays uses this", [
+            section("How we use this", [
                 "A source page is not the final reader chapter. It is the audit layer: what did the workbook say, what did the page expose, where does it belong, and what should Crays carry forward?",
                 "When an important source reveals a missing idea, that idea should graduate into the relevant article route: NIPs, apps, relays, developer stack, Reads/research, privacy/security or Crays product implementation."
             ]),

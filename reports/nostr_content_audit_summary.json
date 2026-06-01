@@ -1,0 +1,591 @@
+{
+  "page_count": 1420,
+  "excel_summary": {},
+  "category_counts": {
+    "Apps": 278,
+    "Commerce": 15,
+    "Crays": 7,
+    "Governance": 18,
+    "Library": 645,
+    "Media": 50,
+    "NIPs": 240,
+    "People": 31,
+    "Privacy": 12,
+    "Relays": 50,
+    "Start": 12,
+    "Wallets": 62
+  },
+  "priority_counts": {
+    "P3": 1420
+  },
+  "status_counts": {
+    "brauchbar": 1420
+  },
+  "generic_template_pages": 0,
+  "third_person_crays_pages": 0,
+  "isolated_pages": 0,
+  "missing_category_candidates": 29,
+  "duplicate_title_pages": 356,
+  "top_priorities": [
+    {
+      "slug": "apps",
+      "title": "Nostr Apps Directory Guide",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/amber",
+      "title": "Amber",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/amethyst",
+      "title": "Amethyst",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog",
+      "title": "Complete Nostr Apps Catalog",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/0xchat",
+      "title": "0xchat",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/aegis",
+      "title": "Aegis",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/alby",
+      "title": "Alby",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/alphaama",
+      "title": "alphaama",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/amber",
+      "title": "Amber",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/amethyst",
+      "title": "Amethyst",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/ants",
+      "title": "ants",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/boris",
+      "title": "Boris",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/bouquet",
+      "title": "Bouquet",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/chachi",
+      "title": "Chachi",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/citrine",
+      "title": "Citrine",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/coop",
+      "title": "Coop",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/coracle",
+      "title": "Coracle",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/damus",
+      "title": "Damus",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/ditto",
+      "title": "Ditto",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/dtan",
+      "title": "DTAN",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/emojito",
+      "title": "Emojito",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/flotilla",
+      "title": "Flotilla",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/formstr",
+      "title": "Formstr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/freefrom",
+      "title": "FreeFrom",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/futr",
+      "title": "futr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/gifbuddy",
+      "title": "GIF Buddy",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/gossip",
+      "title": "Gossip",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/grimoire",
+      "title": "Grimoire",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/habla",
+      "title": "Habla",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/iris",
+      "title": "Iris",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/jumble",
+      "title": "Jumble",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/keys-band",
+      "title": "Keys Band",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/lantern",
+      "title": "Lantern",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/lumilumi",
+      "title": "lumilumi",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/makimono",
+      "title": "MAKIMONO",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/narr",
+      "title": "Narr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/noflux",
+      "title": "Noflux",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nos-social",
+      "title": "Nos Social",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nos2x",
+      "title": "nos2x",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nosotros",
+      "title": "Nosotros",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostr-nests",
+      "title": "Nests",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostr-relay-tray",
+      "title": "Nostr Relay Tray",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostrame",
+      "title": "Nostrame",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostree",
+      "title": "Nostree",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostria",
+      "title": "Nostria",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostrmo",
+      "title": "Nostrmo",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostrocket",
+      "title": "Nostrocket",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostrudel",
+      "title": "noStrudel",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostter",
+      "title": "Nostter",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nostur",
+      "title": "Nostur",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/nstart",
+      "title": "Nstart.me",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/obsidian-nostr-writer",
+      "title": "Obsidian Nostr Writer",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/olas",
+      "title": "Olas",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/oracolo",
+      "title": "Oracolo",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/peridot",
+      "title": "Peridot",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/phoenix",
+      "title": "Phoenix",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/plebeian-market",
+      "title": "Plebeian Market",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/primal",
+      "title": "Primal",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/primal-studio",
+      "title": "Primal Studio",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/primal-web",
+      "title": "Primal Web",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/pyramid",
+      "title": "Pyramid",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/relay-tools",
+      "title": "Relay Tools",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/shakespeare",
+      "title": "Shakespeare",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/shopstr",
+      "title": "Shopstr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/shosho",
+      "title": "Shosho",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/slidestr",
+      "title": "Slidestr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/treasures",
+      "title": "Treasures",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/wikifreedia",
+      "title": "Wikifreedia",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/wikistr",
+      "title": "Wikistr",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/yakbak",
+      "title": "YakBak",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/yakihonne",
+      "title": "YakiHonne",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/catalog/yondar",
+      "title": "Yondar",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-audio",
+      "title": "Nostr Apps: Audio",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-community",
+      "title": "Nostr Apps: Community",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-crazy",
+      "title": "Nostr Apps: Experiments",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-curation",
+      "title": "Nostr Apps: Curation",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-direct-message",
+      "title": "Nostr Apps: Direct message",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-discovery",
+      "title": "Nostr Apps: Discovery",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-file-sharing",
+      "title": "Nostr Apps: File sharing",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    },
+    {
+      "slug": "apps/category-group-chat",
+      "title": "Nostr Apps: Group chat",
+      "category": "Apps",
+      "priority": "P3",
+      "action": "gezielte redaktionelle Politur und Quellenabgleich"
+    }
+  ]
+}

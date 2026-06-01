@@ -377,7 +377,7 @@ def technical_domain_sections(section, title: str, plain: str, tech: str, risk: 
             ("Builder", f"Check the event, relay, signer and client expectations behind {lower}."),
             ("Creator or operator", f"Ask whether {title} improves audience, venue, payment, memory or governance flows."),
         ]),
-        section("Where to go next", [
+        section(f"Next reading paths for {title}", [
             f"After this page, a reader should be able to connect {lower} to at least three neighboring ideas: identity, relays and product experience. Experts can go deeper into NIPs and implementation notes. Newcomers can move sideways into examples and use cases.",
             f"The right next step depends on the reader. If you build, inspect the protocol layer. If you create, look at publishing and payments. If you operate a place or community, look at relays, moderation and identity. If you are just learning, keep the mental model simple: keys identify, clients interpret, relays move events.",
         ]),
@@ -420,7 +420,7 @@ def culture_domain_sections(section, title: str, plain: str, tech: str, risk: st
             f"For venues, local communities and Crays operators, the same topic becomes operational. What should be official? What should stay playful? Who speaks for the place? Which posts become public memory? Which social signals belong on a page that guests, fans or partners will actually read?",
         ]),
         section("How Crays should cover it", [
-            f"The Crays reading is practical: {crays}. That means the archive can discuss the fun, messy and human parts of Nostr while still keeping a grown-up editorial line.",
+            f"Our practical reading is this: {crays}. That means the archive can discuss the fun, messy and human parts of Nostr while still keeping a grown-up editorial line.",
             f"Crays should write about {lower} as a guide would talk to an intelligent reader: relaxed, informed, sometimes amused, but careful with claims. The point is not to flatten the scene into corporate copy. The point is to make the scene legible without turning it into cheap spectacle.",
         ]),
         section("Red flags", [
@@ -445,7 +445,7 @@ def culture_domain_sections(section, title: str, plain: str, tech: str, risk: st
             ("Culture", "What norm, joke, conflict or expectation is being revealed?"),
             ("Usefulness", "What should the reader understand or do differently afterward?"),
         ]),
-        section("Where to go next", [
+        section(f"Neighboring culture routes for {title}", [
             f"After {title}, the reader should be able to move toward neighboring subjects: zaps, badges, profiles, relays, client design, moderation, long-form writing, events and the public web. Culture pages should not be dead ends.",
             f"That is how the Crays archive can cover Nostr from tech to lifestyle without losing seriousness. The social layer explains why people care; the technical layer explains what is really happening; the product layer explains what Crays can build from it.",
         ]),
@@ -554,6 +554,131 @@ def classify_page(item: dict) -> dict[str, str]:
     }
 
 
+def editorial_route(item: dict) -> str:
+    slug = item.get("slug", "")
+    title = item.get("title", "").lower()
+    if slug.startswith("people/") or slug in {"people", "events", "lifestyle-culture", "nostr-and-bitcoin"}:
+        return "people"
+    if slug.startswith(("apps/", "app-profiles/")) or slug in {"apps", "clients", "developer-tools", "nostr-login"}:
+        return "apps"
+    if slug.startswith("relays/") or slug in {"relays", "relay-market-directory"} or "relay" in title:
+        return "relays"
+    if slug.startswith("nips/") or slug.startswith("nip-") or slug in {"nips", "events-and-kinds"} or "nip" in title:
+        return "nips"
+    if any(token in slug for token in ("wallet", "zap", "lightning", "cashu", "safebox")):
+        return "wallets"
+    if any(token in slug for token in ("creator", "music", "video", "media", "publishing", "long-form", "photos", "streaming", "blogging")):
+        return "media"
+    if any(token in slug for token in ("marketplace", "commerce", "monetization", "investor", "revenue", "foundups")):
+        return "commerce"
+    if any(token in slug for token in ("governance", "dao", "badge", "voting", "reputation", "moderation", "policy")):
+        return "governance"
+    if slug in {"nostr-and-crays", "content-sale", "awards", "crays-super-node", "operators-venues", "dao-governance"} or "crays" in slug:
+        return "crays"
+    if any(token in slug for token in ("privacy", "security", "trust", "key", "signer", "encryption", "censorship")):
+        return "privacy"
+    if slug.startswith("reading-paths/") or slug in {"what-is-nostr", "getting-started", "why-nostr", "glossary", "resources"}:
+        return "start"
+    return "library"
+
+
+CONTEXTUAL_ROUTE_PROFILES = {
+    "start": {
+        "layer": "first-principles learning",
+        "headings": ["The question this page answers", "The concepts underneath", "The first practical test", "Terms to keep close", "How this connects outward", "What to read with it"],
+        "checks": [("Before", "Which idea should already be clear?"), ("During", "Which term or mechanism is doing the work?"), ("After", "Which neighboring page deepens the question?")],
+    },
+    "people": {
+        "layer": "people, public work and culture",
+        "headings": ["Why this person or scene matters", "Public work to verify", "Projects and relationships", "Influence without mythmaking", "Useful context for newcomers", "Connected pages"],
+        "checks": [("Evidence", "Which source shows the work?"), ("Connection", "Which app, NIP, event or project changed?"), ("Context", "What should you read next?")],
+    },
+    "apps": {
+        "layer": "clients, tools and interfaces",
+        "headings": ["What job this product does", "Key and signer behavior", "Relay and data assumptions", "NIPs and services to check", "Interoperability test", "Where it sits in the app map"],
+        "checks": [("Identity", "Does it use a signer, raw key, remote signer or account wrapper?"), ("Relays", "Can you see where reads and writes go?"), ("Exit", "What remains usable in another client?")],
+    },
+    "relays": {
+        "layer": "relay infrastructure",
+        "headings": ["Infrastructure role", "Read and write behavior", "Policy and access", "Monitoring and failure modes", "Operator questions", "Related relay concepts"],
+        "checks": [("Read", "Can clients fetch the expected events?"), ("Write", "Does the relay accept and acknowledge useful events?"), ("Policy", "What is rejected, priced, moderated or authenticated?")],
+    },
+    "nips": {
+        "layer": "protocol standards",
+        "headings": ["What this standard changes", "Who has to implement it", "Event, tag or service surface", "Compatibility and adoption", "Product risk", "Neighboring standards"],
+        "checks": [("Status", "Is the NIP mandatory, optional, draft, final or unrecommended?"), ("Layer", "Client, relay, signer, wallet, media server or indexer?"), ("Adoption", "Where can you verify support?")],
+    },
+    "privacy": {
+        "layer": "keys, signing and trust",
+        "headings": ["Threat model first", "Key and signer boundary", "What stays public", "What can still go wrong", "Safer product language", "Security pages to pair with it"],
+        "checks": [("Secret", "Which credential or permission is at risk?"), ("Metadata", "What remains visible even if content is encrypted?"), ("Recovery", "What happens when access is lost?")],
+    },
+    "wallets": {
+        "layer": "money, wallets and records",
+        "headings": ["Value flow", "Custody and permission boundary", "Relevant wallet standards", "Receipts and proof", "Failure and support questions", "Where money meets identity"],
+        "checks": [("Control", "Who can approve or limit spending?"), ("Proof", "Which event or receipt proves the action?"), ("Fallback", "What happens when wallet or relay access fails?")],
+    },
+    "media": {
+        "layer": "publishing and creator media",
+        "headings": ["Publishing surface", "What is signed and what is stored", "Discovery and rendering", "Creator business context", "Media storage questions", "Adjacent creator pages"],
+        "checks": [("Object", "Is this a note, article, file metadata event, blob or app-specific object?"), ("Storage", "Where does the heavy media live?"), ("Audience", "How does a fan find or pay for it?")],
+    },
+    "commerce": {
+        "layer": "markets and revenue paths",
+        "headings": ["Economic job", "Offer, proof and settlement", "Protocol pieces involved", "Trust and dispute points", "Revenue context", "Business pages around it"],
+        "checks": [("Offer", "What is being bought, funded, routed or rewarded?"), ("Proof", "Which signed record matters?"), ("Support", "What happens when payment or access fails?")],
+    },
+    "governance": {
+        "layer": "rules, reputation and decisions",
+        "headings": ["Decision layer", "Signals and accountability", "Issuer and scope", "Moderation versus governance", "Risks of vague authority", "Where to deepen the rule set"],
+        "checks": [("Actor", "Who issues, votes, labels or enforces?"), ("Scope", "Where does the rule apply?"), ("Consequence", "What changes for access, trust or status?")],
+    },
+    "crays": {
+        "layer": "our product and venue layer",
+        "headings": ["Where this touches our product layer", "Protocol piece versus experience", "Profile, venue or governance path", "Operational questions", "What we still have to design", "Internal pages around it"],
+        "checks": [("User action", "What does a member, creator, operator or partner do?"), ("Protocol action", "What gets signed, stored or paid?"), ("Fallback", "What must keep working if infrastructure fails?")],
+    },
+    "library": {
+        "layer": "research and source material",
+        "headings": ["How to use this source", "Evidence quality", "What it can verify", "What it does not prove", "Where the knowledge should feed", "Library path around it"],
+        "checks": [("Source type", "Standard, repo, monitor, directory, essay or research paper?"), ("Claim", "What claim does this source support?"), ("Next use", "Which article should absorb the insight?")],
+    },
+}
+
+
+def contextual_editorial_sections(item: dict, section, title: str, deck: str, lens: dict):
+    route = editorial_route(item)
+    profile = CONTEXTUAL_ROUTE_PROFILES.get(route, CONTEXTUAL_ROUTE_PROFILES["library"])
+    headings = profile["headings"]
+    layer = profile["layer"]
+    return [
+        section(headings[0], [
+            f"{title} belongs to the {layer} layer. The page should help you answer one concrete question instead of forcing you through a generic Nostr essay.",
+            f"The short version is: {deck} The deeper version is to see which concept, standard, product surface or human decision actually changes because of it.",
+        ]),
+        section(headings[1], [
+            f"The useful machinery around {title} is {lens['technical']}. Name those moving parts directly, because vague protocol language is where confusion starts.",
+            "A strong page gives you enough context to recognize the term in another client, NIP, relay policy, wallet prompt or source document without pretending every reader is already a protocol engineer.",
+        ], profile["checks"]),
+        section(headings[2], [
+            f"Test {title} by asking what is signed, where it is stored, who renders it, which relays or services are involved and what survives when the first app or server is unavailable.",
+            "That test keeps the explanation tied to reality. It also tells us which internal links belong in the body: foundations first, then standards, then practical examples.",
+        ]),
+        section(headings[3], [
+            f"The main risk is that {lens['risk']}. The page should say that plainly and then show the safer reading: what works today, what is experimental and what needs source verification.",
+            "This is where dense content beats long content. Give the reader facts, constraints, examples and next steps instead of repeating broad claims about openness or decentralization.",
+        ]),
+        section(headings[4], [
+            f"For us, {title} matters only when it improves understanding or helps a real flow: identity, publishing, relay choice, signing, payment, media, moderation, commerce, venue context or governance.",
+            "That does not mean every page has to become a Crays product pitch. It means the page should make the connection visible when the topic affects our ecosystem, and stay purely educational when it does not.",
+        ]),
+        section(headings[5], [
+            f"The best next step from {title} is not a generic link pile. Connect it to the closest prerequisite, the closest technical standard and the closest practical example.",
+            "A large archive becomes useful when every page behaves like a node in a knowledge graph: this explains one thing, points to what it depends on and shows where the idea is used.",
+        ]),
+    ]
+
+
 def editorial_sections(item: dict, section):
     title = item["title"]
     deck = item.get("deck", "")
@@ -582,6 +707,9 @@ def editorial_sections(item: dict, section):
         "Nostrica",
     )
     lower = subject if any(token in subject for token in proper_tokens) else subject[:1].lower() + subject[1:]
+    contextual = contextual_editorial_sections(item, section, title, deck, lens)
+    if contextual:
+        return contextual
     return [
         section("Why people care", [
             f"{title} matters because {lens['reader']}. On paper this belongs near {area}; in practice the stakes are human: what changes for the person holding the key, running the relay, shipping the app or trying to understand the scene?",
@@ -612,9 +740,9 @@ def editorial_sections(item: dict, section):
             f"Picture {lower} in normal use: {lens['example']}. That is where the subject stops being a label and starts behaving like a product choice.",
             f"The same chapter can serve several people at once. A newcomer gets the plain meaning of {title}. A coder gets the moving parts. A creator gets the audience consequence. A Crays operator gets the business relevance.",
         ]),
-        section("The Crays read", [
-            f"Crays reads {lower} through product reality: does it help creators, fans, venues, operators, builders or future members coordinate better? If it does not, {title} can stay documented without pretending it leads the product story.",
-            f"That is the useful Crays voice: enjoy the energy of the Nostr scene while still asking the boring, necessary questions. Who signs, who pays, who stores, who moderates and who gets stranded when something fails?",
+        section(f"How {title} fits our operating map", [
+            f"We read {lower} through product reality: does it help creators, fans, venues, operators, builders or future members coordinate better? If it does not, {title} can stay documented without pretending it leads the product story.",
+            "That is the useful voice here: enjoy the energy of the Nostr scene while still asking the boring, necessary questions. Who signs, who pays, who stores, who moderates and who gets stranded when something fails?",
         ]),
         section("Words that must stay honest", [
             f"A few words around {lower} need discipline. A protocol convention is not a finished product. A relay is not a whole platform. A signature is not consent unless the signer understands what they signed.",
@@ -644,7 +772,7 @@ def editorial_sections(item: dict, section):
             f"{title} matters when it helps a real person keep identity, audience, money, media, reputation or community context more portable and more understandable.",
             f"If all we know is that {lower} exists, the idea is thin. If we can see where it belongs, what it changes, who it affects and what to read next, it starts to feel like part of a real operating map.",
         ]),
-        section("The mood around it", [
+        section(f"The human texture around {title}", [
             f"The best explanation sounds like someone who knows the back room and still respects the new reader: relaxed, specific, honest and allergic to buzzword fog.",
             f"That matters for {title} because Nostr can become too cold, too tribal or too pleased with itself. Keep the technical backbone, but leave enough warmth for a creator, venue operator, wallet builder, fan and protocol veteran to stay in the same room.",
         ]),
@@ -652,9 +780,9 @@ def editorial_sections(item: dict, section):
             f"Read {title} as one chapter in a larger operating map. It should clarify the topic itself and make nearby questions easier: which identity is involved, which client shapes the experience, which relay or service carries the data and which human relationship gets stronger or more fragile because of it.",
             f"If {lower} leaves the reader with a sharper question, the page has done useful work. Nostr rewards people who follow relationships between topics instead of collecting isolated definitions.",
         ]),
-        section("Where to go next", [
+        section(f"Reader route after {title}", [
             f"After reading about {title}, the reader should have a next step that matches their intent. If the subject feels abstract, move to keys, clients and relays. If it feels technical, open the NIP index. If it feels cultural, open people, events and moderation.",
-            f"That is the large-scale Crays rule: each page about {lower} should answer one question well, then point to the neighboring question with enough context that the reader never feels dropped into a pile of tabs.",
+            f"The large-scale rule is simple: each page about {lower} should answer one question well, then point to the neighboring question with enough context that the reader never feels dropped into a pile of tabs.",
         ]),
     ]
 

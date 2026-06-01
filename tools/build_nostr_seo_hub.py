@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import json
 import re
+from collections import defaultdict
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -11,12 +12,60 @@ ROOT = Path(__file__).resolve().parents[1]
 PUBLIC = ROOT / "public"
 INVENTORY = ROOT / "tools" / "nostr_reference_inventory.json"
 OPENVERSE_IMAGE_BANK = ROOT / "tools" / "nostr_openverse_image_bank.json"
+DEEP_RESEARCH_INVENTORY = ROOT / "tools" / "nostr_deep_research_inventory.json"
+SEARCH_INDEX = PUBLIC / "nostr" / "search-index.json"
 BASE_URL = "https://www.crays.org"
 TODAY = "2026-05-31"
 
 
 def esc(value: object) -> str:
     return html.escape(str(value), quote=True)
+
+
+def clean_generated_html(text: str) -> str:
+    return re.sub(r"[ \t]+(?=\r?\n|$)", "", text)
+
+
+INTERNAL_LINK_HOSTS = {"crays.org", "www.crays.org"}
+ANCHOR_TAG_RE = re.compile(r"<a\b(?P<attrs>[^>]*)>", re.IGNORECASE)
+HREF_ATTR_RE = re.compile(r"""\bhref\s*=\s*(['"])(?P<href>.*?)\1""", re.IGNORECASE)
+TARGET_ATTR_RE = re.compile(r"""\btarget\s*=\s*(['"])(?P<target>.*?)\1""", re.IGNORECASE)
+REL_ATTR_RE = re.compile(r"""\brel\s*=\s*(['"])(?P<rel>.*?)\1""", re.IGNORECASE)
+
+
+def is_external_href(href: str) -> bool:
+    parsed = urlparse(href)
+    return parsed.scheme in {"http", "https"} and parsed.netloc.lower() not in INTERNAL_LINK_HOSTS
+
+
+def ensure_external_links_new_tab(markup: str) -> str:
+    def patch_anchor(match: re.Match[str]) -> str:
+        tag = match.group(0)
+        href_match = HREF_ATTR_RE.search(tag)
+        if not href_match or not is_external_href(href_match.group("href")):
+            return tag
+
+        target_match = TARGET_ATTR_RE.search(tag)
+        if target_match:
+            quote = target_match.group(1)
+            tag = TARGET_ATTR_RE.sub(f"target={quote}_blank{quote}", tag, count=1)
+        else:
+            tag = tag[:-1] + ' target="_blank">'
+
+        rel_match = REL_ATTR_RE.search(tag)
+        if rel_match:
+            quote = rel_match.group(1)
+            rel_tokens = rel_match.group("rel").split()
+            rel_lookup = {token.lower() for token in rel_tokens}
+            for required in ("noreferrer", "noopener"):
+                if required not in rel_lookup:
+                    rel_tokens.append(required)
+            tag = REL_ATTR_RE.sub(f"rel={quote}{' '.join(rel_tokens)}{quote}", tag, count=1)
+        else:
+            tag = tag[:-1] + ' rel="noreferrer noopener">'
+        return tag
+
+    return ANCHOR_TAG_RE.sub(patch_anchor, markup)
 
 
 COPY_REPLACEMENTS = (
@@ -48,10 +97,11 @@ def clean_copy(value: object) -> str:
 
 def crays_voice(value: object) -> str:
     text = clean_copy(value)
+    text = re.sub(r"\bCrays\.net\b", "Crays", text, flags=re.IGNORECASE)
     replacements = (
         (r"\bWhy Crays cares\b", "Why we care"),
-        (r"\bThe Crays read\b", "Our read"),
-        (r"\bThe Crays reading\b", "Our reading"),
+        (r"\bThe Crays read\b", "How this fits our map"),
+        (r"\bThe Crays reading\b", "Our practical reading"),
         (r"\bThe Crays angle\b", "Our angle"),
         (r"\bCrays relevance\b", "Why it matters to us"),
         (r"\bHow Crays should read\b", "How we should read"),
@@ -78,6 +128,9 @@ def crays_voice(value: object) -> str:
         (r"\bCrays wants\b", "we want"),
         (r"\bCrays needs\b", "we need"),
         (r"\bCrays uses\b", "we use"),
+        (r"\bCrays offers\b", "we offer"),
+        (r"\bCrays provides\b", "we provide"),
+        (r"\bCrays explains\b", "we explain"),
         (r"\bCrays reads\b", "we read"),
         (r"\bCrays treats\b", "we treat"),
         (r"\bCrays turns\b", "we turn"),
@@ -99,6 +152,14 @@ def crays_voice(value: object) -> str:
         (r"\bCrays interpretation\b", "our interpretation"),
         (r"\bCrays context\b", "our context"),
         (r"\bCrays lifestyle\b", "our lifestyle"),
+        (r"\bThe Crays job\b", "Our job"),
+        (r"\bCrays job\b", "our job"),
+        (r"\bThe Crays version\b", "Our version"),
+        (r"\bCrays version\b", "our version"),
+        (r"\bThe Crays copy\b", "Our copy"),
+        (r"\bCrays copy\b", "our copy"),
+        (r"\bThe Crays stance\b", "Our stance"),
+        (r"\bCrays stance\b", "our stance"),
         (r"\bCrays view\b", "our view"),
         (r"\bCrays model\b", "our model"),
         (r"\bCrays stack\b", "our stack"),
@@ -182,6 +243,7 @@ RESOURCE_LINKS = GLOBAL_SOURCES + NIP_SOURCES + [
     ("Nostr.band GitHub", "https://github.com/nostrband", "Public Nostr.band organization and related tools."),
     ("Alby", "https://getalby.com/", "Lightning wallet and browser extension commonly used for Nostr signing and zaps."),
     ("GitHub topic: Nostr", "https://github.com/topics/nostr", "Fresh open-source repositories tagged with Nostr."),
+    ("Crays Circle GitHub", "https://github.com/crayscircle", "Public Crays Circle GitHub organization for code, implementation references and developer context."),
 ]
 
 RELAY_MARKET_SOURCES = [
@@ -225,8 +287,205 @@ BLOSSOM_SOURCES = [
 ]
 
 
-def section(title: str, paragraphs: list[str], bullets: list[tuple[str, str]] | None = None, cards: list[tuple[str, str]] | None = None):
-    return {"title": title, "paragraphs": paragraphs, "bullets": bullets or [], "cards": cards or []}
+NOSTR_MEDIA_ARTICLE_ARCHIVE = [
+    {
+        "title": "Beyond the Feed: Nostr's Real-World Potential",
+        "source": "CryptoRank",
+        "author": "CryptoRank news desk",
+        "url": "https://cryptorank.io/news/feed/430a2-beyond-the-feed-nostr-real-world",
+        "category": "Real-world adoption",
+        "use": "Use this when you want the non-feed framing: Nostr as identity, payments, publishing and public infrastructure rather than only another social timeline.",
+    },
+    {
+        "title": "The Power of Nostr",
+        "source": "Lyn Alden",
+        "author": "Lyn Alden",
+        "url": "https://www.lynalden.com/the-power-of-nostr/",
+        "category": "Long-form analysis",
+        "use": "A strong macro-level essay for readers who need the internet-history and protocol-sovereignty context before going deeper into keys, relays and clients.",
+    },
+    {
+        "title": "Jack Dorsey gives decentralized social network Nostr 14 BTC in funding",
+        "source": "CoinDesk",
+        "author": "George Kaloudis",
+        "url": "https://www.coindesk.com/tech/2022/12/15/jack-dorsey-gives-decentralized-social-network-nostr-14-btc-in-funding",
+        "category": "Funding and public signal",
+        "use": "Useful for understanding why Dorsey's support became an early mainstream signal without mistaking Nostr for a Dorsey-owned product.",
+    },
+    {
+        "title": "Damus, another decentralized social networking app, arrives to take on Twitter",
+        "source": "TechCrunch",
+        "author": "Sarah Perez",
+        "url": "https://techcrunch.com/2023/02/01/damus-another-decentralized-social-networking-app-arrives-to-take-on-twitter/",
+        "category": "Mainstream app coverage",
+        "use": "Shows how Damus introduced Nostr to a broader app-store and social-media audience.",
+    },
+    {
+        "title": "Jack Dorsey pumps $10M into a nonprofit focused on open-source social media",
+        "source": "TechCrunch",
+        "author": "Sarah Perez",
+        "url": "https://techcrunch.com/2025/07/16/jack-dorsey-pumps-10m-into-a-nonprofit-focused-on-open-source-social-media/",
+        "category": "Open social funding",
+        "use": "Good context for the broader open-social funding arc around Nostr and related tools.",
+    },
+    {
+        "title": "The Nostr Fund",
+        "source": "OpenSats",
+        "author": "OpenSats",
+        "url": "https://opensats.org/funds/nostr",
+        "category": "Public-good funding",
+        "use": "The cleanest funding map for readers who want to see which Nostr builders, clients, relays and libraries receive public-good support.",
+    },
+    {
+        "title": "Nostr protocol repository",
+        "source": "GitHub",
+        "author": "Nostr protocol contributors",
+        "url": "https://github.com/nostr-protocol/nostr",
+        "category": "Primary technical source",
+        "use": "Use this as the root source when an article needs to separate protocol truth from media shorthand.",
+    },
+    {
+        "title": "Nostr Implementation Possibilities",
+        "source": "GitHub",
+        "author": "NIP contributors",
+        "url": "https://github.com/nostr-protocol/nips",
+        "category": "Standards",
+        "use": "The source shelf for NIP pages, event kinds, signer behavior, zaps, relays, encryption and file metadata.",
+    },
+    {
+        "title": "nostr.how",
+        "source": "nostr.how",
+        "author": "nostr.how contributors",
+        "url": "https://nostr.how/",
+        "category": "Learning guide",
+        "use": "A practical onboarding source for users learning keys, clients, relays, NIP-05, zaps and safer habits.",
+    },
+    {
+        "title": "Nostr Apps",
+        "source": "Nostr Apps",
+        "author": "Nostr Apps maintainers",
+        "url": "https://www.nostrapps.com/",
+        "category": "App directory",
+        "use": "A discovery layer for readers who want clients, signers, wallets, relays, Blossom servers, media apps and experiments.",
+    },
+    {
+        "title": "Crays Circle GitHub",
+        "source": "GitHub",
+        "author": "Crays Circle",
+        "url": "https://github.com/crayscircle",
+        "category": "Crays implementation",
+        "use": "The public code and organization door for readers who want to connect the Crays Nostr thesis with implementation work, developer context and future open repositories.",
+    },
+    {
+        "title": "Awesome Nostr",
+        "source": "GitHub",
+        "author": "Awesome Nostr maintainers",
+        "url": "https://github.com/aljazceru/awesome-nostr",
+        "category": "Ecosystem list",
+        "use": "A broad repository-style map for tools, libraries, clients, relays, resources and community links.",
+    },
+    {
+        "title": "Nostr World",
+        "source": "Nostr World",
+        "author": "Nostr World organizers",
+        "url": "https://nostr.world/",
+        "category": "Events and talks",
+        "use": "The public door into Nostrica, Nostrasia, Nostriga and the live event culture around the protocol.",
+    },
+    {
+        "title": "Nostrica",
+        "source": "Nostrica",
+        "author": "Nostrica organizers",
+        "url": "https://nostrica.com/",
+        "category": "Conference archive",
+        "use": "Useful for seeing Nostr as a scene of builders, unconferences and cultural memory, not just code.",
+    },
+    {
+        "title": "Primal launches new social network for digital freedom",
+        "source": "PR Newswire",
+        "author": "Primal",
+        "url": "https://www.prnewswire.com/news-releases/primal-launches-new-social-network-for-digital-freedom-301877265.html",
+        "category": "App launch",
+        "use": "Good for understanding the consumer-app and product-polish side of Nostr through Primal.",
+    },
+    {
+        "title": "Nostr UK learning hub",
+        "source": "Nostr UK",
+        "author": "Nostr UK",
+        "url": "https://nostr.co.uk/",
+        "category": "Learning and directory",
+        "use": "A practical collection for UK-oriented learning, relays, NIPs, events and developer material.",
+    },
+]
+
+
+EXCEL_SOURCE_URL_FIXUPS = [
+    ("Hello Nostr resources", "Exact workbook URL preserved for search and source traceability: https://hellonostr.dev/en/resources/", "https://hellonostr.dev/en/resources/"),
+    ("Nostr Post Checker", "Exact workbook URL preserved for search and source traceability: https://koteitan.github.io/nostr-post-checker/", "https://koteitan.github.io/nostr-post-checker/"),
+    ("nostorg clients", "Exact workbook URL preserved for search and source traceability: https://nostorg.github.io/clients/", "https://nostorg.github.io/clients/"),
+    ("Nostr UK clients", "Exact workbook URL preserved for search and source traceability: https://nostr.co.uk/clients/", "https://nostr.co.uk/clients/"),
+    ("Nostr UK relays", "Exact workbook URL preserved for search and source traceability: https://nostr.co.uk/relays/", "https://nostr.co.uk/relays/"),
+    ("NostrApps direct message category", "Exact workbook URL preserved for search and source traceability: https://nostrapps.com/?category=Direct%20Message", "https://nostrapps.com/?category=Direct%20Message"),
+    ("NostrApps file sharing category", "Exact workbook URL preserved for search and source traceability: https://nostrapps.com/?category=File%20Sharing", "https://nostrapps.com/?category=File%20Sharing"),
+    ("NostrApps group chat category", "Exact workbook URL preserved for search and source traceability: https://nostrapps.com/?category=Group%20Chat", "https://nostrapps.com/?category=Group%20Chat"),
+    ("Nostr Book kinds", "Exact workbook URL preserved for search and source traceability: https://nostrbook.dev/kinds/", "https://nostrbook.dev/kinds/"),
+    ("Nostr developer guide", "Exact workbook URL preserved for search and source traceability: https://nostrcg.github.io/devguide/", "https://nostrcg.github.io/devguide/"),
+    ("Nostr Compass newsletters", "Exact workbook URL preserved for search and source traceability: https://nostrcompass.org/en/newsletters/", "https://nostrcompass.org/en/newsletters/"),
+    ("Nostr Compass projects", "Exact workbook URL preserved for search and source traceability: https://nostrcompass.org/en/projects/", "https://nostrcompass.org/en/projects/"),
+    ("Nostr Design relays", "Exact workbook URL preserved for search and source traceability: https://nostrdesign.org/docs/how-to/relays/", "https://nostrdesign.org/docs/how-to/relays/"),
+    ("nostr-rs-relay sourcehut", "Exact workbook URL preserved for search and source traceability: https://sr.ht/~gheartsfield/nostr-rs-relay/", "https://sr.ht/~gheartsfield/nostr-rs-relay/"),
+    ("Forbes guide to Nostr", "Exact workbook URL preserved for search and source traceability: https://www.forbes.com/sites/digital-assets/2024/07/17/your-guide-to-nostr-the-decentralized-network-for-everything/", "https://www.forbes.com/sites/digital-assets/2024/07/17/your-guide-to-nostr-the-decentralized-network-for-everything/"),
+    ("No Bullshit Bitcoin Primal v2.0", "Exact workbook URL preserved for search and source traceability: https://www.nobsbitcoin.com/primal-v2-0/", "https://www.nobsbitcoin.com/primal-v2-0/"),
+    ("Reddit r/nostr", "Exact workbook URL preserved for search and source traceability: https://www.reddit.com/r/nostr/", "https://www.reddit.com/r/nostr/"),
+]
+
+
+NOSTR_VIDEO_ARCHIVE = [
+    {"id": "5W-jtbbh3eA", "title": "What is Nostr?", "channel": "lnbits", "category": "Start", "use": "Two-minute first-contact explainer for readers who need the simplest mental model before reading."},
+    {"id": "0YDj1QdL2Zs", "title": "Jack Dorsey explains how Nostr works in 2 minutes", "channel": "Primal", "category": "Start", "use": "Fast mainstream signal: useful for readers who know Dorsey but do not yet understand relays and clients."},
+    {"id": "yIccRIEr2gQ", "title": "Nostr Explained Visually for Beginners", "channel": "Rhett Reisman - Level Up Your Brain", "category": "Start", "use": "Visual overview for people who learn better from diagrams and analogies before opening a long article."},
+    {"id": "NVm_jGdwTjQ", "title": "Nostr for Beginners w/ Derek Ross", "channel": "NOSTR WORLD", "category": "Start", "use": "Longer beginner walkthrough with community context and practical vocabulary."},
+    {"id": "Czkv54pQfTI", "title": "How To Get Started With Nostr", "channel": "Castig", "category": "Start", "use": "Setup-oriented video for readers ready to create an account and test a client."},
+    {"id": "kifwECtwjJQ", "title": "Create Your NOSTR Account - Beginner Tutorial", "channel": "Max DeMarco", "category": "Start", "use": "Useful when the reader has understood the idea and now needs the first account flow."},
+    {"id": "zteh-aHb4cM", "title": "WATCH This Before Starting Nostr (Safety and Privacy Tips!!)", "channel": "CoinGecko", "category": "Privacy", "use": "Good safety checkpoint before a new user pastes secrets into random clients."},
+    {"id": "K5oXaW1EqbE", "title": "How Nostr is pro-censorship", "channel": "fiatjaf", "category": "Governance", "use": "Useful for correcting the lazy myth that open protocols mean no moderation or no policy choices."},
+    {"id": "T5ETKXjJdZA", "title": "Do nostr relays store your data?", "channel": "David King", "category": "Relays", "use": "Short relay-focused answer for readers confused about what relays actually remember."},
+    {"id": "uzdHdkKwPYE", "title": "{Nostr} NIP-05 Verification on a Custom Domain", "channel": "theBTCcourse", "category": "Privacy", "use": "Hands-on identity verification tutorial for domain-backed NIP-05 names."},
+    {"id": "53huU8mg2eo", "title": "What Is Nostr Wallet Connect and Why Does It Matter?", "channel": "Kevin Rooke", "category": "Wallets", "use": "Short bridge into NIP-47 and why wallet permissions should be modular."},
+    {"id": "S6y2Vy2N9oY", "title": "NOSTR TOOLKIT: Linking To Your Own Lightning Node With Voltage", "channel": "BTC Sessions", "category": "Wallets", "use": "Deep practical route for advanced users connecting Lightning infrastructure to Nostr."},
+    {"id": "Kuqs4bYGEEk", "title": "Nostr Start Guide for Beginners | Account setup & wallet connect for Zaps", "channel": "ForrestHODL", "category": "Wallets", "use": "Bridges onboarding with wallet connect and zaps in one beginner-friendly flow."},
+    {"id": "o-KIsRYbAAY", "title": "What is a Zap on Nostr?", "channel": "THE Bitcoin Podcast with Walker", "category": "Wallets", "use": "Very short zap definition for readers who only need the concept before moving on."},
+    {"id": "FYbQLja9Oe8", "title": "What are zaps in Nostr/Damus?", "channel": "David King", "category": "Wallets", "use": "Practical zap explanation close to the Damus user experience."},
+    {"id": "4qOVxq9lUbs", "title": "Build your First Nostr App by Super Testnet", "channel": "High Level Bitcoin", "category": "Apps", "use": "Developer entry point for readers who want to turn protocol ideas into a working app."},
+    {"id": "Tbt3jL1Ms0w", "title": "Nostr - Wouter Constant - FOSDEM 2025", "channel": "fiatjaf", "category": "NIPs", "use": "Conference-level technical context for readers who want the broader protocol and implementation discussion."},
+    {"id": "eQjzxIKBsTY", "title": "The NOSTR Protocol", "channel": "Bitcoin Magazine", "category": "NIPs", "use": "Protocol conversation that works well after the reader knows keys, relays and clients."},
+    {"id": "NqPIyD5yWEA", "title": "BR048 - Nostr: Coracle, Damus, NDK, Snort, Primal, DVMs + MORE", "channel": "Bitcoin Review Podcast with NVK & Guests", "category": "Apps", "use": "Product-builder roundtable for comparing clients, tooling and DVM experiments."},
+    {"id": "xv3JSZo-y0c", "title": "BR044 - Nostr: Primal, Highlighter, Damus, Zapstream, Mutiny, NIP90/52 + MORE", "channel": "Bitcoin Review Podcast with NVK & Guests", "category": "Apps", "use": "Useful for readers mapping app categories and experiments beyond a simple feed."},
+    {"id": "Ua64ymE6KQ0", "title": "Bitcoin and Nostr w/ Jack Mallers and Miljan", "channel": "NOSTR WORLD", "category": "Commerce", "use": "Good bridge between Bitcoin payment culture, Primal and Nostr's user-facing value flow."},
+    {"id": "SSFVR5ZXOuA", "title": "Nostr: All Your Silos Are Broken", "channel": "BTCPrague", "category": "People", "use": "Panel view into the builder scene: Martti Malmi, Aleksandar Svetski, PabloF7z, Miljan and Derek Ross."},
+    {"id": "WOYum10HaxY", "title": "Nostr World: Nostrica Q&A", "channel": "Derek Ross", "category": "People", "use": "Good event-history material for readers who want to understand the early public scene."},
+    {"id": "u_U2obseVwY", "title": "How to Start with Nostr Today | Presentation", "channel": "Oslo Freedom Forum", "category": "People", "use": "Short talk-style onboarding with human-rights and freedom-tech framing."},
+    {"id": "1y7zi3t1aNM", "title": "Saving Private Nostr", "channel": "NOSTR WORLD", "category": "Privacy", "use": "Useful privacy follow-up after the reader has understood public-key identity."},
+    {"id": "VrHoprrAops", "title": "How to Earn Bitcoin on Nostr with Primal", "channel": "Pioneers of Bitcoin", "category": "Commerce", "use": "Creator-commerce entry for readers asking how Nostr can produce money flow, not only posts."},
+    {"id": "Tw2-H_Ie8tE", "title": "Replay #9 - Nostr & Fountain: decentralized music streaming", "channel": "Patrice Lazareff", "category": "Media", "use": "Useful for readers mapping Nostr, music, podcasts and streaming use cases."},
+    {"id": "634DvERKauA", "title": "How Nostr Works And The Mind-Blowing Implications For Freedom & Prosperity", "channel": "John Vallis - Bitcoin Rapid-Fire", "category": "Governance", "use": "Long-form conversation for readers who want the political-economy layer around open social protocols."},
+]
+
+
+def section(
+    title: str,
+    paragraphs: list[str],
+    bullets: list[tuple[str, str]] | None = None,
+    cards: list[tuple[str, str]] | None = None,
+    videos: list[dict] | None = None,
+):
+    return {
+        "title": title,
+        "paragraphs": paragraphs,
+        "bullets": bullets or [],
+        "cards": cards or [],
+        "videos": videos or [],
+    }
 
 
 def page(slug: str, title: str, deck: str, intro: str, sections: list[dict], *, tag: str = "Nostr archive", sources=None, related=None, keywords=None, read="12 min read"):
@@ -244,6 +503,135 @@ def page(slug: str, title: str, deck: str, intro: str, sections: list[dict], *, 
     }
 
 
+def load_deep_research_inventory() -> dict:
+    if not DEEP_RESEARCH_INVENTORY.exists():
+        return {"sources": [], "summary": {}, "unique_urls": 0, "url_cells": 0}
+    return json.loads(DEEP_RESEARCH_INVENTORY.read_text(encoding="utf-8"))
+
+
+DEEP_RESEARCH = load_deep_research_inventory()
+
+
+def source_display_title(item: dict) -> str:
+    names = [str(name).strip() for name in item.get("primary_names", []) if str(name).strip()]
+    if names:
+        return names[0]
+    fetch_title = item.get("fetch", {}).get("title", "")
+    if fetch_title:
+        return str(fetch_title)
+    return urlparse(item.get("url", "")).netloc.replace("www.", "") or item.get("url", "Nostr source")
+
+
+def source_category_label(item: dict) -> str:
+    values = [str(value).strip() for value in item.get("categories", []) + item.get("subcategories", []) if str(value).strip()]
+    return " / ".join(values[:2]) if values else "Nostr source"
+
+
+def deep_research_source_cards() -> list[tuple[str, str, str]]:
+    cards: list[tuple[str, str, str]] = []
+    for item in DEEP_RESEARCH.get("sources", []):
+        row_refs = item.get("row_refs", [])
+        row_note = f"{len(row_refs)} workbook signal" + ("" if len(row_refs) == 1 else "s")
+        status = item.get("fetch", {}).get("status", "not checked")
+        url = item.get("url", "")
+        cards.append((
+            source_display_title(item),
+            f"{source_category_label(item)}. {row_note}. URL: {url}. Audit status: {status}.",
+            url,
+        ))
+    return cards
+
+
+def grouped_deep_research_source_cards() -> dict[str, list[tuple[str, str, str]]]:
+    groups: dict[str, list[tuple[str, str, str]]] = defaultdict(list)
+    for card, item in zip(deep_research_source_cards(), DEEP_RESEARCH.get("sources", [])):
+        category = source_category_label(item).split(" / ")[0]
+        groups[category or "Nostr source"].append(card)
+    return dict(sorted(groups.items(), key=lambda pair: pair[0].lower()))
+
+
+READING_WORD_RE = re.compile(r"[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)?")
+
+
+def replace_crays_net_display(value: object) -> str:
+    return re.sub(r"\bCrays\.net\b", "Crays", str(value), flags=re.IGNORECASE)
+
+
+def reading_words(value: object) -> int:
+    text = html.unescape(replace_crays_net_display(value))
+    text = re.sub(r"<[^>]+>", " ", text)
+    return len(READING_WORD_RE.findall(text))
+
+
+def estimate_reading_label(item: dict) -> str:
+    words = (
+        reading_words(item.get("title", ""))
+        + reading_words(item.get("deck", ""))
+        + reading_words(item.get("intro", ""))
+    )
+    for sec in item.get("sections", []):
+        words += reading_words(sec.get("title", ""))
+        for paragraph in sec.get("paragraphs", []):
+            words += reading_words(paragraph)
+        for bullet in sec.get("bullets", []):
+            words += sum(reading_words(part) for part in bullet[:2])
+        for card in sec.get("cards", []):
+            words += sum(reading_words(part) for part in card[:2])
+        for video in sec.get("videos", []):
+            words += reading_words(video.get("title", ""))
+            words += reading_words(video.get("channel", ""))
+            words += reading_words(video.get("note", ""))
+            words += reading_words(video.get("use", ""))
+    minutes = max(2, (words + 219) // 220)
+    return f"{minutes} min read"
+
+
+def normalize_page_display_copy(item: dict) -> None:
+    for field in ("title", "deck", "intro", "tag", "quick_label", "related_label"):
+        if item.get(field):
+            item[field] = replace_crays_net_display(item[field])
+    item["keywords"] = [replace_crays_net_display(keyword) for keyword in item.get("keywords", [])]
+    normalized_sections = []
+    for sec in item.get("sections", []):
+        normalized = dict(sec)
+        normalized["title"] = replace_crays_net_display(normalized.get("title", ""))
+        normalized["paragraphs"] = [replace_crays_net_display(paragraph) for paragraph in normalized.get("paragraphs", [])]
+        normalized["bullets"] = [
+            tuple(replace_crays_net_display(part) for part in bullet)
+            for bullet in normalized.get("bullets", [])
+        ]
+        normalized_cards = []
+        for card in normalized.get("cards", []):
+            if len(card) >= 3:
+                normalized_cards.append((replace_crays_net_display(card[0]), replace_crays_net_display(card[1]), card[2]))
+            elif len(card) == 2:
+                normalized_cards.append((replace_crays_net_display(card[0]), replace_crays_net_display(card[1])))
+            else:
+                normalized_cards.append(tuple(replace_crays_net_display(part) for part in card))
+        normalized["cards"] = normalized_cards
+        normalized["videos"] = [
+            {
+                **video,
+                "title": replace_crays_net_display(video.get("title", "")),
+                "channel": replace_crays_net_display(video.get("channel", "")),
+                "note": replace_crays_net_display(video.get("note", "")),
+                "use": replace_crays_net_display(video.get("use", "")),
+                "category": replace_crays_net_display(video.get("category", "")),
+            }
+            for video in normalized.get("videos", [])
+        ]
+        normalized_sections.append(normalized)
+    item["sections"] = normalized_sections
+    normalized_sources = []
+    for source in item.get("sources", []):
+        if len(source) >= 3:
+            normalized_sources.append((replace_crays_net_display(source[0]), source[1], replace_crays_net_display(source[2])))
+        else:
+            normalized_sources.append(tuple(source))
+    item["sources"] = normalized_sources
+    item["read"] = estimate_reading_label(item)
+
+
 def nip_page(slug: str, nip: str, name: str, what: str, solves: str, implementation: str, crays: str, risks: str, related=None):
     source = [src for src in NIP_SOURCES if src[0] == nip] + [NIP_SOURCES[0], GLOBAL_SOURCES[1]]
     return page(
@@ -252,24 +640,42 @@ def nip_page(slug: str, nip: str, name: str, what: str, solves: str, implementat
         f"A Crays archive page for {nip}, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.",
         what,
         [
-            section("What it standardizes", [solves], [
-                ("Protocol layer", f"{nip} is not a consumer product. It is a convention that clients, relays or adjacent services may choose to support."),
-                ("Interoperability", "The value is not that every app looks the same. The value is that different apps can understand the same signed data."),
-                ("Optionality", "NIPs are implementation possibilities. Builders should implement the pieces that serve their product, security model and user journey."),
+            section("What it standardizes", [
+                solves,
+                f"The important thing to understand is that {nip} is not an app feature by itself. It is a shared convention. A client, relay, wallet, signer or adjacent service can implement the convention, ignore it, implement only part of it, or hide it behind a simpler user experience.",
+                "That is why a NIP page needs two layers: the technical shape builders must respect, and the product consequence a normal reader can feel."
+            ], [
+                ("Protocol layer", f"{nip} defines a pattern for interoperable behavior, not a closed product."),
+                ("Interoperability", "The value is that different apps can understand the same signed data or request shape."),
+                ("Optionality", "Support can vary by client, relay and service, so products need fallbacks and clear messaging."),
             ]),
-            section("Implementation notes", [implementation], [
-                ("Client responsibility", "Clients need to explain the feature clearly because the user sees an experience, not a spec."),
-                ("Relay responsibility", "Relays may support only the parts that fit their storage, moderation, authentication and business model."),
-                ("Indexing responsibility", "Search, discovery and context often require extra indexers or opinionated clients on top of the raw protocol."),
+            section("Data shape and moving parts", [
+                implementation,
+                "Read the moving parts in this order: who signs, what object is created, which fields or tags carry meaning, where the object is published, what relays or services have to support it, and how a second client can verify or interpret the result later.",
+                "This sequence matters because Nostr problems often look like UX problems at the surface while the real failure is lower down: a missing tag, a relay policy mismatch, a signer permission, a stale relay list, a wallet limit, an unsupported event kind or an indexer that never saw the event."
+            ], [
+                ("Signer boundary", "Which key signs the event or request, and should a dedicated signer handle it?"),
+                ("Relay boundary", "Does the relay merely store/forward, or must it enforce authentication, search, policy or retention?"),
+                ("Client boundary", "What must the user see so the feature feels understandable instead of protocol-shaped?"),
+                ("Fallback boundary", "What happens when another app, relay or wallet does not support this convention yet?"),
             ]),
-            section("Crays relevance", [crays], [
-                ("Crays.net", "Profiles, creator pages and social proof need portable identity rather than a closed account table."),
+            section("Product consequence for us", [
+                crays,
+                f"For us, {nip} matters only when it improves a real flow: identity, publishing, access, value transfer, media, venue context, reputation, moderation, governance or developer operations. If it does not help one of those flows, it can stay in the archive until the product need is real.",
+                "The user should not have to memorize the NIP number. The product should translate the convention into plain actions: verify a profile, sign safely, publish content, receive a zap, connect a wallet, prove status, enter a space, vote, or recover context across apps."
+            ], [
+                ("Crays", "Profiles, creator pages and social proof need portable identity rather than a closed account table."),
                 ("Crays World", "Real venues need local context, member state, reputation and payments that can survive app changes."),
-                ("DAO path", "Future governance needs signed identity, membership context and auditable participation signals."),
+                ("Governance path", "Future governance needs signed identity, membership context and auditable participation signals."),
             ]),
-            section("Risks and design discipline", [risks], [
+            section("Risks, edge cases and implementation discipline", [
+                risks,
+                "The edge cases are where a standard becomes a product decision. A feature can be technically valid and still confuse users, leak metadata, create moderation problems, increase key exposure, break search, overload relays or make payments feel unreliable.",
+                f"Before shipping anything based on {nip}, test current client support, relay behavior, signer permissions, failure states, abuse cases and the exact words shown to a non-technical user. If the wording cannot be made simple, the implementation is probably not ready for a mainstream Crays surface."
+            ], [
                 ("Do not overpromise", "A NIP gives a shared format. It does not magically solve onboarding, moderation, UX or custody."),
-                ("Keep the private key away", "Any feature that increases private-key exposure increases the attack surface."),
+                ("Keep private keys away", "Any feature that increases private-key exposure increases the attack surface."),
+                ("Make support visible", "A reader should know whether the feature works everywhere, only in some clients, or only with specific relays/services."),
                 ("Use plain language", "Most users need outcomes: login, pay, publish, vote, prove status, access a venue."),
             ]),
         ],
@@ -646,9 +1052,11 @@ PAGES = [
             ]),
             section("Crays developer priorities", [
                 "For Crays, the first developer priorities are safe identity, signer UX, Crays.net profile events, content access, zaps or Lightning payment hooks, badge/status representation, award voting, venue relay topology and API authentication."
+            ], cards=[
+                ("Crays Circle GitHub", "Use the public Crays Circle GitHub organization as the code and implementation door when readers need developer context beyond the written archive.", "https://github.com/crayscircle"),
             ]),
         ],
-        sources=[GLOBAL_SOURCES[0], GLOBAL_SOURCES[1], NIP_SOURCES[0], NIP_SOURCES[2], NIP_SOURCES[7], NIP_SOURCES[11], NIP_SOURCES[16]],
+        sources=[GLOBAL_SOURCES[0], GLOBAL_SOURCES[1], NIP_SOURCES[0], NIP_SOURCES[2], NIP_SOURCES[7], NIP_SOURCES[11], NIP_SOURCES[16], ("Crays Circle GitHub", "https://github.com/crayscircle", "Public Crays Circle GitHub organization for implementation and developer context.")],
         related=["nips", "events-and-kinds", "relays", "nostr-login", "crays-super-node"],
         keywords=["Nostr developer tools", "Nostr libraries", "Nostr NIPs", "nak Nostr"],
     ),
@@ -1002,6 +1410,127 @@ PAGES = [
         keywords=["Nostr videos", "Nostr talks", "Nostr conference", "Nostr music"],
     ),
     page(
+        "nostr-media-article-video-archive",
+        "Nostr Media, Articles and Video Archive",
+        "A Start-route research shelf for Nostr articles, blog posts, public explainers, event material and YouTube videos, sorted by reader use.",
+        "This is the media door into the Nostr atlas. Use it when you want outside reporting, independent essays, event recordings, tutorials and video explainers before choosing the next written chapter. The goal is not to replace the Start guide. It adds source memory and watchable context around it.",
+        [
+            section(
+                "How this archive is organized",
+                [
+                    "A useful Nostr media archive should not be a random pile of links. Each source below is sorted by reader job: first-contact orientation, technical truth, funding context, real-world adoption, app discovery, events, creator media or product implementation.",
+                    "When an author or host is known and relevant, the person also belongs in the People route as a media voice. That keeps the archive human: articles and videos are not abstract SEO objects; they are produced by people who shape how newcomers understand the protocol."
+                ],
+                [
+                    ("Start value", "Begin with short explainers and plain-language essays when the reader still needs the mental model."),
+                    ("Depth value", "Use NIPs, repositories and funding pages when an article needs to verify a technical or ecosystem claim."),
+                    ("Scene value", "Use event archives and YouTube talks to understand the human network behind the protocol."),
+                    ("Crays value", "Use the archive to connect Nostr media with our own pages about identity, relays, wallets, media, commerce and governance."),
+                ],
+            ),
+            section(
+                "Articles, essays and source pages",
+                [
+                    "These are the first source shelves we can safely expose inside Start. They include mainstream reporting, long-form analysis, funding records, primary technical material and event archives. This list should keep growing, but it already gives a reader the important outside doors without leaving them alone in search results."
+                ],
+                cards=[
+                    (
+                        entry["title"],
+                        f'{entry["source"]} · {entry["author"]}. {entry["use"]}',
+                        entry["url"],
+                    )
+                    for entry in NOSTR_MEDIA_ARTICLE_ARCHIVE
+                ],
+            ),
+            section(
+                "Complete Excel source inventory",
+                [
+                    f"This shelf exposes every normalized URL from the Nostr deep-research Excel inside the Media archive. The workbook currently gives us {DEEP_RESEARCH.get('url_cells', 0)} URL cell(s), deduplicated into {DEEP_RESEARCH.get('unique_urls', 0)} unique source URL(s).",
+                    "Every card keeps the original URL visible in the description so the Atlas search can find it by domain, title, slug, path fragment or full URL. Duplicates stay recorded through workbook signals on the matching source page; this archive shows the unique URL once so the reader does not drown in repeated rows.",
+                    "Use this shelf as the public memory layer: articles, apps, NIPs, repositories, relay directories, long-form reads, media tools and primary sources all become searchable from one Start-route door."
+                ],
+                [
+                    ("URL cells in Excel", str(DEEP_RESEARCH.get("url_cells", 0))),
+                    ("Unique URLs exposed", str(DEEP_RESEARCH.get("unique_urls", 0))),
+                    ("Source pages generated", str(len(DEEP_RESEARCH.get("sources", [])))),
+                    ("Search rule", "A full URL, source name, domain, NIP number or project name should resolve through the Atlas search."),
+                ],
+                cards=deep_research_source_cards(),
+            ),
+            section(
+                "Exact workbook URL variants",
+                [
+                    "Some workbook links differ from the normalized source inventory only by a trailing slash or URL-encoded category text. We keep those exact variants here so a copied Excel URL can still be found through the Atlas search and opened from the Media archive.",
+                    "This is a source-integrity shelf, not a separate editorial category: the normalized source page remains the main explanation, and the exact workbook URL remains searchable for audit traceability."
+                ],
+                cards=EXCEL_SOURCE_URL_FIXUPS,
+            ),
+            section(
+                "Watch first: the fastest mental model",
+                [
+                    "These videos are for readers who want the shape of Nostr before reading deeply. They work best beside What is Nostr, Getting Started and the Glossary."
+                ],
+                videos=[video for video in NOSTR_VIDEO_ARCHIVE if video["category"] == "Start"],
+            ),
+            section(
+                "Safety, privacy, keys and moderation",
+                [
+                    "This shelf is for the moment after a reader understands the idea and needs to avoid the bad habits: unsafe key handling, vague censorship myths, weak relay assumptions and careless identity verification."
+                ],
+                videos=[video for video in NOSTR_VIDEO_ARCHIVE if video["category"] in {"Privacy", "Governance"}],
+            ),
+            section(
+                "Wallets, zaps and Bitcoin value flow",
+                [
+                    "Nostr becomes easier to care about once readers see value moving with social context. These videos connect zaps, Nostr Wallet Connect, Lightning nodes, Primal and Bitcoin-native payments."
+                ],
+                videos=[video for video in NOSTR_VIDEO_ARCHIVE if video["category"] in {"Wallets", "Commerce"}],
+            ),
+            section(
+                "Apps, protocol work and developer material",
+                [
+                    "This is where curious builders move next: first app demos, product roundtables, NIPs, relays, DVMs, clients and the technical conversations that explain why one protocol can produce many interfaces."
+                ],
+                videos=[video for video in NOSTR_VIDEO_ARCHIVE if video["category"] in {"Apps", "NIPs", "Relays"}],
+            ),
+            section(
+                "People, events, media and culture",
+                [
+                    "The Nostr archive should make the scene visible. Panels, event Q&A, music discussions and conference videos help readers understand that Nostr is not only a spec; it is a living network of builders, educators, media people, creators and event organizers."
+                ],
+                videos=[video for video in NOSTR_VIDEO_ARCHIVE if video["category"] in {"People", "Media"}],
+            ),
+            section(
+                "Where these sources connect inside Crays",
+                [
+                    "A source archive is only useful when it points back into the knowledge system. First-contact videos belong near What is Nostr and Getting Started. Key-safety videos belong near Privacy and Signers. Zap videos belong near NIP-57 and Nostr Wallet Connect. Event and panel videos belong near People, Events and Media.",
+                    "This page will keep expanding as more Nostr media appears. The rule is simple: every outside source needs a reason to exist here, a category, a user benefit and at least one internal path that helps the reader continue."
+                ],
+                cards=[
+                    ("What is Nostr?", "Start with the clean mental model before opening long-form articles.", "/nostr/what-is-nostr/"),
+                    ("Getting Started", "Use setup and safety videos when the reader is ready to create an identity.", "/nostr/getting-started/"),
+                    ("People", "Known authors, hosts and educators live in the People archive as media voices.", "/nostr/people/"),
+                    ("Media", "Creator publishing, music, long-form writing and videos belong to the Media route.", "/nostr/music-video-media/"),
+                    ("Wallets", "Zap and wallet videos connect to NIP-57, NIP-47, Alby and Safebox.", "/nostr/nip-47-wallet-connect/"),
+                    ("Library", "Primary technical and source pages remain available through the Library route.", "/nostr/archive-library/"),
+                ],
+            ),
+        ],
+        sources=[
+            (entry["title"], entry["url"], f'{entry["source"]}: {entry["category"]}.')
+            for entry in NOSTR_MEDIA_ARTICLE_ARCHIVE
+        ],
+        related=["what-is-nostr", "getting-started", "videos", "music-video-media", "people", "resources", "archive-library"],
+        keywords=[
+            "Nostr media archive",
+            "Nostr articles",
+            "Nostr YouTube videos",
+            "Nostr tutorials",
+            "Nostr events",
+            "Nostr media people",
+        ],
+    ),
+    page(
         "nostr-and-crays",
         "Nostr and Crays",
         "How Nostr becomes the base layer for Crays.net, Content Sale, Status Badges, Crays Award, Crays World, Super Nodes, Lightning and future DAO governance.",
@@ -1027,7 +1556,7 @@ PAGES = [
                 "Future governance needs identity, reputation, membership context, signed votes, participation history and economic signal. Nostr gives the signed social substrate. Crays can add rules, legal structure and product UX."
             ]),
         ],
-        sources=GLOBAL_SOURCES + [NIP_SOURCES[11], NIP_SOURCES[12], NIP_SOURCES[13], NIP_SOURCES[16]],
+        sources=GLOBAL_SOURCES + [NIP_SOURCES[11], NIP_SOURCES[12], NIP_SOURCES[13], NIP_SOURCES[16], ("Crays Circle GitHub", "https://github.com/crayscircle", "Public Crays Circle GitHub organization for implementation and developer context.")],
         related=["content-sale", "awards", "crays-super-node", "operators-venues", "dao-governance"],
         keywords=["Crays Nostr", "Crays.net", "Crays Super Node", "Crays Award", "Crays DAO"],
     ),
@@ -1154,16 +1683,40 @@ PAGES = [
 ]
 
 
+for item in PAGES:
+    if item["slug"] == "videos":
+        item["sections"].extend([
+            section(
+                "Watchable video shelves",
+                [
+                    "The larger media archive now carries embedded Nostr videos by category. This page stays as the Media-route doorway, while the Start archive gives the full watchable map."
+                ],
+                cards=[
+                    ("Full media and video archive", "Open the complete watchable archive with articles, events, tutorials and video categories.", "/nostr/nostr-media-article-video-archive/"),
+                    ("Nostr World", "Event videos, talks and public scene material.", "https://nostr.world/"),
+                    ("Nostrica", "Conference and unconference archive material.", "https://nostrica.com/"),
+                ],
+            ),
+            section(
+                "Recommended videos by user need",
+                [
+                    "Use the labels on each video as a shortcut. Start videos explain the mental model. Privacy videos protect the reader from bad key habits. Wallet videos explain zaps and Nostr Wallet Connect. App and NIP videos help builders understand the protocol surface."
+                ],
+                videos=NOSTR_VIDEO_ARCHIVE[:12],
+            ),
+        ])
+
+
 PEOPLE = [
     {
         "slug": "people/enoch-root",
         "name": "Enoch Root",
-        "title": "Enoch Root / Thorben Biesenbach",
-        "aliases": ["Thorben Biesenbach"],
-        "role": "Crays founder, founder prologue author and Bitcoin-Nostr mission voice",
-        "summary": "Enoch Root, the public founder identity of Thorben Biesenbach, gives the Crays Nostr archive its lived reason: global travel, Bitcoin, privacy, hospitality and a values-based community that can work, live and play together.",
+        "title": "Enoch Root",
+        "aliases": [],
+        "role": "Crays founder, Bitcoin believer and mission voice",
+        "summary": "Enoch Root in the Nostr ecosystem: Crays founder, Bitcoin believer, and the voice behind the mission. German-born, 20+ years in Spain, living between Dubai, Palma, Medellin and LA, 15 years deep in crypto, now building the world's first Bitcoin-Nostr powered community and hospitality ecosystem.",
         "known_for": [
-            ("Founder prologue", "Thorben Biesenbach's mission statement explains why Crays exists: loneliness in global travel, the search for real connection and the need for hospitality spaces that bring the right people together."),
+            ("Founder prologue", "Enoch Root's mission statement explains why Crays exists: loneliness in global travel, the search for real connection and the need for hospitality spaces that bring the right people together."),
             ("Brand and crypto path", "His background connects lifestyle brands such as Ed Hardy, tech plays such as brands4friends and roughly 15 years deep in crypto and Bitcoin thinking."),
             ("Global citizen frame", "German by origin, long based in Spain and living between Dubai, Palma, Medellin and LA, he frames Crays around values as the passport for a global community."),
             ("Privacy and autonomy", "Privacy, freedom of expression and personal autonomy are non-negotiable in the Crays thesis, which is why Nostr and Bitcoin belong close to the foundation."),
@@ -1173,7 +1726,7 @@ PEOPLE = [
             ("Crays founder prologue", "https://www.crays.org/nostr/people/enoch-root/", "Founder prologue and mission statement for Crays."),
             ("Crays Nostr base layer", "https://www.crays.org/nostr/", "How we connect Nostr, Bitcoin, venues, creators, profiles and governance."),
             ("Crays Association", "https://www.crays.org/en/association/", "Swiss association frame for the Crays ecosystem."),
-            ("Crays.net", "https://www.crays.net/", "Crays-facing profile and community surface."),
+            ("Crays", "https://www.crays.net/", "Crays-facing profile and community surface."),
         ],
     },
     {
@@ -1440,19 +1993,185 @@ PEOPLE = [
             ("Power of Lightning Summit", "https://pretalx.com/power-of-lightning-summit-2023/talk/F7HTZC/", "Miljan listed as CEO of Primal in a Lightning and Nostr session."),
         ],
     },
+    {
+        "slug": "people/lyn-alden",
+        "name": "Lyn Alden",
+        "role": "Long-form analyst and Nostr media voice",
+        "summary": "Lyn Alden gives Nostr a rare kind of outside explanation: protocol thinking, internet history, money, identity and platform power in one readable long-form frame.",
+        "known_for": [
+            ("The Power of Nostr", "A widely shared essay that explains Nostr as more than another social app: a protocol pattern for identity and communication."),
+            ("Macro and Bitcoin analysis", "Her broader work connects monetary systems, open networks and long-term technology adoption."),
+            ("Reader bridge", "She helps financially literate and technically curious readers understand why open social protocols matter."),
+        ],
+        "crays": "For us, Lyn Alden matters because her writing helps serious readers see why Nostr belongs next to Bitcoin, identity, payments and long-lived public infrastructure instead of being dismissed as a niche feed.",
+        "sources": [
+            ("The Power of Nostr", "https://www.lynalden.com/the-power-of-nostr/", "Long-form Nostr essay by Lyn Alden."),
+            ("Lyn Alden website", "https://www.lynalden.com/", "Author website and long-form research archive."),
+            ("Nostr media archive", "https://www.crays.org/nostr/nostr-media-article-video-archive/", "Crays media and video archive context."),
+        ],
+    },
+    {
+        "slug": "people/sarah-perez",
+        "name": "Sarah Perez",
+        "role": "TechCrunch reporter covering consumer social apps and open social funding",
+        "summary": "Sarah Perez belongs in the Nostr people archive as a media voice because her TechCrunch reporting brought Damus, Nostr-adjacent social apps and open-social funding into mainstream technology coverage.",
+        "known_for": [
+            ("Damus coverage", "TechCrunch coverage helped explain Damus and Nostr to a mainstream consumer-app audience."),
+            ("Open social funding", "Reporting on Jack Dorsey and open-source social media funding gives readers context beyond one protocol page."),
+            ("Consumer app lens", "Her work frames Nostr in the world of app stores, social products, moderation and mainstream adoption."),
+        ],
+        "crays": "For us, Perez is useful because she represents the mainstream media layer. If Nostr is going to reach normal users, the story has to survive outside developer circles.",
+        "sources": [
+            ("TechCrunch Damus report", "https://techcrunch.com/2023/02/01/damus-another-decentralized-social-networking-app-arrives-to-take-on-twitter/", "Sarah Perez on Damus and Nostr."),
+            ("TechCrunch open social funding report", "https://techcrunch.com/2025/07/16/jack-dorsey-pumps-10m-into-a-nonprofit-focused-on-open-source-social-media/", "Sarah Perez on Dorsey, open-source social media and funding."),
+            ("Sarah Perez author page", "https://techcrunch.com/author/sarah-perez/", "TechCrunch author archive."),
+        ],
+    },
+    {
+        "slug": "people/george-kaloudis",
+        "name": "George Kaloudis",
+        "role": "CoinDesk writer and Bitcoin-Nostr funding chronicler",
+        "summary": "George Kaloudis is included as a media representative because his CoinDesk reporting helped document the 14 BTC Nostr funding story that pulled mainstream attention toward the protocol.",
+        "known_for": [
+            ("14 BTC Nostr funding report", "CoinDesk coverage of Jack Dorsey's Nostr funding became part of the public origin-story layer around Nostr."),
+            ("Bitcoin market context", "His work sits at the intersection of Bitcoin reporting, open protocols and market attention."),
+            ("Funding signal", "The article is useful because it explains why the ecosystem suddenly became visible beyond early builders."),
+        ],
+        "crays": "For us, Kaloudis matters because funding stories shape public trust. The article helps readers understand why Nostr's open-social thesis became economically credible to more people.",
+        "sources": [
+            ("CoinDesk 14 BTC report", "https://www.coindesk.com/tech/2022/12/15/jack-dorsey-gives-decentralized-social-network-nostr-14-btc-in-funding", "George Kaloudis report on Nostr funding."),
+            ("CoinDesk author page", "https://www.coindesk.com/author/george-kaloudis", "CoinDesk author archive."),
+        ],
+    },
+    {
+        "slug": "people/ben-perrin-btc-sessions",
+        "name": "Ben Perrin (BTC Sessions)",
+        "role": "Bitcoin educator and Nostr video tutor",
+        "summary": "Ben Perrin, known through BTC Sessions, is a useful Nostr media voice because his tutorial format turns Lightning, wallet and infrastructure workflows into steps normal builders can follow.",
+        "known_for": [
+            ("BTC Sessions tutorials", "Long-form Bitcoin education with practical screen-by-screen workflows."),
+            ("Nostr Toolkit with Voltage", "A detailed route for connecting Nostr, Lightning nodes and wallet infrastructure."),
+            ("Operational education", "His videos are strongest when a reader needs to move from concept to setup."),
+        ],
+        "crays": "For us, BTC Sessions is relevant because Nostr education cannot stop at theory. Wallets, nodes, zaps and infrastructure need practical guides if the system should feel usable.",
+        "sources": [
+            ("BTC Sessions YouTube", "https://www.youtube.com/@BTCSessions", "BTC Sessions YouTube channel."),
+            ("Nostr Toolkit with Voltage", "https://www.youtube.com/watch?v=S6y2Vy2N9oY", "Nostr and Lightning node tutorial."),
+            ("BTC Sessions website", "https://www.btcsessions.ca/", "BTC Sessions education site."),
+        ],
+    },
+    {
+        "slug": "people/derek-ross",
+        "name": "Derek Ross",
+        "role": "Nostr educator, Nostr World host and event media voice",
+        "summary": "Derek Ross is part of the Nostr media layer because he appears across beginner videos, Nostr World event material and public community education.",
+        "known_for": [
+            ("Nostr for Beginners", "A Nostr World beginner session that helps new readers connect vocabulary, culture and setup."),
+            ("Nostr World and Nostrica material", "Event videos and Q&A sessions that preserve the human scene around the protocol."),
+            ("Public education", "He is useful as a bridge between builders, events and new users."),
+        ],
+        "crays": "For us, Derek Ross matters because a living Nostr archive needs educators and event voices, not only protocol authors. He helps readers see the scene that makes the protocol social.",
+        "sources": [
+            ("Nostr for Beginners", "https://www.youtube.com/watch?v=NVm_jGdwTjQ", "Nostr World beginner video with Derek Ross."),
+            ("Nostrica Q&A", "https://www.youtube.com/watch?v=WOYum10HaxY", "Nostr World Nostrica Q&A video."),
+            ("Nostr World speakers", "https://nostr.world/speakers/index.html", "Public Nostr World speaker archive."),
+        ],
+    },
+    {
+        "slug": "people/roger-huang",
+        "name": "Roger Huang",
+        "role": "Forbes Bitcoin writer and Nostr media voice",
+        "summary": "Roger Huang belongs in the Nostr media layer because his Forbes guide helped translate Nostr for a wider Bitcoin and digital-assets audience.",
+        "known_for": [
+            ("Forbes Nostr guide", "His Forbes work gives mainstream readers a structured entry into Nostr without assuming protocol background."),
+            ("Bitcoin and geopolitics reporting", "His public author profile frames his work around Bitcoin, money, censorship, geopolitics and digital assets."),
+            ("Nostr identity signal", "His Forbes profile publicly lists a Nostr identity, which makes him relevant as both author and participant."),
+        ],
+        "crays": "For us, Roger Huang is useful because serious media translation helps creators, investors and operators understand why Nostr is more than a niche social app.",
+        "sources": [
+            ("Roger Huang on Forbes", "https://www.forbes.com/sites/rogerhuang/", "Forbes author profile and public Nostr identity reference."),
+            ("Forbes guide to Nostr", "https://www.forbes.com/sites/digital-assets/2024/07/17/your-guide-to-nostr-the-decentralized-network-for-everything/", "Mainstream guide to Nostr for digital-assets readers."),
+        ],
+    },
+    {
+        "slug": "people/m-k-fain",
+        "name": "M. K. Fain",
+        "role": "Soapbox writer and beginner Nostr explainer",
+        "summary": "M. K. Fain belongs in the Nostr media layer because Soapbox's beginner material helps non-technical readers understand clients, accounts and first steps.",
+        "known_for": [
+            ("Nostr 101", "Soapbox's beginner guide explains how to join Nostr, create an account and choose apps."),
+            ("Soapbox and Ditto context", "The surrounding work connects Nostr education with open-source social software and user-owned publishing."),
+            ("Plain-language onboarding", "The useful contribution is reader translation: lowering vocabulary pressure without hiding the open-network model."),
+        ],
+        "crays": "For us, M. K. Fain is a useful media profile because onboarding language matters as much as protocol correctness when people first meet Nostr.",
+        "sources": [
+            ("M. K. Fain on Soapbox", "https://soapbox.pub/blog/author/m-k-fain", "Soapbox author archive."),
+            ("Nostr 101 on Soapbox", "https://soapbox.pub/blog/nostr101", "Beginner guide to Nostr apps and account setup."),
+        ],
+    },
+    {
+        "slug": "people/ez-no-bullshit-bitcoin",
+        "name": "EZ",
+        "role": "No Bullshit Bitcoin editor and Nostr release tracker",
+        "summary": "EZ belongs in the Nostr media layer because No Bullshit Bitcoin tracks product releases, Bitcoin-Nostr infrastructure and practical app changes without turning every item into hype.",
+        "known_for": [
+            ("Primal release coverage", "The Primal v2.0 article is a concrete product-history reference for Nostr clients, reads, wallets and onboarding."),
+            ("Release-desk style", "No Bullshit Bitcoin creates short, source-heavy updates that are useful for an archive because they preserve dates and product context."),
+            ("Bitcoin-Nostr overlap", "The publication follows the places where Bitcoin, Lightning, wallets and Nostr applications meet."),
+        ],
+        "crays": "For us, EZ is useful because release tracking helps the archive explain not only what Nostr is, but how the product layer changes over time.",
+        "sources": [
+            ("EZ on No Bullshit Bitcoin", "https://www.nobsbitcoin.com/author/ez/", "No Bullshit Bitcoin author archive."),
+            ("Primal v2.0 coverage", "https://www.nobsbitcoin.com/primal-v2-0/", "Product release article for Primal v2.0."),
+        ],
+    },
+    {
+        "slug": "people/yiluo-wei",
+        "name": "Yiluo Wei",
+        "role": "Nostr empirical research author",
+        "summary": "Yiluo Wei belongs in the People archive as a research author behind one of the early empirical studies of Nostr decentralization, availability and replication overhead.",
+        "known_for": [
+            ("Empirical Nostr study", "The arXiv paper studies the Nostr ecosystem across July to December 2023 and gives the archive a measurement-based view of relays and network behavior."),
+            ("Decentralization and resilience framing", "The paper is useful because it tests Nostr as an operating network, not just as a protocol promise."),
+            ("Research bridge", "The work helps connect technical claims about relays and availability to actual observed behavior."),
+        ],
+        "crays": "For us, Yiluo Wei matters because a serious Nostr knowledge hub needs measurement research beside builder stories and product pages.",
+        "sources": [
+            ("Exploring the Nostr Ecosystem", "https://arxiv.org/abs/2402.05709", "arXiv abstract and author list for the empirical Nostr study."),
+            ("HTML paper", "https://arxiv.org/html/2402.05709v2", "Readable HTML version of the paper."),
+        ],
+    },
+    {
+        "slug": "people/gareth-tyson",
+        "name": "Gareth Tyson",
+        "role": "Nostr empirical research co-author",
+        "summary": "Gareth Tyson belongs in the People archive as a co-author of the empirical Nostr ecosystem study and a researcher connected to decentralized social-network measurement.",
+        "known_for": [
+            ("Nostr measurement research", "The paper co-authored with Yiluo Wei examines decentralization, availability and replication overhead in Nostr."),
+            ("Social-network systems research", "His public research trail sits around online social systems, decentralized networks and measurement work."),
+            ("Evidence layer", "The useful role for our archive is turning broad protocol claims into questions that can be measured."),
+        ],
+        "crays": "For us, Gareth Tyson is part of the evidence layer: he helps anchor Nostr infrastructure discussion in research rather than only community belief.",
+        "sources": [
+            ("Exploring the Nostr Ecosystem", "https://arxiv.org/abs/2402.05709", "arXiv abstract and author list for the empirical Nostr study."),
+            ("HTML paper", "https://arxiv.org/html/2402.05709v2", "Readable HTML version of the paper."),
+        ],
+    },
 ]
 
 
 PEOPLE_DEEP_READS = {
     "people/enoch-root": [
-        "Enoch Root is the founder voice behind the Crays prologue. The story starts with movement: German roots, more than 20 years in Spain, life between Dubai, Palma, Medellin and LA, and more than two decades with over 250 travel days a year. That kind of life creates a sharp sense of what global people miss when they are always somewhere and still not fully at home.",
-        "The business path matters because it joins two worlds Crays needs to keep together. On one side are lifestyle brands, hospitality, culture, scenes and the feeling of belonging. On the other side are tech, crypto, Bitcoin and the question of how ordinary people build wealth when the old ladder has become brutally hard to climb.",
-        "The 2008 Lehman collapse and the Spanish real estate crash from 2007 to 2013 turned the money question from theory into lived urgency. Watching people get hit by that system led to the deeper obsession: what is money, really, and how can the next generation create wealth without being born into it?",
-        "That is why Bitcoin's deflationary model, old-school cooperative logic and the Crays Association frame sit together. The point is not only a nicer social app. The point is a global community that can own more of its identity, reputation, demand, access and economic upside together.",
-        "The hospitality layer comes from lonely hotel-room nights and the practical question every serious traveler eventually asks: who is here, who shares the right values, who is building, who is worth meeting and where can I feel at home without pretending work and life are separate species?",
-        "Privacy, freedom of expression and personal autonomy are the hard line. No privacy, no democracy. We are building against surveillance culture, platform lock-in and the quiet normalization of control. That is where Nostr stops being a protocol curiosity and becomes part of the Crays operating spine.",
-        "Enoch's prologue also makes the founder economics explicit: he does not want a salary, but 0.25% of every transaction in the Crays global ecosystem flows into a wallet tied to him personally as retirement. When he is gone, everything passes into a foundation so the mission can keep going with the community and the Association.",
-        "The short version is Work, Live and Play as one global community. Your values are your passport. Do not predict the future. Let us go out and build it together.",
+        "Enoch Root is the founder voice behind the Crays prologue. The story starts with movement: German-born, more than 20 years in Spain, life between Dubai, Palma, Medellin and LA, and more than two decades with over 250 travel days a year. That kind of life creates a sharp sense of what global people miss when they are always somewhere and still not fully at home.",
+        "His business path joins two worlds our ecosystem needs to keep together. On one side are lifestyle brands, hospitality, culture, scenes and the feeling of belonging, including brand work around Ed Hardy. On the other side are technology, brands4friends, crypto, Bitcoin and the question of how ordinary people build wealth when the old ladder has become brutally hard to climb.",
+        "The people layer matters just as much. Enoch's prologue is built around thousands of meetings with people whose stories made travel feel larger and more human. It also comes from the opposite experience: lonely hotel-room nights, not knowing who was in the same city, who shared the same values and how to meet the right people at the right time without turning life into a networking spreadsheet.",
+        "The 2008 Lehman collapse and the Spanish real estate crash from 2007 to 2013 turned the money question from theory into lived urgency. Watching people in Spain, Greece, Portugal and Ireland get hit by that system led to the deeper obsession: what is money, really, and how can the next generation create wealth without being born into it?",
+        "That obsession took him into crypto when it was still shady and underground, then toward Web3, and finally back to the harder question: how do you build wealth creation for the next generation? Property, savings and inflation have made upward mobility brutally difficult for young people. That is why Bitcoin's deflationary model, old-school cooperative logic and the Crays Association frame sit together.",
+        "The point is not only a nicer social app. The point is a global community that can own more of its identity, reputation, demand, access and economic upside together. In Enoch's framing, your values are your passport. It does not matter where you are from, what you look like or what religion you practice. A real community also has boundaries, including the courage to say when someone will not engage with those values.",
+        "The hospitality layer comes from the practical question every serious traveler eventually asks: who is here, who shares the right values, who is building, who is worth meeting and where can I feel at home without pretending work and life are separate species? That is where Work, Live and Play becomes one system instead of a slogan.",
+        "Privacy, freedom of expression and personal autonomy are the hard line. No privacy, no democracy. We are building against surveillance culture, platform lock-in and the quiet normalization of control. That is where Nostr stops being a protocol curiosity and becomes part of our operating spine.",
+        "Enoch's prologue also makes the founder economics explicit: he does not want a salary, but 0.25% of every transaction in the Crays global ecosystem flows into a wallet tied to him personally as retirement. He frames that openly because incentives matter. When he is gone, everything passes into a foundation so the mission can keep going with the community and the Association.",
+        "The short version is Work, Live and Play as one global community. Crays is for people, digital and IRL. Do not predict the future. Let us go out and build it together.",
     ],
     "people/fiatjaf": [
         "fiatjaf is not interesting because he gives Nostr a neat founder myth. He is interesting because Nostr still feels like the kind of protocol a stubborn builder would invent after getting tired of social platforms, federation committees and product teams that want permission before anything can move. The core is almost annoyingly small: keys, signed events, relays, clients. That smallness is the trick.",
@@ -1514,6 +2233,46 @@ PEOPLE_DEEP_READS = {
         "Miljan Braticevic matters because Primal treats Nostr as a consumer product challenge, not only a protocol experiment. Feeds, search, reads, discovery, onboarding and analytics are not decoration. They are how a new user decides whether this strange open network is worth a second day.",
         "That is an important Crays lesson. A lifestyle ecosystem cannot ask users to love infrastructure first. It has to make the network feel rewarding, searchable and alive. Primal shows how much polish and product judgment matter once Nostr leaves the builder circle.",
     ],
+    "people/lyn-alden": [
+        "Lyn Alden is useful in the Nostr archive because she writes from outside the small builder room without flattening the subject. Her strongest Nostr value is not a breaking-news angle. It is the long-form ability to explain why protocol ownership, identity, money and public communication belong in the same conversation.",
+        "That matters for Crays because many serious readers do not arrive through Damus or a NIP. They arrive through Bitcoin, macro, censorship, platform risk or the question of how the internet keeps producing closed gardens. Alden's essay gives those readers a bridge into Nostr without making the protocol feel like a toy.",
+    ],
+    "people/sarah-perez": [
+        "Sarah Perez belongs here as a media voice because mainstream product coverage changes who enters the room. When TechCrunch explains Damus, app-store distribution or open-source social funding, Nostr stops being only a builder conversation and becomes a consumer-technology story.",
+        "For Crays, that distinction matters. We need Nostr to be understandable to creators, operators, investors and normal users. Consumer reporters translate rough protocol culture into the questions ordinary people ask: what app is this, why should I care, who funds it, what can I do with it and how is it different from what I already use?",
+    ],
+    "people/george-kaloudis": [
+        "George Kaloudis is here because the 14 BTC funding story became part of Nostr's public memory. Funding stories are not the protocol, but they shape attention. They tell builders that work might be supported and tell readers that a strange new network is not happening entirely in the dark.",
+        "The Crays use is simple: funding context helps explain why Nostr moved from obscure protocol idea to a credible open-social contender. It also keeps the Jack Dorsey story in the right frame: signal and support, not ownership.",
+    ],
+    "people/ben-perrin-btc-sessions": [
+        "Ben Perrin is valuable because his format answers the question many articles skip: what do I actually click next? Nostr education has a theory layer, but wallets, nodes, zaps and signers become real only when someone shows the messy operational steps.",
+        "That is directly useful for Crays. If we want readers to understand Nostr Wallet Connect, Lightning zaps, app permissions and value flow, video tutorials can carry the practical load while our written pages explain the system logic.",
+    ],
+    "people/derek-ross": [
+        "Derek Ross is a media and event voice rather than only a single-product builder. That makes him useful for the archive because Nostr spreads through explanation, public demos, event Q&A and repeated social translation.",
+        "For Crays, the lesson is that a knowledge hub needs hosts and educators. The protocol gets easier when someone can point at a screen, name the pieces and connect builders to newcomers without making the reader feel late to a private club.",
+    ],
+    "people/roger-huang": [
+        "Roger Huang is useful because Forbes reaches readers who may know Bitcoin, censorship risk or digital assets, but have not yet touched a Nostr client. A mainstream guide can make Nostr legible without asking the reader to start with NIP-01, relay filters or key formats.",
+        "For us, the important role is translation. Media writers who can connect money, identity, platforms and open networks help the archive become more than a technical catalog. They bring in the serious outsider questions that a good knowledge hub must answer plainly.",
+    ],
+    "people/m-k-fain": [
+        "M. K. Fain belongs in the archive because beginner writing is not low-value work. Nostr loses people quickly when the first explanation jumps from keys to relays to apps without a calm path. Soapbox's Nostr 101 material helps turn the first session into something a normal reader can try.",
+        "For us, that is a content-design lesson. The onboarding page is part of the product. If a reader leaves with the right first mental model, every deeper page becomes easier: clients are windows, relays carry events, keys own identity and no single app owns the account.",
+    ],
+    "people/ez-no-bullshit-bitcoin": [
+        "EZ represents the release-tracking side of Nostr media. A good archive needs product history: when Primal shipped a new version, what changed, why it mattered, which wallet or read features were part of the release and how the wider Bitcoin-Nostr surface was evolving.",
+        "For us, those short product notes are not disposable news. They are source trail. They help us date claims, explain app maturity and show readers that Nostr is a moving ecosystem rather than a frozen protocol diagram.",
+    ],
+    "people/yiluo-wei": [
+        "Yiluo Wei's role is important because Nostr also needs measurement. The empirical paper looks at decentralization, availability and replication overhead in a real network window, which is exactly the sort of evidence a serious relay or infrastructure article should have nearby.",
+        "For us, research authors give the archive a different kind of authority. Builder pages tell you what people are trying to make. Research pages help you ask what the network is actually doing and where the design creates tradeoffs.",
+    ],
+    "people/gareth-tyson": [
+        "Gareth Tyson belongs beside Yiluo Wei because the same paper gives Nostr a measured systems view. It studies whether the network lives up to its decentralization promise, how relays affect availability and what replication means in practice.",
+        "For us, that research lens matters for Super Nodes, relay strategy and long-term archive thinking. If we want a real knowledge system, we need both narrative and measurement: human context, product context and technical evidence.",
+    ],
 }
 
 
@@ -1557,7 +2316,7 @@ def make_people_pages():
             ],
             sources=people_sources,
             related=["people/enoch-root", "jack-dorsey", "lifestyle-culture", "developer-tools", "clients", "resources"],
-            keywords=["Nostr people", "Nostr founder", "Crays founder", "Enoch Root", "Thorben Biesenbach", "Nostr developers", "Nostr builders"],
+            keywords=["Nostr people", "Nostr founder", "Crays founder", "Enoch Root", "Nostr developers", "Nostr builders"],
             read="20 min read",
         )
     ]
@@ -1991,6 +2750,8 @@ LONGFORM_EDITORIAL_SKIP_SLUGS = {
 
 SOURCE_SECTION_SLUGS = {
     "deep-dives/blossom-servers-and-relays",
+    "resources",
+    "nostr-media-article-video-archive",
 }
 
 try:
@@ -2020,6 +2781,22 @@ try:
     PAGES.extend(make_deep_research_pages(page, section))
 except Exception as exc:
     print(f"Skipping Nostr deep research import: {exc}")
+
+
+try:
+    from nostr_start_editorial import apply_start_page_rewrites
+
+    apply_start_page_rewrites(
+        PAGES,
+        section,
+        GLOBAL_SOURCES,
+        NIP_SOURCES,
+        RESOURCE_LINKS,
+        RELAY_MARKET_SOURCES,
+        BLOSSOM_SOURCES,
+    )
+except Exception as exc:
+    print(f"Skipping Nostr start editorial rewrites: {exc}")
 
 
 def domain_from_url(url: str) -> str:
@@ -2134,6 +2911,16 @@ PERSON_IMAGE_BY_SLUG = {
     "people/martti-malmi": "https://github.com/mmalmi.png?size=192",
     "people/greenart7c3": "https://github.com/greenart7c3.png?size=192",
     "people/miljan-braticevic": favicon_url("primal.net", 192),
+    "people/lyn-alden": favicon_url("lynalden.com", 192),
+    "people/sarah-perez": favicon_url("techcrunch.com", 192),
+    "people/george-kaloudis": favicon_url("coindesk.com", 192),
+    "people/ben-perrin-btc-sessions": "https://yt3.googleusercontent.com/ytc/AIdro_kxV49dDEY0Ti1bD49lVej4Hvk1A9YfYu4SbsWrbPO3lQ=s192-c-k-c0x00ffffff-no-rj",
+    "people/derek-ross": "https://nostr.world/images/derek.png",
+    "people/roger-huang": favicon_url("forbes.com", 192),
+    "people/m-k-fain": favicon_url("soapbox.pub", 192),
+    "people/ez-no-bullshit-bitcoin": favicon_url("nobsbitcoin.com", 192),
+    "people/yiluo-wei": favicon_url("arxiv.org", 192),
+    "people/gareth-tyson": favicon_url("arxiv.org", 192),
 }
 
 
@@ -2141,9 +2928,6 @@ PERSON_IMAGE_BY_TITLE = {
     slugify(person["name"]): PERSON_IMAGE_BY_SLUG.get(person["slug"], "")
     for person in PEOPLE
 }
-PERSON_IMAGE_BY_TITLE["thorben-biesenbach"] = PERSON_IMAGE_BY_SLUG["people/enoch-root"]
-
-
 NOSTRIGA_SOURCE_URL = "https://nostr.world/speakers/index.html"
 
 
@@ -2266,6 +3050,7 @@ SECTION_NAVS = {
                     ("Why Nostr matters", "why-nostr"),
                     ("Glossary", "glossary"),
                     ("Useful links", "resources"),
+                    ("Media and video archive", "nostr-media-article-video-archive"),
                 ],
             ),
             (
@@ -2286,6 +3071,7 @@ SECTION_NAVS = {
                     ("Search and trust", "search-and-web-of-trust"),
                     ("Moderation and discovery", "moderation-discovery"),
                     ("Nostr vs Mastodon", "nostr-vs-mastodon"),
+                    ("Crays Circle GitHub", "resources"),
                 ],
             ),
         ],
@@ -2304,6 +3090,7 @@ SECTION_NAVS = {
                     ("Events", "events"),
                     ("Lifestyle culture", "lifestyle-culture"),
                     ("Music and media", "music-video-media"),
+                    ("Media and video archive", "nostr-media-article-video-archive"),
                     ("Nostr and Bitcoin", "nostr-and-bitcoin"),
                 ],
             ),
@@ -2321,12 +3108,24 @@ SECTION_NAVS = {
                 ],
             ),
             (
+                "Media voices",
+                [
+                    ("Lyn Alden", "people/lyn-alden"),
+                    ("Sarah Perez", "people/sarah-perez"),
+                    ("George Kaloudis", "people/george-kaloudis"),
+                    ("Ben Perrin", "people/ben-perrin-btc-sessions"),
+                    ("Derek Ross", "people/derek-ross"),
+                    ("Media and video archive", "nostr-media-article-video-archive"),
+                ],
+            ),
+            (
                 "Culture questions",
                 [
                     ("Free speech and censorship", "free-speech-censorship"),
                     ("Moderation and discovery", "moderation-discovery"),
                     ("Web of trust", "deep-dives/web-of-trust-in-practice"),
                     ("Nostr events history", "deep-dives/nostr-events-history"),
+                    ("Media voices", "nostr-media-article-video-archive"),
                 ],
             ),
         ],
@@ -2542,6 +3341,7 @@ SECTION_NAVS = {
                     ("Creators", "creators"),
                     ("Music and media", "music-video-media"),
                     ("Videos", "videos"),
+                    ("Media and video archive", "nostr-media-article-video-archive"),
                     ("NIP-23 long-form", "nip-23-long-form"),
                     ("Creator reading path", "reading-paths/creator"),
                 ],
@@ -2644,6 +3444,7 @@ SECTION_NAVS = {
                 "Crays layer",
                 [
                     ("Nostr and Crays", "nostr-and-crays"),
+                    ("Crays Circle GitHub", "resources"),
                     ("Content sale", "content-sale"),
                     ("Crays Award", "awards"),
                     ("Super Nodes", "crays-super-node"),
@@ -2655,6 +3456,7 @@ SECTION_NAVS = {
                 "Product deep dives",
                 [
                     ("Crays.net as client", "deep-dives/crays-net-as-nostr-client"),
+                    ("Developer tools", "developer-tools"),
                     ("Crays World local graph", "deep-dives/crays-world-local-graph"),
                     ("Crays Award voting", "deep-dives/crays-award-voting"),
                     ("DAO readiness", "deep-dives/crays-dao-readiness"),
@@ -2690,11 +3492,13 @@ SECTION_NAVS = {
                     ("Deep dives", "deep-dives/portable-social-graph"),
                     ("Useful links", "resources"),
                     ("Research map", "source-inventory"),
+                    ("Media and video archive", "nostr-media-article-video-archive"),
                     ("Deep research database", "source-inventory/deep-research-database"),
                     ("Reads research", "archive-library/reads-research"),
                     ("Source map research", "archive-library/source-map-research"),
                     ("Security wallet research", "archive-library/security-wallet-research"),
                     ("Videos", "videos"),
+                    ("Crays Circle GitHub", "resources"),
                 ],
             ),
             (
@@ -2889,9 +3693,57 @@ def link_text(text: str, current_slug: str, used_links: dict[str, int]) -> str:
 
 def render_source_cards(sources):
     return "\n".join(
-        f'<a class="crays-nostr-source-card" href="{esc(url)}" target="_blank" rel="noreferrer noopener"><strong>{esc(clean_copy(title))}</strong><span>{esc(crays_voice(desc))}</span></a>'
+        f'<a class="crays-nostr-source-card" href="{esc(url)}" target="_blank" rel="noreferrer noopener"><strong>{esc(crays_voice(title))}</strong><span>{esc(crays_voice(desc))}</span></a>'
         for title, url, desc in sources
     )
+
+
+def youtube_id(value: object) -> str:
+    raw = str(value or "").strip()
+    if re.fullmatch(r"[A-Za-z0-9_-]{11}", raw):
+        return raw
+    match = re.search(r"(?:v=|youtu\.be/|embed/)([A-Za-z0-9_-]{11})", raw)
+    return match.group(1) if match else ""
+
+
+def youtube_url(video: dict) -> str:
+    if video.get("url"):
+        return str(video["url"])
+    vid = youtube_id(video.get("id"))
+    return f"https://www.youtube.com/watch?v={vid}" if vid else ""
+
+
+def render_video_grid(videos: list[dict]) -> str:
+    if not videos:
+        return ""
+    cards = []
+    for video in videos:
+        vid = youtube_id(video.get("id") or video.get("url"))
+        title = crays_voice(video.get("title", "Nostr video"))
+        channel = crays_voice(video.get("channel", "Nostr video"))
+        note = crays_voice(video.get("use") or video.get("note") or "")
+        category = crays_voice(video.get("category", "Video"))
+        watch_url = youtube_url(video)
+        if vid:
+            media = (
+                f'<iframe src="https://www.youtube-nocookie.com/embed/{esc(vid)}" '
+                f'title="{esc(title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>'
+            )
+        else:
+            media = f'<a class="crays-nostr-video-card__fallback" href="{esc(watch_url)}">{esc(title)}</a>'
+        cards.append(
+            '<article class="crays-nostr-video-card">'
+            f'<div class="crays-nostr-video-card__media">{media}</div>'
+            '<div class="crays-nostr-video-card__body">'
+            f'<span>{esc(category)}</span>'
+            f'<h3>{esc(title)}</h3>'
+            f'<p>{esc(note)}</p>'
+            f'<small>{esc(channel)}</small>'
+            f'<a href="{esc(watch_url)}">Open on YouTube</a>'
+            '</div>'
+            '</article>'
+        )
+    return f'<div class="crays-nostr-video-grid">{"".join(cards)}</div>'
 
 
 def render_sections(item):
@@ -2899,7 +3751,7 @@ def render_sections(item):
     scenes = pick_stock_scenes(item)
     parts = [
         f'<p>{link_text(crays_voice(item["intro"]), item["slug"], used_links)}</p>',
-        f'<div class="crays-nostr-reader-note"><strong>The quick read</strong><span>{esc(crays_voice(item["deck"]))}</span></div>',
+        f'<div class="crays-nostr-reader-note"><strong>{esc(crays_voice(item.get("quick_label", "The quick read")))}</strong><span>{esc(crays_voice(item["deck"]))}</span></div>',
         render_stock_scene_strip(item, scenes[:2]),
     ]
     midpoint = max(2, len(item["sections"]) // 2) if item["sections"] else 0
@@ -2930,6 +3782,8 @@ def render_sections(item):
                 else:
                     parts.append(f'<div class="crays-nostr-hub-mini-card" data-card-kind="{esc(kind)}">{card_face}</div>')
             parts.append("</div>")
+        if sec.get("videos"):
+            parts.append(render_video_grid(sec["videos"]))
         if section_index == midpoint and len(scenes) > 2:
             parts.append(render_stock_scene_strip(item, scenes[2:4]))
     if item["slug"] in SOURCE_SECTION_SLUGS and item.get("sources"):
@@ -2951,26 +3805,22 @@ def render_archive_contents(item):
     nav = SECTION_NAVS.get(current_key, SECTION_NAVS["library"])
     theme = visual_theme(item)
     nav_groups = nav["groups"]
-    finder_links = "\n".join(
-        f'<a href="{nostr_href(p["slug"])}" data-nostr-finder-link>{esc(p["title"])}</a>'
-        for p in PAGES
-    )
     route_cards = []
     for label, key, href, icon, note in PRIMARY_ROUTE_CARDS:
         current_attr = ' aria-current="page"' if key == current_key else ""
         route_cards.append(
             f'<a class="crays-nostr-route-card" data-route="{esc(key)}" href="{esc(href)}"{current_attr}>'
-            f'<span aria-hidden="true">{esc(icon)}</span><strong>{esc(label)}</strong><small>{esc(note)}</small></a>'
+            f'<span aria-hidden="true">{esc(icon)}</span><strong>{esc(crays_voice(label))}</strong><small>{esc(crays_voice(note))}</small></a>'
         )
     group_cards = []
     for group, links in nav_groups:
         links_html = []
         for label, slug in links:
             current_attr = ' aria-current="page"' if slug == current else ""
-            links_html.append(f'<a href="{nostr_href(slug)}"{current_attr}>{esc(label)}</a>')
+            links_html.append(f'<a href="{nostr_href(slug)}"{current_attr}>{esc(crays_voice(label))}</a>')
         group_cards.append(
             '<div class="crays-nostr-route-group">'
-            f'<strong>{esc(group)}</strong>'
+            f'<strong>{esc(crays_voice(group))}</strong>'
             f'<div>{"".join(links_html)}</div>'
             '</div>'
         )
@@ -2981,14 +3831,17 @@ def render_archive_contents(item):
         <div class="crays-article-reader-shell crays-nostr-route-board__inner">
           <div class="crays-nostr-route-board__top">
             <div class="crays-nostr-route-board__intro">
-              <span>{esc(theme["kicker"])}</span>
-              <h2>{esc(nav["title"])}</h2>
+              <span>{esc(crays_voice(theme["kicker"]))}</span>
+              <h2>{esc(crays_voice(nav["title"]))}</h2>
               <p>{esc(crays_voice(nav["deck"]))}</p>
             </div>
             <div class="crays-nostr-archive-finder" role="search">
               <label for="crays-nostr-finder">Search the Nostr atlas</label>
               <input id="crays-nostr-finder" type="search" placeholder="Search apps, NIPs, people, Crays topics" data-nostr-finder-input />
-              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>{finder_links}</div>
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
             </div>
           </div>
           <nav class="crays-nostr-route-cards" aria-label="Main Nostr routes">
@@ -3020,7 +3873,7 @@ def archive_area(item):
         return "Protocol and NIPs", "/nostr/nips/complete-index/"
     if slug.startswith("apps/") or slug in {"apps", "app-profiles", "developer-tools", "clients"}:
         return "Apps and clients", "/nostr/apps/catalog/"
-    if slug.startswith("source-inventory") or slug.startswith("awesome-nostr") or slug in {"resources", "videos"}:
+    if slug.startswith("source-inventory") or slug.startswith("awesome-nostr") or slug in {"resources", "videos", "nostr-media-article-video-archive"}:
         return "Research map", "/nostr/source-inventory/"
     if slug.startswith("people") or slug in {"jack-dorsey", "events", "lifestyle-culture", "music-video-media", "nostr-and-bitcoin"}:
         return "People and culture", "/nostr/people/"
@@ -3034,7 +3887,7 @@ def archive_area(item):
 
 
 def primary_nav_key(slug):
-    if slug in {"what-is-nostr", "getting-started", "why-nostr", "glossary", "resources"} or slug.startswith("reading-paths/"):
+    if slug in {"what-is-nostr", "getting-started", "why-nostr", "glossary", "resources", "nostr-media-article-video-archive"} or slug.startswith("reading-paths/"):
         return "start"
     if slug in {
         "privacy-security",
@@ -3142,9 +3995,30 @@ PRIMARY_ROUTE_CARDS = [
     ("Media", "media", "/nostr/music-video-media/", "08", "Creators, publishing, music, video, long-form posts and fan access."),
     ("Commerce", "commerce", "/nostr/content-sale/", "09", "Creator sales, marketplaces, FoundUPS, revenue paths and investor context."),
     ("Governance", "governance", "/nostr/dao-governance/", "10", "Badges, voting, reputation, moderation, policy and DAO-ready decisions."),
-    ("Crays", "crays", "/nostr/nostr-and-crays/", "11", "How the protocol plugs into Crays.net, venues, status and governance."),
+    ("Crays", "crays", "/nostr/nostr-and-crays/", "11", "How the protocol plugs into Crays, venues, status and governance."),
     ("Library", "library", "/nostr/archive-library/", "12", "The full archive, research database, source map and long-read routes."),
 ]
+
+
+try:
+    from nostr_learning_depth_pass import apply_learning_depth_pass
+
+    apply_learning_depth_pass(
+        PAGES,
+        section,
+        primary_nav_key,
+        GLOBAL_SOURCES,
+        NIP_SOURCES,
+        RELAY_MARKET_SOURCES,
+        BLOSSOM_SOURCES,
+        RESOURCE_LINKS,
+    )
+except Exception as exc:
+    print(f"Skipping Nostr learning depth pass: {exc}")
+
+
+for item in PAGES:
+    normalize_page_display_copy(item)
 
 
 def stock_image(name: str) -> str:
@@ -3153,6 +4027,10 @@ def stock_image(name: str) -> str:
 
 def free_stock_image(name: str) -> str:
     return f"/assets/nostr-free-stock/{name}"
+
+
+def nostr_start_image(name: str) -> str:
+    return f"/assets/nostr-start/{name}"
 
 
 ROUTE_HERO_BACKGROUNDS = {
@@ -3184,6 +4062,90 @@ ROUTE_LIFESTYLE_HEROES = {
     "governance": free_stock_image("nips-visual.jpg"),
     "crays": free_stock_image("crays-visual.jpg"),
     "library": free_stock_image("library-visual.jpg"),
+}
+
+
+START_PAGE_VISUALS = {
+    "what-is-nostr": {
+        "hero_background": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Nostr protocol stack overview for the first mental model.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Nostr community and event culture in a real room.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "The first Nostr map: identity, content, interactions and payments.", "position": "center"},
+            {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Nostr becomes easier when the protocol is connected to people and events.", "position": "center"},
+            {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Bitcoin media helped carry Nostr into a broader public conversation.", "position": "center"},
+            {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Nostr and Bitcoin meet where identity, attention and value flow connect.", "position": "center"},
+        ],
+    },
+    "getting-started": {
+        "hero_background": {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Getting started with Nostr, Bitcoin and app-based onboarding.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "A practical stack view before choosing clients, keys and relays.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Start with the account, the key and the first safe client.", "position": "center"},
+            {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "The onboarding path becomes clear when the layers are visible.", "position": "center"},
+        ],
+    },
+    "why-nostr": {
+        "hero_background": {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Nostr in the public Bitcoin media conversation.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-purple-mark.jfif"), "caption": "The Nostr mark as a shorthand for portable identity.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Why Nostr matters is easier to see once media, money and identity meet.", "position": "center"},
+            {"url": nostr_start_image("nostr-purple-mark.jfif"), "caption": "The protocol gives users a name that can move across clients.", "position": "center"},
+        ],
+    },
+    "glossary": {
+        "hero_background": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Glossary terms mapped to protocol layers.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-purple-mark.jfif"), "caption": "A clear Nostr visual anchor for vocabulary.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Terms are easier when they sit inside a simple stack.", "position": "center"},
+            {"url": nostr_start_image("nostr-purple-mark.jfif"), "caption": "Nostr vocabulary should help the reader, not slow them down.", "position": "center"},
+        ],
+    },
+    "resources": {
+        "hero_background": {"url": nostr_start_image("munstr-thumbnail.webp"), "caption": "Nostr source map and community archive material.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Resources connect documentation, events and public media.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("munstr-thumbnail.webp"), "caption": "The resource shelf keeps external references close to the learning path.", "position": "center"},
+            {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Events and media sources show the human side of the archive.", "position": "center"},
+        ],
+    },
+    "videos": {
+        "hero_background": {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Nostr video and media trail.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Video material belongs where it helps readers see the scene.", "position": "center"},
+    },
+    "nostr-media-article-video-archive": {
+        "hero_background": {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Nostr articles, media coverage and video source archive.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Nostr media, event and creator material in one Start shelf.", "position": "center"},
+        "scenes": [
+            {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Media articles help readers understand Nostr beyond the feed.", "position": "center"},
+            {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Event material turns the protocol into a living scene.", "position": "center"},
+            {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Technical sources keep media claims tied to protocol reality.", "position": "center"},
+            {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Bitcoin, zaps and wallet videos connect social context to value flow.", "position": "center"},
+        ],
+    },
+    "reading-paths/beginner": {
+        "hero_background": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Beginner path through the Nostr scene.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "A beginner route through keys, clients and relays.", "position": "center"},
+    },
+    "reading-paths/developer": {
+        "hero_background": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Developer route through Nostr protocol layers.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Developer learning connects protocol, apps and value flow.", "position": "center"},
+    },
+    "reading-paths/creator": {
+        "hero_background": {"url": nostr_start_image("bitcoin-backstage-nostr.jpg"), "caption": "Creator route through Nostr media and Bitcoin culture.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Creators need audience, media and real community context.", "position": "center"},
+    },
+    "reading-paths/operator": {
+        "hero_background": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Operator route through relays, payments and infrastructure.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("buy-bitcoin-with-nostr.png"), "caption": "Operators need Nostr to connect identity with payment flows.", "position": "center"},
+    },
+    "reading-paths/culture": {
+        "hero_background": {"url": nostr_start_image("nostr-lounge-las-vegas.jpg"), "caption": "Culture route through events, people and public media.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("munstr-thumbnail.webp"), "caption": "Culture gives the protocol memory and humor without losing the point.", "position": "center"},
+    },
+    "reading-paths/research": {
+        "hero_background": {"url": nostr_start_image("nostr-protocol-stack.jpeg"), "caption": "Research route through source maps and protocol references.", "position": "center"},
+        "hero_visual": {"url": nostr_start_image("munstr-thumbnail.webp"), "caption": "Research shelves connect sources, articles and event archives.", "position": "center"},
+    },
 }
 
 
@@ -3762,6 +4724,10 @@ OPENVERSE_VISUAL_ASSIGNMENTS = build_openverse_visual_assignments(PAGES)
 
 
 def page_visuals(item) -> dict:
+    override = START_PAGE_VISUALS.get(item["slug"], {})
+    if override:
+        base = OPENVERSE_VISUAL_ASSIGNMENTS.get(item["slug"], {})
+        return {**base, **override}
     return OPENVERSE_VISUAL_ASSIGNMENTS.get(item["slug"], {})
 
 
@@ -3825,9 +4791,9 @@ def render_hero_visual(item):
     hero_badge = ""
     hero_badge_url = card_visual_url(item["title"], item["slug"])
     if hero_badge_url and primary_nav_key(item["slug"]) in {"apps", "people", "relays"}:
-        hero_badge = f'<div class="crays-nostr-hero-avatar"><img src="{esc(hero_badge_url)}" alt="" loading="eager" decoding="async" /></div>'
+        hero_badge = f'<div class="crays-nostr-hero-avatar"><img src="{esc(hero_badge_url)}" alt="{esc(item["title"])} icon" loading="eager" decoding="async" /></div>'
     pins = "\n".join(
-        f'<a href="{nostr_href(slug)}">{esc(label)}</a>'
+        f'<a href="{nostr_href(slug)}">{esc(crays_voice(label))}</a>'
         for label, slug in theme["pins"]
     )
     return f"""
@@ -3838,8 +4804,8 @@ def render_hero_visual(item):
               {hero_badge}
               <div class="crays-nostr-hero-signal">
                 <span>Route</span>
-                <strong>{esc(theme["label"])}</strong>
-                <small>{esc(theme["note"])}</small>
+                <strong>{esc(crays_voice(theme["label"]))}</strong>
+                <small>{esc(crays_voice(theme["note"]))}</small>
               </div>
               <div class="crays-nostr-hero-pins">
                 {pins}
@@ -3942,7 +4908,7 @@ def render_card_badge(title, href=None):
     visual = card_visual_url(title, href)
     kind = mini_card_kind(title, href)
     if visual:
-        return f'<img class="crays-nostr-card-media" data-card-kind="{esc(kind)}" src="{esc(visual)}" alt="" loading="lazy" decoding="async" />'
+        return f'<img class="crays-nostr-card-media" data-card-kind="{esc(kind)}" src="{esc(visual)}" alt="{esc(clean_copy(title))} icon" loading="lazy" decoding="async" />'
     return f'<span class="crays-nostr-card-icon" aria-hidden="true">{esc(mini_card_icon(title, href))}</span>'
 
 
@@ -4004,7 +4970,7 @@ def render_route_showcase(current_key: str) -> str:
         if current_key == "relays" and title == "Nostr.band":
             image = favicon_url("relay.nostr.band")
         badge = (
-            f'<img src="{esc(image)}" alt="" loading="lazy" decoding="async" />'
+            f'<img src="{esc(image)}" alt="{esc(title)} icon" loading="lazy" decoding="async" />'
             if image else
             f'<span>{esc(mini_card_icon(title, slug))}</span>'
         )
@@ -4077,14 +5043,23 @@ def render_route_directory(current_key: str, current_slug: str) -> str:
         link_parts = []
         for page_item in shelves[shelf_label]:
             current_attr = ' aria-current="page"' if page_item["slug"] == current_slug else ""
-            link_parts.append(f'<a href="{nostr_href(page_item["slug"])}"{current_attr}>{esc(page_item["title"])}</a>')
+            link_parts.append(f'<a href="{nostr_href(page_item["slug"])}"{current_attr}>{esc(crays_voice(page_item["title"]))}</a>')
         links = "\n".join(link_parts)
         shelf_parts.append(
-            f'<section class="crays-nostr-route-directory__shelf"><h3>{esc(shelf_label)}</h3><div>{links}</div></section>'
+            f'<section class="crays-nostr-route-directory__shelf"><h3>{esc(crays_voice(shelf_label))}</h3><div>{links}</div></section>'
         )
+    shelf_labels = sorted(shelves)
+    shelf_preview = ", ".join(shelf_labels[:3])
+    if len(shelf_labels) > 3:
+        shelf_preview += f" and {len(shelf_labels) - 3} more shelves"
     return f"""
-          <details class="crays-nostr-route-directory">
-            <summary><span>{esc(label)}</span><strong>All {esc(label)} pages</strong><small>{len(pages)} pages in this route</small></summary>
+          <details class="crays-nostr-route-directory" data-route="{esc(current_key)}">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">{esc(crays_voice(label))}</span>
+              <strong>All {esc(crays_voice(label))} pages</strong>
+              <small><b>{len(pages)} pages in this route</b><em>{esc(shelf_preview)}</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
             <div class="crays-nostr-route-directory__shelves">
               {"".join(shelf_parts)}
             </div>
@@ -4118,7 +5093,7 @@ def render_full_atlas(current_slug: str) -> str:
         open_attr = " open" if key == current_key else ""
         route_chunks.append(
             f'<details class="crays-nostr-atlas-route" data-route="{esc(key)}"{open_attr}>'
-            f'<summary><span>{esc(number)}</span><img class="crays-nostr-atlas-thumb" src="{esc(image)}" alt="" loading="lazy" decoding="async" />'
+            f'<summary><span>{esc(number)}</span><img class="crays-nostr-atlas-thumb" src="{esc(image)}" alt="{esc(label)} route thumbnail" loading="lazy" decoding="async" />'
             f'<strong>{esc(label)}<em>{esc(note)}</em></strong><small>{len(pages)} pages</small></summary>'
             f'<div class="crays-nostr-atlas-shelves">{"".join(shelf_parts)}</div>'
             '</details>'
@@ -4131,6 +5106,82 @@ def render_full_atlas(current_slug: str) -> str:
             </div>
           </details>
     """
+
+
+def plain_search_copy(value: object) -> str:
+    text = html.unescape(str(value or ""))
+    text = re.sub(r"<[^>]+>", " ", text)
+    text = re.sub(r"\s+", " ", text).strip()
+    return crays_voice(text)
+
+
+def search_terms_for_item(item: dict) -> str:
+    pieces: list[str] = [
+        item.get("title", ""),
+        item.get("slug", "").replace("/", " ").replace("-", " "),
+        item.get("tag", ""),
+        item.get("deck", ""),
+        ROUTE_LABELS.get(primary_nav_key(item["slug"]), ""),
+        atlas_group_label(item),
+        archive_area(item)[0],
+        " ".join(item.get("keywords", [])),
+    ]
+    for section in item.get("sections", []):
+        pieces.append(section.get("title", ""))
+        pieces.append(section.get("body", ""))
+        pieces.extend(section.get("paragraphs", []))
+        for bullet in section.get("bullets", []):
+            pieces.extend(list(bullet[:2]))
+        for card in section.get("cards", []):
+            pieces.extend(list(card[:2]))
+            if len(card) > 2:
+                pieces.append(card[2])
+        for video in section.get("videos", []):
+            pieces.extend([
+                video.get("title", ""),
+                video.get("channel", ""),
+                video.get("category", ""),
+                video.get("use", ""),
+                video.get("note", ""),
+                video.get("id", ""),
+                video.get("url", ""),
+            ])
+    for label, url, note in item.get("sources", []):
+        pieces.extend([label, url, note])
+    return plain_search_copy(" ".join(str(part) for part in pieces if part))
+
+
+def build_search_record(item: dict) -> dict:
+    route = ROUTE_LABELS.get(primary_nav_key(item["slug"]), "Library")
+    return {
+        "title": plain_search_copy(item.get("title", "")),
+        "url": nostr_href(item["slug"]),
+        "slug": item["slug"],
+        "category": route,
+        "shelf": atlas_group_label(item),
+        "deck": plain_search_copy(item.get("deck", ""))[:260],
+        "terms": search_terms_for_item(item),
+    }
+
+
+def write_search_index() -> None:
+    records = sorted(
+        (build_search_record(item) for item in PAGES),
+        key=lambda record: (record["category"], record["shelf"], record["title"].lower(), record["url"]),
+    )
+    SEARCH_INDEX.parent.mkdir(parents=True, exist_ok=True)
+    SEARCH_INDEX.write_text(
+        json.dumps(
+            {
+                "generated": TODAY,
+                "count": len(records),
+                "pages": records,
+            },
+            ensure_ascii=False,
+            separators=(",", ":"),
+        ),
+        encoding="utf-8",
+    )
 
 
 def render_primary_nav(item):
@@ -4147,7 +5198,7 @@ def render_related(item, by_slug):
     if not rel:
         rel = [p["slug"] for p in PAGES[:6] if p["slug"] != item["slug"]]
     link_parts = []
-    for slug in rel[:10]:
+    for slug in rel[:18]:
         title = by_slug[slug]["title"]
         area, _href = archive_area(by_slug[slug])
         link_parts.append(
@@ -4158,14 +5209,34 @@ def render_related(item, by_slug):
             '</a>'
         )
     links = "\n".join(link_parts)
+    heading = item.get("related_label") or f"Read next from {item['title']}"
     return f"""
             <div class="crays-nostr-related">
-              <h2>Where to go next</h2>
+              <h2>{esc(crays_voice(heading))}</h2>
               <div class="crays-nostr-related__links">
                 {links}
               </div>
             </div>
     """
+
+
+def render_article_masthead(item):
+    route = ROUTE_LABELS.get(primary_nav_key(item["slug"]), "Nostr")
+    read = item.get("read", "")
+    meta = "".join(
+        f"<span>{esc(value)}</span>"
+        for value in (route, read, item.get("tag", "Nostr archive"))
+        if value
+    )
+    return "\n".join(
+        [
+            '            <header class="crays-nostr-article-masthead">',
+            f'              <div class="crays-nostr-article-masthead__meta">{meta}</div>',
+            f'              <h2 class="crays-nostr-article-masthead__title">{esc(crays_voice(item["title"]))}</h2>',
+            f'              <p class="crays-nostr-article-masthead__deck">{esc(crays_voice(item["deck"]))}</p>',
+            "            </header>",
+        ]
+    )
 
 
 def render_archive_index():
@@ -4208,7 +5279,6 @@ def render_crays_footer() -> str:
         ("Open Collective", "https://opencollective.com/crays", "/assets/footer-icons/opencollective.svg"),
         ("Reddit", "https://www.reddit.com/r/Crays/", "/assets/footer-icons/reddit.svg"),
         ("Telegram", "https://t.me/craysclub", "/assets/footer-icons/telegram.svg"),
-        ("TikTok", "https://www.tiktok.com/@thorbenbiesenbac1", "/assets/footer-icons/tiktok.svg"),
         ("YouTube", "https://www.youtube.com/@CraysCircle", "/assets/footer-icons/youtube.svg"),
         ("LinkedIn", "https://www.linkedin.com/company/crays/", "/assets/footer-icons/linkedin.svg"),
         ("Instagram", "https://www.instagram.com/crays_circle/", "/assets/footer-icons/instagram.svg"),
@@ -4323,6 +5393,22 @@ def render_page(item, by_slug):
     }
     archive_index = render_archive_index() if item["slug"] == "archive-library" else ""
     full_atlas = render_full_atlas(item["slug"]) if item["slug"] == "archive-library" else ""
+    structured_links = []
+    seen_structured_urls = set()
+    for label, _key, href, _number, _note in PRIMARY_ROUTE_CARDS:
+        url = f"{BASE_URL}{href}"
+        if url not in seen_structured_urls:
+            seen_structured_urls.add(url)
+            structured_links.append({"name": label, "url": url})
+    for related_slug in item.get("related", [])[:12]:
+        related_slug = str(related_slug).strip("/").removeprefix("nostr/")
+        related = by_slug.get(related_slug)
+        if not related:
+            continue
+        url = f"{BASE_URL}/nostr/{related['slug']}/"
+        if url not in seen_structured_urls:
+            seen_structured_urls.add(url)
+            structured_links.append({"name": related["title"], "url": url})
     archive_block = ""
     if archive_index:
         archive_block = f"""
@@ -4365,7 +5451,7 @@ def render_page(item, by_slug):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
-  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260531-nostr-atlas-v12-ci-nav-deploy" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260601-nostr-learning-gate-v1" />
   <script type="application/ld+json">{json.dumps(article, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps(breadcrumb, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps({
@@ -4373,8 +5459,8 @@ def render_page(item, by_slug):
         "@type": "ItemList",
         "name": "Crays Nostr archive navigation",
         "itemListElement": [
-            {"@type": "ListItem", "position": idx + 1, "name": related["title"], "url": f"{BASE_URL}/nostr/{related['slug']}/"}
-            for idx, related in enumerate(sorted(PAGES, key=lambda page_item: page_item["title"])[:200])
+            {"@type": "ListItem", "position": idx + 1, "name": link["name"], "url": link["url"]}
+            for idx, link in enumerate(structured_links)
         ],
     }, separators=(",", ":"))}</script>
 </head>
@@ -4421,6 +5507,7 @@ def render_page(item, by_slug):
           </aside>
 
           <div class="crays-article-content">
+            {render_article_masthead(item)}
             {render_sections(item)}
 
             {render_related(item, by_slug)}
@@ -4435,38 +5522,7 @@ def render_page(item, by_slug):
   </main>
 
   {render_crays_footer()}
-<script>
-(function () {{
-  function filterLinks(input, container, hideWhenEmpty) {{
-    if (!input || !container) return;
-    var links = Array.prototype.slice.call(container.querySelectorAll("a"));
-    var sections = Array.prototype.slice.call(container.querySelectorAll("[data-nostr-index-section]"));
-    input.addEventListener("input", function () {{
-      var query = input.value.trim().toLowerCase();
-      if (hideWhenEmpty) container.hidden = !query;
-      links.forEach(function (link) {{
-        link.hidden = !!query && link.textContent.toLowerCase().indexOf(query) === -1;
-      }});
-      sections.forEach(function (section) {{
-        var visible = Array.prototype.slice.call(section.querySelectorAll("a")).some(function (link) {{
-          return !link.hidden;
-        }});
-        section.hidden = !!query && !visible;
-      }});
-    }});
-  }}
-  filterLinks(
-    document.querySelector("[data-nostr-index-filter]"),
-    document.querySelector("[data-nostr-index]"),
-    false
-  );
-  filterLinks(
-    document.querySelector("[data-nostr-finder-input]"),
-    document.querySelector("[data-nostr-finder-results]"),
-    true
-  );
-}}());
-</script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v1" defer></script>
 </body>
 </html>
 """
@@ -4474,10 +5530,11 @@ def render_page(item, by_slug):
 
 def write_pages():
     by_slug = {p["slug"]: p for p in PAGES}
+    write_search_index()
     for item in PAGES:
         target = PUBLIC / "nostr" / item["slug"] / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(render_page(item, by_slug), encoding="utf-8")
+        target.write_text(clean_generated_html(ensure_external_links_new_tab(render_page(item, by_slug))), encoding="utf-8")
 
 
 def update_existing_nostr_pages():
@@ -4512,15 +5569,30 @@ def update_existing_nostr_pages():
                 '<a href="/nostr/lifestyle-culture/">Lifestyle</a><a href="/nostr/nostr-and-crays/">Nostr and Crays</a>',
                 '<a href="/nostr/lifestyle-culture/">Lifestyle</a><a href="/nostr/people/">People</a><a href="/nostr/nostr-and-crays/">Nostr and Crays</a>',
             )
+        text = re.sub(r'<a\b(?=[^>]*href="https://www\.tiktok\.com/@thorbenbiesenbac1")[^>]*>.*?</a>', "", text, flags=re.IGNORECASE | re.DOTALL)
         text = re.sub(r"\bFor Crays,\s*", "For us, ", text)
         text = re.sub(r"\bfor Crays\b", "for us", text)
         text = re.sub(r"\bCrays can\b", "we can", text)
         text = re.sub(r"\bCrays connects\b", "we connect", text)
         text = re.sub(r"\bCrays uses\b", "we use", text)
+        text = re.sub(r"\bCrays offers\b", "we offer", text)
+        text = re.sub(r"\bCrays provides\b", "we provide", text)
+        text = re.sub(r"\bCrays explains\b", "we explain", text)
+        text = re.sub(r"\bCrays does not\b", "we do not", text)
         text = re.sub(r"\bCrays gives\b", "we get", text)
         text = re.sub(r"\bCrays is\b", "we are", text)
         text = re.sub(r"\bCrays needs\b", "we need", text)
-        path.write_text(text, encoding="utf-8")
+        text = re.sub(r"\bCrays runs on\b", "we run on", text)
+        text = re.sub(r"\bCrays runs\b", "we run", text)
+        text = re.sub(r"\bCrays turns\b", "we turn", text)
+        text = re.sub(r"\bCrays builds\b", "we build", text)
+        text = re.sub(r"\bCrays adds\b", "we add", text)
+        text = re.sub(r"\bCrays wants\b", "we want", text)
+        text = re.sub(r"\bNostr gives Crays\b", "Nostr gives us", text)
+        text = re.sub(r"\bNostr lets Crays\b", "Nostr lets us", text)
+        text = re.sub(r"(?<!www\.)\bCrays\.net\b", "Crays", text, flags=re.IGNORECASE)
+        text = ensure_external_links_new_tab(text)
+        path.write_text(clean_generated_html(text), encoding="utf-8")
 
 
 def update_sitemap():
@@ -4544,7 +5616,7 @@ def update_sitemap():
   </url>"""
         )
     text = text.replace("\n</urlset>", "\n" + "\n".join(entries) + "\n</urlset>")
-    sitemap.write_text(text, encoding="utf-8")
+    sitemap.write_text(clean_generated_html(text), encoding="utf-8")
 
 
 def main():

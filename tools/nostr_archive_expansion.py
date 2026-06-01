@@ -207,18 +207,23 @@ def make_nip_inventory_pages(page, section, global_sources, nip_sources, invento
         slug = f"nips/nip-{number}"
         headings = nip.get("headings", [])
         focus, product_area = nip_kind(number, title, headings)
+        mirror_number = str(int(number)) if str(number).isdigit() else str(number)
         cards.append((f"NIP-{number}", f"{title}. Focus: {focus}.", f"/nostr/{slug}/"))
         heading_text = human_join(headings[:5], "the core specification sections")
+        summary_signal = re.sub(r"\s+", " ", nip.get("summary_seed", "")).strip()
+        if len(summary_signal) > 420:
+            summary_signal = summary_signal[:420].rsplit(" ", 1)[0] + "..."
         pages.append(
             page(
                 slug,
                 f"NIP-{number}: {title}",
-                f"Archive reference for NIP-{number}: what it covers, why it exists and how Crays should read it without copying the standards text.",
-                f"NIP-{number} belongs to the {focus} area of Nostr. This page gives Crays readers an independent explanation and a navigation point.",
+                f"Archive reference for NIP-{number}: what it covers, which product behavior it can unlock and how we should read it without copying the standards text.",
+                f"NIP-{number} belongs to the {focus} area of Nostr. This page gives our readers an independent explanation, a source trail and a navigation point.",
                 [
                     section("What the NIP covers", [
                         f"The captured structure for this NIP points to {heading_text}. That places the document in the product area of {product_area}.",
-                        "A NIP is not a landing page and not a promise that every client supports the feature. It is an interoperability document. Readers should treat it as a map of what builders may implement, not as a guarantee of consumer-ready behavior."
+                        "A NIP is not a landing page and not a promise that every client supports the feature. It is an interoperability document. Readers should treat it as a map of what builders may implement, not as a guarantee of consumer-ready behavior.",
+                        f"The source signal begins around this technical shape: {summary_signal}" if summary_signal else "The source signal needs to be checked in the live repository before implementation. We keep that uncertainty visible rather than pretending the archive is a spec replacement.",
                     ], [
                         ("NIP number", f"NIP-{number}."),
                         ("Primary area", focus),
@@ -228,22 +233,53 @@ def make_nip_inventory_pages(page, section, global_sources, nip_sources, invento
                         f"In plain language, this specification helps clients, relays or services speak a more common language around {product_area}. The value is interoperability: one app can create or read a structure that another app can recognize.",
                         "The tradeoff is that interoperability by itself does not create good UX. A product still has to decide defaults, warnings, labels, recovery paths, empty states, moderation behavior and what happens when another client only partially supports the same convention."
                     ]),
+                    section("Data model, actors and responsibilities", [
+                        "Read every NIP through three questions. First: what object is being standardized? That may be an event kind, a tag pattern, an authorization event, a relay message, a list, a wallet request, a file reference or a metadata convention. Second: who has to understand it? A client alone is different from a relay, wallet, signer, storage server or indexer. Third: what does a user actually experience when the convention works?",
+                        f"For NIP-{number}, the likely product area is {product_area}. That means the implementation has to be evaluated at the boundary between protocol validity and user comprehension. A technically valid event still fails if the user cannot see what happened, recover from a missing relay, understand a permission prompt or tell whether another client supports the same convention.",
+                    ], [
+                        ("Object", "Identify the event, tag, request, relay behavior or adjacent service contract before writing product copy."),
+                        ("Actor", "Separate client work from relay work, signer work, wallet work, storage work and indexer work."),
+                        ("Persistence", "Ask where the data lives, how it is updated, and what breaks when relays prune or reject it."),
+                        ("Verification", "Ask what can be checked cryptographically and what still depends on trust, policy or UI."),
+                    ]),
                     section("Implementation questions", [
                         "Before using this NIP in a product, a team should ask whether it is stable enough, whether key material is exposed, whether relays need special support, whether the user can understand the consequence, and whether there is a fallback when support is missing.",
-                        f"For a Crays product, the next question is whether NIP-{number} helps profiles, content access, status, payments, venue context, voting, governance or developer operations. If it does not serve one of those paths, it may belong in the archive but not in the first product build."
+                        f"For a Crays product, the next question is whether NIP-{number} helps profiles, content access, status, payments, venue context, voting, governance or developer operations. If it does not serve one of those paths, it may belong in the archive but not in the first product build.",
+                        "The best implementation notes are concrete: supported clients, tested relays, signer prompts, wallet limits, exact event kinds, visible failure states and plain-language wording. If those are unknown, the page should say so and point the reader to the canonical source."
                     ], [
                         ("Client support", "Which current clients support this NIP well?"),
                         ("Relay support", "Does the feature require relay behavior beyond storage and subscriptions?"),
                         ("Security", "Does it affect signing, private messages, authentication, payments or identity?"),
                         ("Crays fit", "Does it strengthen a real Crays workflow?"),
                     ]),
+                    section("Common failure modes", [
+                        "NIP pages need failure modes because readers learn faster when the edge case is named. A standard can fail through partial adoption, stale relay metadata, confusing permission prompts, bad default relays, weak moderation policy, invisible indexing, metadata leaks, wallet limits, unsupported event kinds or a client that hides too much of the underlying state.",
+                        f"That is especially important for NIP-{number}. The reader should leave with a usable mental model: what the NIP tries to coordinate, which parts must cooperate, and what to check before trusting it in a real product path."
+                    ], [
+                        ("Partial adoption", "One client writes the structure, another client ignores or misreads it."),
+                        ("Relay mismatch", "A relay rejects, prunes, gates or fails to index the relevant event."),
+                        ("UX ambiguity", "The user sees a button but not the permission, payment, identity or data consequence behind it."),
+                        ("Security drift", "Convenience slowly teaches unsafe key, wallet or authentication behavior."),
+                    ]),
                     section("Crays relevance", [
                         f"Crays should read NIP-{number} through a product lens. The goal is not to expose NIP numbers to normal users. The goal is to turn useful standards into clear actions: create a profile, follow, publish, buy access, receive a zap, show status, enter a venue, vote, authenticate or participate in future governance.",
                         "If this NIP becomes relevant to a Crays surface, the page should be expanded with implementation notes, screenshots, supported clients and tested relay behavior."
                     ]),
+                    section("Source trail and next reading", [
+                        "The canonical source remains the nostr-protocol/nips repository. The readable mirror is useful for browsing, but builders should verify implementation details against the repository before shipping.",
+                        "Use the related links to move from the standard into the product area. A NIP without a neighboring concept page is too isolated; a concept page without the relevant NIP is too soft."
+                    ], cards=[
+                        (f"NIP-{number} canonical source", "Open the GitHub source before making implementation claims.", nip.get("url", "")),
+                        (f"NIP-{number} readable mirror", "Open the readable mirror when you want a faster browser-friendly spec view.", f"https://nips.nostr.com/{mirror_number}"),
+                        ("Complete NIP index", "Return to the full standards shelf.", "/nostr/nips/complete-index/"),
+                        ("Developer tools", "Move from standard to implementation tooling.", "/nostr/developer-tools/"),
+                    ]),
                 ],
                 tag="Nostr NIP archive",
-                sources=[source(f"NIP-{number} source", nip.get("url", ""), "Primary NIP document in the nostr-protocol/nips repository.")] + global_sources[:3],
+                sources=[
+                    source(f"NIP-{number} source", nip.get("url", ""), "Primary NIP document in the nostr-protocol/nips repository."),
+                    source(f"NIP-{number} mirror", f"https://nips.nostr.com/{mirror_number}", "Readable NIP mirror captured in the Excel source inventory."),
+                ] + global_sources[:3],
                 related=["nips/complete-index", "nips", "developer-tools", "events-and-kinds", "source-inventory"],
                 keywords=[f"NIP-{number}", title, focus, "Nostr NIP"],
                 read="NIP reference chapter",
