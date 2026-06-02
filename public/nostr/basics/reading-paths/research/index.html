@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research Reading Path | Crays Nostr Archive</title>
+  <meta name="description" content="A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Nostr research path, Nostr sources, Nostr empirical analysis, Nostr standards" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Research Reading Path | Crays Nostr Archive" />
+  <meta property="og:description" content="A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance." />
+  <meta property="og:url" content="https://www.crays.org/nostr/basics/reading-paths/research/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/basics/reading-paths/research/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/basics/reading-paths/research/","headline":"Research Reading Path","description":"A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Research Reading Path","item":"https://www.crays.org/nostr/basics/reading-paths/research/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"What is Nostr?","url":"https://www.crays.org/nostr/basics/what-is-nostr/"},{"@type":"ListItem","position":15,"name":"Nostr Resources and Links","url":"https://www.crays.org/nostr/basics/resources/"},{"@type":"ListItem","position":16,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"},{"@type":"ListItem","position":17,"name":"Nostr Research Map","url":"https://www.crays.org/nostr/library/source-inventory/"},{"@type":"ListItem","position":18,"name":"Nostr Relay Market Directory","url":"https://www.crays.org/nostr/relays/relay-market-directory/"},{"@type":"ListItem","position":19,"name":"Blossom Servers, Relays and Nostr Media Storage","url":"https://www.crays.org/nostr/library/deep-dives/blossom-servers-and-relays/"},{"@type":"ListItem","position":20,"name":"NIP-05: DNS-Based Identifiers","url":"https://www.crays.org/nostr/nips/nip-05-identifiers/"},{"@type":"ListItem","position":21,"name":"NIP-19: npub, nsec and Nostr Addresses","url":"https://www.crays.org/nostr/nips/nip-19-addresses/"},{"@type":"ListItem","position":22,"name":"NIP-94: File Metadata","url":"https://www.crays.org/nostr/nips/nip-94-files/"},{"@type":"ListItem","position":23,"name":"NIP-96: HTTP File Storage","url":"https://www.crays.org/nostr/nips/nip-96-file-storage/"},{"@type":"ListItem","position":24,"name":"NIP-07: Browser Signers","url":"https://www.crays.org/nostr/apps/nip-07-signers/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-start">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics" aria-current="page">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+
+
+    <article>
+
+      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-start/nostr-protocol-stack.jpeg); --nostr-hero-bg-position: center;">
+        <div class="crays-article-shell crays-article-hero__grid">
+          <div class="crays-article-hero__copy">
+            <p class="crays-article-eyebrow">Nostr reading path</p>
+            <h1>Research Reading Path</h1>
+            <p class="crays-article-deck">A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance.</p>
+          </div>
+
+            <div class="crays-nostr-hero-visual" style="--nostr-hero-visual-position: center;">
+              <figure>
+                <img src="/assets/nostr-start/munstr-thumbnail.webp" alt="Research shelves connect sources, articles and event archives." loading="eager" decoding="async" referrerpolicy="no-referrer" />
+              </figure>
+
+              <div class="crays-nostr-hero-signal">
+                <span>Route</span>
+                <strong>The clean Nostr door</strong>
+                <small>Keys, relays, clients and why any of this matters.</small>
+              </div>
+              <div class="crays-nostr-hero-pins">
+                <a href="/nostr/privacy/keys-identity/">Keys</a>
+<a href="/nostr/apps/clients/">Clients</a>
+<a href="/nostr/relays/">Relays</a>
+              </div>
+            </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <section class="crays-nostr-route-board" aria-label="Nostr archive navigation" data-nostr-route="start">
+        <div class="crays-article-reader-shell crays-nostr-route-board__inner">
+          <div class="crays-nostr-route-board__top">
+            <div class="crays-nostr-route-board__intro">
+              <span>Start route</span>
+              <h2>Start guide</h2>
+              <p>Begin here when you want the map before the maze: what a key is, why relays exist, how clients differ, where Bitcoin fits and Why we care.</p>
+            </div>
+            <div class="crays-nostr-archive-finder" role="search">
+              <label for="crays-nostr-finder">Search the Nostr atlas</label>
+              <input id="crays-nostr-finder" type="search" placeholder="Search apps, NIPs, people, Crays topics" data-nostr-finder-input />
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
+            </div>
+          </div>
+          <nav class="crays-nostr-route-cards" aria-label="Main Nostr routes">
+            <a class="crays-nostr-route-card" data-route="start" href="/nostr/start/" aria-current="page"><span aria-hidden="true">01</span><strong>Start</strong><small>The clean mental model: keys, clients, relays and why Nostr is useful.</small></a><a class="crays-nostr-route-card" data-route="people" href="/nostr/people/"><span aria-hidden="true">02</span><strong>People</strong><small>Builders, creators, funders, events and culture around the protocol.</small></a><a class="crays-nostr-route-card" data-route="apps" href="/nostr/apps/"><span aria-hidden="true">03</span><strong>Apps</strong><small>Our stack first, then the wider client, signer, wallet and tool market.</small></a><a class="crays-nostr-route-card" data-route="relays" href="/nostr/relays/"><span aria-hidden="true">04</span><strong>Relays</strong><small>Live infrastructure: public relays, paid relays, monitoring and venue paths.</small></a><a class="crays-nostr-route-card" data-route="nips" href="/nostr/nips/"><span aria-hidden="true">05</span><strong>NIPs</strong><small>The standards shelf translated into product consequences.</small></a><a class="crays-nostr-route-card" data-route="privacy" href="/nostr/privacy/"><span aria-hidden="true">06</span><strong>Privacy</strong><small>Keys, signing, trust, censorship resistance and safer account control.</small></a><a class="crays-nostr-route-card" data-route="wallets" href="/nostr/wallets/"><span aria-hidden="true">07</span><strong>Wallets</strong><small>Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records.</small></a><a class="crays-nostr-route-card" data-route="media" href="/nostr/media/"><span aria-hidden="true">08</span><strong>Media</strong><small>Creators, publishing, music, video, long-form posts and fan access.</small></a><a class="crays-nostr-route-card" data-route="commerce" href="/nostr/commerce/"><span aria-hidden="true">09</span><strong>Commerce</strong><small>Creator sales, marketplaces, FoundUPS, revenue paths and investor context.</small></a><a class="crays-nostr-route-card" data-route="governance" href="/nostr/governance/"><span aria-hidden="true">10</span><strong>Governance</strong><small>Badges, voting, reputation, moderation, policy and DAO-ready decisions.</small></a><a class="crays-nostr-route-card" data-route="crays" href="/nostr/crays/"><span aria-hidden="true">11</span><strong>Crays</strong><small>How Nostr plugs into our profiles, venues, status and governance.</small></a><a class="crays-nostr-route-card" data-route="library" href="/nostr/library/"><span aria-hidden="true">12</span><strong>Library</strong><small>The full archive, research database, source map and long-read routes.</small></a>
+          </nav>
+          <div class="crays-nostr-route-groups">
+            <div class="crays-nostr-route-group"><strong>Read first</strong><div><a href="/nostr/basics/what-is-nostr/">What is Nostr?</a><a href="/nostr/basics/getting-started/">Getting started</a><a href="/nostr/basics/why-nostr/">Why Nostr matters</a><a href="/nostr/basics/glossary/">Glossary</a><a href="/nostr/basics/resources/">Useful links</a><a href="/nostr/basics/nostr-media-article-video-archive/">Media and video archive</a></div></div><div class="crays-nostr-route-group"><strong>Choose your route</strong><div><a href="/nostr/basics/reading-paths/beginner/">Beginner path</a><a href="/nostr/basics/reading-paths/developer/">Developer path</a><a href="/nostr/basics/reading-paths/creator/">Creator path</a><a href="/nostr/basics/reading-paths/operator/">Operator path</a><a href="/nostr/basics/reading-paths/culture/">Culture path</a><a href="/nostr/basics/reading-paths/research/" aria-current="page">Research path</a></div></div><div class="crays-nostr-route-group"><strong>Useful next</strong><div><a href="/nostr/library/search-atlas/">Search Atlas</a><a href="/nostr/community/">Community</a><a href="/nostr/community/discussions/">Discussions</a><a href="/nostr/community/new-findings/">New findings</a><a href="/nostr/privacy/privacy-security/">Privacy and security</a><a href="/nostr/privacy/search-and-web-of-trust/">Search and trust</a><a href="/nostr/privacy/moderation-discovery/">Moderation and discovery</a><a href="/nostr/people/nostr-vs-mastodon/">Nostr vs Mastodon</a><a href="/nostr/basics/resources/">Crays Circle GitHub</a></div></div>
+          </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="start">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Basics</span>
+              <strong>Start Exploring</strong>
+              <small><b>13 pages in this route</b><em>Core concepts, Reading paths</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>Core concepts</h3><div><a href="/nostr/start/">All about Nostr</a>
+<a href="/nostr/basics/getting-started/">Getting Started with Nostr</a>
+<a href="/nostr/basics/glossary/">Nostr Glossary</a>
+<a href="/nostr/basics/nostr-media-article-video-archive/">Nostr Media, Articles and Video Archive</a>
+<a href="/nostr/basics/resources/">Nostr Resources and Links</a>
+<a href="/nostr/basics/what-is-nostr/">What is Nostr?</a>
+<a href="/nostr/basics/why-nostr/">Why Nostr Matters</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Reading paths</h3><div><a href="/nostr/basics/reading-paths/beginner/">Beginner Reading Path</a>
+<a href="/nostr/basics/reading-paths/creator/">Creator Reading Path</a>
+<a href="/nostr/basics/reading-paths/culture/">Culture Reading Path</a>
+<a href="/nostr/basics/reading-paths/developer/">Developer Reading Path</a>
+<a href="/nostr/basics/reading-paths/operator/">Operator and Venue Reading Path</a>
+<a href="/nostr/basics/reading-paths/research/" aria-current="page">Research Reading Path</a></div></section>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+
+      <section class="crays-article-main">
+        <div class="crays-article-reader-shell crays-article-layout">
+          <aside class="crays-article-toc" aria-label="In this article">
+            <p>In this article</p>
+            <a href="#separate-source-types-first"><span>01</span>Separate source types first</a>
+<a href="#use-nips-as-moving-standards-not-scripture"><span>02</span>Use NIPs as moving standards, not scripture</a>
+<a href="#measure-relay-claims-against-reality"><span>03</span>Measure relay claims against reality</a>
+<a href="#audit-clients-by-behavior"><span>04</span>Audit clients by behavior</a>
+<a href="#watch-the-media-storage-shift"><span>05</span>Watch the media-storage shift</a>
+<a href="#build-a-repeatable-note-format"><span>06</span>Build a repeatable note format</a>
+<a href="#end-with-a-decision-not-a-folder"><span>07</span>End with a decision, not a folder</a>
+<a href="#a-claim-taxonomy-for-every-page"><span>08</span>A claim taxonomy for every page</a>
+<a href="#how-to-research-a-nip-without-fooling-yourself"><span>09</span>How to research a NIP without fooling yourself</a>
+<a href="#how-to-research-relays"><span>10</span>How to research relays</a>
+<a href="#how-to-research-clients"><span>11</span>How to research clients</a>
+<a href="#the-output-of-good-research"><span>12</span>The output of good research</a>
+<a href="#how-to-place-research-reading-path-on-the-map"><span>13</span>How to place Research Reading Path on the map</a>
+<a href="#what-research-reading-path-should-help-you-decide"><span>14</span>What Research Reading Path should help you decide</a>
+<a href="#the-working-example-behind-research-reading-path"><span>15</span>The working example behind Research Reading Path</a>
+<a href="#source-discipline-for-research-reading-path"><span>16</span>Source discipline for Research Reading Path</a>
+          </aside>
+
+          <div class="crays-article-content">
+                        <header class="crays-nostr-article-masthead">
+              <div class="crays-nostr-article-masthead__meta"><span>Start</span><span>7 min read</span><span>Nostr reading path</span></div>
+              <h2 class="crays-nostr-article-masthead__title">Research Reading Path</h2>
+              <p class="crays-nostr-article-masthead__deck">A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance.</p>
+            </header>
+
+
+            <p>This path is for research mode. You are not trying to collect links. You are trying to know which claims are standards, which are product choices, which are cultural beliefs and which are still untested.</p>
+<div class="crays-nostr-reader-note"><strong>How to verify Nostr claims</strong><span>A route for careful analysis: primary standards, empirical relay data, source triangulation, client claims, NIP drift, directories and our product relevance.</span></div>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="/assets/stock-lifestyle/crays-contact-office-lounge-business-team.jpg" alt="The useful version of sovereignty sits at the table with the reader." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>The useful version of sovereignty sits at the table with the reader.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-association-22-crays-project-and-partner-discussion-connected-to-the-governance-la.webp" alt="A big archive only works when every shelf has a clear next door." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>A big archive only works when every shelf has a clear next door.</figcaption></figure>
+        </div>
+
+<h2 id="separate-source-types-first">Separate source types first</h2>
+<p>A NIP, a client website, a GitHub README, a <a href="/nostr/community/projects/relay-monitor/">relay monitor</a>, a directory listing, a blog essay and an academic measurement paper all answer different questions. Mixing them creates fake certainty.</p>
+<p>Use primary standards for what software may implement. Use repos for what code appears to do. Use monitors for live infrastructure clues. Use essays for framing. Use empirical papers for measured trade-offs and limitations.</p>
+<h2 id="use-nips-as-moving-standards-not-scripture">Use NIPs as moving standards, not scripture</h2>
+<p>The <a href="/nostr/nips/complete-index/">NIPs</a> repository itself says the documents describe what may be implemented by compatible relay and client software. That means a NIP can be optional, draft, final, mandatory or unrecommended. A product&#x27;s support for a NIP is evidence, not a guarantee of quality.</p>
+<p>Track status and adoption separately. NIP-01 is foundational. <a href="/nostr/nips/nip-05-identifiers/">NIP-05</a> and <a href="/nostr/nips/nip-19-addresses/">NIP-19</a> are highly practical. <a href="/nostr/nips/nip-96-file-storage/">NIP-96</a> is useful historically but now points you toward <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom</a> for newer file storage thinking.</p>
+<h2 id="measure-relay-claims-against-reality">Measure relay claims against reality</h2>
+<p>Relay pages can advertise features through NIP-11. Relay monitors can show liveness, latency and discovered URLs. Academic work can show broader patterns such as availability, replication overhead and decentralization limits. None of those views is complete alone.</p>
+<p>When a relay matters to a product, test it directly. Publish, query, authenticate, inspect OK and CLOSED messages, check retention, simulate downtime and compare behavior across <a href="/nostr/apps/clients/">clients</a>.</p>
+<h2 id="audit-clients-by-behavior">Audit clients by behavior</h2>
+<p>Client claims should be tested through actions: key handling, signer support, relay list behavior, profile fetching, <a href="/nostr/apps/category-media/">media</a> rendering, search, wallet prompts, <a href="/nostr/community/moderation/">moderation</a> controls and export paths. A beautiful UI can still make dangerous key choices.</p>
+<p>The most useful research notes are concrete. Which signer did it use? Which event kinds did it publish? Which <a href="/nostr/relays/">relays</a> did it read? What broke in a second client? What warning did the user see?</p>
+<h2 id="watch-the-media-storage-shift">Watch the media-storage shift</h2>
+<p>File storage is a good example of Nostr drift. <a href="/nostr/nips/nip-96-file-storage/">NIP-96</a> described <a href="/nostr/nips/nip-96-file-storage/">HTTP file storage</a> integration, but the current <a href="/nostr/nips/complete-index/">NIPs</a> index marks it unrecommended in favor of <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom</a>. Blossom uses HTTP servers, sha256-addressed blobs, <a href="/nostr/basics/getting-started/">Nostr keys</a> and BUD documents.</p>
+<p>A research page should not freeze the ecosystem at the first standard it finds. It should explain the path: why <a href="/nostr/apps/category-media/">media</a> cannot simply live inside ordinary <a href="/nostr/relays/">relays</a>, what <a href="/nostr/nips/nip-94-files/">NIP-94</a> describes, why <a href="/nostr/nips/nip-96-file-storage/">NIP-96</a> mattered and why <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom</a> became important.</p>
+<h2 id="build-a-repeatable-note-format">Build a repeatable note format</h2>
+<p>For every important source, capture the same fields: source type, owner, URL, last checked date, claim, evidence, relevant <a href="/nostr/nips/complete-index/">NIPs</a>, product risk, Why it matters to us and open questions. That turns research from browsing into a usable operating memory.</p>
+<p>The Excel workbook already points in this direction by separating <a href="/nostr/nips/complete-index/">NIPs</a>, <a href="/nostr/apps/clients/">clients</a>, <a href="/nostr/community/developer/">developer</a> stack, <a href="/nostr/relays/">relays</a>, reads and directories. The next level is page-specific synthesis: not just where the link points, but what decision it helps you make.</p>
+<ul class="crays-article-list">
+<li><strong>Claim.</strong> What is being asserted?</li>
+<li><strong>Evidence.</strong> Where can we verify it?</li>
+<li><strong>Adoption.</strong> Who actually implements it?</li>
+<li><strong>Risk.</strong> What breaks if the claim is wrong?</li>
+<li><strong>Product use.</strong> How does this affect Crays, venues, <a href="/nostr/community/commerce/">commerce</a> or <a href="/nostr/governance/field-guide/governance/">governance</a>?</li>
+</ul>
+<h2 id="end-with-a-decision-not-a-folder">End with a decision, not a folder</h2>
+<p>Research should change judgment. After reading, you should know whether a topic is ready for product use, needs a prototype, belongs in the library, needs monitoring or should be avoided for now.</p>
+<p>That is how we keep a 1400-plus page archive useful. Every page should help you decide what to trust, what to test and what to read next.</p>
+<h2 id="a-claim-taxonomy-for-every-page">A claim taxonomy for every page</h2>
+<p>Mark each claim as one of five types: standard claim, implementation claim, measurement claim, cultural claim or our product claim. A standard claim needs a NIP. An implementation claim needs a repo or live product. A measurement claim needs data. A cultural claim needs context. A product claim needs our own architecture or roadmap logic.</p>
+<p>This taxonomy prevents weak writing. It forces every paragraph to know what kind of truth it is trying to tell.</p>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="/assets/stock-lifestyle/crays-finance-intro-association-team.jpg" alt="Research feels better when it looks like a working table, not a storage unit." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Research feels better when it looks like a working table, not a storage unit.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-hospitality-ref-travel-map.jpg" alt="The library is the map readers use when curiosity gets serious." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>The library is the map readers use when curiosity gets serious.</figcaption></figure>
+        </div>
+
+<h2 id="how-to-research-a-nip-without-fooling-yourself">How to research a NIP without fooling yourself</h2>
+<p>Read the NIP status, scope and examples. Check whether major <a href="/nostr/apps/clients/">clients</a> or libraries implement it. Look for adjacent or superseding <a href="/nostr/nips/complete-index/">NIPs</a>. Then test a small event yourself if the topic is important. Do not infer adoption from existence.</p>
+<p><a href="/nostr/nips/nip-96-file-storage/">NIP-96</a> is the perfect warning: it exists, it is useful history, but the NIP table now marks it unrecommended in favor of <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom</a>. A shallow article would miss that shift.</p>
+<h2 id="how-to-research-relays">How to research relays</h2>
+<p>Use NIP-11 documents, relay monitors, direct publish/read tests and software repositories together. Relay <a href="/nostr/apps/category-discovery/">discovery</a> pages tell you what is visible. Direct tests tell you what happens to your <a href="/nostr/nips/events-and-kinds/">events</a>. Repositories tell you what the operator could be running, not necessarily how it is configured.</p>
+<h2 id="how-to-research-clients">How to research clients</h2>
+<p>For a client, record platforms, login method, signer support, supported event kinds, relay strategy, wallet flow, <a href="/nostr/apps/category-media/">media</a> handling, <a href="/nostr/community/moderation/">moderation</a> controls, export or migration behavior, visible maintenance and whether data remains legible in other <a href="/nostr/apps/clients/">clients</a>.</p>
+<div class="crays-nostr-hub-grid">
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="https://nostorg.github.io/clients/" target="_blank" rel="noreferrer noopener"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=nostorg.github.io&amp;sz=128" alt="Nostorg client matrix icon" loading="lazy" decoding="async" /><strong>Nostorg client matrix</strong><span>Compare client capabilities.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="https://www.nostrapps.com/" target="_blank" rel="noreferrer noopener"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=nostrapps.com&amp;sz=128" alt="Nostr Apps icon" loading="lazy" decoding="async" /><strong>Nostr Apps</strong><span>Find clients and tool categories.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="https://nostrcompass.org/en/projects/" target="_blank" rel="noreferrer noopener"><img class="crays-nostr-card-media" data-card-kind="topic" src="https://www.google.com/s2/favicons?domain=nostrcompass.org&amp;sz=128" alt="Nostr Compass icon" loading="lazy" decoding="async" /><strong>Nostr Compass</strong><span>Project discovery and ecosystem map.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="https://github.com/nostrability/nostrability" target="_blank" rel="noreferrer noopener"><img class="crays-nostr-card-media" data-card-kind="topic" src="https://www.google.com/s2/favicons?domain=github.com&amp;sz=128" alt="Nostrability icon" loading="lazy" decoding="async" /><strong>Nostrability</strong><span>Interoperability testing direction.</span></a>
+</div>
+<h2 id="the-output-of-good-research">The output of good research</h2>
+<p>Good research should produce a decision: explain, prototype, monitor, adopt, avoid or archive. A page that only says this exists is not enough. A page should tell you whether the thing is mature, risky, misunderstood, strategically relevant or mainly useful as background.</p>
+<h2 id="how-to-place-research-reading-path-on-the-map">How to place Research Reading Path on the map</h2>
+<p>Read Research Reading Path as part of the <a href="/nostr/community/general-nostr/">Start</a> route, not as an isolated entry. Its main surface is first-principles learning: <a href="/nostr/privacy/keys-identity/">keys</a>, <a href="/nostr/apps/clients/">clients</a>, <a href="/nostr/relays/">relays</a>, <a href="/nostr/nips/events-and-kinds/">events</a> and the first safe mental model. That framing matters because a Nostr page is useful only when you can see which layer it belongs to and which layer it does not solve by itself.</p>
+<p>The first question is practical: what changes for you if Research Reading Path works well? Sometimes the answer is safer signing, sometimes better relay <a href="/nostr/apps/category-discovery/">discovery</a>, sometimes clearer <a href="/nostr/apps/category-media/">media</a> storage, sometimes a stronger source trail. Keep that question in front of you and the page becomes easier to judge.</p>
+<ul class="crays-article-list">
+<li><strong>Layer.</strong> <a href="/nostr/community/general-nostr/">Start</a> is the parent route, so the page should send you back to that shelf and sideways into adjacent concepts.</li>
+<li><strong>Evidence.</strong> The current source trail starts with <a href="/nostr/basics/what-is-nostr/">Nostr protocol</a> repository, <a href="/nostr/apps/developer-tools/">Nostr NIPs</a>, <a href="/nostr/library/source-inventory/nostr-how/">nostr.how</a>, <a href="/nostr/library/source-inventory/nostr-com/">nostr.com</a>. Treat those as anchors, then compare product behavior and NIP support.</li>
+</ul>
+<div class="crays-nostr-hub-grid">
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="/nostr/basics/what-is-nostr/"><span class="crays-nostr-card-icon" aria-hidden="true">SH</span><strong>Start hub</strong><span>Use the parent route when you need the wider shelf around Research Reading Path.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="/nostr/basics/resources/"><span class="crays-nostr-card-icon" aria-hidden="true">RE</span><strong>Resources</strong><span>Read this beside Research Reading Path when you want the neighboring concept.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="/nostr/library/archive-library/"><span class="crays-nostr-card-icon" aria-hidden="true">AL</span><strong>Archive Library</strong><span>Read this beside Research Reading Path when you want the neighboring concept.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="topic" href="/nostr/library/source-inventory/"><span class="crays-nostr-card-icon" aria-hidden="true">SI</span><strong>Source Inventory</strong><span>Read this beside Research Reading Path when you want the neighboring concept.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="protocol" href="/nostr/nips/nip-05-identifiers/"><span class="crays-nostr-card-icon" aria-hidden="true">05</span><strong>NIP-05</strong><span>This concept is part of the working vocabulary behind Research Reading Path.</span></a>
+</div>
+<h2 id="what-research-reading-path-should-help-you-decide">What Research Reading Path should help you decide</h2>
+<p>A good page about Research Reading Path should leave you with a decision, not just recognition. You should know whether it is a <a href="/nostr/community/protocol/">protocol</a> primitive, a client behavior, a relay operation, a product example, a research source or our implementation question. That distinction keeps the archive from becoming a flat glossary.</p>
+<p>The common mistake is starting with jargon before the reader knows what problem the <a href="/nostr/community/protocol/">protocol</a> solves. We avoid that by making the claim, the evidence and the next step visible. If a statement depends on a NIP, the page should point to that NIP. If it depends on a project, the page should show the project source. If it affects user safety, the page should say what can fail.</p>
+<h2 id="the-working-example-behind-research-reading-path">The working example behind Research Reading Path</h2>
+<p>Use this page with a concrete mental test: a reader should be able to explain why their identity can move before they learn every NIP number. That example is more useful than a generic definition because Nostr is not one product. The same signed event can be read by different <a href="/nostr/apps/clients/">clients</a>, stored by different <a href="/nostr/relays/">relays</a> and interpreted through different product choices.</p>
+<p>This is also why internal links matter. When the page mentions <a href="/nostr/privacy/keys-identity/">keys</a>, <a href="/nostr/apps/clients/">clients</a>, <a href="/nostr/relays/">relays</a>, <a href="/nostr/nips/events-and-kinds/">events</a>, <a href="/nostr/wallets/nip-57-zaps-lightning/">zaps</a>, <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom</a>, <a href="/nostr/wallets/deep-dives/safebox-sovereign-wallet-records/">Cashu</a>, <a href="/nostr/commerce/deep-dives/foundups-agent-compute-focus-network/">FoundUPS</a> or <a href="/nostr/nips/complete-index/">NIPs</a>, those words should lead to the page that explains the concept more deeply. The goal is not to trap you in tabs; the goal is to let you move with context.</p>
+<h2 id="source-discipline-for-research-reading-path">Source discipline for Research Reading Path</h2>
+<p>The source list is part of the content, not decoration. For Research Reading Path, use primary <a href="/nostr/community/protocol/">protocol</a> documents first when the claim is technical, project repositories or product pages when the claim is about an app, and research or directory sources when the claim is about ecosystem position. If the sources disagree, the page should show the uncertainty instead of smoothing it away.</p>
+<p>That source discipline is how a large archive stays trustworthy. It also helps learning: you get a short explanation first, then a route to the source that proves or complicates it. The page should feel like a guided chapter, but the evidence should still be close enough to inspect.</p>
+
+
+
+            <div class="crays-nostr-related">
+              <h2>Verify the next claim</h2>
+              <div class="crays-nostr-related__links">
+                <a href="/nostr/basics/what-is-nostr/"><span class="crays-nostr-card-icon" aria-hidden="true">WI</span><strong>What is Nostr?</strong><small>Core concepts</small></a>
+<a href="/nostr/basics/resources/"><span class="crays-nostr-card-icon" aria-hidden="true">NR</span><strong>Nostr Resources and Links</strong><small>Research map</small></a>
+<a href="/nostr/library/archive-library/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Crays Nostr Archive Library</strong><small>Core concepts</small></a>
+<a href="/nostr/library/source-inventory/"><span class="crays-nostr-card-icon" aria-hidden="true">NR</span><strong>Nostr Research Map</strong><small>Research map</small></a>
+<a href="/nostr/nips/"><span class="crays-nostr-card-icon" aria-hidden="true">NA</span><strong>NIPs and Standards</strong><small>NIPs hub</small></a>
+<a href="/nostr/relays/relay-market-directory/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Nostr Relay Market Directory icon" loading="lazy" decoding="async" /><strong>Nostr Relay Market Directory</strong><small>Relay market</small></a>
+<a href="/nostr/library/deep-dives/blossom-servers-and-relays/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Blossom Servers, Relays and Nostr Media Storage</strong><small>Deep dives</small></a>
+<a href="/nostr/nips/nip-05-identifiers/"><span class="crays-nostr-card-icon" aria-hidden="true">05</span><strong>NIP-05: DNS-Based Identifiers</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/nips/nip-19-addresses/"><span class="crays-nostr-card-icon" aria-hidden="true">19</span><strong>NIP-19: npub, nsec and Nostr Addresses</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/nips/nip-94-files/"><span class="crays-nostr-card-icon" aria-hidden="true">94</span><strong>NIP-94: File Metadata</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/nips/nip-96-file-storage/"><span class="crays-nostr-card-icon" aria-hidden="true">96</span><strong>NIP-96: HTTP File Storage</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/apps/nip-07-signers/"><span class="crays-nostr-card-icon" aria-hidden="true">07</span><strong>NIP-07: Browser Signers</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/relays/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Relays and Infrastructure icon" loading="lazy" decoding="async" /><strong>Relays and Infrastructure</strong><small>Relays hub</small></a>
+<a href="/nostr/apps/clients/"><span class="crays-nostr-card-icon" aria-hidden="true">NC</span><strong>Nostr Clients</strong><small>Apps and clients</small></a>
+<a href="/nostr/nips/events-and-kinds/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nostr Events and Event Kinds</strong><small>Core concepts</small></a>
+              </div>
+            </div>
+
+
+            <div class="crays-article-end">
+              <a href="/nostr/">Back to the Crays Nostr page</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

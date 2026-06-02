@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creator Economy: Nostr Field Guide | Crays Nostr Archive</title>
+  <meta name="description" content="A reader-friendly Crays guide to letting creators keep identity, audience and payment paths." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Creator Economy, Nostr field guide, Crays Nostr" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Creator Economy: Nostr Field Guide | Crays Nostr Archive" />
+  <meta property="og:description" content="A reader-friendly Crays guide to letting creators keep identity, audience and payment paths." />
+  <meta property="og:url" content="https://www.crays.org/nostr/media/field-guide/creator-economy/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/media/field-guide/creator-economy/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/media/field-guide/creator-economy/","headline":"Creator Economy: Nostr Field Guide","description":"A reader-friendly Crays guide to letting creators keep identity, audience and payment paths.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Creator Economy: Nostr Field Guide","item":"https://www.crays.org/nostr/media/field-guide/creator-economy/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"Nostr Music, Video and Media","url":"https://www.crays.org/nostr/media/music-video-media/"},{"@type":"ListItem","position":15,"name":"What is Nostr?","url":"https://www.crays.org/nostr/basics/what-is-nostr/"},{"@type":"ListItem","position":16,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"},{"@type":"ListItem","position":17,"name":"Complete NIP Archive Index","url":"https://www.crays.org/nostr/nips/complete-index/"},{"@type":"ListItem","position":18,"name":"Complete Nostr Apps Catalog","url":"https://www.crays.org/nostr/apps/catalog/"},{"@type":"ListItem","position":19,"name":"Nostr and Crays","url":"https://www.crays.org/nostr/crays/nostr-and-crays/"},{"@type":"ListItem","position":20,"name":"NIP-07: Browser Signers","url":"https://www.crays.org/nostr/apps/nip-07-signers/"},{"@type":"ListItem","position":21,"name":"Nostr Clients","url":"https://www.crays.org/nostr/apps/clients/"},{"@type":"ListItem","position":22,"name":"Nostr Events and Event Kinds","url":"https://www.crays.org/nostr/nips/events-and-kinds/"},{"@type":"ListItem","position":23,"name":"NIP-57: Lightning Zaps","url":"https://www.crays.org/nostr/wallets/nip-57-zaps-lightning/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-media">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media" aria-current="page">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+
+
+    <article>
+
+      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/people-bg.jpg); --nostr-hero-bg-position: center 38%;">
+        <div class="crays-article-shell crays-article-hero__grid">
+          <div class="crays-article-hero__copy">
+            <p class="crays-article-eyebrow">Nostr field guide</p>
+            <h1>Creator Economy: Nostr Field Guide</h1>
+            <p class="crays-article-deck">A reader-friendly Crays guide to letting creators keep identity, audience and payment paths.</p>
+          </div>
+
+            <div class="crays-nostr-hero-visual" style="--nostr-hero-visual-position: center 34%;">
+              <figure>
+                <img src="/assets/nostr-free-stock/people-visual.jpg" alt="Creator Economy: Nostr Field Guide visual" loading="eager" decoding="async" referrerpolicy="no-referrer" />
+              </figure>
+
+              <div class="crays-nostr-hero-signal">
+                <span>Route</span>
+                <strong>Creators, publishing and fans</strong>
+                <small>Music, video, long-form posts, publishing tools and portable creator relationships.</small>
+              </div>
+              <div class="crays-nostr-hero-pins">
+                <a href="/nostr/media/creators/">Creators</a>
+<a href="/nostr/media/music-video-media/">Music</a>
+<a href="/nostr/media/nip-23-long-form/">Long-form</a>
+              </div>
+            </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <section class="crays-nostr-route-board" aria-label="Nostr archive navigation" data-nostr-route="media">
+        <div class="crays-article-reader-shell crays-nostr-route-board__inner">
+          <div class="crays-nostr-route-board__top">
+            <div class="crays-nostr-route-board__intro">
+              <span>Media route</span>
+              <h2>Media and creators guide</h2>
+              <p>This is where portable identity becomes public culture: creators, long-form posts, music, video, publishing tools and fan relationships.</p>
+            </div>
+            <div class="crays-nostr-archive-finder" role="search">
+              <label for="crays-nostr-finder">Search the Nostr atlas</label>
+              <input id="crays-nostr-finder" type="search" placeholder="Search apps, NIPs, people, Crays topics" data-nostr-finder-input />
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
+            </div>
+          </div>
+          <nav class="crays-nostr-route-cards" aria-label="Main Nostr routes">
+            <a class="crays-nostr-route-card" data-route="start" href="/nostr/start/"><span aria-hidden="true">01</span><strong>Start</strong><small>The clean mental model: keys, clients, relays and why Nostr is useful.</small></a><a class="crays-nostr-route-card" data-route="people" href="/nostr/people/"><span aria-hidden="true">02</span><strong>People</strong><small>Builders, creators, funders, events and culture around the protocol.</small></a><a class="crays-nostr-route-card" data-route="apps" href="/nostr/apps/"><span aria-hidden="true">03</span><strong>Apps</strong><small>Our stack first, then the wider client, signer, wallet and tool market.</small></a><a class="crays-nostr-route-card" data-route="relays" href="/nostr/relays/"><span aria-hidden="true">04</span><strong>Relays</strong><small>Live infrastructure: public relays, paid relays, monitoring and venue paths.</small></a><a class="crays-nostr-route-card" data-route="nips" href="/nostr/nips/"><span aria-hidden="true">05</span><strong>NIPs</strong><small>The standards shelf translated into product consequences.</small></a><a class="crays-nostr-route-card" data-route="privacy" href="/nostr/privacy/"><span aria-hidden="true">06</span><strong>Privacy</strong><small>Keys, signing, trust, censorship resistance and safer account control.</small></a><a class="crays-nostr-route-card" data-route="wallets" href="/nostr/wallets/"><span aria-hidden="true">07</span><strong>Wallets</strong><small>Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records.</small></a><a class="crays-nostr-route-card" data-route="media" href="/nostr/media/" aria-current="page"><span aria-hidden="true">08</span><strong>Media</strong><small>Creators, publishing, music, video, long-form posts and fan access.</small></a><a class="crays-nostr-route-card" data-route="commerce" href="/nostr/commerce/"><span aria-hidden="true">09</span><strong>Commerce</strong><small>Creator sales, marketplaces, FoundUPS, revenue paths and investor context.</small></a><a class="crays-nostr-route-card" data-route="governance" href="/nostr/governance/"><span aria-hidden="true">10</span><strong>Governance</strong><small>Badges, voting, reputation, moderation, policy and DAO-ready decisions.</small></a><a class="crays-nostr-route-card" data-route="crays" href="/nostr/crays/"><span aria-hidden="true">11</span><strong>Crays</strong><small>How Nostr plugs into our profiles, venues, status and governance.</small></a><a class="crays-nostr-route-card" data-route="library" href="/nostr/library/"><span aria-hidden="true">12</span><strong>Library</strong><small>The full archive, research database, source map and long-read routes.</small></a>
+          </nav>
+          <div class="crays-nostr-route-groups">
+            <div class="crays-nostr-route-group"><strong>Creator layer</strong><div><a href="/nostr/media/creators/">Creators</a><a href="/nostr/media/music-video-media/">Music and media</a><a href="/nostr/media/videos/">Videos</a><a href="/nostr/basics/nostr-media-article-video-archive/">Media and video archive</a><a href="/nostr/media/nip-23-long-form/">NIP-23 long-form</a><a href="/nostr/basics/reading-paths/creator/">Creator reading path</a></div></div><div class="crays-nostr-route-group"><strong>Media apps</strong><div><a href="/nostr/apps/wavlake/">Wavlake</a><a href="/nostr/apps/yakihonne/">YakiHonne</a><a href="/nostr/apps/habla/">Habla</a><a href="/nostr/media/nip-23-long-form/">Long-form content</a><a href="/nostr/apps/category-streaming/">Streaming apps</a></div></div><div class="crays-nostr-route-group"><strong>Publishing formats</strong><div><a href="/nostr/apps/category-blogging/">Blogging apps</a><a href="/nostr/apps/category-music/">Music apps</a><a href="/nostr/apps/category-photos/">Photo apps</a><a href="/nostr/apps/category-streaming/">Streaming apps</a><a href="/nostr/commerce/content-sale/">Content sale</a></div></div>
+          </div>
+
+          <div class="crays-nostr-visual-rail" aria-label="Media visual shortcuts">
+            <a href="/nostr/media/creators/"><span>P</span><strong>Creators</strong></a><a href="/nostr/media/nip-23-long-form/"><span>N</span><strong>Long-form</strong></a><a href="/nostr/library/deep-dives/blossom-servers-and-relays/"><span>N</span><strong>Blossom</strong></a><a href="/nostr/apps/wavlake/"><img src="https://www.google.com/s2/favicons?domain=wavlake.com&amp;sz=128" alt="Wavlake icon" loading="lazy" decoding="async" /><strong>Wavlake</strong></a><a href="/nostr/apps/yakihonne/"><img src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" /><strong>YakiHonne</strong></a><a href="/nostr/basics/nostr-media-article-video-archive/"><span>MA</span><strong>Media archive</strong></a>
+          </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="media">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Media</span>
+              <strong>All Media pages</strong>
+              <small><b>55 pages in this route</b><em>App categories, App profiles, Deep dives and 5 more shelves</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>App categories</h3><div><a href="/nostr/apps/category-blogging/">Nostr Apps: Blogging</a>
+<a href="/nostr/apps/category-media/">Nostr Apps: Media</a>
+<a href="/nostr/apps/category-microblogging/">Nostr Apps: Microblogging</a>
+<a href="/nostr/apps/category-music/">Nostr Apps: Music</a>
+<a href="/nostr/apps/category-photos/">Nostr Apps: Photos</a>
+<a href="/nostr/apps/category-streaming/">Nostr Apps: Streaming</a>
+<a href="/nostr/apps/category-video/">Nostr Apps: Video</a>
+<a href="/nostr/apps/category-videos/">Nostr Apps: Videos</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App profiles</h3><div><a href="/nostr/apps/research/nostrapps-category-blogging/">NostrApps category — Blogging</a>
+<a href="/nostr/apps/research/nostrapps-category-microblogging-clients/">NostrApps category — Microblogging clients</a>
+<a href="/nostr/apps/research/nostrapps-category-music/">NostrApps category — Music</a>
+<a href="/nostr/apps/research/nostrapps-category-photos/">NostrApps category — Photos</a>
+<a href="/nostr/apps/research/nostrapps-category-streaming/">NostrApps category — Streaming</a>
+<a href="/nostr/apps/research/nostrapps-category-video/">NostrApps category — Video</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/media/deep-dives/long-form-publishing/">Long-Form Publishing</a>
+<a href="/nostr/media/deep-dives/media-attachments-and-blossom/">Media Attachments and Blossom</a>
+<a href="/nostr/media/deep-dives/nostr-for-creators-business/">Nostr for Creator Business</a>
+<a href="/nostr/media/deep-dives/nostr-for-music/">Nostr for Music</a>
+<a href="/nostr/media/deep-dives/nostr-for-photos/">Nostr for Photos</a>
+<a href="/nostr/media/deep-dives/nostr-for-video-streaming/">Nostr for Video and Streaming</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/media/field-guide/creator-diaries/">Creator Diaries: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/creator-economy/" aria-current="page">Creator Economy: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/long-form-articles/">Long-Form Articles: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/music/">Music on Nostr: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/music-scenes/">Music Scenes: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/photos/">Photos on Nostr: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/video-events/">Video Events: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Media and creators</h3><div><a href="/nostr/community/projects/creator-media-app/">Creator media app</a>
+<a href="/nostr/community/creators/">Creators</a>
+<a href="/nostr/media/archive-library/reads-research/long-form-content/">Long-form Content</a>
+<a href="/nostr/community/projects/long-form-publishing-client/">Long-form publishing client</a>
+<a href="/nostr/community/media/">Media</a>
+<a href="/nostr/media/">Media, Creators and Publishing</a>
+<a href="/nostr/media/creators/">Nostr for Creators</a>
+<a href="/nostr/media/music-video-media/">Nostr Music, Video and Media</a>
+<a href="/nostr/media/videos/">Nostr Videos, Talks and Audio Trail</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/media/nip-23-long-form/">NIP-23: Long-Form Content</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/research/media-attachments-metadata/">Media Attachments Metadata</a>
+<a href="/nostr/nips/research/nip-23-long-form-content/">NIP-23: Long-form Content</a>
+<a href="/nostr/nips/research/nip-71-video-events/">NIP-71: Video Events</a>
+<a href="/nostr/nips/research/nip-92-media-attachments-metadata/">NIP-92: Media Attachments Metadata</a>
+<a href="/nostr/nips/research/video-events/">Video Events</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Source inventory</h3><div><a href="/nostr/media/source-inventory/deep-research/apps/divine-video-divine-cc83350d/">Research Source: diVine</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-long-form-content-2256357c/">Research Source: Long-form Content</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-long-form-content-702ad6ff/">Research Source: Long-form Content</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-media-attachments-metadata-cc879268/">Research Source: Media Attachments Metadata</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-media-attachments-metadata-74241bd4/">Research Source: Media Attachments Metadata</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-nip-71-video-events-894cb3f1/">Research Source: NIP-71: Video Events</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-nip-71-video-events-656374aa/">Research Source: NIP-71: Video Events</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-blogging-e6bfb924/">Research Source: NostrApps category — Blogging</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-microblogging-clients-22a67541/">Research Source: NostrApps category — Microblogging clients</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-music-6cf5785f/">Research Source: NostrApps category — Music</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-photos-d9432208/">Research Source: NostrApps category — Photos</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-streaming-7bec976d/">Research Source: NostrApps category — Streaming</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-video-5e6a6dbb/">Research Source: NostrApps category — Video</a></div></section>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+
+      <section class="crays-article-main">
+        <div class="crays-article-reader-shell crays-article-layout">
+          <aside class="crays-article-toc" aria-label="In this article">
+            <p>In this article</p>
+            <a href="#why-this-matters"><span>01</span>Why this matters</a>
+<a href="#the-simple-version"><span>02</span>The simple version</a>
+<a href="#the-technical-layer"><span>03</span>The technical layer</a>
+<a href="#a-concrete-reader-journey"><span>04</span>A concrete reader journey</a>
+<a href="#where-people-get-confused"><span>05</span>Where people get confused</a>
+<a href="#what-can-go-wrong"><span>06</span>What can go wrong</a>
+<a href="#how-to-evaluate-real-tools"><span>07</span>How to evaluate real tools</a>
+<a href="#the-beginner-reading"><span>08</span>The beginner reading</a>
+<a href="#the-builder-reading"><span>09</span>The builder reading</a>
+<a href="#the-operator-reading"><span>10</span>The operator reading</a>
+<a href="#the-creator-and-community-reading"><span>11</span>The creator and community reading</a>
+<a href="#the-public-web-angle"><span>12</span>The public web angle</a>
+<a href="#implementation-questions"><span>13</span>Implementation questions</a>
+<a href="#crays-interpretation"><span>14</span>Our interpretation</a>
+<a href="#the-reader-experience"><span>15</span>The reader experience</a>
+<a href="#the-social-layer"><span>16</span>The social layer</a>
+<a href="#signals-of-maturity"><span>17</span>Signals of maturity</a>
+<a href="#editorial-stance"><span>18</span>Editorial stance</a>
+<a href="#how-this-may-evolve"><span>19</span>How this may evolve</a>
+<a href="#reader-level-summary"><span>20</span>Reader-level summary</a>
+<a href="#next-reading-paths-for-creator-economy"><span>21</span>Next reading paths for Creator Economy</a>
+<a href="#publishing-surface"><span>22</span>Publishing surface</a>
+<a href="#what-is-signed-and-what-is-stored"><span>23</span>What is signed and what is stored</a>
+<a href="#discovery-and-rendering"><span>24</span>Discovery and rendering</a>
+<a href="#creator-business-context"><span>25</span>Creator business context</a>
+<a href="#media-storage-questions"><span>26</span>Media storage questions</a>
+<a href="#adjacent-creator-pages"><span>27</span>Adjacent creator pages</a>
+          </aside>
+
+          <div class="crays-article-content">
+                        <header class="crays-nostr-article-masthead">
+              <div class="crays-nostr-article-masthead__meta"><span>Media</span><span>13 min read</span><span>Nostr field guide</span></div>
+              <h2 class="crays-nostr-article-masthead__title">Creator Economy: Nostr Field Guide</h2>
+              <p class="crays-nostr-article-masthead__deck">A reader-friendly Crays guide to letting creators keep identity, audience and payment paths.</p>
+            </header>
+
+
+            <p><a href="/nostr/media/creators/">Creator Economy</a> is one of the topics that turns Nostr from a name into an understandable system. This guide explains letting <a href="/nostr/community/creators/">creators</a> keep identity, audience and payment paths, how it connects to the rest of the <a href="/nostr/community/protocol/">protocol</a> and what readers should watch before trusting a product.</p>
+<div class="crays-nostr-reader-note"><strong>The quick read</strong><span>A reader-friendly Crays guide to letting creators keep identity, audience and payment paths.</span></div>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="/assets/stock-lifestyle/crays-finance-use-creators.jpg" alt="Creator commerce should feel direct, warm and owned by the person publishing." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Creator commerce should feel direct, warm and owned by the person publishing.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-lifestyle-13-music-film-fashion-art-and-media-inside-the-crays-lifestyle-community.webp" alt="Nostr culture travels through music, media, creators and scenes." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Nostr culture travels through music, media, creators and scenes.</figcaption></figure>
+        </div>
+
+<h2 id="why-this-matters">Why this matters</h2>
+<p><a href="/nostr/media/creators/">Creator Economy</a> matters because it is one of the places where Nostr stops being an abstract <a href="/nostr/community/protocol/">protocol</a> and starts shaping a real reader&#x27;s choices. In plain language, this topic is about letting <a href="/nostr/community/creators/">creators</a> keep identity, audience and payment paths. That may sound narrow at first, but it affects how people publish, pay, verify, read, store, recover, moderate or build.</p>
+<p>The useful question is not whether <a href="/nostr/media/creators/">creator economy</a> sounds decentralized. The useful question is what becomes easier, safer or more portable for a person who is not living inside <a href="/nostr/community/protocol/">protocol</a> chat all day. If the answer cannot be explained in normal language, the implementation is probably not ready for normal users.</p>
+<h2 id="the-simple-version">The simple version</h2>
+<p>If you are new to Nostr, <a href="/nostr/community/general-nostr/">start</a> with the ordinary action. Someone needs a practical way to handle letting <a href="/nostr/community/creators/">creators</a> keep identity, audience and payment paths. They do not want a lecture about event formats; they want to know what they can do, what they should avoid and why the result is different from using a closed platform.</p>
+<p>The promise becomes real only when the details line up. A key must be safe. A relay must answer. A client must explain what is happening. A payment must not surprise the user. A public event must not be mistaken for a private message. <a href="/nostr/media/creators/">Creator Economy</a> is useful only when those layers cooperate.</p>
+<ul class="crays-article-list">
+<li><strong>User question.</strong> What does <a href="/nostr/media/creators/">creator economy</a> help a normal person do?</li>
+<li><strong>Product question.</strong> Which parts of <a href="/nostr/media/creators/">creator economy</a> should be hidden, and which parts must be explained?</li>
+<li><strong>Trust question.</strong> Who can change, censor, lose or misread the data behind <a href="/nostr/media/creators/">creator economy</a>?</li>
+</ul>
+<h2 id="the-technical-layer">The technical layer</h2>
+<p>For builders, this topic sits near profiles, long-form, <a href="/nostr/wallets/nip-57-zaps-lightning/">zaps</a>, paid content, <a href="/nostr/governance/nip-58-badges/">badges</a> and fan lists. That does not mean every reader needs to memorize the related <a href="/nostr/nips/complete-index/">NIPs</a> or event kinds. It means the implementation has moving parts, and those parts decide whether the experience feels reliable.</p>
+<p>A strong <a href="/nostr/media/creators/">creator economy</a> implementation makes the <a href="/nostr/community/protocol/">protocol</a> boring in the best sense. The user clicks, writes, reads, pays or signs, and the client handles <a href="/nostr/relays/field-guide/relay-selection/">relay selection</a>, event formatting, metadata, permissions and error states. The expert can inspect the details, but the beginner is not forced to live inside them.</p>
+<h2 id="a-concrete-reader-journey">A concrete reader journey</h2>
+<p>Picture a reader meeting creator economy for the first time. They hear the phrase, open a client, see a button or page related to it and wonder whether it is safe to continue. The article has to answer that moment before it answers the engineering forum version of the question.</p>
+<p>In a healthy journey, the reader can move from curiosity to understanding: what the feature does, what it signs, where the result appears, how it can be recovered and what another app will understand. That path turns Creator Economy from a definition into a usable idea.</p>
+<h2 id="where-people-get-confused">Where people get confused</h2>
+<p>The common mistake is to treat creator economy as if it were a finished product. Nostr usually gives a shared language, not a complete service. A NIP can define an event. A relay can store it. A client can display it. None of that guarantees good <a href="/nostr/apps/category-onboarding/">onboarding</a>, good <a href="/nostr/community/moderation/">moderation</a> or good business logic.</p>
+<p>The second mistake is to flatten all responsibility into the word decentralized. With creator economy, responsibility moves around: from platform to user, from app to signer, from database to relay set, from private company policy to visible product choices. That is powerful, but it is not effortless.</p>
+<h2 id="what-can-go-wrong">What can go wrong</h2>
+<p>The specific risk here is simple: creator <a href="/nostr/apps/category-tools/">tools</a> fail when they only copy social feeds. That risk may be technical, social, legal or editorial. In Nostr those categories often overlap. A bad signing prompt is a <a href="/nostr/community/security/">security</a> issue and a writing issue. A bad relay policy is an infrastructure issue and a <a href="/nostr/apps/category-community/">community</a> issue.</p>
+<p>Readers should see the weak points before they become expensive. A serious creator economy product needs warning copy, fallback behavior, recovery paths, <a href="/nostr/community/moderation/">moderation</a> boundaries and honest language about what the <a href="/nostr/community/protocol/">protocol</a> can and cannot guarantee.</p>
+<ul class="crays-article-list">
+<li><strong>Beginner risk.</strong> The user believes a label, button or client screen means more than it really means.</li>
+<li><strong>Builder risk.</strong> The implementation works in one client but fails across <a href="/nostr/relays/">relays</a> or alternate <a href="/nostr/apps/clients/">clients</a>.</li>
+<li><strong>Operator risk.</strong> The service quietly accepts responsibility for storage, payments or <a href="/nostr/community/moderation/">moderation</a> without a plan.</li>
+</ul>
+<h2 id="how-to-evaluate-real-tools">How to evaluate real tools</h2>
+<p>When you see a product that claims to support creator economy, ask where the data lives, which <a href="/nostr/relays/">relays</a> are involved, what key signs the action, how another client would read it, and what happens when the first service disappears.</p>
+<p>Also ask how it feels. If a tool makes a person feel stupid for not knowing the <a href="/nostr/community/protocol/">protocol</a> vocabulary around Creator Economy, the tool is not finished yet. The better product explains the consequence in human words and lets the expert open the deeper layer when needed.</p>
+<h2 id="the-beginner-reading">The beginner reading</h2>
+<p>For a newcomer, creator economy should be translated into a small set of safe habits. What should I click? What should I never paste? What should I back up? What will be public? What will other <a href="/nostr/apps/clients/">clients</a> understand? Those questions matter more than memorizing every related acronym.</p>
+<p>The beginner should leave with confidence, not false certainty. They should understand enough to use Creator Economy carefully and enough to know when they need a more technical article, a better signer, a more trustworthy relay or a clearer client.</p>
+<h2 id="the-builder-reading">The builder reading</h2>
+<p>For a builder, creator economy is a contract with other software. The contract may be formalized in a NIP, implied by common client behavior or still emerging from experiments. Either way, the builder has to decide what will be interoperable and what is deliberately product-specific.</p>
+<p>The builder&#x27;s version of Creator Economy must include failure states. What if the relay rejects the event? What if the signer refuses permission? What if the user switches <a href="/nostr/apps/clients/">clients</a>? What if a wallet limit is exceeded? What if a public event is later treated as private by a confused reader?</p>
+<h2 id="the-operator-reading">The operator reading</h2>
+<p>For an operator, creator economy is about responsibility. <a href="/nostr/relays/">Relays</a>, indexes, storage services, <a href="/nostr/community/wallets/">wallets</a>, venues and archive pages all inherit some kind of duty once users depend on them. The more useful the service becomes, the less acceptable vague policy becomes.</p>
+<p>An operator should ask what they are willing to store, serve, remove, charge for, rate-limit, log and explain. Creator Economy is not only a feature. It is a set of expectations that someone will have to operate when the network is busy, angry, spammed or legally complicated.</p>
+<h2 id="the-creator-and-community-reading">The creator and community reading</h2>
+<p>For <a href="/nostr/community/creators/">creators</a> and <a href="/nostr/library/field-guide/communities/">communities</a>, creator economy matters when it changes the relationship with an audience. Does the creator keep the graph? Can a fan move to another client? Can a <a href="/nostr/apps/category-community/">community</a> moderate without being trapped? Can value move without the platform owning the whole payment story?</p>
+<p>Those questions are why Creator Economy belongs in our archive rather than only in <a href="/nostr/community/developer/">developer</a> notes. The <a href="/nostr/library/awesome-nostr/">Nostr ecosystem</a> is technical, but the point is social continuity: people, work, status and memory should survive beyond one interface.</p>
+<h2 id="the-public-web-angle">The public web angle</h2>
+<p>Creator Economy also has a public-web problem. Raw <a href="/nostr/basics/what-is-nostr/">Nostr events</a> are not automatically good explanations. Search engines, new readers and serious researchers need pages that turn scattered events into structured understanding.</p>
+<p>A good page about creator economy should therefore act like a bridge: readable enough for a search visitor, precise enough for a builder, and linked enough that the reader can move into <a href="/nostr/apps/catalog/">apps</a>, <a href="/nostr/nips/complete-index/">NIPs</a>, <a href="/nostr/relays/">relays</a>, <a href="/nostr/community/wallets/">wallets</a>, people or our product context without getting lost.</p>
+<h2 id="implementation-questions">Implementation questions</h2>
+<p>Before a team builds around creator economy, it should answer the unglamorous questions. The exciting version is the demo. The durable version is the checklist that survives support requests, migrations, abuse, missing <a href="/nostr/relays/">relays</a> and confused signing prompts.</p>
+<p>For Creator Economy, the strongest product work usually happens in these details: plain <a href="/nostr/library/field-guide/labels/">labels</a>, visible limits, sensible defaults, testing across <a href="/nostr/apps/clients/">clients</a>, recovery paths and honest explanations of what is still experimental.</p>
+<ul class="crays-article-list">
+<li><strong>Signing.</strong> What exactly does creator economy ask the user or service to sign?</li>
+<li><strong>Storage.</strong> Which <a href="/nostr/nips/events-and-kinds/">events</a>, files or indexes must remain available?</li>
+<li><strong>Interoperability.</strong> Which other <a href="/nostr/apps/clients/">clients</a> or <a href="/nostr/relays/">relays</a> can understand the result?</li>
+<li><strong>Support.</strong> What can a user do when the expected path fails?</li>
+</ul>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="/assets/stock-lifestyle/crays-home-project-tribe-award-cultural-event.jpg" alt="Content becomes stronger when fans can pay, prove access and stay portable." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Content becomes stronger when fans can pay, prove access and stay portable.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-home-project-circle-app-digital-community-lifestyle.jpg" alt="Creator profiles should feel like a living room for work, taste and value." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Creator profiles should feel like a living room for work, taste and value.</figcaption></figure>
+        </div>
+
+<h2 id="crays-interpretation">Our interpretation</h2>
+<p>For us, the reading is practical: we can connect content sale, status, <a href="/nostr/nips/events-and-kinds/">events</a> and fan participation. The point is not to collect <a href="/nostr/community/protocol/">protocol</a> features. The point is to decide which features help <a href="/nostr/community/creators/">creators</a>, fans, operators, venues, investors and future members do something valuable.</p>
+<p>In the field-guide / creator-economy chapter, That is why Our version should sound like a smart guide, not a standards dump. It should say what the thing is, why it matters, where it fits, what it changes, what can break and what a reader should open next.</p>
+<h2 id="the-reader-experience">The reader experience</h2>
+<p>A reader should finish a creator economy article with a usable mental picture. They should know what the topic does, who touches it, what depends on <a href="/nostr/relays/">relays</a>, what depends on <a href="/nostr/apps/clients/">clients</a> and what belongs to the user&#x27;s own key management. If that picture is missing, the article has only named the subject.</p>
+<p>The best explanation for creator economy starts from a person and then opens the machinery behind the scene. A creator sees audience ownership. A <a href="/nostr/community/developer/">developer</a> sees signed data. A venue sees a local identity problem. A reader sees whether the next click is safe, useful or just another <a href="/nostr/community/protocol/">protocol</a> word.</p>
+<h2 id="the-social-layer">The social layer</h2>
+<p>Creator Economy also has a social meaning. Nostr is not only a transport protocol; it is a place where people form habits around follows, <a href="/nostr/wallets/nip-57-zaps-lightning/">zaps</a>, public work, reputation and taste. Even a highly technical topic eventually affects how people behave with each other.</p>
+<p>This is where we should be more useful than a reference page. It should explain why creator economy changes a creator&#x27;s relationship with fans, why it changes an operator&#x27;s responsibility, why it changes how a <a href="/nostr/community/developer/">developer</a> earns trust and why the <a href="/nostr/apps/category-community/">community</a> may argue about it.</p>
+<h2 id="signals-of-maturity">Signals of maturity</h2>
+<p>A mature creator economy implementation shows itself through boring reliability. The app explains the action. The relay behavior is predictable. The signing prompt is understandable. The fallback path is visible. Another client can make sense of the event or at least fail honestly.</p>
+<p>An immature creator economy implementation usually looks exciting in a demo and fragile in daily use. It depends on one service, hides a wallet permission, assumes one relay, invents a private convention or leaves the reader unable to tell what survives outside the first app.</p>
+<ul class="crays-article-list">
+<li><strong>Ready for readers.</strong> The feature can be explained without forcing the reader into raw protocol language.</li>
+<li><strong>Ready for builders.</strong> The event, relay and client expectations are clear enough to test.</li>
+<li><strong>Ready for us.</strong> The topic improves a creator, venue, fan, operator or <a href="/nostr/governance/field-guide/governance/">governance</a> journey.</li>
+</ul>
+<h2 id="editorial-stance">Editorial stance</h2>
+<p>Our stance on creator economy is deliberately practical. We do not need to pretend every Nostr idea is already mainstream. We also do not need to dismiss a rough idea just because the current user experience is early.</p>
+<p>Creator Economy needs enough technical depth for a builder, enough plain language for a newcomer and enough cultural context for someone trying to understand why people care. That mix is what turns a catalog entry into a real article.</p>
+<h2 id="how-this-may-evolve">How this may evolve</h2>
+<p>Creator Economy will probably not stay fixed. Nostr ideas move through experiments, client support, relay policy, user demand and arguments about what deserves to become common practice. A page about creator economy should leave room for that movement.</p>
+<p>In the field-guide / creator-economy chapter, The important thing is to track change without losing the reader. When support grows, the article should explain what became easier. When a feature stalls, it should explain why. When a new convention replaces an older habit, the page should show the migration path rather than pretending the old habit never existed.</p>
+<h2 id="reader-level-summary">Reader-level summary</h2>
+<p>If you are reading casually, remember this: Creator Economy is useful only if it changes a real action in a way you can understand. If you are building, remember that the protocol layer is only half the work. If you are operating, remember that every useful path creates responsibility.</p>
+<p>That is the balance we need across the whole Nostr library. We should make creator economy approachable without dumbing it down, technical without becoming cold and honest without draining the energy that makes the ecosystem worth following.</p>
+<ul class="crays-article-list">
+<li><strong>New reader.</strong> Learn what creator economy does and what can go wrong.</li>
+<li><strong>Builder.</strong> Check the event, relay, signer and client expectations behind creator economy.</li>
+<li><strong>Creator or operator.</strong> Ask whether Creator Economy improves audience, venue, payment, memory or <a href="/nostr/governance/field-guide/governance/">governance</a> flows.</li>
+</ul>
+<h2 id="next-reading-paths-for-creator-economy">Next reading paths for Creator Economy</h2>
+<p>After this page, a reader should be able to connect creator economy to at least three neighboring ideas: identity, <a href="/nostr/relays/">relays</a> and product experience. Experts can go deeper into <a href="/nostr/nips/complete-index/">NIPs</a> and implementation notes. Newcomers can move sideways into examples and use cases.</p>
+<p>In the field-guide / creator-economy chapter, The right next step depends on the reader. If you build, inspect the protocol layer. If you create, look at publishing and payments. If you operate a place or <a href="/nostr/apps/category-community/">community</a>, look at relays, <a href="/nostr/community/moderation/">moderation</a> and identity. If you are just learning, keep the mental model simple: <a href="/nostr/privacy/keys-identity/">keys</a> identify, <a href="/nostr/apps/clients/">clients</a> interpret, relays move <a href="/nostr/nips/events-and-kinds/">events</a>.</p>
+<h2 id="publishing-surface">Publishing surface</h2>
+<p>Creator Economy: <a href="/nostr/relays/field-guide/relay-selection/">Nostr Field Guide</a> belongs to the publishing and creator <a href="/nostr/apps/category-media/">media</a> layer. The page should help you answer one concrete question instead of forcing you through a generic Nostr essay.</p>
+<p>The short version is: A reader-friendly Crays guide to letting <a href="/nostr/community/creators/">creators</a> keep identity, audience and payment paths. The deeper version is to see which concept, standard, product surface or human decision actually changes because of it.</p>
+<h2 id="what-is-signed-and-what-is-stored">What is signed and what is stored</h2>
+<p>The useful machinery around Creator Economy: <a href="/nostr/relays/field-guide/relay-selection/">Nostr Field Guide</a> is <a href="/nostr/privacy/keys-identity/">keys</a>, <a href="/nostr/apps/clients/">clients</a>, relays, <a href="/nostr/nips/events-and-kinds/">signed events</a>, <a href="/nostr/nips/complete-index/">NIPs</a>, <a href="/nostr/community/wallets/">wallets</a>, <a href="/nostr/apps/category-media/">media</a> and search layers. Name those moving parts directly, because vague protocol language is where confusion starts.</p>
+<p>In the field-guide / creator-economy chapter, A strong page gives you enough context to recognize the term in another client, NIP, relay policy, wallet prompt or source document without pretending every reader is already a protocol engineer.</p>
+<ul class="crays-article-list">
+<li><strong>Object.</strong> Is this a note, article, <a href="/nostr/nips/nip-94-files/">file metadata</a> event, blob or app-specific object?</li>
+<li><strong>Storage.</strong> Where does the heavy <a href="/nostr/apps/category-media/">media</a> live?</li>
+<li><strong>Audience.</strong> How does a fan find or pay for it?</li>
+</ul>
+<h2 id="discovery-and-rendering">Discovery and rendering</h2>
+<p>Test Creator Economy: <a href="/nostr/relays/field-guide/relay-selection/">Nostr Field Guide</a> by asking what is signed, where it is stored, who renders it, which relays or services are involved and what survives when the first app or server is unavailable.</p>
+<p>In the field-guide / creator-economy chapter, That test keeps the explanation tied to reality. It also tells us which internal links belong in the body: foundations first, then standards, then practical examples.</p>
+<h2 id="creator-business-context">Creator business context</h2>
+<p>In the field-guide / creator-economy chapter, The main risk is that the page can become a definition instead of an explanation. The page should say that plainly and then show the safer reading: what works today, what is experimental and what needs source verification.</p>
+<p>In the field-guide / creator-economy chapter, This is where dense content beats long content. Give the reader facts, constraints, examples and next steps instead of repeating broad claims about openness or decentralization.</p>
+<h2 id="media-storage-questions">Media storage questions</h2>
+<p>For us, Creator Economy: <a href="/nostr/relays/field-guide/relay-selection/">Nostr Field Guide</a> matters only when it improves understanding or helps a real flow: identity, publishing, relay choice, signing, payment, <a href="/nostr/apps/category-media/">media</a>, <a href="/nostr/community/moderation/">moderation</a>, <a href="/nostr/community/commerce/">commerce</a>, venue context or <a href="/nostr/governance/field-guide/governance/">governance</a>.</p>
+<p>In the field-guide / creator-economy chapter, That does not mean every page has to become our product pitch. It means the page should make the connection visible when the topic affects our ecosystem, and stay purely educational when it does not.</p>
+<h2 id="adjacent-creator-pages">Adjacent creator pages</h2>
+<p>The best next step from Creator Economy: <a href="/nostr/relays/field-guide/relay-selection/">Nostr Field Guide</a> is not a generic link pile. Connect it to the closest prerequisite, the closest technical standard and the closest practical example.</p>
+<p>In the field-guide / creator-economy chapter, A large archive becomes useful when every page behaves like a node in a knowledge graph: this explains one thing, points to what it depends on and shows where the idea is used.</p>
+
+
+
+            <div class="crays-nostr-related">
+              <h2>Read next from Creator Economy: Nostr Field Guide</h2>
+              <div class="crays-nostr-related__links">
+                <a href="/nostr/media/music-video-media/"><span class="crays-nostr-card-icon" aria-hidden="true">P</span><strong>Nostr Music, Video and Media</strong><small>People and culture</small></a>
+<a href="/nostr/basics/what-is-nostr/"><span class="crays-nostr-card-icon" aria-hidden="true">WI</span><strong>What is Nostr?</strong><small>Core concepts</small></a>
+<a href="/nostr/library/archive-library/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Crays Nostr Archive Library</strong><small>Core concepts</small></a>
+<a href="/nostr/nips/complete-index/"><span class="crays-nostr-card-icon" aria-hidden="true">CN</span><strong>Complete NIP Archive Index</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/apps/catalog/"><img class="crays-nostr-card-media" data-card-kind="app" src="/assets/brand/crays-mark.svg" alt="Complete Nostr Apps Catalog icon" loading="lazy" decoding="async" /><strong>Complete Nostr Apps Catalog</strong><small>Apps and clients</small></a>
+<a href="/nostr/crays/nostr-and-crays/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Nostr and Crays</strong><small>Crays implementation</small></a>
+<a href="/nostr/apps/nip-07-signers/"><span class="crays-nostr-card-icon" aria-hidden="true">07</span><strong>NIP-07: Browser Signers</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/relays/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Relays and Infrastructure icon" loading="lazy" decoding="async" /><strong>Relays and Infrastructure</strong><small>Relays hub</small></a>
+<a href="/nostr/apps/clients/"><span class="crays-nostr-card-icon" aria-hidden="true">NC</span><strong>Nostr Clients</strong><small>Apps and clients</small></a>
+<a href="/nostr/nips/events-and-kinds/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nostr Events and Event Kinds</strong><small>Core concepts</small></a>
+<a href="/nostr/wallets/nip-57-zaps-lightning/"><span class="crays-nostr-card-icon" aria-hidden="true">57</span><strong>NIP-57: Lightning Zaps</strong><small>Protocol and NIPs</small></a>
+              </div>
+            </div>
+
+
+            <div class="crays-article-end">
+              <a href="/nostr/">Back to the Crays Nostr page</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

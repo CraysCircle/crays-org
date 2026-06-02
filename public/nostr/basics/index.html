@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nostr Basics | Crays Nostr Archive</title>
+  <meta name="description" content="Start here when Nostr still feels like a maze: public keys, private keys, clients, relays, first reading paths and the basic safety model." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Nostr Basics | Crays Nostr Archive" />
+  <meta property="og:description" content="Start here when Nostr still feels like a maze: public keys, private keys, clients, relays, first reading paths and the basic safety model." />
+  <meta property="og:url" content="https://www.crays.org/nostr/basics/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/basics/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","mainEntityOfPage":"https://www.crays.org/nostr/basics/","headline":"Nostr Basics","description":"Start here when Nostr still feels like a maze: public keys, private keys, clients, relays, first reading paths and the basic safety model.","datePublished":"2026-06-02","dateModified":"2026-06-02","publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr basics","Nostr protocol","public keys","relays","clients"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Start","item":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":4,"name":"Nostr Basics","item":"https://www.crays.org/nostr/basics/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-start">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics" aria-current="page">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="crays-nostr-basics-page" aria-label="Basics hub">
+      <section class="crays-nostr-basics-hero" style="--nostr-start-bg: url(/assets/nostr-start/basics-hero-adobestock-91989755.jpeg);">
+        <div class="crays-article-shell">
+          <a class="crays-nostr-start-return" href="/nostr/start/">Back to Start</a>
+          <p class="crays-nostr-live-kicker">Basics</p>
+          <h1>Nostr Basics</h1>
+          <p>Start here if Nostr still feels abstract. You get the simple map first: what your key does, why clients and relays are separate, how to stay safe, and where to go next.</p>
+          <div class="crays-nostr-start-hero__actions" aria-label="Basics actions">
+            <a class="is-primary" href="/nostr/basics/what-is-nostr/">Read What is Nostr?</a>
+            <a href="/nostr/basics/getting-started/">Follow the first path</a>
+            <a href="/nostr/library/search-atlas/">Search a term</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="crays-nostr-start-body">
+        <div class="crays-article-shell">
+          <section class="crays-nostr-start-orientation crays-nostr-basics-intro" aria-label="How Basics works">
+            <div>
+              <p class="crays-nostr-live-kicker">Use this hub when</p>
+              <h2>You want the map before the maze.</h2>
+              <p>If you are new, read the first links in order. If you already know the basics, jump into a reading path or search for the exact term, app or protocol idea you came for.</p>
+            </div>
+            <div class="crays-nostr-start-search" role="search">
+              <label for="crays-nostr-basics-finder">Search the Nostr atlas</label>
+              <input id="crays-nostr-basics-finder" type="search" placeholder="Try public key, relays, client, NIP-07..." data-nostr-finder-input />
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="crays-nostr-start-dock crays-nostr-basics-dock" aria-label="Basics navigation">
+
+          <section>
+            <h2>Read first</h2>
+            <nav aria-label="Read first">
+              <a href="/nostr/basics/what-is-nostr/">What is Nostr?</a><a href="/nostr/basics/getting-started/">Getting started</a><a href="/nostr/basics/why-nostr/">Why Nostr matters</a><a href="/nostr/basics/glossary/">Glossary</a><a href="/nostr/basics/resources/">Useful links</a><a href="/nostr/basics/nostr-media-article-video-archive/">Media and video archive</a>
+            </nav>
+          </section>
+
+
+          <section>
+            <h2>Choose your route</h2>
+            <nav aria-label="Choose your route">
+              <a href="/nostr/basics/reading-paths/beginner/">Beginner path</a><a href="/nostr/basics/reading-paths/developer/">Developer path</a><a href="/nostr/basics/reading-paths/creator/">Creator path</a><a href="/nostr/basics/reading-paths/operator/">Operator path</a><a href="/nostr/basics/reading-paths/culture/">Culture path</a><a href="/nostr/basics/reading-paths/research/">Research path</a>
+            </nav>
+          </section>
+
+
+          <section>
+            <h2>Useful next</h2>
+            <nav aria-label="Useful next">
+              <a href="/nostr/library/search-atlas/">Search Atlas</a><a href="/nostr/community/">Community</a><a href="/nostr/community/discussions/">Discussions</a><a href="/nostr/community/new-findings/">New findings</a><a href="/nostr/privacy/privacy-security/">Privacy and security</a><a href="/nostr/privacy/search-and-web-of-trust/">Search and trust</a><a href="/nostr/privacy/moderation-discovery/">Moderation and discovery</a><a href="/nostr/people/nostr-vs-mastodon/">Nostr vs Mastodon</a><a href="/nostr/basics/resources/">Crays Circle GitHub</a>
+            </nav>
+          </section>
+
+          </section>
+
+          <section class="crays-nostr-basics-first-run" aria-label="Your first Nostr learning path">
+            <div>
+              <p class="crays-nostr-live-kicker">Your first 20 minutes</p>
+              <h2>Read just enough to stop feeling lost.</h2>
+              <p>You do not need every NIP first. You need the mental model: public key, private key, client, relay and signed event. Once that clicks, the rest of the archive becomes a map instead of a maze.</p>
+            </div>
+            <ol>
+              <li>
+                <span>01</span>
+                <strong>Understand the idea</strong>
+                <small>Start with the plain-language explanation.</small>
+                <a href="/nostr/basics/what-is-nostr/">Open What is Nostr?</a>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>Get your first safe path</strong>
+                <small>Learn what to try, what to avoid and why private keys stay private.</small>
+                <a href="/nostr/basics/getting-started/">Open Getting started</a>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>Decode the words</strong>
+                <small>Use the glossary when npub, relay, event or signer suddenly appears.</small>
+                <a href="/nostr/basics/glossary/">Open the glossary</a>
+              </li>
+              <li>
+                <span>04</span>
+                <strong>Choose the next door</strong>
+                <small>Go into apps, people, relays, privacy, wallets or standards when your question gets specific.</small>
+                <a href="/nostr/start/">Back to the 12 doors</a>
+              </li>
+            </ol>
+          </section>
+
+          <section class="crays-nostr-basics-mental-model" aria-label="Nostr basics mental model">
+            <div>
+              <p class="crays-nostr-live-kicker">The model</p>
+              <h2>Four ideas carry most of the weight.</h2>
+            </div>
+            <div class="crays-nostr-basics-terms">
+              <a href="/nostr/privacy/keys-identity/"><strong>Public key</strong><span>Your public identity. People can find it across apps.</span></a>
+              <a href="/nostr/privacy/privacy-security/"><strong>Private key</strong><span>Your signing secret. Never paste it into a website.</span></a>
+              <a href="/nostr/apps/clients/"><strong>Clients</strong><span>The apps you use to read, post, search and build.</span></a>
+              <a href="/nostr/relays/"><strong>Relays</strong><span>The servers that carry signed events between clients.</span></a>
+            </div>
+          </section>
+        </div>
+
+
+      <section class="crays-nostr-hub-image-band" aria-label="Start visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-association-19-digital-members-working-across-the-crays-lifestyle-network.webp" alt="Portable identity should feel like walking into the room with your own name." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-home-14-members-working-together-inside-a-lifestyle-lounge.webp" alt="A social graph is useful only when real people can actually use it." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-tech-nostr-lifestyle-stock-20260508.jpg" alt="Nostr becomes easier when the first door looks like daily life, not a server diagram." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-home-08-lifestyle-guests-using-the-crays-circle-app.webp" alt="The app is just the surface. The community is the point." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-lifestyle-15-crays-circle-app-and-digital-community-product.webp" alt="We read open protocol through people, rooms, access and culture." loading="lazy" decoding="async" />
+              </figure>
+
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell">
+          <section class="crays-nostr-learning-compass crays-nostr-basics-compass" data-component="LearningCompass" data-learning-route="start" aria-label="Learning compass for Basics">
+            <div class="crays-nostr-learning-compass__intro">
+              <p class="crays-nostr-live-kicker">Learning compass</p>
+              <h3>You are in Basics</h3>
+              <p>Beginner path. Start with the simple model, then use search or the 12 doors when you want a specific answer.</p>
+            </div>
+            <div class="crays-nostr-learning-compass__task">
+              <strong>Use this page to</strong>
+              <span>Learn the first Nostr concepts, find the right next page and avoid unsafe key handling from the beginning.</span>
+            </div>
+            <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+              <a href="/nostr/basics/what-is-nostr/"><strong>Read the first explainer</strong><span>Get the shortest useful definition.</span></a>
+              <a href="/nostr/library/search-atlas/"><strong>Search the atlas</strong><span>Find any term, source, app or project.</span></a>
+              <a href="/nostr/community/questions/?route=start"><strong>Ask a beginner question</strong><span>Use the community layer when a concept is still unclear.</span></a>
+            </nav>
+            <details class="crays-nostr-learning-compass__next">
+              <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+              <div>
+                <a href="/nostr/basics/reading-paths/beginner/"><span class="crays-nostr-card-icon" aria-hidden="true">BP</span><strong>Beginner path</strong><span>Read the archive in order.</span></a>
+                <a href="/nostr/privacy/privacy-security/"><span class="crays-nostr-card-icon" aria-hidden="true">PA</span><strong>Privacy and security</strong><span>Keep keys and signers safe.</span></a>
+                <a href="/nostr/community/nostr-login/"><span class="crays-nostr-card-icon" aria-hidden="true">NL</span><strong>Nostr Login</strong><span>Connect without pasting private keys.</span></a>
+                <a href="/nostr/apps/"><span class="crays-nostr-card-icon" aria-hidden="true">AP</span><strong>Apps</strong><span>See which clients and tools exist.</span></a>
+              </div>
+            </details>
+          </section>
+
+          <section class="crays-nostr-context-actions crays-nostr-basics-contribution" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="basics" data-page-url="https://www.crays.org/nostr/basics/" data-community="general-nostr" aria-label="Help build the Nostr ecosystem around Basics">
+            <div>
+              <p class="crays-nostr-live-kicker">Basics contribution</p>
+              <h3>Help make the first steps clearer.</h3>
+              <p>Ask a question, suggest a missing source or tell us where the beginner path still feels confusing. The canonical archive stays stable; useful contributions go into review.</p>
+            </div>
+            <div class="crays-nostr-context-actions__lanes">
+              <div>
+                <h4>Core actions</h4>
+                <nav aria-label="Basics contribution actions">
+                  <a href="/nostr/community/?route=start&type=discussion"><strong>Discuss</strong><span>Start or join a beginner thread.</span></a>
+                  <a href="/nostr/community/questions/?route=start"><strong>Ask a question</strong><span>Ask for help before opening deeper routes.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=source"><strong>Suggest source</strong><span>Add a beginner-friendly reference, video or explainer.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=correction"><strong>Suggest correction</strong><span>This goes into review and does not edit the archive directly.</span></a>
+                </nav>
+              </div>
+              <div>
+                <h4>Best fit for Basics</h4>
+                <nav aria-label="Beginner-specific contribution actions">
+                  <a href="/nostr/community/suggestions/?route=start&type=missing_term"><strong>Missing term</strong><span>Tell us which word needs a glossary entry.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=reading_order"><strong>Reading order</strong><span>Suggest a better first path through the archive.</span></a>
+                  <a href="/nostr/community/projects/submit/?route=start"><strong>Beginner tool</strong><span>Submit an app, signer or guide that helps newcomers.</span></a>
+                </nav>
+              </div>
+            </div>
+          </section>
+
+          <div class="crays-nostr-start-directory">
+
+          <details class="crays-nostr-route-directory" data-route="start">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Basics</span>
+              <strong>Start Exploring</strong>
+              <small><b>13 pages in this route</b><em>Core concepts, Reading paths</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>Core concepts</h3><div><a href="/nostr/start/">All about Nostr</a>
+<a href="/nostr/basics/getting-started/">Getting Started with Nostr</a>
+<a href="/nostr/basics/glossary/">Nostr Glossary</a>
+<a href="/nostr/basics/nostr-media-article-video-archive/">Nostr Media, Articles and Video Archive</a>
+<a href="/nostr/basics/resources/">Nostr Resources and Links</a>
+<a href="/nostr/basics/what-is-nostr/">What is Nostr?</a>
+<a href="/nostr/basics/why-nostr/">Why Nostr Matters</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Reading paths</h3><div><a href="/nostr/basics/reading-paths/beginner/">Beginner Reading Path</a>
+<a href="/nostr/basics/reading-paths/creator/">Creator Reading Path</a>
+<a href="/nostr/basics/reading-paths/culture/">Culture Reading Path</a>
+<a href="/nostr/basics/reading-paths/developer/">Developer Reading Path</a>
+<a href="/nostr/basics/reading-paths/operator/">Operator and Venue Reading Path</a>
+<a href="/nostr/basics/reading-paths/research/">Research Reading Path</a></div></section>
+            </div>
+          </details>
+
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

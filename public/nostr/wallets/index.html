@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wallets, Zaps and Value Flow | Crays Nostr Archive</title>
+  <meta name="description" content="The value route for Lightning, zaps, Nostr Wallet Connect, Safebox, Cashu-adjacent records, payment permissions and creator monetization." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Wallets, Zaps and Value Flow, Wallets, Crays Nostr hub, Nostr navigation, Nostr community" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Wallets, Zaps and Value Flow | Crays Nostr Archive" />
+  <meta property="og:description" content="The value route for Lightning, zaps, Nostr Wallet Connect, Safebox, Cashu-adjacent records, payment permissions and creator monetization." />
+  <meta property="og:url" content="https://www.crays.org/nostr/wallets/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/wallets/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/wallets/","headline":"Wallets, Zaps and Value Flow","description":"The value route for Lightning, zaps, Nostr Wallet Connect, Safebox, Cashu-adjacent records, payment permissions and creator monetization.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Wallets, Zaps and Value Flow","item":"https://www.crays.org/nostr/wallets/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"NIP-47: Nostr Wallet Connect","url":"https://www.crays.org/nostr/wallets/nip-47-wallet-connect/"},{"@type":"ListItem","position":15,"name":"NIP-57: Lightning Zaps","url":"https://www.crays.org/nostr/wallets/nip-57-zaps-lightning/"},{"@type":"ListItem","position":16,"name":"Nostr and Bitcoin","url":"https://www.crays.org/nostr/wallets/nostr-and-bitcoin/"},{"@type":"ListItem","position":17,"name":"Alby","url":"https://www.crays.org/nostr/apps/alby/"},{"@type":"ListItem","position":18,"name":"Safebox","url":"https://www.crays.org/nostr/apps/safebox/"},{"@type":"ListItem","position":19,"name":"Nostr and Crays Content Sale","url":"https://www.crays.org/nostr/commerce/content-sale/"},{"@type":"ListItem","position":20,"name":"Crays Nostr Community","url":"https://www.crays.org/nostr/community/"},{"@type":"ListItem","position":21,"name":"New Nostr Findings","url":"https://www.crays.org/nostr/community/new-findings/"},{"@type":"ListItem","position":22,"name":"Submit a Nostr Project","url":"https://www.crays.org/nostr/community/projects/submit/"},{"@type":"ListItem","position":23,"name":"Nostr Review Dashboard","url":"https://www.crays.org/nostr/community/moderation/"},{"@type":"ListItem","position":24,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"},{"@type":"ListItem","position":25,"name":"NIP-94: File Metadata","url":"https://www.crays.org/nostr/nips/nip-94-files/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-wallets">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets" aria-current="page">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+      <section class="crays-nostr-route-hub-landing" data-route-hub="wallets">
+        <section class="crays-nostr-route-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/apps-bg.jpg);">
+          <div class="crays-article-shell crays-nostr-route-hub-hero__grid">
+            <div class="crays-nostr-route-hub-hero__copy">
+              <a class="crays-nostr-route-hub-hero__back" href="/nostr/start/">Back to Start</a>
+              <p class="crays-nostr-live-kicker">Wallet route</p>
+              <h1>Wallets, Zaps and Value Flow</h1>
+              <p>The value route for Lightning, zaps, Nostr Wallet Connect, Safebox, Cashu-adjacent records, payment permissions and creator monetization.</p>
+              <div class="crays-nostr-route-hub-hero__actions">
+                <a href="#hub-first-paths">Choose a path</a>
+                <a href="/nostr/library/search-atlas/">Search the atlas</a>
+                <a href="#hub-bring-back">Bring something back</a>
+              </div>
+            </div>
+            <aside class="crays-nostr-route-hub-hero__panel" aria-label="How this hub works">
+              <p class="crays-nostr-live-kicker">Use this hub to</p>
+              <h2>Make Nostr value flow understandable without hiding wallet risk, spending limits or custody boundaries.</h2>
+              <dl>
+                <div><dt>68</dt><dd>pages under this route</dd></div>
+                <div><dt>3</dt><dd>navigation shelves</dd></div>
+                <div><dt>Review</dt><dd>Submit wallet tools, NWC examples, zap use cases, permission issues and payment-flow corrections.</dd></div>
+              </dl>
+              <nav><a href="/nostr/wallets/nip-47-wallet-connect/">NWC</a><a href="/nostr/wallets/nip-57-zaps-lightning/">Zaps</a><a href="/nostr/apps/safebox/">Safebox</a></nav>
+            </aside>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-image-band" aria-label="Wallets visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-finance-fintech-wallet-balcony.jpg" alt="Bitcoin and Lightning make more sense when value moves in real places." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-fintech-pos-cafe.jpg" alt="Payments belong close to cafés, venues, creators and everyday decisions." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-finance-tools-wallets-mobile.jpg" alt="A wallet is only useful when it fits the rhythm of the day." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-value-transaction.jpg" alt="Value flow is a product feeling, not just a settlement diagram." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-monetization-digital-finance-dashboard.jpg" alt="Revenue tools need enough clarity that creators can trust the numbers." loading="lazy" decoding="async" />
+              </figure>
+
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-compass-wrap">
+
+            <section class="crays-nostr-learning-compass" data-component="LearningCompass" data-learning-route="wallets" aria-label="Learning compass for this Crays Nostr page">
+              <div class="crays-nostr-learning-compass__intro">
+                <p class="crays-nostr-live-kicker">Learning compass</p>
+                <h3>You are in Wallets</h3>
+                <p>Route hub. Use this as the map for the whole route before you go into the individual pages.</p>
+              </div>
+              <div class="crays-nostr-learning-compass__task">
+                <strong>Use this page to</strong>
+                <span>Connect wallets, NWC, zaps, custody assumptions and value-flow tooling to real evidence.</span>
+              </div>
+              <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+                <a href="/nostr/start/"><strong>All about Nostr</strong><span>Return to the full map</span></a>
+                <a href="/nostr/library/search-atlas/"><strong>Search the atlas</strong><span>Find any page, term, source or project</span></a>
+                <a href="/nostr/community/projects/submit/?page=wallets&amp;route=wallets"><strong>Submit related project</strong><span>Add an app, tool, maintainer update or project proof.</span></a>
+              </nav>
+              <details class="crays-nostr-learning-compass__next">
+                <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+                <div><a href="/nostr/wallets/nip-47-wallet-connect/"><span class="crays-nostr-card-icon" aria-hidden="true">47</span><strong>NIP-47: Nostr Wallet Connect</strong><span>Wallets</span></a>
+<a href="/nostr/wallets/nip-57-zaps-lightning/"><span class="crays-nostr-card-icon" aria-hidden="true">57</span><strong>NIP-57: Lightning Zaps</strong><span>Wallets</span></a>
+<a href="/nostr/wallets/nostr-and-bitcoin/"><span class="crays-nostr-card-icon" aria-hidden="true">NA</span><strong>Nostr and Bitcoin</strong><span>Wallets</span></a>
+<a href="/nostr/apps/alby/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=getalby.com&amp;sz=128" alt="Alby icon" loading="lazy" decoding="async" /><strong>Alby</strong><span>Wallets</span></a></div>
+              </details>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-first-paths" id="hub-first-paths" aria-label="First paths">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Start here</p>
+              <h2>Pick the first path that fits your question.</h2>
+              <p>Use this route when the question is how money, access, receipts, tips, content sales or wallet permissions should work around Nostr identities.</p>
+            </div>
+            <div class="crays-nostr-hub-path-grid">
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/wallets/nip-47-wallet-connect/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">47</span>
+                <strong>NIP-47 Wallet Connect</strong>
+                <span>Our archive page for NIP-47, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/wallets/nip-57-zaps-lightning/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>Zaps and Lightning</strong>
+                <span>Our archive page for NIP-57, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/wallets/nostr-and-bitcoin/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">NA</span>
+                <strong>Nostr and Bitcoin</strong>
+                <span>How Nostr and Bitcoin fit together: keys, open protocols, Lightning zaps, wallets, value-for-value and why Nostr is not a blockchain.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/apps/alby/">
+                <img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=getalby.com&amp;sz=128" alt="Alby icon" loading="lazy" decoding="async" />
+                <strong>Alby</strong>
+                <span>Alby in the Nostr ecosystem: Lightning wallet and browser signer. This our archive page explains the public role, where it fits and why it matters.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/apps/safebox/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">SA</span>
+                <strong>Safebox</strong>
+                <span>Safebox in the Nostr ecosystem: Nostr-native Cashu wallet, records and secure transmittal experiment. This our archive page explains the public role, where it fits and wh</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/commerce/content-sale/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>Content Sale</strong>
+                <span>How Nostr can support creator content access, paid media, fan routes, Lightning payments and our profiles.</span>
+              </a>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-signature" data-signature-route="wallets" aria-label="Value flow">
+        <div class="crays-article-shell crays-nostr-hub-signature__grid">
+          <div class="crays-nostr-hub-signature__copy">
+            <p class="crays-nostr-live-kicker">Value flow</p>
+            <h2>Money features need clear permissions, not mystery buttons.</h2>
+            <p>This hub connects zaps, Lightning, NWC, Safebox, receipts and creator access. The useful question is always: who can spend, who signs, where is the proof and what can go wrong?</p>
+          </div>
+          <figure class="crays-nostr-hub-signature__visual">
+            <img src="/assets/nostr-free-stock/apps-visual.jpg" alt="Wallets visual" loading="lazy" decoding="async" />
+            <figcaption>Flow checks</figcaption>
+          </figure>
+          <div class="crays-nostr-hub-signature__tiles">
+
+              <a href="/nostr/wallets/nip-57-zaps-lightning/">
+                <span aria-hidden="true">01</span>
+                <strong>Intent</strong>
+                <small>Tip, pay, open up, record or reimburse?</small>
+              </a>
+
+              <a href="/nostr/wallets/nip-47-wallet-connect/">
+                <span aria-hidden="true">02</span>
+                <strong>Permission</strong>
+                <small>NWC, wallet connection, limit and revoke path.</small>
+              </a>
+
+              <a href="/nostr/apps/safebox/">
+                <span aria-hidden="true">03</span>
+                <strong>Record</strong>
+                <small>Receipt, note, file, Safebox or app state.</small>
+              </a>
+
+              <a href="/nostr/community/suggestions/">
+                <span aria-hidden="true">04</span>
+                <strong>Review</strong>
+                <small>Source, risk, custody and stale claims.</small>
+              </a>
+
+          </div>
+          <div class="crays-nostr-hub-signature__cards">
+
+              <a href="/nostr/wallets/nip-47-wallet-connect/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>Nostr Wallet Connect</strong>
+                <span>Start with permissions and wallet control.</span>
+              </a>
+
+              <a href="/nostr/wallets/nip-57-zaps-lightning/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>Zaps</strong>
+                <span>Understand Lightning zaps before designing rewards.</span>
+              </a>
+
+              <a href="/nostr/apps/safebox/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">SA</span>
+                <strong>Safebox</strong>
+                <span>Open the records and wallet stack context.</span>
+              </a>
+
+          </div>
+
+          <div class="crays-nostr-visual-rail" aria-label="Wallets visual shortcuts">
+            <a href="/nostr/wallets/nip-47-wallet-connect/"><span>N</span><strong>NWC</strong></a><a href="/nostr/wallets/nip-57-zaps-lightning/"><span>N</span><strong>Zaps</strong></a><a href="/nostr/apps/alby/"><img src="https://www.google.com/s2/favicons?domain=getalby.com&amp;sz=128" alt="Alby icon" loading="lazy" decoding="async" /><strong>Alby</strong></a><a href="/nostr/apps/safebox/"><span>SA</span><strong>Safebox</strong></a><a href="/nostr/commerce/content-sale/"><span>C</span><strong>Content sale</strong></a><a href="/nostr/wallets/nostr-and-bitcoin/"><span>BI</span><strong>Bitcoin</strong></a>
+          </div>
+
+        </div>
+      </section>
+
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-route-map" aria-label="Route map">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Route map</p>
+              <h2>See how this route is organized.</h2>
+              <p>Use these groups when you want context first. They are the short map of what this category contains.</p>
+            </div>
+            <div class="crays-nostr-hub-route-groups">
+
+              <section>
+                <h3>Value flow</h3>
+                <nav aria-label="Value flow">
+                  <a href="/nostr/wallets/nostr-and-bitcoin/">Nostr and Bitcoin</a><a href="/nostr/wallets/nip-47-wallet-connect/">NIP-47 Wallet Connect</a><a href="/nostr/wallets/nip-57-zaps-lightning/">NIP-57 zaps</a><a href="/nostr/apps/safebox/">Safebox</a><a href="/nostr/wallets/deep-dives/safebox-sovereign-wallet-records/">Safebox records wallet</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Wallet apps</h3>
+                <nav aria-label="Wallet apps">
+                  <a href="/nostr/apps/alby/">Alby</a><a href="/nostr/apps/amber/">Amber</a><a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom Servers</a><a href="/nostr/nips/nip-94-files/">NIP-94 files</a><a href="/nostr/nips/nip-96-file-storage/">NIP-96 file storage</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Payment context</h3>
+                <nav aria-label="Payment context">
+                  <a href="/nostr/commerce/content-sale/">Content sale</a><a href="/nostr/media/deep-dives/nostr-for-creators-business/">Creator business</a><a href="/nostr/crays/operators-venues/">Crays venue payments</a><a href="/nostr/commerce/deep-dives/nostr-for-investors/">Nostr for investors</a>
+                </nav>
+              </section>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-shelves" aria-label="Content shelves in this hub">
+        <div class="crays-article-shell">
+          <div class="crays-nostr-hub-section__head">
+            <p class="crays-nostr-live-kicker">What is inside</p>
+            <h2>See the shelves before you dive in.</h2>
+            <p>Each shelf is a smaller map. Open a few first, then use the full directory when you want every page in this route.</p>
+          </div>
+          <div class="crays-nostr-hub-shelf-grid">
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>03</span>
+                  <h3>App catalog entries</h3>
+                </div>
+                <nav aria-label="App catalog entries links">
+                  <a href="/nostr/apps/catalog/zap-stream/">zap.stream</a><a href="/nostr/apps/catalog/zapplepay/">Zapplepay</a><a href="/nostr/apps/catalog/zapstore/">ZapStore</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>10</span>
+                  <h3>App profiles</h3>
+                </div>
+                <nav aria-label="App profiles links">
+                  <a href="/nostr/apps/alby/">Alby</a><a href="/nostr/apps/developer-stack/awesome-cashu/">awesome-cashu</a><a href="/nostr/apps/developer-stack/cashu/">Cashu</a><a href="/nostr/apps/developer-stack/cashu-nuts/">Cashu NUTs</a><a href="/nostr/apps/developer-stack/getalby-nostr-wallet-connect/">getAlby/nostr-wallet-connect</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>Awesome Nostr branches</h3>
+                </div>
+                <nav aria-label="Awesome Nostr branches links">
+                  <a href="/nostr/wallets/awesome-nostr/nip-47-nostr-wallet-connect-nwc-implementations/">Awesome Nostr: NIP-47 Nostr Wallet Connect (NWC) implementations</a><a href="/nostr/wallets/awesome-nostr/nip-57-zaps-compatible-wallets-and-solutions/">Awesome Nostr: NIP-57 Zaps compatible wallets and solutions</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>03</span>
+                  <h3>Deep dives</h3>
+                </div>
+                <nav aria-label="Deep dives links">
+                  <a href="/nostr/wallets/deep-dives/nostr-wallet-connect-for-products/">Nostr Wallet Connect for Products</a><a href="/nostr/wallets/deep-dives/safebox-sovereign-wallet-records/">Safebox: Nostr-Native Wallet and Records Stack</a><a href="/nostr/wallets/deep-dives/zaps-value-for-value/">Zaps and Value-for-Value</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>09</span>
+                  <h3>Field guides</h3>
+                </div>
+                <nav aria-label="Field guides links">
+                  <a href="/nostr/wallets/field-guide/cashu-wallets/">Cashu Wallets: Nostr Field Guide</a><a href="/nostr/wallets/field-guide/lightning-wallets/">Lightning Wallets: Nostr Field Guide</a><a href="/nostr/wallets/field-guide/wallet-connect/">Nostr Wallet Connect: Nostr Field Guide</a><a href="/nostr/wallets/field-guide/nutzaps/">Nutzaps: Nostr Field Guide</a><a href="/nostr/wallets/field-guide/wallet-brand-trust/">Wallet Brand Trust: Nostr Field Guide</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>NIP explainer pages</h3>
+                </div>
+                <nav aria-label="NIP explainer pages links">
+                  <a href="/nostr/wallets/nip-47-wallet-connect/">NIP-47: Nostr Wallet Connect</a><a href="/nostr/wallets/nip-57-zaps-lightning/">NIP-57: Lightning Zaps</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>10</span>
+                  <h3>NIP reference pages</h3>
+                </div>
+                <nav aria-label="NIP reference pages links">
+                  <a href="/nostr/nips/research/cashu-wallet/">Cashu Wallet</a><a href="/nostr/nips/research/lightning-zaps/">Lightning Zaps</a><a href="/nostr/nips/research/nip-47-nostr-wallet-connect/">NIP-47: Nostr Wallet Connect</a><a href="/nostr/nips/research/nip-57-lightning-zaps/">NIP-57: Lightning Zaps</a><a href="/nostr/nips/research/nip-60-cashu-wallet/">NIP-60: Cashu Wallet</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>21</span>
+                  <h3>Source inventory</h3>
+                </div>
+                <nav aria-label="Source inventory links">
+                  <a href="/nostr/wallets/source-inventory/deep-research/dev/github-com-awesome-cashu-a30c84eb/">Research Source: awesome-cashu</a><a href="/nostr/wallets/source-inventory/deep-research/dev/cashu-space-cashu-c06943b2/">Research Source: Cashu</a><a href="/nostr/wallets/source-inventory/deep-research/dev/github-com-cashu-nuts-f9d23db3/">Research Source: Cashu NUTs</a><a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-cashu-wallet-ba05c99d/">Research Source: Cashu Wallet</a><a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-cashu-wallet-52cd2126/">Research Source: Cashu Wallet</a>
+                </nav>
+              </article>
+
+          </div>
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-context-wrap">
+
+            <section class="crays-nostr-context-actions" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="wallets" data-page-url="https://www.crays.org/nostr/wallets/" data-community="wallets" aria-label="Help build the Nostr ecosystem around this page">
+              <div>
+                <p class="crays-nostr-live-kicker">Wallets contribution</p>
+                <h3>Help build the Nostr ecosystem around this page.</h3>
+                <p>Ask a question, suggest a source, submit a related app/project, or join the discussion. The canonical archive stays stable; community contributions are reviewed separately.</p>
+              </div>
+              <div class="crays-nostr-context-actions__lanes">
+                <div>
+                  <h4>Core actions</h4>
+                  <nav aria-label="Core contribution actions"><a href="/nostr/community/?page=wallets&amp;route=wallets&amp;type=discussion" data-contribution-action="discuss"><strong>Discuss</strong><span>Start or join the community thread attached to this page.</span></a><a href="/nostr/community/questions/?page=wallets&amp;route=wallets" data-contribution-action="question"><strong>Ask a question</strong><span>Ask for help with this topic without editing the article.</span></a><a href="/nostr/community/suggestions/?page=wallets&amp;route=wallets&amp;type=source" data-contribution-action="source"><strong>Suggest source</strong><span>Add a useful reference, NIP, repository, article, app, relay or research link.</span></a><a href="/nostr/community/suggestions/?page=wallets&amp;route=wallets&amp;type=correction" data-contribution-action="correction"><strong>Suggest correction</strong><span>This does not edit the article directly. Your suggestion goes into review.</span></a><a href="/nostr/community/projects/submit/?page=wallets&amp;route=wallets" data-contribution-action="relation"><strong>Add related app/project</strong><span>Connect a useful project, app, relay, signer, wallet or profile to this page.</span></a></nav>
+                </div>
+                <div>
+                  <h4>Best fit for Wallets</h4>
+                  <nav aria-label="Route-specific contribution actions"><a href="/nostr/community/projects/submit/?page=wallets&amp;route=wallets&amp;type=project"><strong>Submit wallet tool</strong><span>Add NWC, zap, Lightning or Safebox-related project data.</span></a><a href="/nostr/community/new-findings/?page=wallets&amp;route=wallets&amp;type=source"><strong>Add payment evidence</strong><span>Attach docs, demos, wallet permissions or custody risk notes.</span></a><a href="/nostr/community/moderation/?page=wallets&amp;route=wallets&amp;type=report"><strong>Report unsafe claim</strong><span>Flag payment, custody, permission or wallet-security assumptions.</span></a></nav>
+                </div>
+              </div>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-full-directory" aria-label="All pages in this route">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Full directory</p>
+              <h2>Open every page in Wallets, Zaps and Value Flow.</h2>
+              <p>This hub is the calm overview. Use the full directory below when you want every page in this route.</p>
+            </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="wallets">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Wallets</span>
+              <strong>All Wallets pages</strong>
+              <small><b>69 pages in this route</b><em>App catalog entries, App profiles, Awesome Nostr branches and 6 more shelves</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>App catalog entries</h3><div><a href="/nostr/apps/catalog/zap-stream/">zap.stream</a>
+<a href="/nostr/apps/catalog/zapplepay/">Zapplepay</a>
+<a href="/nostr/apps/catalog/zapstore/">ZapStore</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App profiles</h3><div><a href="/nostr/apps/alby/">Alby</a>
+<a href="/nostr/apps/developer-stack/awesome-cashu/">awesome-cashu</a>
+<a href="/nostr/apps/developer-stack/cashu/">Cashu</a>
+<a href="/nostr/apps/developer-stack/cashu-nuts/">Cashu NUTs</a>
+<a href="/nostr/apps/developer-stack/getalby-nostr-wallet-connect/">getAlby/nostr-wallet-connect</a>
+<a href="/nostr/apps/developer-stack/nostr-wallet-connect/">Nostr Wallet Connect</a>
+<a href="/nostr/apps/safebox/">Safebox</a>
+<a href="/nostr/apps/research/zap-stream/">zap.stream</a>
+<a href="/nostr/apps/research/zapplepay/">Zapplepay</a>
+<a href="/nostr/apps/research/zapstore/">ZapStore</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Awesome Nostr branches</h3><div><a href="/nostr/wallets/awesome-nostr/nip-47-nostr-wallet-connect-nwc-implementations/">Awesome Nostr: NIP-47 Nostr Wallet Connect (NWC) implementations</a>
+<a href="/nostr/wallets/awesome-nostr/nip-57-zaps-compatible-wallets-and-solutions/">Awesome Nostr: NIP-57 Zaps compatible wallets and solutions</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/wallets/deep-dives/nostr-wallet-connect-for-products/">Nostr Wallet Connect for Products</a>
+<a href="/nostr/wallets/deep-dives/safebox-sovereign-wallet-records/">Safebox: Nostr-Native Wallet and Records Stack</a>
+<a href="/nostr/wallets/deep-dives/zaps-value-for-value/">Zaps and Value-for-Value</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/wallets/field-guide/cashu-wallets/">Cashu Wallets: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/lightning-wallets/">Lightning Wallets: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/wallet-connect/">Nostr Wallet Connect: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/nutzaps/">Nutzaps: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/wallet-brand-trust/">Wallet Brand Trust: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/zap-flexing/">Zap Flexing: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/zap-goals/">Zap Goals: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/zap-leaderboards/">Zap Leaderboards: Nostr Field Guide</a>
+<a href="/nostr/wallets/field-guide/zaps/">Zaps: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/wallets/nip-47-wallet-connect/">NIP-47: Nostr Wallet Connect</a>
+<a href="/nostr/wallets/nip-57-zaps-lightning/">NIP-57: Lightning Zaps</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/research/cashu-wallet/">Cashu Wallet</a>
+<a href="/nostr/nips/research/lightning-zaps/">Lightning Zaps</a>
+<a href="/nostr/nips/research/nip-47-nostr-wallet-connect/">NIP-47: Nostr Wallet Connect</a>
+<a href="/nostr/nips/research/nip-57-lightning-zaps/">NIP-57: Lightning Zaps</a>
+<a href="/nostr/nips/research/nip-60-cashu-wallet/">NIP-60: Cashu Wallet</a>
+<a href="/nostr/nips/research/nip-61-nutzaps/">NIP-61: Nutzaps</a>
+<a href="/nostr/nips/research/nip-75-zap-goals/">NIP-75: Zap Goals</a>
+<a href="/nostr/nips/research/nostr-wallet-connect/">Nostr Wallet Connect</a>
+<a href="/nostr/nips/research/nutzaps/">Nutzaps</a>
+<a href="/nostr/nips/research/zap-goals/">Zap Goals</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Source inventory</h3><div><a href="/nostr/wallets/source-inventory/deep-research/dev/github-com-awesome-cashu-a30c84eb/">Research Source: awesome-cashu</a>
+<a href="/nostr/wallets/source-inventory/deep-research/dev/cashu-space-cashu-c06943b2/">Research Source: Cashu</a>
+<a href="/nostr/wallets/source-inventory/deep-research/dev/github-com-cashu-nuts-f9d23db3/">Research Source: Cashu NUTs</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-cashu-wallet-ba05c99d/">Research Source: Cashu Wallet</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-cashu-wallet-52cd2126/">Research Source: Cashu Wallet</a>
+<a href="/nostr/wallets/source-inventory/deep-research/dev/github-com-getalby-nostr-wallet-connect-github-a3f9e306/">Research Source: getAlby/nostr-wallet-connect GitHub</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-lightning-zaps-a1f9b909/">Research Source: Lightning Zaps</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-lightning-zaps-f98e448f/">Research Source: Lightning Zaps</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-nip-47-nostr-wallet-connect-27923cac/">Research Source: NIP-47: Nostr Wallet Connect</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-nip-47-nostr-wallet-connect-3f89726e/">Research Source: NIP-47: Nostr Wallet Connect</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-nip-61-nutzaps-76feba90/">Research Source: NIP-61: Nutzaps</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-nip-61-nutzaps-738d347c/">Research Source: NIP-61: Nutzaps</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/github-com-nip-75-zap-goals-aea8a590/">Research Source: NIP-75: Zap Goals</a>
+<a href="/nostr/wallets/source-inventory/deep-research/nips/nips-nostr-com-nip-75-zap-goals-666f5be8/">Research Source: NIP-75: Zap Goals</a>
+<a href="/nostr/wallets/source-inventory/deep-research/dev/nwc-dev-nostr-wallet-connect-b2173018/">Research Source: Nostr Wallet Connect</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/zap-stream-zap-stream-850f5264/">Research Source: zap.stream</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/nostrapps-com-zap-stream-nostrapps-page-b0cfa533/">Research Source: zap.stream — NostrApps page</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/zapplepay-com-zapplepay-2509886a/">Research Source: Zapplepay</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/nostrapps-com-zapplepay-nostrapps-page-1b3b32a1/">Research Source: Zapplepay — NostrApps page</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/zapstore-dev-zapstore-969d44a4/">Research Source: ZapStore</a>
+<a href="/nostr/wallets/source-inventory/deep-research/apps/nostrapps-com-zapstore-nostrapps-page-917aff8e/">Research Source: ZapStore — NostrApps page</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Wallets and value flow</h3><div><a href="/nostr/community/lightning/">Lightning</a>
+<a href="/nostr/wallets/nostr-and-bitcoin/">Nostr and Bitcoin</a>
+<a href="/nostr/community/projects/nostr-wallet/">Nostr wallet</a>
+<a href="/nostr/community/curated-lists/nostr-wallets-and-zap-tools/">Nostr wallets and zap tools</a>
+<a href="/nostr/wallets/archive-library/security-wallet-research/">Security, wallet and trust research</a>
+<a href="/nostr/community/wallets/">Wallets</a>
+<a href="/nostr/wallets/" aria-current="page">Wallets, Zaps and Value Flow</a>
+<a href="/nostr/community/questions/what-are-zaps/">What are zaps?</a>
+<a href="/nostr/community/zaps/">Zaps</a></div></section>
+            </div>
+          </details>
+
+          </div>
+        </section>
+
+      </section>
+
+
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

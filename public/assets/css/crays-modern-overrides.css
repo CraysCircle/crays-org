@@ -2431,6 +2431,111 @@ html:not([lang="en"]) .crays-hero-tile-title {
   color: var(--crays-red);
 }
 
+.crays-mirror.route-nostr .footer3_component.crays-footer-rebuild {
+  padding-top: 0 !important;
+  border-top: 0 !important;
+  color: #fff;
+  background:
+    radial-gradient(circle at 82% 18%, rgba(243, 18, 72, 0.13), transparent 30%),
+    linear-gradient(110deg, #073452 0%, #051522 48%, #120616 100%);
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__shell {
+  width: min(100% - 64px, 1440px);
+  margin: 0 auto;
+  padding: 0 0 36px;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__line {
+  width: 100%;
+  height: 1px;
+  background: rgba(243, 18, 72, 0.62);
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__inner {
+  width: 100%;
+  padding: 34px 0 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px 32px;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__main-nav,
+.crays-mirror.route-nostr .crays-footer-rebuild__legal,
+.crays-mirror.route-nostr .crays-footer-rebuild__socials {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 22px;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__main-nav {
+  grid-column: 1 / -1;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__main-nav-link,
+.crays-mirror.route-nostr .crays-footer-rebuild__legal-link {
+  color: rgba(255, 255, 255, 0.86);
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__main-nav-link:hover,
+.crays-mirror.route-nostr .crays-footer-rebuild__main-nav-link:focus-visible,
+.crays-mirror.route-nostr .crays-footer-rebuild__legal-link:hover,
+.crays-mirror.route-nostr .crays-footer-rebuild__legal-link:focus-visible {
+  color: var(--crays-red);
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__socials {
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__copyright {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18.2px;
+  text-align: center;
+}
+
+.crays-mirror.route-nostr .crays-footer-rebuild__cookie-settings {
+  grid-column: 1 / -1;
+  justify-self: center;
+  border: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.74);
+  font-family: Montserrat, sans-serif;
+  font-size: 11px;
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .crays-mirror.route-nostr .crays-footer-rebuild__shell {
+    width: min(100% - 32px, 1280px);
+  }
+
+  .crays-mirror.route-nostr .crays-footer-rebuild__inner {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .crays-mirror.route-nostr .crays-footer-rebuild__main-nav,
+  .crays-mirror.route-nostr .crays-footer-rebuild__legal,
+  .crays-mirror.route-nostr .crays-footer-rebuild__socials {
+    justify-content: center;
+  }
+}
+
 .crays-mirror.route-home .crays-footer-rebuild__socials {
   justify-content: flex-end;
   gap: 8px;
@@ -3320,16 +3425,16 @@ html:not([lang="en"]) .crays-hero-tile-title {
   --crays-paper-alt: #f7f2ec;
   --crays-muted: #657484;
   --crays-line-light: rgba(255, 255, 255, 0.16);
-  --crays-cyan: #5ecfff;
+  --crays-signal-blue: #2d65d8;
   --crays-ocean: #0e4f86;
-  --crays-gold: #f2be68;
+  --crays-deep-blue: #061a2f;
   --crays-shadow-soft: 0 18px 48px rgba(7, 15, 23, 0.08);
   --crays-shadow-deep: 0 34px 90px rgba(7, 15, 23, 0.20);
   min-height: 100%;
   color: var(--crays-ink);
   background:
     radial-gradient(circle at top left, rgba(243, 18, 72, 0.045), transparent 28%),
-    radial-gradient(circle at 90% 0%, rgba(94, 207, 255, 0.07), transparent 22%),
+    radial-gradient(circle at 90% 0%, rgba(18, 60, 138, 0.07), transparent 22%),
     linear-gradient(180deg, #fffdfa 0%, #f7f2ec 46%, #fffdfa 100%);
   font-family: Montserrat, Arial, sans-serif;
   letter-spacing: 0;
@@ -6079,9 +6184,9 @@ html:not([lang="en"]) .crays-hero-tile-title {
   --crays-ci-night: #02070d;
   --crays-ci-navy: #061a2f;
   --crays-ci-blue: #123c8a;
-  --crays-ci-cyan: #58d5ff;
+  --crays-ci-signal-blue: #2d65d8;
   --crays-ci-violet: #5b50ff;
-  --crays-ci-gold: #efc36a;
+  --crays-ci-deep-blue: #061a2f;
   --crays-ci-red: #ff174f;
   --crays-ci-paper: #fffdfa;
   --crays-ci-blush: #fff1f3;
@@ -6090,7 +6195,7 @@ html:not([lang="en"]) .crays-hero-tile-title {
   --crays-section-max: 1240px;
   background:
     radial-gradient(circle at 8% 16%, rgba(255, 23, 79, 0.055), transparent 24%),
-    radial-gradient(circle at 92% 40%, rgba(88, 213, 255, 0.065), transparent 24%),
+    radial-gradient(circle at 92% 40%, rgba(18, 60, 138, 0.065), transparent 24%),
     #fffdfa;
   color: var(--crays-ci-ink);
 }
@@ -26053,8 +26158,8 @@ body.crays-mirror.route-nostr {
   --nostr-copy-dark: rgba(6, 17, 29, 0.72);
   --nostr-border-dark: rgba(6, 17, 29, 0.14);
   --nostr-pink: #fa1754;
-  --nostr-teal: #0aa69a;
-  --nostr-gold: #ffc04d;
+  --nostr-blue: #123c8a;
+  --nostr-deep-blue: #061a2f;
 }
 
 body.crays-mirror.route-nostr .crays-nostr-page,
@@ -26414,7 +26519,7 @@ body.crays-mirror.route-nostr .crays-nostr-stack-head .crays-nostr-copy {
 body.crays-mirror.route-nostr .crays-nostr-stack-head__rule {
   height: 4px !important;
   align-self: end !important;
-  background: linear-gradient(90deg, var(--nostr-pink), var(--nostr-teal), var(--nostr-gold)) !important;
+  background: linear-gradient(90deg, var(--nostr-pink), var(--nostr-blue), var(--nostr-deep-blue)) !important;
   border-radius: 999px !important;
 }
 
@@ -26735,5 +26840,25 @@ body.crays-mirror.route-nostr .crays-nostr-section--apply .crays-nostr-roadmap a
   body.crays-mirror.route-nostr .crays-nostr-video-card video,
   body.crays-mirror.route-nostr .crays-nostr-video-card--portrait video {
     aspect-ratio: 16 / 10 !important;
+  }
+}
+
+body.crays-mirror.route-home {
+  overflow-x: clip;
+}
+
+body.crays-mirror.route-home .crays-city-manifesto-card,
+body.crays-mirror.route-home .crays-footer-cities {
+  box-sizing: border-box !important;
+  max-width: calc(100vw - 64px) !important;
+}
+
+body.crays-mirror.route-home .navbar10_menu {
+  max-width: calc(100vw - 205px) !important;
+}
+
+@supports not (overflow-x: clip) {
+  body.crays-mirror.route-home {
+    overflow-x: hidden;
   }
 }

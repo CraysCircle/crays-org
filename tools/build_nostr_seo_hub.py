@@ -4,6 +4,7 @@ import html
 import json
 import re
 from collections import defaultdict
+from copy import deepcopy
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -15,7 +16,7 @@ OPENVERSE_IMAGE_BANK = ROOT / "tools" / "nostr_openverse_image_bank.json"
 DEEP_RESEARCH_INVENTORY = ROOT / "tools" / "nostr_deep_research_inventory.json"
 SEARCH_INDEX = PUBLIC / "nostr" / "search-index.json"
 BASE_URL = "https://www.crays.org"
-TODAY = "2026-05-31"
+TODAY = "2026-06-02"
 
 
 def esc(value: object) -> str:
@@ -221,6 +222,21 @@ NIP_SOURCES = [
     ("NIP-94", "https://github.com/nostr-protocol/nips/blob/master/94.md", "File metadata events."),
     ("NIP-96", "https://github.com/nostr-protocol/nips/blob/master/96.md", "HTTP file storage integration."),
     ("NIP-98", "https://github.com/nostr-protocol/nips/blob/master/98.md", "HTTP authentication with Nostr events."),
+]
+
+
+NOSTR_COMMUNITY_SOURCES = [
+    ("NIP-7D", "https://nips.nostr.com/7D", "Forum threads using kind 11 roots and NIP-22 replies."),
+    ("NIP-22", "https://nips.nostr.com/22", "Comment events using kind 1111 with root and parent tags."),
+    ("NIP-25", "https://nips.nostr.com/25", "Reaction events for likes, votes and lightweight response signals."),
+    ("NIP-29", "https://nips.nostr.com/29", "Relay-based groups for relay-enforced community membership and moderation."),
+    ("NIP-32", "https://nips.nostr.com/32", "Labels used for moderation, classification and review status."),
+    ("NIP-46", "https://nips.nostr.com/46", "Remote signing and Nostr Connect."),
+    ("NIP-56", "https://nips.nostr.com/56", "Report events for abuse and moderation queues."),
+    ("NIP-72", "https://nips.nostr.com/72", "Legacy/compatibility moderated communities; upstream now recommends NIP-29 instead."),
+    ("NIP-78", "https://nips.nostr.com/78", "Application-specific data events."),
+    ("NIP-98", "https://nips.nostr.com/98", "HTTP authentication with signed kind 27235 events."),
+    ("Nostr Login", "https://nostrlogin.org/", "Browser login UI with extension, Nostr Connect, read-only and local account flows."),
 ]
 
 
@@ -817,11 +833,11 @@ PAGES = [
                 ("NIPs and relays", "Protocol pages, NIP references, relay market pages and implementation routes."),
             ]),
             section("How to use it", [
-                "Start broad when you need orientation, then narrow with the exact term. Search for 'NIP-72', 'Primal', 'Lyn Alden', 'Blossom', 'nostrlogin.org', 'relay auth' or a full source URL. The strongest matches appear first, and each result keeps its category and shelf visible so you can see where it belongs.",
+                "Start broad when you need orientation, then narrow with the exact term. Search for 'NIP-7D', 'NIP-29', 'Primal', 'Lyn Alden', 'Blossom', 'nostrlogin.org', 'relay auth' or a full source URL. The strongest matches appear first, and each result keeps its category and shelf visible so you can see where it belongs.",
                 "If a term has no result, that is useful too. It tells us where the hub needs a new page, a deeper source trail or a better internal synonym."
             ], [
                 ("Exact URL", "Paste a workbook or web URL when you want the audit trail."),
-                ("NIP number", "Use NIP-07, NIP-46, NIP-50, NIP-72, NIP-98 or any tracked standard."),
+                ("NIP number", "Use NIP-07, NIP-22, NIP-29, NIP-50, NIP-7D, NIP-98 or any tracked standard."),
                 ("Project name", "Search apps, relay tools, signers, media projects and wallets."),
                 ("Person", "Use the People route when the public contribution context is clear."),
             ]),
@@ -3060,6 +3076,1094 @@ for item in PAGES:
         )
 
 
+CRAYS_NOSTR_COMMUNITIES = [
+    ("general-nostr", "General / Nostr", "Start", "Broad protocol orientation, new member questions and practical learning."),
+    ("nostr-projects", "Nostr Projects", "Apps", "Project launches, repo updates, app research and build notes."),
+    ("apps", "Apps", "Apps", "Clients, signers, creator tools, admin tools and app handlers."),
+    ("relays", "Relays", "Relays", "Relay operations, NIP-11 metadata, paid relays, search relays and venue relays."),
+    ("nips", "NIPs", "NIPs", "Standards, event kinds, implementation notes and open proposal tracking."),
+    ("privacy", "Privacy", "Privacy", "Key safety, signers, threat models, private data and moderation boundaries."),
+    ("wallets", "Wallets", "Wallets", "Nostr Wallet Connect, zaps, Lightning and sovereign records."),
+    ("media", "Media", "Media", "Music, video, long-form publishing, Blossom and creator archives."),
+    ("commerce", "Commerce", "Commerce", "Listings, creator sales, marketplaces, FoundUPS and revenue paths."),
+    ("governance", "Governance", "Governance", "Badges, labels, reports, reputation, DAO readiness and policy."),
+    ("developer", "Developer", "Library", "Libraries, relays, NIP debugging, event inspection and tooling."),
+    ("research-new-findings", "Research / New Findings", "Library", "Crawler findings, source review, duplicate checks and page update proposals."),
+    ("crays", "Crays", "Crays", "Crays implementation, profiles, venues, Super Nodes and Crays.net integration."),
+]
+
+
+EARLY_NOSTR_USER_SEEDS = [
+    ("preston", "preston@crays.net", "187190", "Bitcoin, books, Ego Death Capital and early Nostr visibility"),
+    ("Jeff Booth", "jeffbooth@nostrverified.com", "179294", "technology, markets and public Nostr reach"),
+    ("Lyn Alden", "lyn@crays.net", "123585", "macro research, Bitcoin and long-form public analysis"),
+    ("PABLOF7z", "f7z.io", "96432", "Nostr tooling, Sanity Island and protocol culture"),
+    ("semisol", "semisol@nostr.land", "90124", "Nostr public account seed"),
+    ("Saifedean Ammous", "saifedean@crays.net", "87714", "Bitcoin economics and public education"),
+    ("Jameson Lopp", "lopp@lopp.net", "85191", "Bitcoin security, privacy and infrastructure writing"),
+    ("Max DeMarco", "maxdemarco@crays.net", "74268", "filmmaking, Bitcoin media and public Nostr presence"),
+    ("hodlbod", "hodlbod@coracle.social", "69679", "Coracle, communities and Web-of-Trust work"),
+    ("Erik Cason", "erikcason@nostrplebs.com", "60773", "Bitcoin writing and Nostr culture"),
+    ("Lawrence Lepard", "lawrence@NostrVerified.com", "54874", "macro, Bitcoin investment and public commentary"),
+    ("No Bullshit Bitcoin", "news@crays.net", "53234", "Bitcoin and Nostr news curation"),
+    ("The Fishcake", "thefishcake.com", "53087", "nostr.build and media infrastructure"),
+    ("The Nostr Report", "nostreport@nostr.report", "49874", "Nostr media and ecosystem reporting"),
+    ("Jestopher", "Jestopher@Amboss.space", "46562", "Lightning/Nostr public account seed"),
+    ("Joe Nakamoto", "joenakamoto@crays.net", "45344", "Bitcoin journalism and video"),
+    ("knutsvanholm", "knutsvanholm@iris.to", "43615", "Bitcoin philosophy and public writing"),
+    ("Alan B", "alanbwt@crays.net", "43181", "Bitcoin and Nostr public account seed"),
+    ("Max", "max@towardsliberty.com", "42887", "public Nostr account seed"),
+    ("Daniel Prince", "princey@crays.net", "41916", "Bitcoin podcasting and public education"),
+    ("Plebchain Radio", "plebchainradio@crays.net", "33159", "Nostr music, shows and community audio"),
+    ("Bitcoin Fortress", "bitcoinfortress@nostrplebs.com", "33056", "Bitcoin public account seed"),
+    ("Homer Hodl", "hhooddII@nostrplebs.com", "32933", "Bitcoin culture account seed"),
+    ("Forever Laura", "foreverlaura@crays.net", "32824", "public Nostr creator seed"),
+    ("hopelessromantic", "hopelessromantic@rizful.com", "31513", "public Nostr account seed"),
+    ("Bitcoin.Review", "bitcoin.review", "30474", "Bitcoin reviews and public Nostr presence"),
+    ("Farfallica", "farfallica@nostrplebs.com", "30346", "public Nostr account seed"),
+    ("Saiyasodharan", "saiy2k@iris.to", "30242", "public Nostr account seed"),
+    ("Satoshi Coffee Co.", "satscoffee@sats.coffee", "29542", "merchant and Bitcoin culture account seed"),
+    ("Ken Berry, MD", "kenberrymd@crays.net", "26226", "health education and public Nostr presence"),
+    ("Ian Carroll", "Iancarroll", "24935", "journalism and public creator account seed"),
+    ("Sirius", "", "23372", "public Nostr account seed"),
+    ("Pegah", "pegah@nostrcheck.me", "23264", "public Nostr account seed"),
+    ("Jonathan", "jonathansm.com", "23109", "public Nostr account seed"),
+    ("limitlesslaurel", "limitlesslaurel@crays.net", "22425", "public Nostr account seed"),
+    ("Shannen Michaela", "shannen@crays.net", "21951", "public Nostr creator seed"),
+    ("Ratel", "ratel@nostrplebs.com", "21800", "public Nostr account seed"),
+    ("zed-erwan", "", "21721", "public Nostr account seed"),
+    ("evacide", "evacide@hachyderm-io.mostr.pub", "21644", "public bridge/account seed"),
+    ("utxo the webmaster", "utxo.one", "21392", "web and Nostr public account seed"),
+    ("merryoscar", "merryoscar@fountain.fm", "18446", "Fountain and podcasting account seed"),
+    ("jwilly", "jwilly@crays.net", "17677", "public Nostr account seed"),
+    ("Sourcenode", "sourcenode@nostrplebs.com", "17401", "public Nostr account seed"),
+    ("Timothy Voin", "HolisticTim@crays.net", "17043", "public Nostr account seed"),
+    ("melissa", "melissa@getalby.com", "15545", "Alby and Nostr public account seed"),
+    ("Asanoha", "asanoha@nostrplebs.com", "15440", "public Nostr account seed"),
+    ("Suhail", "suhail@suhailsaqan.com", "15380", "public Nostr account seed"),
+    ("Rustypuppy", "rustypuppy@nostrplebs.com", "13875", "public Nostr account seed"),
+    ("Susiebdds", "susiebdds@crays.net", "13786", "public Nostr account seed"),
+    ("TFTC", "tftc@crays.net", "13617", "Bitcoin media and podcast network"),
+    ("The Daniel", "daniel@ghostr.org", "11796", "public Nostr account seed"),
+    ("MrHodl", "MrHodl@nostrpurple.com", "11570", "Bitcoin culture account seed"),
+    ("Jonny Kanone", "jonnykanone@crays.net", "11560", "public Nostr account seed"),
+    ("Shaughnessy", "shaughnessy@crays.net", "11330", "public Nostr account seed"),
+    ("Paloma", "", "10369", "public Nostr account seed"),
+    ("Rijndael", "rot13maxi@rot13maxi.com", "10353", "public Nostr account seed"),
+    ("zerohedge", "npub1z7eqn5603ltuxr77w70t3sas...", "10204", "public media account seed"),
+    ("TheBitcoinManual", "thebtcmanual@getalby.com", "10115", "Bitcoin education and public Nostr presence"),
+    ("Giacomo Zucco", "giacomozucco@crays.net", "9812", "Bitcoin, privacy and public education"),
+    ("BTC Prague", "BTCPrague@crays.net", "9711", "Bitcoin conference and events account"),
+]
+
+
+CRAYS_COMMUNITY_ACTIONS = [
+    ("Ask a question", "Get help choosing clients, signers, relays, wallets or NIP paths. Best for new users and practical blockers.", "/nostr/community/questions/"),
+    ("Submit a project", "Introduce an app, relay, library, media project, signer, wallet, community or developer tool with sources.", "/nostr/community/projects/submit/"),
+    ("Submit an app", "Add a client, signer, wallet, relay tool, media app or library with platform, key-handling and supported NIPs.", "/nostr/community/apps/submit/"),
+    ("Nominate a person", "Suggest a public Nostr account for People | Users with npub/NIP-05, public links and why the person matters.", "/nostr/people/users/"),
+    ("Add a source", "Attach a paper, repo, post, video, NIP, relay page or article to an existing Crays page as a review item.", "/nostr/community/suggestions/"),
+    ("Review findings", "Help triage new crawler leads, duplicate entries, stale claims, broken links and project updates.", "/nostr/community/moderation/"),
+    ("Report a problem", "Flag spam, impersonation, unsafe links, stale claims or moderation issues without editing the article directly.", "/nostr/community/moderation/"),
+]
+
+
+CRAYS_COMMUNITY_LANES = [
+    ("New", "Fresh posts, project submissions, questions and source drops."),
+    ("Hot", "Threads with recent replies, votes, reports or moderator activity."),
+    ("Top", "Useful contributions by upvotes, accepted status and trusted-source labels."),
+    ("Unanswered", "Questions and review requests that still need a human answer."),
+    ("Needs source", "Claims, project data or People nominations that need evidence."),
+    ("Needs review", "Crawler findings, submissions and reports waiting for moderators."),
+    ("Accepted", "Items that passed review and can be linked or merged."),
+    ("Merged", "Contributions that already improved an existing page."),
+]
+
+
+CRAYS_COMMUNITY_ROLES = [
+    ("Reader", "Searches, follows topics, asks questions, reacts and reports problems."),
+    ("Contributor", "Submits projects, links, corrections, people, relays, videos and app updates."),
+    ("Maintainer", "Claims or updates a project/profile and answers questions about it."),
+    ("Researcher", "Adds source trails, NIP notes, GitHub context, relay evidence and duplicate checks."),
+    ("Moderator", "Curates forum/group visibility, labels states, handles reports and protects page quality."),
+    ("Editor", "Turns accepted evidence into Crays editorial updates without changing good slugs unnecessarily."),
+]
+
+
+CRAYS_CONTRIBUTION_TYPES = [
+    ("Question", "A help request or discussion starter."),
+    ("Link / source", "A page, repo, video, NIP, article or research paper."),
+    ("Project launch", "A new or newly discovered Nostr project."),
+    ("Project update", "Version, license, status, platform or maintainer update."),
+    ("App review", "A usage note, comparison or implementation finding."),
+    ("Relay report", "NIP-11 metadata, policy, uptime, paid/free status or search capability."),
+    ("NIP discussion", "Spec interpretation, implementation risk or example event."),
+    ("Person nomination", "A public account with evidence and a reason to include it."),
+    ("Media drop", "Talk, tutorial, podcast, article, video or creator archive."),
+    ("Correction", "A stale claim, broken link, wrong category or missing source."),
+]
+
+
+CRAYS_PRODUCT_NAV = [
+    ("Community HQ", "community", "/nostr/community/"),
+    ("Questions", "questions", "/nostr/community/questions/"),
+    ("Projects", "projects", "/nostr/community/projects/"),
+    ("Submit app", "apps-submit", "/nostr/community/apps/submit/"),
+    ("People | Users", "people-users", "/nostr/people/users/"),
+    ("Suggestions", "suggestions", "/nostr/community/suggestions/"),
+    ("NIP Strategy", "nips-strategy", "/nostr/nips/crays-nip-strategy/"),
+    ("Moderation", "moderation", "/nostr/community/moderation/"),
+]
+
+
+CRAYS_PRODUCT_FEED_ITEMS = [
+    {
+        "kind": "Question",
+        "state": "Unanswered",
+        "title": "Which signer path should a new Crays reader start with?",
+        "note": "A newcomer wants a safe route between extension login, Nostr Connect, read-only npub and local account creation.",
+        "route": "Privacy & Keys",
+        "tags": "NIP-07, NIP-46",
+        "score": 18,
+        "comments": 4,
+        "href": "/nostr/community/discussions/?type=question&route=privacy&title=Which%20signer%20path%20should%20a%20new%20Crays%20reader%20start%20with%3F",
+    },
+    {
+        "kind": "Project launch",
+        "state": "Needs review",
+        "title": "Add Blossom and media-server projects to the Media route",
+        "note": "A contributor found active Blossom implementations and wants them mapped to media, apps and developer pages.",
+        "route": "Media",
+        "tags": "NIP-B7, NIP-94",
+        "score": 26,
+        "comments": 8,
+        "href": "/nostr/submit-project/?route=media&type=project",
+    },
+    {
+        "kind": "Person nomination",
+        "state": "Needs source",
+        "title": "Nominate relay operators and maintainer accounts for People | Users",
+        "note": "The People route should cover maintainers, relay operators and researchers, not only celebrity accounts.",
+        "route": "People | Users",
+        "tags": "NIP-05, npub",
+        "score": 31,
+        "comments": 12,
+        "href": "/nostr/people/users/?route=people&type=person",
+    },
+    {
+        "kind": "Relay report",
+        "state": "Pending",
+        "title": "Compare public, paid and search relays for new readers",
+        "note": "Relay operators can submit NIP-11 metadata, policy notes, paid/free status and uptime evidence.",
+        "route": "Relays",
+        "tags": "NIP-11, NIP-50, NIP-65",
+        "score": 14,
+        "comments": 3,
+        "href": "/nostr/community/new-findings/?route=relays&type=relay",
+    },
+    {
+        "kind": "NIP discussion",
+        "state": "Hot",
+        "title": "Use NIP-7D, NIP-22 and NIP-29 as the primary Crays community path",
+        "note": "NIP-72 remains useful for compatibility, but the current upstream guidance says new group work should check NIP-29.",
+        "route": "Governance",
+        "tags": "NIP-7D, NIP-22, NIP-29, NIP-72",
+        "score": 43,
+        "comments": 17,
+        "href": "/nostr/community/discussions/?route=governance&type=nip",
+    },
+    {
+        "kind": "Source update",
+        "state": "Accepted",
+        "title": "Attach Primal Server as cache/discovery reference, not relay replacement",
+        "note": "The audit says Primal Server is useful architecture reference and possible cache layer, but not a standard relay.",
+        "route": "Apps / Relays",
+        "tags": "Primal, cache",
+        "score": 22,
+        "comments": 5,
+        "href": "/nostr/community/new-findings/?route=apps&type=source",
+    },
+    {
+        "kind": "Project update",
+        "state": "Merged",
+        "title": "Keep noStrudel as the admin/event-inspector reference",
+        "note": "The product needs raw event inspection, relay visibility and signer warnings before adding heavier moderation tools.",
+        "route": "Library",
+        "tags": "noStrudel, event inspector",
+        "score": 19,
+        "comments": 6,
+        "href": "/nostr/community/new-findings/?route=library&type=source",
+    },
+    {
+        "kind": "Correction",
+        "state": "Needs review",
+        "title": "Move article talk boxes out of the reading flow",
+        "note": "Hub pages should carry heavy contribution work; articles should behave like talk pages with corrections and source proposals.",
+        "route": "Start",
+        "tags": "IA, article UX",
+        "score": 37,
+        "comments": 11,
+        "href": "/nostr/community/discussions/?route=start&type=correction",
+    },
+]
+
+
+CRAYS_PRODUCT_METRICS = [
+    ("1436", "indexed pages", "The editorial archive remains the base layer."),
+    ("15", "community lanes", "Topic communities mapped to the 12 Crays routes."),
+    ("64", "people seeds", "Early Nostr Users from the handover screenshots."),
+    ("0", "server-held keys", "Private keys stay with signers or local account flows."),
+]
+
+
+CRAYS_PRODUCT_WORKFLOWS = [
+    ("Ask", "NIP-7D topic", "Question becomes a forum thread with route and community tags."),
+    ("Answer", "NIP-22 reply", "Replies stay attached to the thread or page scope."),
+    ("Vote", "NIP-25 reaction", "Useful work can rise without changing editorial content."),
+    ("Label", "NIP-32 label", "Review state, source quality and moderation state stay visible."),
+    ("Report", "NIP-56 report", "Unsafe links, spam and impersonation move into moderation."),
+    ("Merge", "Editorial update", "Accepted evidence can improve a stable Crays page."),
+]
+
+
+CRAYS_PROJECT_PIPELINE = [
+    ("Submit", "Builder or community member submits project, repo, website, NIPs, status and sources."),
+    ("Verify", "Reviewers check website, repo, license, activity, public accounts and duplicate coverage."),
+    ("Discuss", "Community asks questions, compares alternatives and adds context."),
+    ("Approve", "Moderator labels the item and decides forum, group or compatibility visibility."),
+    ("Integrate", "Editor creates a project card, updates an existing page or proposes a new page."),
+]
+
+
+CRAYS_NIP_STRATEGY_TIERS = [
+    (
+        "Foundation now",
+        "Use in the first product layer",
+        "NIP-01, NIP-05, NIP-07, NIP-09, NIP-10, NIP-11, NIP-12, NIP-16, NIP-19, NIP-20, NIP-21, NIP-22, NIP-24, NIP-25, NIP-27, NIP-32, NIP-33, NIP-36, NIP-39, NIP-40, NIP-42, NIP-45, NIP-46, NIP-49, NIP-50, NIP-51, NIP-56, NIP-65, NIP-66, NIP-70, NIP-73, NIP-78, NIP-7D, NIP-84, NIP-85, NIP-88, NIP-89, NIP-92, NIP-94, NIP-98, NIP-B0, NIP-B7, NIP-C0",
+    ),
+    (
+        "Community spine",
+        "Use as the product model for the Reddit-like layer",
+        "NIP-7D forum roots, NIP-22 comments, NIP-25 reactions, NIP-29 relay groups for enforced spaces, NIP-32 labels, NIP-56 reports and NIP-72 only for compatibility with existing community clients.",
+    ),
+    (
+        "Prepare next",
+        "Useful once backend, media, wallet or event workflows exist",
+        "NIP-17, NIP-23, NIP-34, NIP-37, NIP-44, NIP-47, NIP-52, NIP-53, NIP-57, NIP-58, NIP-59, NIP-5A, NIP-60, NIP-61, NIP-68, NIP-69, NIP-71, NIP-75, NIP-77, NIP-86, NIP-87, NIP-99, NIP-A0, NIP-A4, NIP-C7, NIP-F4",
+    ),
+    (
+        "Index/reference only",
+        "Show in the NIP atlas but avoid making them product dependencies now",
+        "NIP-02, NIP-13, NIP-14, NIP-18, NIP-30, NIP-35, NIP-38, NIP-48, NIP-55, NIP-64, NIP-CC",
+    ),
+    (
+        "Avoid or compatibility",
+        "Do not build new core features on these unless there is a narrow reason",
+        "NIP-03, NIP-04, NIP-06, NIP-08, NIP-15, NIP-26, NIP-28, NIP-31, NIP-72, NIP-90, NIP-96, NIP-BE, NIP-EE",
+    ),
+]
+
+
+CRAYS_NIP_DECISION_MATRIX = [
+    ("NIP-01", "Basic protocol flow", "use now", "Event validation, signing model, relay messages and every review/event template."),
+    ("NIP-02", "Follow list", "prepare", "People discovery, social graph hints and trusted contributor context."),
+    ("NIP-03", "OpenTimestamps attestations", "avoid", "Keep as archive reference only; upstream marks it unrecommended."),
+    ("NIP-04", "Encrypted direct message", "avoid", "Do not build new private messaging on it; use NIP-17/NIP-44/NIP-59 path later."),
+    ("NIP-05", "DNS identity", "use now", "Readable Crays and public-user identity checks."),
+    ("NIP-06", "Mnemonic seed phrase", "avoid", "Do not push users into mnemonic generation; prefer signer/local nsec flow through nostr-login."),
+    ("NIP-07", "Browser signer", "use now", "Primary Community login and signing path through window.nostr."),
+    ("NIP-08", "Old mention handling", "avoid", "Deprecated by NIP-27; index only."),
+    ("NIP-09", "Event deletion request", "use now", "Respect deletion requests in cached/community surfaces where possible."),
+    ("NIP-10", "Text notes and threads", "use now", "Compatibility for ordinary Nostr threads and quoted social context."),
+    ("NIP-11", "Relay information", "use now", "Relay directory, capability checks, policy display and crawler metadata."),
+    ("NIP-12", "Generic tag queries", "use now", "Relay filtering for page tags, people, projects, labels and communities."),
+    ("NIP-13", "Proof of work", "reference", "Possible anti-spam signal only, never a mainstream user requirement."),
+    ("NIP-14", "Subject tag", "prepare", "Useful for discussion titles and support threads."),
+    ("NIP-15", "Marketplace", "avoid", "Upstream recommends NIP-99 instead."),
+    ("NIP-16", "Event treatment", "use now", "Mandatory relay/client treatment rules for replaceable and ephemeral events."),
+    ("NIP-17", "Private direct messages", "prepare", "Future private moderator/user messages, with NIP-44/NIP-59."),
+    ("NIP-18", "Reposts", "prepare", "Curation and source amplification, not needed for first review flow."),
+    ("NIP-19", "bech32 entities", "use now", "npub, note, nevent and naddr display/parse rules."),
+    ("NIP-20", "Command results", "use now", "Relay publish status and event acceptance/failure handling."),
+    ("NIP-21", "nostr URI scheme", "use now", "Deep links from Crays pages into Nostr clients."),
+    ("NIP-22", "Comments", "use now", "Page discussions, replies and community threads."),
+    ("NIP-23", "Long-form content", "prepare", "Future article/project posts and canonical long-form mirrors."),
+    ("NIP-24", "Extra metadata", "use now", "Richer profile rendering for People and project maintainers."),
+    ("NIP-25", "Reactions", "use now", "Upvotes, downvotes, helpful markers and lightweight feedback."),
+    ("NIP-26", "Delegated signing", "avoid", "Upstream warns against it; use NIP-46 signers instead."),
+    ("NIP-27", "Text note references", "use now", "Render mentions, note links and source references."),
+    ("NIP-28", "Public chat", "avoid", "Upstream points to NIP-29; keep only for compatibility context."),
+    ("NIP-29", "Relay-based groups", "use now", "Primary path for enforceable Crays groups once a relay is available."),
+    ("NIP-30", "Custom emoji", "reference", "Nice-to-have display feature, not product infrastructure."),
+    ("NIP-31", "Unknown event kinds", "avoid", "Upstream marks it unrecommended."),
+    ("NIP-32", "Labels", "use now", "Moderation labels, review states, source quality and topic classification."),
+    ("NIP-33", "Parameterized replaceable events", "use now", "Addressable profiles, lists, app data and community definitions."),
+    ("NIP-34", "Git stuff", "prepare", "Developer/project submissions and repository events."),
+    ("NIP-35", "Torrents", "reference", "Media/library archive reference only."),
+    ("NIP-36", "Sensitive content", "use now", "Content warning and moderation display."),
+    ("NIP-37", "Draft wraps", "prepare", "Future safer draft workflows for contributors."),
+    ("NIP-38", "User statuses", "reference", "Profile detail, not a core Crays flow."),
+    ("NIP-39", "External identities", "use now", "People | Users verification and cross-profile source trails."),
+    ("NIP-40", "Expiration timestamp", "use now", "Temporary challenges, drafts and time-bound moderation objects."),
+    ("NIP-42", "Client relay authentication", "use now", "Private/paid/search relay access and future Crays relay auth."),
+    ("NIP-43", "Relay access metadata", "prepare", "Relay directory, paid/free policy and access request tracking."),
+    ("NIP-44", "Versioned encryption", "prepare", "Future private messages and encrypted app data."),
+    ("NIP-45", "Event counts", "use now", "Search/relay metrics, discussion counts and moderation summaries."),
+    ("NIP-46", "Remote signing", "use now", "Nostr Connect/Bunker login with private keys kept outside the site."),
+    ("NIP-47", "Nostr Wallet Connect", "prepare", "Wallets, zaps, paid community features and creator flows later."),
+    ("NIP-48", "Bridged events", "reference", "Useful for cross-network context, not a core dependency."),
+    ("NIP-49", "Private key encryption", "use carefully", "Only for explicit local backup/storage flows; never server-side."),
+    ("NIP-50", "Search capability", "use now", "Relay search and Search Atlas expansion beyond static JSON."),
+    ("NIP-51", "Lists", "use now", "Curations, bookmarks, topic lists, people lists and moderator sets."),
+    ("NIP-52", "Calendar events", "prepare", "Nostr conferences, Crays events and venue programming later."),
+    ("NIP-53", "Live activities", "prepare", "Live streams, talks, event rooms and media moments later."),
+    ("NIP-54", "Wiki", "prepare", "Potential community knowledge pages after review governance exists."),
+    ("NIP-55", "Android signer", "reference", "Mobile signer compatibility reference, not web core."),
+    ("NIP-56", "Reporting", "use now", "Reports, abuse queue and moderation evidence."),
+    ("NIP-57", "Lightning zaps", "prepare", "Creator support, project funding and reputation signals later."),
+    ("NIP-58", "Badges", "prepare", "Contributor badges, moderator trust and proof-of-role later."),
+    ("NIP-59", "Gift wrap", "prepare", "Private messaging path with NIP-17/NIP-44."),
+    ("NIP-5A", "Static websites", "prepare", "Future nsite publishing and Crays mirror experiments."),
+    ("NIP-60", "Cashu wallets", "prepare", "Wallet research and future commerce/wallet pages."),
+    ("NIP-61", "Nutzaps", "prepare", "Cashu/Nostr value flow research."),
+    ("NIP-62", "Request to vanish", "prepare", "Privacy and cache-policy handling for future backend."),
+    ("NIP-64", "Chess", "reference", "Keep in the NIP atlas only."),
+    ("NIP-65", "Relay list metadata", "use now", "User relay choice, outbox hints and default relay strategy."),
+    ("NIP-66", "Relay liveness monitoring", "use now", "Relay health, discovery and crawler evidence."),
+    ("NIP-68", "Picture-first feeds", "prepare", "Media/creator surfaces later."),
+    ("NIP-69", "Peer-to-peer order events", "prepare", "Commerce and marketplace research later."),
+    ("NIP-70", "Protected events", "use now", "Anti-spam and moderation policy display."),
+    ("NIP-71", "Video events", "prepare", "Video/media route and event clips later."),
+    ("NIP-72", "Moderated communities", "compatibility", "Do not make it the only spine; upstream recommends NIP-29 for new group work."),
+    ("NIP-73", "External content IDs", "use now", "Crawler matching, citations, GitHub/issues/articles and duplicate detection."),
+    ("NIP-75", "Zap goals", "prepare", "Fundraising and project goals later."),
+    ("NIP-77", "Negentropy syncing", "prepare", "Cache/index sync for backend phase."),
+    ("NIP-78", "Custom app data", "use now", "Crays review drafts and app-specific queue state."),
+    ("NIP-7D", "Forum threads", "use now", "Reddit-like forum roots paired with NIP-22 replies."),
+    ("NIP-84", "Highlights", "use now", "Source highlights and research snippets with attribution."),
+    ("NIP-85", "Trusted assertions", "use now", "Trust/reputation assertions for source and contributor quality."),
+    ("NIP-86", "Relay management API", "prepare", "Crays relay administration later."),
+    ("NIP-87", "Ecash mint discoverability", "prepare", "Wallet and commerce research later."),
+    ("NIP-88", "Polls", "use now", "Community polls for priorities, not binding governance yet."),
+    ("NIP-89", "Recommended application handlers", "use now", "App directory, project submissions and handler recommendations."),
+    ("NIP-90", "Data vending machines", "avoid core", "Upstream marks it unrecommended; use only as research context for automation."),
+    ("NIP-92", "Media attachments metadata", "use now", "Media display, crawler extraction and safe attachment metadata."),
+    ("NIP-94", "File metadata", "use now", "File/source/media records before any upload becomes editorial."),
+    ("NIP-96", "HTTP file storage", "avoid", "Deprecated in favor of NIP-B7/Blossom."),
+    ("NIP-98", "HTTP auth", "use now", "Signed API/challenge auth for future review and crawler backend."),
+    ("NIP-99", "Classified listings", "prepare", "Commerce listings, marketplace and project offers later."),
+    ("NIP-A0", "Voice messages", "prepare", "Audio/community media later."),
+    ("NIP-A4", "Public messages", "prepare", "Public messaging experiments later."),
+    ("NIP-B0", "Web bookmarks", "use now", "Crawler findings, source queue and public bookmark trails."),
+    ("NIP-B7", "Blossom media", "use now", "Preferred media upload/storage path once moderation exists."),
+    ("NIP-BE", "BLE communications", "avoid", "Upstream marks it unrecommended."),
+    ("NIP-C0", "Code snippets", "use now", "Developer route, examples and implementation notes."),
+    ("NIP-C7", "Chats", "prepare", "Chat-like flows later, after group/thread model is stable."),
+    ("NIP-CC", "Geocaching events", "reference", "Archive curiosity, not a Crays product dependency."),
+    ("NIP-EE", "MLS E2EE messaging", "avoid", "Upstream says superseded; use newer messaging paths later."),
+    ("NIP-F4", "Podcasts", "prepare", "Media/podcast route and creator submissions later."),
+]
+
+
+def make_crays_nostr_platform_pages() -> list[dict]:
+    def public_identifier_label(handle: str) -> str:
+        handle = str(handle or "").strip()
+        if not handle:
+            return "public identifier pending"
+        if handle.lower().endswith("@crays.net"):
+            return f"Crays NIP-05 seed: {handle.split('@', 1)[0]}"
+        return handle
+
+    community_cards = [
+        (name, f"{category}. {description} Topic space prepared for NIP-7D/NIP-22 threads, future NIP-29 group enforcement and NIP-72 compatibility.")
+        for _slug, name, category, description in CRAYS_NOSTR_COMMUNITIES
+    ]
+    user_cards = [
+        (name, f"{public_identifier_label(handle)} - screenshot follower seed {followers}. Research track: {track}.")
+        for name, handle, followers, track in EARLY_NOSTR_USER_SEEDS
+    ]
+    nip_tier_cards = [
+        (title, f"{purpose}: {items}")
+        for title, purpose, items in CRAYS_NIP_STRATEGY_TIERS
+    ]
+    nip_decision_cards = [
+        (
+            nip,
+            f"{title}. Decision: {decision}. Crays use: {use}",
+            f"https://github.com/nostr-protocol/nips/blob/master/{nip.replace('NIP-', '')}.md",
+        )
+        for nip, title, decision, use in CRAYS_NIP_DECISION_MATRIX
+    ]
+    return [
+        page(
+            "community",
+            "Crays Nostr Community",
+            "A Reddit-like Nostr community layer around the Crays knowledge hub: ask, submit, nominate, review, improve pages and surface new projects without weakening the existing archive.",
+            "The Crays Nostr hub should become a working room for the Nostr ecosystem. The 1,400+ content pages stay intact. The community layer lets people bring new evidence, new projects, better links, public users, questions, reports and review energy into those pages.",
+            [
+                section("What people can do here", [
+                    "The point is not to bolt comments under articles. The point is to let the Nostr community work on the archive: ask useful questions, submit projects, nominate public accounts, add sources, review crawler findings, report problems and help editors merge good evidence.",
+                    "A contributor should always know what will be public, what is only a review item and what happens after approval."
+                ], cards=[(title, note, href) for title, note, href in CRAYS_COMMUNITY_ACTIONS]),
+                section("Community architecture", [
+                    "The model now treats NIP-7D forum threads and NIP-22 comments as the primary public discussion shape, NIP-29 relay-based groups as the future enforced group path, and NIP-72 as compatibility with older moderated-community clients. Reports use NIP-56 and review labels use NIP-32.",
+                    "Because this repository is currently static, the first implementation signs and queues events in the browser and can optionally publish signed events to selected public relays. Editorial integration still requires review."
+                ]),
+                section("The Reddit-like feed model", [
+                    "Each category can have a feed, but the feed should be useful rather than noisy. Readers need New, Hot, Top, Best, Unanswered, Needs source, Needs review, Accepted and Merged views. Moderators need the same objects with more context."
+                ], cards=[(title, note) for title, note in CRAYS_COMMUNITY_LANES]),
+                section("Who participates", [
+                    "A living Nostr hub needs roles. Some people only read; some submit sources; some maintain projects; some review; some moderate; some turn accepted work into finished pages. The UI should make those jobs visible."
+                ], cards=[(title, note) for title, note in CRAYS_COMMUNITY_ROLES]),
+                section("Contribution types", [
+                    "The composer should feel like a community tool, not a blank text box. The post type tells the system which review path, labels, required fields and destination community make sense."
+                ], cards=[(title, note) for title, note in CRAYS_CONTRIBUTION_TYPES]),
+                section("Prepared communities", [
+                    "The prepared communities map onto the 12 Crays Nostr categories and the extra research/developer spaces needed for a live archive. They are ready for official community owner and moderator pubkeys."
+                ], cards=community_cards),
+                section("Moderation stance", [
+                    "The default state is review-first. Community posts can exist as Nostr events, but they do not become Crays editorial content until they pass the local review queue. This protects user keys, source quality and the existing archive structure."
+                ], [
+                    ("Pending", "New users and crawler findings are review items first."),
+                    ("Approved", "Group visibility, compatibility approvals and local moderator actions make a post visible in trusted surfaces."),
+                    ("Rejected", "Spam, unsafe links, duplicates and unsupported claims stay out of editorial pages."),
+                    ("Merged", "Accepted source material can be merged into existing pages without changing good slugs."),
+                ]),
+            ],
+            tag="Crays Nostr community",
+            sources=NOSTR_COMMUNITY_SOURCES,
+            related=["nostr-login", "discussions", "submit-project", "new-findings", "admin/review", "moderation-discovery", "nips/crays-nip-strategy"],
+            keywords=["Crays Nostr community", "NIP-7D", "NIP-22", "NIP-29", "NIP-72", "Nostr moderation", "Crays review queue"],
+            read="14 min read",
+        ),
+        page(
+            "nips/crays-nip-strategy",
+            "Crays NIP Strategy",
+            "The product decision matrix for which Nostr standards Crays should use now, prepare next, keep as reference or avoid.",
+            "The Crays Nostr product should not chase NIP numbers for their own sake. Each standard has to earn its place in a real user flow: login, discussion, source review, project submission, moderation, relay strategy, media, search, People | Users or crawler evidence.",
+            [
+                section("The key correction", [
+                    "NIP-72 was requested because it describes Reddit-style moderated communities, but the current upstream NIPs repository marks it unrecommended and points new group work toward NIP-29. We still keep NIP-72 as compatibility because existing clients and references use it, but the durable Crays product path should be NIP-7D forum threads, NIP-22 comments, NIP-29 relay-based groups, NIP-32 labels and NIP-56 reports.",
+                    "That lets us build a product that feels like a Nostr-native Reddit without betting the whole architecture on one discouraged standard."
+                ], [
+                    ("Forum roots", "NIP-7D kind 11 starts durable topic threads."),
+                    ("Replies", "NIP-22 kind 1111 attaches comments to pages, events and forum roots."),
+                    ("Groups", "NIP-29 becomes the enforced community layer when Crays runs or partners with a relay."),
+                    ("Compatibility", "NIP-72 stays supported for clients and communities that already understand it."),
+                ]),
+                section("Decision tiers", [
+                    "This is the practical gate for implementation. Use-now NIPs can appear in the current product design. Prepare-next NIPs are planned but need backend, relay, media, wallet or moderation infrastructure. Reference-only NIPs stay in the archive. Avoid NIPs are deprecated, unrecommended or wrong for new Crays product surfaces."
+                ], cards=nip_tier_cards),
+                section("What this lets the community do", [
+                    "The community product is not a comment box. It is a signed work system: ask, answer, submit, nominate, review, label, report, vote, claim projects, attach sources and eventually merge accepted evidence into stable Crays pages.",
+                    "The NIP choices below map directly to those jobs."
+                ], [
+                    ("Community login", "NIP-07, NIP-46, NIP-19, NIP-49 and NIP-98 keep identity usable without server-side private keys."),
+                    ("Discussions", "NIP-7D, NIP-22, NIP-25, NIP-32 and NIP-56 create forum threads, replies, votes, labels and reports."),
+                    ("Groups", "NIP-29 gives the future Crays relay a real membership/moderation boundary."),
+                    ("Project submissions", "NIP-34, NIP-78, NIP-89, NIP-99 and NIP-B0 map repos, app handlers, listings and source bookmarks."),
+                    ("People | Users", "NIP-05, NIP-24, NIP-39, NIP-51, NIP-65 and NIP-85 support identity, public links and trust signals."),
+                    ("Crawler and search", "NIP-11, NIP-45, NIP-50, NIP-66, NIP-73, NIP-84 and NIP-B0 turn fresh discoveries into reviewable evidence."),
+                    ("Media", "NIP-92, NIP-94 and NIP-B7 are the safer media direction; NIP-96 is deprecated."),
+                    ("Moderation", "NIP-09, NIP-32, NIP-36, NIP-40, NIP-56, NIP-70 and local review states keep the archive from becoming chaotic."),
+                ]),
+                section("All current NIPs: Crays decision matrix", [
+                    "This matrix is intentionally product-oriented. It does not claim every NIP is bad or good in general; it says whether Crays should use it for the living Nostr hub now."
+                ], cards=nip_decision_cards),
+                section("Hard product rules", [
+                    "A NIP is not a feature until the user can understand what they are signing, where it appears, how it is moderated and whether it can change an editorial page. These rules protect the product while still inviting the Nostr community in."
+                ], [
+                    ("No server-held keys", "The Community login path must never send private keys to us."),
+                    ("No NIP-72-only bet", "NIP-72 remains compatibility, not the only community architecture."),
+                    ("No blind crawler publishing", "Crawler output becomes findings and review items, never instant editorial content."),
+                    ("No deprecated media path", "Use Blossom/NIP-B7 for the future media path instead of NIP-96."),
+                    ("No DVM core dependency", "NIP-90 is interesting for automation history, but not the first automation spine because upstream warns against it."),
+                ]),
+            ],
+            tag="Crays NIP strategy",
+            sources=NOSTR_COMMUNITY_SOURCES + [GLOBAL_SOURCES[1]],
+            related=["community", "discussions", "submit-project", "new-findings", "nips/complete-index", "source-inventory/deep-research/nips"],
+            keywords=["Crays NIP strategy", "NIP matrix", "NIP-7D", "NIP-22", "NIP-29", "NIP-72", "Nostr standards"],
+            read="22 min read",
+        ),
+        page(
+            "discussions",
+            "Crays Nostr Discussions",
+            "A NIP-22 discussion surface for Crays pages, community threads and reviewable public conversation.",
+            "Discussions are not a comment widget bolted onto an archive. They are signed Nostr events that can be shown, reviewed, reported, labelled and connected back to the page that created the conversation.",
+            [
+                section("Discussion event model", [
+                    "Page discussions use NIP-22 kind 1111 comments scoped to the page URL until a future Crays editorial event root exists. Forum-style topics can use NIP-7D kind 11 roots, with NIP-29 groups once relay-enforced communities are available.",
+                    "Community discussions can keep NIP-72 compatibility tags where useful, but the UI treats NIP-7D/NIP-22/NIP-29 as the cleaner long-term path. The event draft stays readable so a signer can see what will be signed."
+                ]),
+                section("Signals around a thread", [
+                    "A useful thread needs more than replies. The event map prepares reactions, reports, labels, moderation status, source submissions and internal links so a page can become alive without becoming chaotic."
+                ], [
+                    ("Comments", "NIP-22 kind 1111."),
+                    ("Votes", "NIP-25 reactions, interpreted locally as up or down depending on content."),
+                    ("Reports", "NIP-56 events that feed the moderator queue."),
+                    ("Labels", "NIP-32 for reviewed, duplicate, source, project or spam states."),
+                ]),
+            ],
+            tag="Crays Nostr discussions",
+            sources=NOSTR_COMMUNITY_SOURCES,
+            related=["community", "nostr-login", "new-findings", "moderation-discovery", "nip-22-comments"],
+            keywords=["Crays discussions", "NIP-22", "Nostr comments", "Nostr discussion threads"],
+            read="10 min read",
+        ),
+        page(
+            "submit-project",
+            "Submit a Nostr Project",
+            "A signed project-submission route for apps, relays, libraries, media tools, communities and Crays-relevant Nostr infrastructure.",
+            "Project submissions should enter the archive as reviewable evidence, not as automatic marketing copy. The form prepares a signed Nostr event and a local review item with sources, category, NIPs and status.",
+            [
+                section("Submission model", [
+                    "The first event target is NIP-78 app data for Crays-specific review data. If the project is a repository, NIP-34 can be attached later. If it is an application handler, NIP-89 is relevant. If it is a marketplace or listing, NIP-99 can be evaluated.",
+                    "Nothing submitted here creates or edits a Crays page by itself. Approval can create a project card, attach a discussion thread, propose a new page or merge the source into an existing article."
+                ]),
+                section("Required evidence", [
+                    "A good submission needs a website or repository, a clear description, a license/status signal, relevant NIPs and enough sources for review. Screenshots and logos remain moderation-gated before they appear in editorial content."
+                ]),
+            ],
+            tag="Crays Nostr submissions",
+            sources=NOSTR_COMMUNITY_SOURCES + [GLOBAL_SOURCES[5], GLOBAL_SOURCES[6]],
+            related=["community", "new-findings", "apps/catalog", "apps/research-atlas", "archive-library"],
+            keywords=["Nostr project submission", "Crays project review", "NIP-78", "NIP-34", "NIP-89"],
+            read="10 min read",
+        ),
+        page(
+            "new-findings",
+            "New Nostr Findings",
+            "The review queue for crawler discoveries, source submissions, project tips, NIP updates, relay findings and page update proposals.",
+            "The hub should keep discovering new Nostr work, but discovery is not the same as publication. New Findings is the review buffer between the internet, relays, GitHub and finished Crays editorial pages.",
+            [
+                section("Crawler pipeline", [
+                    "The pipeline is discover, fetch, extract, classify, compare, review and then integrate. It can create bookmarks, labels and review entries, but it must not copy foreign full text or publish unreviewed claims as Crays content.",
+                    "The current static MVP creates local review items and source trails. The backend phase will add scheduled crawling, duplicate detection and signed crawler events."
+                ]),
+                section("Review states", [
+                    "Every finding needs a status so editors and moderators can tell whether it is new, duplicate, rejected, merged or waiting for more evidence."
+                ], [
+                    ("Pending", "Seen but not reviewed."),
+                    ("Needs more info", "Interesting but not enough evidence."),
+                    ("Accepted", "Useful as source material."),
+                    ("Duplicate", "Already covered elsewhere."),
+                    ("Merged", "Integrated into an existing Crays page."),
+                    ("Rejected", "Spam, unsafe, off-topic or unsupported."),
+                ]),
+            ],
+            tag="Crays Nostr research",
+            sources=NOSTR_COMMUNITY_SOURCES + GLOBAL_SOURCES,
+            related=["community", "submit-project", "search-atlas", "source-inventory", "archive-library"],
+            keywords=["Nostr crawler", "Nostr research queue", "Crays findings", "source review"],
+            read="11 min read",
+        ),
+        page(
+            "admin/review",
+            "Nostr Review Dashboard",
+            "A static first-pass admin review surface for signed drafts, project submissions, page findings, reports and moderation actions.",
+            "The review dashboard is deliberately conservative. It makes pending local items visible, lets reviewers inspect signed event payloads and keeps editorial merge decisions separate from public Nostr publishing.",
+            [
+                section("Queues", [
+                    "The dashboard groups local signed drafts into project submissions, page comments, source findings, reports and moderation actions. In the backend phase, these map to database-backed review queues and audit logs."
+                ]),
+                section("Admin actions", [
+                    "Approve, reject, merge, duplicate and needs-more-info are editorial states. NIP-29 group visibility, NIP-72 compatibility approval, NIP-32 labels and NIP-56 reports are protocol states. The UI keeps those concepts close but not confused."
+                ]),
+            ],
+            tag="Crays Nostr admin",
+            sources=NOSTR_COMMUNITY_SOURCES,
+            related=["community", "new-findings", "submit-project", "moderation-discovery", "privacy-security"],
+            keywords=["Nostr admin", "Crays review queue", "NIP-29 groups", "NIP-72 compatibility", "Nostr moderation"],
+            read="9 min read",
+        ),
+        page(
+            "people/users",
+            "People | Users: Early Nostr Users",
+            "A research seed directory for large, early and relevant public Nostr accounts that should become deeper People articles over time.",
+            "The People route needs the user layer, not only founders and app builders. This seed directory turns the handover screenshots into a reviewable People | Users queue for public Nostr profiles, public activity, projects, links and article groundwork.",
+            [
+                section("What this section is", [
+                    "These are public Nostr account seeds captured from the handover screenshots and existing ecosystem context. Follower counts are treated as time-bound discovery signals, not permanent truth or a complete ranking.",
+                    "The next research pass should verify npubs, NIP-05 identifiers, profile metadata, public projects, public websites, GitHub links, notable posts, interviews and source quality before writing full articles."
+                ]),
+                section("What the community should help with", [
+                    "People | Users should become a collaborative research queue. The community can nominate accounts, add npubs, add NIP-05 identifiers, link public projects, cite interviews, surface notable posts, flag impersonation risk and request deeper articles.",
+                    "The rule is simple: public contribution context is welcome; private biography is not."
+                ], [
+                    ("Nominate", "Suggest a public account with npub, NIP-05 or profile URL."),
+                    ("Verify", "Check whether the profile, public links and project claims match."),
+                    ("Enrich", "Add public talks, repos, writing, podcasts, videos or project pages."),
+                    ("Protect", "Flag impersonation, stale identifiers or private-data risk."),
+                ]),
+                section("Seed accounts from the handover", [
+                    "This is the current People | Users queue. The goal is roughly 100 public accounts, but the site should prefer verified useful entries over inflated follower counts. The crawler and Nostr search phase can expand this list."
+                ], cards=user_cards),
+                section("Article rules", [
+                    "People articles must stay about public work, public Nostr activity and publicly linked projects. Do not infer private biography, do not expose personal data and do not treat follower count as character evidence."
+                ], [
+                    ("Public sources", "Use profile metadata, project pages, public posts, talks, repos, interviews and official websites."),
+                    ("Verification", "Keep npub/NIP-05 checks separate from display names."),
+                    ("No doxxing", "Use pseudonyms when the public account uses a pseudonym."),
+                    ("Crays fit", "Explain why the account matters to the Nostr knowledge hub."),
+                ]),
+            ],
+            tag="Nostr people users",
+            sources=[GLOBAL_SOURCES[5], GLOBAL_SOURCES[6], ("Nostr.band stats", "https://stats.nostr.band/", "Public Nostr activity and network statistics."), ("Nostr relay search", "https://relay.nostr.band/", "Search relay used by many Nostr clients.")],
+            related=["people", "people/enoch-root", "people/hodlbod", "people/pablof7z", "people/lyn-alden", "community"],
+            keywords=["Early Nostr Users", "People Users", "Nostr public accounts", "Nostr followers", "Crays people archive"],
+            read="16 min read",
+        ),
+    ]
+
+
+PAGES.extend(make_crays_nostr_platform_pages())
+
+
+def contribution_route_page(slug: str, title: str, deck: str, intro: str, sections: list[dict], related: list[str] | None = None, keywords: list[str] | None = None) -> dict:
+    return page(
+        slug,
+        title,
+        deck,
+        intro,
+        sections,
+        tag="Community layer",
+        sources=NOSTR_COMMUNITY_SOURCES,
+        related=related or ["community", "contribute", "questions", "projects", "suggestions"],
+        keywords=keywords or [title, "Nostr community", "Crays contribution layer"],
+        read="8 min read",
+    )
+
+
+def make_contribution_layer_pages() -> list[dict]:
+    community_cards = [(name, description, f"/nostr/community/{code}/") for code, name, _category, description in CRAYS_NOSTR_COMMUNITIES]
+    community_cards.extend([
+        ("Beginners", "Simple first questions, safe account setup and orientation.", "/nostr/community/beginners/"),
+        ("Developers", "Implementation notes, libraries, event kinds and relay behavior.", "/nostr/community/developers/"),
+        ("Research", "Source trails, crawler findings and duplicate checks.", "/nostr/community/research/"),
+    ])
+    question_cards = [
+        ("Which Nostr client should a beginner try first?", "Beginner question attached to onboarding and signer safety.", "/nostr/community/questions/which-client-should-a-beginner-try-first/"),
+        ("What is the difference between a relay and a client?", "Core concept question for new readers.", "/nostr/community/questions/relay-vs-client/"),
+        ("How does NIP-07 login work?", "Signer and browser-extension question.", "/nostr/community/questions/how-nip-07-login-works/"),
+        ("What are zaps?", "Wallet and Lightning question.", "/nostr/community/questions/what-are-zaps/"),
+        ("How should apps handle private keys safely?", "Privacy and signer safety question.", "/nostr/community/questions/private-key-safety/"),
+    ]
+    project_cards = [
+        ("Nostr web client", "Client submission example with signer-safe key handling.", "/nostr/community/projects/nostr-web-client/"),
+        ("Browser signer", "Signer/tool example for NIP-07 and remote signing routes.", "/nostr/community/projects/browser-signer/"),
+        ("Relay monitor", "Infrastructure example for relay health and metadata.", "/nostr/community/projects/relay-monitor/"),
+        ("Nostr wallet", "Wallet/NWC example for zaps and permissions.", "/nostr/community/projects/nostr-wallet/"),
+        ("Long-form publishing client", "NIP-23 article and guide publishing example.", "/nostr/community/projects/long-form-publishing-client/"),
+        ("Creator media app", "Media and creator workflow example.", "/nostr/community/projects/creator-media-app/"),
+    ]
+    list_cards = [
+        ("Best Nostr clients for beginners", "A starter list for safe first-client choices.", "/nostr/community/curated-lists/best-nostr-clients-for-beginners/"),
+        ("Nostr developer tools", "Libraries, debuggers, event tools and relay tooling.", "/nostr/community/curated-lists/nostr-developer-tools/"),
+        ("Nostr wallets and zap tools", "Wallet, NWC, zap and payment-flow references.", "/nostr/community/curated-lists/nostr-wallets-and-zap-tools/"),
+    ]
+    pages = [
+        contribution_route_page(
+            "questions",
+            "Nostr Questions",
+            "Ask practical questions around the Crays Nostr archive without changing the canonical pages.",
+            "Use Questions when you need an answer, not an edit. Questions can be attached to a page, tagged by route and answered by contributors.",
+            [
+                section("How Q&A works", [
+                    "Read the canonical page first. If something is still unclear, ask a focused question and attach it to the page. Answers can become accepted, but the article text stays separate until an editor manually updates it."
+                ], [
+                    ("Ask", "Create a question with title, body, tags and related page."),
+                    ("Answer", "Contributors can answer with sources and examples."),
+                    ("Accept", "A helpful answer can be marked as accepted."),
+                    ("Review", "Strong answers can become source suggestions for editors."),
+                ]),
+                section("Open beginner questions", ["Start here if you are new to Nostr."], cards=question_cards),
+            ],
+            related=["community", "contribute", "questions/which-client-should-a-beginner-try-first", "search-atlas"],
+        ),
+        contribution_route_page(
+            "projects",
+            "Nostr Projects",
+            "Discover, submit and update Nostr projects as separate reviewed records.",
+            "Use Projects for apps, tools, libraries, relays, wallets, media products and protocol-adjacent services. Project submissions do not rewrite Crays pages; they enter review first.",
+            [
+                section("What belongs here", [
+                    "Submit real projects with a website, repository or public profile. Add status, supported NIPs, maintainers and related Crays pages so readers can understand where the project fits."
+                ], [
+                    ("Submit", "New projects go to pending review."),
+                    ("Claim", "Maintainers can request a verified maintainer claim."),
+                    ("Update", "Version, platform, license and status changes can be submitted."),
+                    ("Connect", "Approved projects can be linked to canonical pages as related records."),
+                ]),
+                section("Project examples", ["These examples demonstrate the structure before live persistence is added."], cards=project_cards),
+            ],
+            related=["projects/submit", "apps/submit", "launches", "community"],
+        ),
+        contribution_route_page(
+            "projects/submit",
+            "Submit a Nostr Project",
+            "Submit a project for review without editing the archive.",
+            "Use this route when you want to add a Nostr project, update a project or connect a project to a Crays page.",
+            [
+                section("Submission checklist", [
+                    "A useful project submission needs a clear name, short tagline, website or repository, category, status, supported NIPs and a reason it belongs in the atlas."
+                ], [
+                    ("Required", "Name, description, URL and category."),
+                    ("Helpful", "Repository, maintainer npub, supported NIPs, relays and screenshots."),
+                    ("Review", "Submissions start as pending and stay separate from canonical text."),
+                ]),
+            ],
+            related=["projects", "apps/submit", "moderation"],
+        ),
+        contribution_route_page(
+            "apps/submit",
+            "Submit a Nostr App",
+            "Submit a client, signer, wallet, relay tool, media app or developer library for review.",
+            "Use this route for app-specific details such as platform, key handling, wallet support, zap support and media support.",
+            [
+                section("App fields that matter", [
+                    "Apps need more than a name. Key handling, platform, supported NIPs, maintainer links and current status help readers choose safely."
+                ], [
+                    ("Key handling", "Use none, NIP-07, remote signer, local key or unknown."),
+                    ("Platform", "Web, iOS, Android, desktop, CLI, extension, library, relay, wallet or signer."),
+                    ("Status", "Idea, prototype, active, maintained, beta, production, deprecated, archived or unknown."),
+                ]),
+            ],
+            related=["apps", "projects", "projects/submit"],
+        ),
+        contribution_route_page(
+            "articles",
+            "Community Articles",
+            "Publish Nostr-related guides and research notes separate from the canonical archive.",
+            "Community articles are user-submitted writing. They can teach, argue, document or explain, but they are clearly separate from canonical Crays archive pages.",
+            [
+                section("Community article rules", [
+                    "A community article can become useful without becoming canonical. Keep author identity visible, mark status clearly and attach related pages, NIPs, apps or projects."
+                ], [
+                    ("Label", "Every page is marked as a community article."),
+                    ("Review", "Submissions can be draft, pending, approved, rejected or archived."),
+                    ("Future NIP-23", "Approved articles can map to long-form Nostr drafts later."),
+                ]),
+                section("Example article", ["Open a sample article detail page."], cards=[("Community Nostr primer", "Example community article page.", "/nostr/community/articles/community-nostr-primer/")]),
+            ],
+            related=["articles/submit", "contribute", "community"],
+        ),
+        contribution_route_page(
+            "articles/submit",
+            "Submit a Community Article",
+            "Submit a long-form Nostr guide, tutorial, opinion piece or research note.",
+            "Use this route when the contribution is a new piece of writing, not a correction to a canonical page.",
+            [
+                section("Submission flow", [
+                    "Write a title, excerpt, body, tags and related pages. The article enters review and stays visibly separate from the canonical archive."
+                ], [
+                    ("Draft", "Prepare locally first."),
+                    ("Submit", "Send for review when the article is ready."),
+                    ("Publish", "Approved community articles can be indexed separately."),
+                ]),
+            ],
+            related=["articles", "contribute/guidelines"],
+        ),
+        contribution_route_page(
+            "suggestions",
+            "Suggestions",
+            "Review source suggestions and correction suggestions attached to canonical pages.",
+            "Use Suggestions to improve the knowledge around a page without editing the page directly. Source and correction suggestions always go through review.",
+            [
+                section("Suggestion types", [
+                    "A source suggestion adds a useful reference. A correction suggestion describes a problem, proposed change and evidence. Neither one updates article text automatically."
+                ], [
+                    ("Source", "URL, source type, reason and target page."),
+                    ("Correction", "Issue summary, optional current text, suggested correction and evidence."),
+                    ("Status", "Pending, approved, rejected, needs changes, duplicate or archived."),
+                ]),
+            ],
+            related=["moderation", "new-findings", "contribute"],
+        ),
+        contribution_route_page(
+            "moderation",
+            "Moderation",
+            "Review pending suggestions, submissions, reports and maintainer claims.",
+            "Use Moderation to protect quality. This first static layer shows the queue model; production authorization and database persistence come later.",
+            [
+                section("Moderation queues", [
+                    "Review source suggestions, correction suggestions, app submissions, project submissions, article submissions, reports, maintainer claims and flagged comments."
+                ], [
+                    ("Approve", "Accept a contribution as useful."),
+                    ("Reject", "Reject spam, low-quality or unsupported claims."),
+                    ("Needs changes", "Ask the contributor for more evidence."),
+                    ("Verified", "Mark maintainer or source confidence after review."),
+                ]),
+            ],
+            related=["admin/review", "suggestions", "contributors"],
+        ),
+        contribution_route_page(
+            "contributors",
+            "Contributors",
+            "See contributor profiles, reputation, badges and public Nostr identity.",
+            "Use Contributors to understand who helps with questions, sources, apps, projects, articles, moderation and curation.",
+            [
+                section("Contributor signals", [
+                    "Profiles show public identity and contribution history, not private data. Reputation and badges make useful work visible."
+                ], [
+                    ("Reputation", "Points from approved questions, answers, sources, corrections, apps and projects."),
+                    ("Badges", "Source Scout, NIP Researcher, App Mapper, Relay Contributor and other roles."),
+                    ("Profiles", "Public npub, display name, bio and contribution history."),
+                ], cards=[("Beginner Contributor", "Example public profile.", "/nostr/community/profile/npub1beginner/"), ("App Maintainer", "Example maintainer profile.", "/nostr/community/profile/npub1maintainer/"), ("Crays Curator", "Example curator profile.", "/nostr/community/profile/npub1crayscurator000000000000000000000000000000000000000000000000/")]),
+            ],
+            related=["profile/npub1beginner", "profile/npub1maintainer", "contribute"],
+        ),
+        contribution_route_page(
+            "contribute",
+            "Contribute to Crays Nostr",
+            "Choose a useful task and help around the canonical archive.",
+            "You can help without editing the archive. Ask a question, suggest a source, submit a project, write a community article, curate a list or help review pending work.",
+            [
+                section("Contribution ladder", [
+                    "Start small and move up as trust grows. The goal is high-quality contribution, not a noisy feed."
+                ], [
+                    ("Level 1", "React, bookmark, follow or zap."),
+                    ("Level 2", "Ask a question or join a discussion."),
+                    ("Level 3", "Suggest a source or report outdated information."),
+                    ("Level 4", "Suggest a correction or answer a beginner question."),
+                    ("Level 5", "Submit an app, project or project update."),
+                    ("Level 6", "Write a community article or curate a list."),
+                    ("Level 7", "Review suggestions and help moderate."),
+                    ("Level 8", "Become a verified maintainer, curator or community host."),
+                ]),
+            ],
+            related=["contribute/guidelines", "contribute/newcomer-tasks", "projects/submit", "articles/submit"],
+        ),
+        contribution_route_page(
+            "contribute/guidelines",
+            "Contribution Guidelines",
+            "Quality rules for useful Nostr contributions.",
+            "Use these guidelines before submitting sources, corrections, projects, apps, articles or reports.",
+            [
+                section("Quality rules", [
+                    "Be specific, attach evidence, keep private keys private and separate your opinion from source-backed claims."
+                ], [
+                    ("Accepted", "Clear sources, useful corrections, real projects and respectful questions."),
+                    ("Rejected", "Spam, private data, unsupported claims, unsafe key advice and duplicate noise."),
+                    ("Protected", "Canonical article text is not edited through community forms."),
+                ]),
+            ],
+            related=["contribute", "moderation", "suggestions"],
+        ),
+        contribution_route_page(
+            "contribute/newcomer-tasks",
+            "Newcomer Tasks",
+            "Small useful tasks for your first Nostr contribution.",
+            "Start here if you want to help but do not know where to begin.",
+            [
+                section("Good first tasks", [
+                    "Choose one small job: ask a beginner question, suggest a missing source, submit an app, report outdated information or add a NIP-related link."
+                ], [
+                    ("Ask", "Turn confusion into a useful question."),
+                    ("Source", "Add a URL and explain why it helps."),
+                    ("Project", "Submit one missing app or tool."),
+                    ("Report", "Flag stale information or unsafe wording."),
+                ]),
+            ],
+            related=["questions", "suggestions", "projects/submit"],
+        ),
+        contribution_route_page(
+            "launches",
+            "Nostr Launches",
+            "A launch surface for new Nostr apps, projects and updates.",
+            "Use Launches like a structured Nostr-native Product Hunt: discover, discuss, recommend and review new work.",
+            [
+                section("Launch flow", [
+                    "A launch needs maker context, project links, supported NIPs, screenshots or demos where available and a review state."
+                ], cards=project_cards),
+            ],
+            related=["projects", "projects/submit", "apps/submit"],
+        ),
+        contribution_route_page(
+            "curated-lists",
+            "Curated Lists",
+            "Browse and build reviewed lists of apps, tools, NIPs, relays, people and guides.",
+            "Use Curated Lists when the user need is not one page but a path through many useful resources.",
+            [
+                section("Example lists", [
+                    "Curated lists can map to NIP-51 later. In this static phase, they are reviewed records with clear curator context."
+                ], cards=list_cards),
+            ],
+            related=["contribute", "community", "search-atlas"],
+        ),
+    ]
+
+    for code, name, category, description in CRAYS_NOSTR_COMMUNITIES:
+        pages.append(contribution_route_page(
+            f"community/{code}",
+            name,
+            description,
+            f"Use this community for {description.lower()}",
+            [
+                section("What belongs here", [
+                    "Posts, questions, source suggestions, project updates and reports should stay focused on this community topic."
+                ], [
+                    ("Read", "Browse the canonical route first when you need context."),
+                    ("Ask", "Open a focused question when the page does not answer it."),
+                    ("Submit", "Send sources, projects or people nominations into review."),
+                    ("Moderate", "Report spam, stale claims or unsafe links."),
+                ])
+            ],
+            related=["community", "questions", "suggestions", "moderation"],
+            keywords=[name, category, "Nostr community"],
+        ))
+
+    default_community_categories = [
+        ("beginners", "Beginners", "Safe first clients, first signer setup, beginner questions and orientation."),
+        ("developers", "Developers", "Libraries, implementation notes, event kinds, relays and app architecture."),
+        ("signers", "Signers", "NIP-07, NIP-46, browser signers, remote signers and permissioned signing."),
+        ("zaps", "Zaps", "NIP-57, Lightning rewards, value flow, creator support and zap UX."),
+        ("creators", "Creators", "Publishing, creator profiles, media workflows, audience building and creator tools."),
+        ("events", "Events", "Conferences, meetups, talks, community programs and public event records."),
+        ("research", "Research", "Source trails, papers, crawler findings, duplicate checks and review work."),
+        ("protocol", "Protocol", "Protocol design, interoperability questions, standards and implementation tradeoffs."),
+        ("security", "Security", "Threat models, unsafe UI patterns, reports, scam risks and key handling."),
+        ("lightning", "Lightning", "Nostr Wallet Connect, zaps, receipts, payment permissions and Lightning rails."),
+        ("marketplaces", "Marketplaces", "Listings, commerce tools, creator markets, launches and Nostr-native demand."),
+    ]
+    existing_community_pages = {p["slug"] for p in pages}
+    for code, name, description in default_community_categories:
+        slug = f"community/{code}"
+        if slug in existing_community_pages:
+            continue
+        pages.append(contribution_route_page(
+            slug,
+            name,
+            description,
+            f"Use this community for {description.lower()}",
+            [
+                section("What belongs here", [
+                    "Posts, questions, source suggestions, project updates and reports should stay focused on this community topic."
+                ], [
+                    ("Read", "Browse the canonical route first when you need context."),
+                    ("Ask", "Open a focused question when the page does not answer it."),
+                    ("Submit", "Send sources, projects, people or article ideas into review."),
+                    ("Moderate", "Report spam, stale claims or unsafe links."),
+                ])
+            ],
+            related=["community", "questions", "suggestions", "moderation"],
+            keywords=[name, "Nostr community", "Crays contribution layer"],
+        ))
+        existing_community_pages.add(slug)
+
+    question_slugs = [
+        ("which-client-should-a-beginner-try-first", "Which Nostr client should a beginner try first?", "A beginner-friendly question about choosing a first client safely."),
+        ("relay-vs-client", "What is the difference between a relay and a client?", "A core concept question about where Nostr events live and how users read them."),
+        ("how-nip-07-login-works", "How does NIP-07 login work?", "A signer question about browser extensions and public-key login."),
+        ("what-are-zaps", "What are zaps?", "A wallet question about NIP-57, Lightning and value signals."),
+        ("private-key-safety", "How should apps handle private keys safely?", "A privacy question about signer-first UX and unsafe key handling."),
+    ]
+    for slug, title, deck in question_slugs:
+        pages.append(contribution_route_page(
+            f"community/questions/{slug}",
+            title,
+            deck,
+            "This is a community question attached to the Nostr knowledge atlas. Answers are separate from canonical Crays article text.",
+            [
+                section("Question", [deck]),
+                section("Answer model", ["Answers can include explanation, source links and related pages. A useful answer can be accepted without editing the canonical page."]),
+            ],
+            related=["questions", "contribute", "suggestions"],
+        ))
+
+    project_slugs = [
+        ("nostr-web-client", "Nostr web client", "A project profile example for a signer-safe web client."),
+        ("browser-signer", "Browser signer", "A project profile example for NIP-07 and remote signing."),
+        ("relay-monitor", "Relay monitor", "A project profile example for relay monitoring and metadata."),
+        ("nostr-wallet", "Nostr wallet", "A project profile example for NWC, zaps and wallet permissions."),
+        ("long-form-publishing-client", "Long-form publishing client", "A project profile example for NIP-23 publishing."),
+        ("creator-media-app", "Creator media app", "A project profile example for media and creator workflows."),
+    ]
+    for slug, title, deck in project_slugs:
+        pages.append(contribution_route_page(
+            f"community/projects/{slug}",
+            title,
+            deck,
+            "This is a project profile record. Project data, maintainer claims and updates stay separate from canonical article text.",
+            [
+                section("Project profile", [deck], [
+                    ("Status", "Pending review."),
+                    ("Maintainer claim", "A maintainer can claim this profile with public evidence."),
+                    ("Related pages", "Approved links can connect this profile to relevant Crays pages."),
+                ]),
+                section("Discussion and updates", ["Project updates, reviews and questions belong in the contribution layer, not inside canonical page copy."]),
+            ],
+            related=["projects", "projects/submit", "launches"],
+        ))
+
+    article_pages = [
+        ("community/articles/community-nostr-primer", "Community article: Nostr primer", "Example community article separated from the canonical archive."),
+        ("community/articles/how-to-read-relay-health", "Community article: How to read relay health", "A community guide for checking relay reach, policy, uptime and NIP-11 metadata before trusting a relay path."),
+    ]
+    for slug, title, deck in article_pages:
+        pages.append(contribution_route_page(
+            slug,
+            title,
+            deck,
+            "This article was submitted by a community contributor. It is separate from the canonical Crays archive.",
+            [
+                section("Community article", [deck]),
+                section("Review status", ["Community articles can be draft, pending, approved, rejected, published or archived."]),
+            ],
+            related=["articles", "articles/submit", "community"],
+        ))
+
+    profile_pages = [
+        ("community/profile/npub1beginner", "Profile: Beginner Contributor", "Example contributor profile for first questions and source suggestions."),
+        ("community/profile/npub1maintainer", "Profile: App Maintainer", "Example contributor profile for project updates and maintainer claims."),
+        ("community/profile/npub1relayoperator", "Profile: Relay Operator", "Example contributor profile for relay status, NIP-11 evidence and policy reports."),
+        ("community/profile/npub1nipresearcher", "Profile: NIP Researcher", "Example contributor profile for standards notes, implementation evidence and source review."),
+        ("community/profile/npub1crayscurator000000000000000000000000000000000000000000000000", "Profile: Crays Curator", "Example curator profile for reviewed source trails, moderation decisions and approved archive contributions."),
+    ]
+    for slug, title, deck in profile_pages:
+        pages.append(contribution_route_page(
+            slug,
+            title,
+            deck,
+            "Contributor profiles show public Nostr identity and contribution history. They do not expose private data.",
+            [
+                section("Public profile", [deck], [
+                    ("Identity", "npub/public key only."),
+                    ("Reputation", "Points and badges come from approved contributions."),
+                    ("Activity", "Questions, sources, corrections, apps, projects and articles stay visible by type."),
+                ]),
+            ],
+            related=["contributors", "contribute"],
+        ))
+
+    for slug, title, deck in [
+        ("community/curated-lists/best-nostr-clients-for-beginners", "Best Nostr clients for beginners", "A curated starter path for choosing a first client."),
+        ("community/curated-lists/beginner-nostr-clients", "Beginner Nostr clients", "A shorter alias list for first-client recommendations and beginner-safe signer choices."),
+        ("community/curated-lists/nostr-developer-tools", "Nostr developer tools", "A curated list for builders, event inspection and implementation work."),
+        ("community/curated-lists/nostr-wallets-and-zap-tools", "Nostr wallets and zap tools", "A curated list for value flow, NWC and zaps."),
+    ]:
+        pages.append(contribution_route_page(
+            slug,
+            title,
+            deck,
+            "This curated list is a reviewed community object. It can map to NIP-51 later.",
+            [
+                section("List purpose", [deck]),
+                section("Curation rules", ["Lists need clear criteria, item notes and related Crays pages so readers know why each item belongs."]),
+            ],
+            related=["curated-lists", "contribute"],
+        ))
+
+    return pages
+
+
+existing_page_slugs = {item["slug"] for item in PAGES}
+for contribution_page in make_contribution_layer_pages():
+    if contribution_page["slug"] not in existing_page_slugs:
+        PAGES.append(contribution_page)
+        existing_page_slugs.add(contribution_page["slug"])
+
+
 ROUTE_LABELS = {
     "start": "Start",
     "people": "People",
@@ -3107,6 +4211,9 @@ SECTION_NAVS = {
                 "Useful next",
                 [
                     ("Search Atlas", "search-atlas"),
+                    ("Community", "community"),
+                    ("Discussions", "discussions"),
+                    ("New findings", "new-findings"),
                     ("Privacy and security", "privacy-security"),
                     ("Search and trust", "search-and-web-of-trust"),
                     ("Moderation and discovery", "moderation-discovery"),
@@ -3124,6 +4231,7 @@ SECTION_NAVS = {
                 "Orientation",
                 [
                     ("People archive", "people"),
+                    ("People | Users", "people/users"),
                     ("Enoch Root", "people/enoch-root"),
                     ("Creators", "creators"),
                     ("Jack Dorsey context", "jack-dorsey"),
@@ -3182,6 +4290,7 @@ SECTION_NAVS = {
                     ("App profiles", "app-profiles"),
                     ("Research app atlas", "apps/research-atlas"),
                     ("Developer stack research", "apps/developer-stack-research"),
+                    ("Submit project", "submit-project"),
                     ("Clients", "clients"),
                     ("Developer tools", "developer-tools"),
                     ("Nostr login", "nostr-login"),
@@ -3484,6 +4593,9 @@ SECTION_NAVS = {
                 "Crays layer",
                 [
                     ("Nostr and Crays", "nostr-and-crays"),
+                    ("Community", "community"),
+                    ("Submit project", "submit-project"),
+                    ("New findings", "new-findings"),
                     ("Crays Circle GitHub", "resources"),
                     ("Content sale", "content-sale"),
                     ("Crays Award", "awards"),
@@ -3527,6 +4639,9 @@ SECTION_NAVS = {
                 "Whole archive",
                 [
                     ("Search Atlas", "search-atlas"),
+                    ("New findings", "new-findings"),
+                    ("Review dashboard", "admin/review"),
+                    ("Discussions", "discussions"),
                     ("Library overview", "archive-library"),
                     ("Field guides", "field-guide/relay-selection"),
                     ("Reading paths", "reading-paths/beginner"),
@@ -3584,8 +4699,571 @@ SECTION_NAVS = {
 }
 
 
+INFORMATION_ARCHITECTURE_SOURCES = [
+    ("W3C WAI: Multiple Ways", "https://www.w3.org/WAI/WCAG22/Understanding/multiple-ways.html", "Accessibility requirement for reaching pages through more than one route, such as navigation, search, sitemap or contextual links."),
+    ("Stanford Web Services: Information Architecture", "https://uit.stanford.edu/accessibility/concepts/ia", "University guidance on content audits, categorization, navigation paths and testing whether people can find content."),
+    ("Texas A&M University Libraries: Information Architecture", "https://library.tamu.edu/help/help-yourself/accessibility/information-architecture.html", "Academic accessibility guidance for organizing information so people can understand, navigate and locate it."),
+    ("Web Style Guide: Navigation and Wayfinding", "https://webstyleguide.com/wsg3/4-information-architecture/4-navigation-wayfinding.html", "Classic large-site wayfinding guidance for orientation, landmarks, navigation and reader confidence."),
+    ("MIT CSAIL Decentralized Information Group", "https://groups.csail.mit.edu/dig/", "Research context for decentralized information systems, data ownership and protocol-level thinking."),
+]
+
+
+ROUTE_HUB_SLUGS = {
+    "start": "start",
+    "people": "people",
+    "apps": "apps",
+    "relays": "relays",
+    "nips": "nips",
+    "privacy": "privacy",
+    "wallets": "wallets",
+    "media": "media",
+    "commerce": "commerce",
+    "governance": "governance",
+    "crays": "crays",
+    "library": "library",
+}
+
+ROUTE_HUB_BY_SLUG = {slug: key for key, slug in ROUTE_HUB_SLUGS.items()}
+
+CANONICAL_HUB_PREFIXES = {
+    "start",
+    "basics",
+    "people",
+    "apps",
+    "relays",
+    "nips",
+    "privacy",
+    "wallets",
+    "media",
+    "commerce",
+    "governance",
+    "crays",
+    "library",
+    "community",
+}
+
+EARLY_COMMUNITY_PREFIXES = {
+    "questions",
+    "projects",
+    "articles",
+    "profile",
+    "curated-lists",
+    "contribute",
+}
+
+EARLY_COMMUNITY_SINGLETONS = {
+    "discussions": "community/discussions",
+    "new-findings": "community/new-findings",
+    "suggestions": "community/suggestions",
+    "moderation": "community/moderation",
+    "contributors": "community/contributors",
+    "launches": "community/launches",
+    "nostr-login": "community/nostr-login",
+    "submit-project": "community/projects/submit",
+    "apps/submit": "community/apps/submit",
+}
+
+
+ROUTE_HUB_DEEP_SLUGS = {
+    key: f"{slug}/guide"
+    for key, slug in ROUTE_HUB_SLUGS.items()
+    if key != "start"
+}
+
+
+def route_hub_target_slug(key: str, slug: str) -> str:
+    clean_slug = str(slug or "").strip("/")
+    if not clean_slug:
+        return clean_slug
+    segments = clean_slug.split("/")
+    first_segment = segments[0]
+    if len(segments) > 1 and first_segment in CANONICAL_HUB_PREFIXES and first_segment != "community" and segments[1] in CANONICAL_HUB_PREFIXES:
+        return "/".join(segments[1:])
+    if clean_slug in EARLY_COMMUNITY_SINGLETONS:
+        return EARLY_COMMUNITY_SINGLETONS[clean_slug]
+    if first_segment in CANONICAL_HUB_PREFIXES:
+        return clean_slug
+    if first_segment in EARLY_COMMUNITY_PREFIXES:
+        return f"community/{clean_slug}"
+    if key != "start" and slug == ROUTE_HUB_SLUGS.get(key):
+        return ROUTE_HUB_DEEP_SLUGS.get(key, slug)
+    return clean_slug
+
+
+ROUTE_HUB_BLUEPRINTS = {
+    "start": {
+        "title": "All about Nostr",
+        "deck": "Start here when Nostr still feels too big. Get the basics, choose a path, search the archive or bring a useful project, person, source or correction into review.",
+        "intro": "Nostr is easier once the pieces are visible: your public key is your identity, clients show the experience, relays move the data and signed events prove what happened. This page shows you where to begin and where to go next.",
+        "purpose": "Help a first-time visitor understand Nostr in seconds, then choose a learning path without getting lost in the archive.",
+        "community": "Ask beginner questions, suggest missing explainers, add sources or submit projects for review.",
+        "primary": [("What is Nostr?", "what-is-nostr"), ("Getting Started", "getting-started"), ("Search Atlas", "search-atlas"), ("Archive Library", "archive-library"), ("Community HQ", "community"), ("Submit Project", "projects/submit")],
+    },
+    "people": {
+        "title": "People and Users",
+        "deck": "The human route for public Nostr accounts, builders, founders, maintainers, creators, media voices, early users and the People | Users research queue.",
+        "intro": "Use this route when the question is who matters, what they built, which public account or project links verify the story and where a deeper profile should be created.",
+        "purpose": "Turn public Nostr identity into careful people research instead of a random follower list.",
+        "community": "Nominate public users, add sources to profiles, request deeper articles and flag impersonation risk.",
+        "primary": [("People archive", "people"), ("People | Users", "people/users"), ("Enoch Root", "people/enoch-root"), ("Nostriga scene map", "people"), ("Events", "events"), ("Media archive", "nostr-media-article-video-archive")],
+    },
+    "apps": {
+        "title": "Apps and Products",
+        "deck": "The product route for Nostr clients, signers, wallets, media tools, developer libraries, app catalogs, Crays.net references and new project submissions.",
+        "intro": "Use this route when the question is what can be used, built, compared, updated or submitted. The route keeps existing app articles, catalogs and research pages, but makes the first step a product map.",
+        "purpose": "Make the app ecosystem navigable and invite maintainers to submit or update projects with evidence.",
+        "community": "Submit apps, relays, signers, wallets, media tools and project updates for review.",
+        "primary": [("Complete app catalog", "apps/catalog"), ("App profiles", "app-profiles"), ("Submit project", "projects/submit"), ("Crays.net as client", "deep-dives/crays-net-as-nostr-client"), ("Nostr Login", "nostr-login"), ("Developer tools", "developer-tools")],
+    },
+    "relays": {
+        "title": "Relays and Infrastructure",
+        "deck": "The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes.",
+        "intro": "Use this route when the question is where events live, which relays matter, how relay choice affects reach and how venue or community relays become part of the Crays product layer.",
+        "purpose": "Move relay knowledge from static lists into operational intelligence: metadata, status, policy, use case and health.",
+        "community": "Submit relay findings, NIP-11 data, availability notes, policy changes and venue-relay ideas.",
+        "primary": [("Nostr Relays", "relays"), ("Relay market directory", "relay-market-directory"), ("Relay selection", "field-guide/relay-selection"), ("NIP-11", "nips/nip-11"), ("NIP-65", "nip-65-relay-list"), ("Crays Super Node", "crays-super-node")],
+    },
+    "nips": {
+        "title": "NIPs and Standards",
+        "deck": "The standards route for NIP explainers, implementation choices, event kinds, NIP strategy, protocol risk and the standards that support the Crays product.",
+        "intro": "Use this route when the question is which NIP supports a user flow, whether a feature is ready, which events are signed and what tradeoffs the product must explain.",
+        "purpose": "Translate standards into product decisions instead of treating every NIP as something to ship.",
+        "community": "Add implementation examples, source notes, compatibility findings and NIP strategy corrections.",
+        "primary": [("Complete NIP index", "nips/complete-index"), ("NIP strategy", "nips/crays-nip-strategy"), ("Events and kinds", "events-and-kinds"), ("NIP-7D", "nips/crays-nip-strategy"), ("NIP-29", "nips/crays-nip-strategy"), ("NIP-98", "nip-98-http-auth")],
+    },
+    "privacy": {
+        "title": "Privacy, Keys and Trust",
+        "deck": "The safety route for private-key handling, signers, public data, encryption limits, relay metadata, web-of-trust, reports, labels and account protection.",
+        "intro": "Use this route before any login, signer, community posting, profile claim or private-data workflow. The product rule is simple: no feature can make private keys less safe.",
+        "purpose": "Keep ownership useful without making users pay for it with avoidable key or privacy risk.",
+        "community": "Add key-safety corrections, signer warnings, scam reports, privacy notes and trust model evidence.",
+        "primary": [("Privacy and security", "privacy-security"), ("Keys and identity", "keys-identity"), ("NIP-07 signers", "nip-07-signers"), ("NIP-46 remote signing", "nip-46-remote-signing"), ("NIP-98 HTTP auth", "nip-98-http-auth"), ("Web of trust", "search-and-web-of-trust")],
+    },
+    "wallets": {
+        "title": "Wallets, Zaps and Value Flow",
+        "deck": "The value route for Lightning, zaps, Nostr Wallet Connect, Safebox, Cashu-adjacent records, payment permissions and creator monetization.",
+        "intro": "Use this route when the question is how money, access, receipts, tips, content sales or wallet permissions should work around Nostr identities.",
+        "purpose": "Make Nostr value flow understandable without hiding wallet risk, spending limits or custody boundaries.",
+        "community": "Submit wallet tools, NWC examples, zap use cases, permission issues and payment-flow corrections.",
+        "primary": [("NIP-47 Wallet Connect", "nip-47-wallet-connect"), ("Zaps and Lightning", "nip-57-zaps-lightning"), ("Nostr and Bitcoin", "nostr-and-bitcoin"), ("Alby", "apps/alby"), ("Safebox", "apps/safebox"), ("Content Sale", "content-sale")],
+    },
+    "media": {
+        "title": "Media, Creators and Publishing",
+        "deck": "The creator-media route for long-form writing, music, video, streaming, Blossom, file metadata, creator archives and public media sources.",
+        "intro": "Use this route when the question is how creators publish, store media, get paid, build audiences and turn public source material into useful Crays content.",
+        "purpose": "Connect Nostr publishing and media tools to real creator workflows, not just protocol references.",
+        "community": "Submit media tools, talks, videos, creator profiles, Blossom servers, publishing clients and archive sources.",
+        "primary": [("Music and media", "music-video-media"), ("Creators", "creators"), ("NIP-23 long-form", "nip-23-long-form"), ("Media archive", "nostr-media-article-video-archive"), ("Blossom servers", "deep-dives/blossom-servers-and-relays"), ("YakiHonne", "apps/yakihonne")],
+    },
+    "commerce": {
+        "title": "Commerce and Project Markets",
+        "deck": "The market route for creator sales, listings, FoundUPS, project submissions, marketplaces, revenue signals, investor context and Crays commercial flows.",
+        "intro": "Use this route when the question is how Nostr becomes useful for commerce: paid content, project listings, demand signals, revenue routes, marketplaces and capital context.",
+        "purpose": "Make commercial use cases reviewable, sourced and connected to product pages instead of leaving them as scattered claims.",
+        "community": "Submit projects, marketplace tools, revenue evidence, stale business claims and listing updates.",
+        "primary": [("Content Sale", "content-sale"), ("Submit Project", "projects/submit"), ("FoundUPS Agent", "apps/foundups-agent"), ("Investor context", "deep-dives/nostr-for-investors"), ("Creator business", "deep-dives/nostr-for-creators-business"), ("NIP-99 context", "nips/crays-nip-strategy")],
+    },
+    "governance": {
+        "title": "Governance, Moderation and Reputation",
+        "deck": "The governance route for badges, reports, labels, voting, moderation, DAO readiness, review queues, audit trails and community rules.",
+        "intro": "Use this route when the question is how open participation stays useful: labels, reports, voting, badges, approvals, reputation, moderator actions and editorial review.",
+        "purpose": "Turn community contribution into accountable review rather than chaotic auto-publishing.",
+        "community": "Review reports, label findings, propose moderation rules, add governance sources and test voting assumptions.",
+        "primary": [("DAO governance", "dao-governance"), ("Moderation and discovery", "moderation-discovery"), ("NIP-58 badges", "nip-58-badges"), ("Review dashboard", "moderation"), ("Crays Award voting", "deep-dives/crays-award-voting"), ("NIP strategy", "nips/crays-nip-strategy")],
+    },
+    "crays": {
+        "title": "Crays Nostr Product Layer",
+        "deck": "The route for how Nostr plugs into Crays: Crays.net, creator profiles, content access, venues, Super Nodes, Crays Award, status and future DAO participation.",
+        "intro": "Use this route when the question is what we are actually building with Nostr and how the archive connects to Crays.net, venues, status, commerce and governance.",
+        "purpose": "Keep the Crays product path visible while the archive and community keep growing around it.",
+        "community": "Submit Crays integration ideas, venue-relay notes, profile-flow issues, product references and implementation evidence.",
+        "primary": [("Nostr and Crays", "nostr-and-crays"), ("Crays.net as client", "deep-dives/crays-net-as-nostr-client"), ("Super Node", "crays-super-node"), ("Operators and venues", "operators-venues"), ("Content Sale", "content-sale"), ("DAO governance", "dao-governance")],
+    },
+    "library": {
+        "title": "Library and Research Atlas",
+        "deck": "The full archive route for source maps, reading paths, research inventory, deep dives, Excel URL traces, crawler findings and the complete Nostr atlas.",
+        "intro": "Use this route when search is not enough and you want to browse the whole knowledge system by shelf, source, path, research branch or deep-dive topic.",
+        "purpose": "Give the archive memory: every source, every route, every shelf and every review item should be findable.",
+        "community": "Submit sources, crawler findings, duplicate notes, missing internal links, stale pages and new article ideas.",
+        "primary": [("Archive Library", "archive-library"), ("Search Atlas", "search-atlas"), ("Source Inventory", "source-inventory"), ("Suggestions", "suggestions"), ("Deep dives", "archive-library"), ("Full Nostr Atlas", "archive-library")],
+    },
+}
+
+
+ROUTE_HUB_ACTIONS = {
+    "start": [
+        ("I am new", "Start with the plain-language path: keys, clients, relays and why Nostr matters.", "/nostr/what-is-nostr/"),
+        ("Search everything", "Search all Nostr pages, sources, projects, NIPs and workbook URLs.", "/nostr/search-atlas/"),
+        ("Submit a project", "Add an app, relay, signer, media tool or developer project for review.", "/nostr/submit-project/"),
+        ("Suggest a person", "Nominate a public Nostr user, builder, maintainer or creator.", "/nostr/people/users/"),
+    ],
+    "people": [
+        ("Nominate People | Users", "Add a public Nostr account with sources and relevance.", "/nostr/people/users/"),
+        ("Add source to profile", "Attach public work, talks, repos or verification links.", "/nostr/community/suggestions/?route=people"),
+        ("Request deeper article", "Mark a public person profile that needs a real article.", "/nostr/community/questions/?route=people"),
+        ("Report impersonation", "Flag unsafe identity or private-data risk.", "/nostr/community/moderation/?route=people"),
+    ],
+    "apps": [
+        ("Submit project", "Add an app, signer, wallet, relay tool or developer library.", "/nostr/community/projects/submit/"),
+        ("Update project", "Send a license, status, platform or maintainer correction.", "/nostr/community/suggestions/?route=apps"),
+        ("Compare apps", "Start a product thread around a category or user flow.", "/nostr/community/questions/?route=apps"),
+        ("Review queue", "Inspect pending project and source submissions.", "/nostr/community/moderation/?route=apps"),
+    ],
+    "relays": [
+        ("Submit relay finding", "Add NIP-11 metadata, policy, uptime or paid/free notes.", "/nostr/community/suggestions/?route=relays"),
+        ("Ask about relay choice", "Open a question about reach, spam, search or community relays.", "/nostr/community/questions/?route=relays"),
+        ("Propose venue relay", "Connect a relay idea to Crays World or Super Nodes.", "/nostr/community/projects/submit/?route=relays"),
+        ("Review relay reports", "Triage stale relay data and moderation reports.", "/nostr/community/moderation/?route=relays"),
+    ],
+    "nips": [
+        ("Add implementation note", "Attach example events, client support or relay behavior.", "/nostr/community/suggestions/?route=nips"),
+        ("Ask about a NIP", "Open a standards question before product implementation.", "/nostr/community/questions/?route=nips"),
+        ("Open NIP strategy", "See which NIPs are use-now, prepare-next or reference-only.", "/nostr/nips/crays-nip-strategy/"),
+        ("Report stale standard", "Flag deprecated, superseded or risky protocol guidance.", "/nostr/community/moderation/?route=nips"),
+    ],
+    "privacy": [
+        ("Report key-risk wording", "Flag copy or UI that could teach unsafe nsec behavior.", "/nostr/community/moderation/?route=privacy"),
+        ("Add signer source", "Submit NIP-07, NIP-46, auth or threat-model evidence.", "/nostr/community/suggestions/?route=privacy"),
+        ("Ask safety question", "Open a question about keys, signers, public data or metadata.", "/nostr/community/questions/?route=privacy"),
+        ("Open login", "Test the Nostr login path without server-side private keys.", "/nostr/community/nostr-login/"),
+    ],
+    "wallets": [
+        ("Submit wallet tool", "Add NWC, zap, Lightning or Safebox-related project data.", "/nostr/community/projects/submit/?route=wallets"),
+        ("Add payment source", "Attach docs, demos, wallet permissions or risk notes.", "/nostr/community/suggestions/?route=wallets"),
+        ("Ask about value flow", "Open a question about zaps, access, payments or receipts.", "/nostr/community/questions/?route=wallets"),
+        ("Review wallet claims", "Flag unsafe payment or custody assumptions.", "/nostr/community/moderation/?route=wallets"),
+    ],
+    "media": [
+        ("Submit media project", "Add a music, video, publishing, Blossom or creator tool.", "/nostr/community/projects/submit/?route=media"),
+        ("Add media source", "Attach talks, videos, articles or creator archive material.", "/nostr/community/suggestions/?route=media"),
+        ("Nominate creator", "Send a public creator profile for People | Users.", "/nostr/people/users/?route=media"),
+        ("Ask about publishing", "Open a question about long-form, media storage or fan access.", "/nostr/community/questions/?route=media"),
+    ],
+    "commerce": [
+        ("Submit market project", "Add listings, marketplaces, creator sales or revenue tools.", "/nostr/community/projects/submit/?route=commerce"),
+        ("Add business evidence", "Attach revenue, funding, listing or project status sources.", "/nostr/community/suggestions/?route=commerce"),
+        ("Ask about product model", "Open a question about commerce, FoundUPS or content access.", "/nostr/community/questions/?route=commerce"),
+        ("Review stale claims", "Flag outdated market, status or investor context.", "/nostr/community/moderation/?route=commerce"),
+    ],
+    "governance": [
+        ("Review reports", "Open pending moderation, labels and report queue items.", "/nostr/community/moderation/?route=governance"),
+        ("Add governance source", "Attach rules, labels, badge or voting references.", "/nostr/community/suggestions/?route=governance"),
+        ("Ask about policy", "Start a question about moderation, voting or reputation.", "/nostr/community/questions/?route=governance"),
+        ("Open NIP strategy", "Connect labels, reports, groups and approvals to NIPs.", "/nostr/nips/crays-nip-strategy/"),
+    ],
+    "crays": [
+        ("Submit Crays integration", "Add product, venue, profile or Super Node evidence.", "/nostr/community/suggestions/?route=crays"),
+        ("Ask about product path", "Open a question about Crays.net, profiles, venues or status.", "/nostr/community/questions/?route=crays"),
+        ("Submit related project", "Add a tool that belongs in the Crays product stack.", "/nostr/community/projects/submit/?route=crays"),
+        ("Open login", "Use the Community Nostr login path for Crays actions.", "/nostr/community/nostr-login/"),
+    ],
+    "library": [
+        ("Add source finding", "Submit a URL, repo, paper, video, NIP or article for review.", "/nostr/community/suggestions/?route=library"),
+        ("Search everything", "Use the atlas search across pages, sources and Excel URLs.", "/nostr/search-atlas/"),
+        ("Browse full atlas", "Open the full route shelf and all generated pages.", "/nostr/archive-library/#full-nostr-atlas"),
+        ("Review queue", "Triage crawler findings, duplicates and suggested updates.", "/nostr/community/moderation/?route=library"),
+    ],
+}
+
+
+def route_hub_link_cards(key: str) -> list[tuple[str, str, str]]:
+    blueprint = ROUTE_HUB_BLUEPRINTS[key]
+    cards = [
+        (label, f"Open the {label} path inside the {ROUTE_LABELS.get(key, key)} route.", f"/nostr/{route_hub_target_slug(key, slug)}/")
+        for label, slug in blueprint["primary"]
+    ]
+    seen = {slug for _label, slug in blueprint["primary"]}
+    for group, links in SECTION_NAVS.get(key, {}).get("groups", []):
+        for label, slug in links:
+            if slug in seen:
+                continue
+            seen.add(slug)
+            cards.append((label, f"{group}: continue into this shelf.", f"/nostr/{slug}/"))
+            if len(cards) >= 12:
+                return cards
+    return cards
+
+
+def route_hub_action_cards(key: str) -> list[tuple[str, str, str]]:
+    return ROUTE_HUB_ACTIONS.get(key, ROUTE_HUB_ACTIONS["library"])
+
+
+def build_route_hub_page(key: str) -> dict:
+    blueprint = ROUTE_HUB_BLUEPRINTS[key]
+    label = ROUTE_LABELS.get(key, key.title())
+    page_slug = ROUTE_HUB_SLUGS[key]
+    related = [slug for _label, slug in blueprint["primary"]]
+    related.extend(["community", "new-findings", "submit-project", "admin/review", "archive-library"])
+    sections = [
+        section(
+            "What you can do here",
+            [
+                blueprint["purpose"],
+                f"Use {label} as the doorway into this part of the atlas. The page points you to the first useful reads, the deeper shelves and the safe ways to add questions, sources or project updates.",
+            ],
+            [
+                ("Browse", "Move through the route shelves without guessing the correct slug."),
+                ("Search", "Use the Search Atlas when you know a term, URL, project, NIP or person."),
+                ("Contribute", blueprint["community"]),
+                ("Preserve", "Existing good pages and slugs stay in place; the hub adds orientation around them."),
+            ],
+        ),
+        section(
+            "Best first paths",
+            [
+                "Start with one of these doors, then use the route shelf and full directory below it to go deeper. This keeps the large archive navigable without flattening it into one giant list.",
+            ],
+            cards=route_hub_link_cards(key),
+        ),
+        section(
+            "How you can help",
+            [
+                "The contribution layer is not a random comment box. It works like a focused topic community plus review queue: questions, source drops, project submissions, people nominations and corrections stay separate from the article until they are reviewed.",
+            ],
+            cards=route_hub_action_cards(key),
+        ),
+        section(
+            "How this stays useful",
+            [
+                "A large knowledge system needs a clear front door, readable labels, search, related paths and review rules. That keeps the site useful as it grows.",
+                "The article text stays stable. Questions, findings, project submissions and people nominations move through signed contribution surfaces and review before anything becomes permanent."
+            ],
+        ),
+    ]
+    return page(
+        page_slug,
+        blueprint["title"],
+        blueprint["deck"],
+        blueprint["intro"],
+        sections,
+        tag=f"{label} route hub",
+        sources=GLOBAL_SOURCES + INFORMATION_ARCHITECTURE_SOURCES,
+        related=[slug for slug in dict.fromkeys(related) if slug != page_slug],
+        keywords=[blueprint["title"], label, "Crays Nostr hub", "Nostr navigation", "Nostr community"],
+        read="11 min read",
+    )
+
+
+def build_all_about_nostr_page() -> dict:
+    route_cards = [
+        (ROUTE_HUB_BLUEPRINTS[key]["title"], ROUTE_HUB_BLUEPRINTS[key]["deck"], f"/nostr/{ROUTE_HUB_SLUGS[key]}/")
+        for key in ROUTE_HUB_SLUGS
+        if key != "start"
+    ]
+    sections = [
+        section(
+            "Start here",
+            [
+                "If you are new to Nostr, begin with the mental model: a public key identifies you, private keys sign actions, clients show the interface and relays move signed events between people and apps.",
+                "From there you can learn, search, compare apps, inspect NIPs, discover people, submit projects and help improve the archive without overwriting the article text."
+            ],
+            [
+                ("Learn", "Use the beginner path when you need the basic idea before the protocol details."),
+                ("Search", "Use Search Atlas for terms, NIPs, people, projects, source domains and exact URLs."),
+                ("Build", "Use Apps, Relays, NIPs, Privacy and Wallets when you are comparing or shipping products."),
+                ("Contribute", "Ask, suggest sources, submit projects, nominate people and send corrections for review."),
+            ],
+        ),
+        section(
+            "Choose a path",
+            [
+                "Pick the path that matches what you are trying to do. You can always jump sideways: every page keeps search, related links and a route shelf so the archive behaves like an interactive textbook, not a dead list.",
+            ],
+            cards=route_cards,
+        ),
+        section(
+            "How to navigate without getting lost",
+            [
+                "Every generated article keeps the same top routes, a route shelf, a left article outline, related links and search. That means you can browse, search, jump by category or follow context links without relying on one perfect path.",
+                "This follows a basic large-site rule: users need multiple ways to locate pages. Search is fast, but route hubs and related links are the memory structure that makes a big archive feel intentional."
+            ],
+            [
+                ("Search when you know the word", "Use Search Atlas for NIP numbers, names, projects, URLs and source domains."),
+                ("Browse when you need context", "Use route hubs and route shelves to understand what belongs together."),
+                ("Follow related pages", "Use the article footer when a page raises a neighboring question."),
+                ("Use the left outline", "On long articles, the left rail tracks the section you are reading."),
+            ],
+        ),
+        section(
+            "How the community helps",
+            [
+                "The article stays the article. Around it, the community can ask questions, suggest sources, nominate public people, submit apps or projects, report stale information and discuss implementation details.",
+                "That is how the archive becomes alive without becoming chaotic: contributions are separate objects, signed with Nostr where possible, and reviewed before they affect editorial content."
+            ],
+            [
+                ("Projects", "Submit apps, signers, relays, wallets, media tools, libraries and services."),
+                ("People", "Nominate public Nostr users, founders, maintainers, creators and media voices."),
+                ("Sources", "Attach public evidence, repos, talks, papers, NIPs, articles and videos."),
+                ("Corrections", "Send Wikipedia-like edit suggestions without silently changing editorial pages."),
+                ("Moderation", "Use reports, labels and review states before content is merged."),
+            ],
+        ),
+        section(
+            "Where Crays fits",
+            [
+                "Crays.org gives you the knowledge map. Crays is also where Nostr identity, profiles, creator tools and community contribution can become a product layer connected to the same public key.",
+                "Community opens the Nostr login path. Use a browser signer or Nostr Connect when you want to sign contributions; never paste a private key into the site."
+            ],
+            cards=[
+                ("Nostr login", "Use Community login for signer, Nostr Connect, read-only npub or local account onboarding.", "/nostr/community/nostr-login/"),
+                ("Crays.net as client", "Read how Crays works as a purpose-built Nostr surface.", "/nostr/deep-dives/crays-net-as-nostr-client/"),
+                ("Community HQ", "Open the working product area around contributions and review.", "/nostr/community/"),
+                ("NIP strategy", "See which protocol pieces are use-now, prepare-next or reference-only.", "/nostr/nips/crays-nip-strategy/"),
+            ],
+        ),
+        section(
+            "Quality rules",
+            [
+                "Crawler finds, user submissions and correction ideas create review items. They do not become finished Crays content automatically.",
+                "No feature can make private keys less safe. Browser signers, Nostr Connect and read-only npub flows are the preferred paths."
+            ],
+        ),
+    ]
+    return page(
+        "start",
+        "All about Nostr",
+        ROUTE_HUB_BLUEPRINTS["start"]["deck"],
+        ROUTE_HUB_BLUEPRINTS["start"]["intro"],
+        sections,
+        tag="Start route hub",
+        sources=GLOBAL_SOURCES + INFORMATION_ARCHITECTURE_SOURCES,
+        related=["what-is-nostr", "getting-started", "search-atlas", "archive-library", "community", "nostr-login", "nips/crays-nip-strategy"],
+        keywords=["All about Nostr", "Crays Nostr start page", "Nostr hub", "Nostr community", "Nostr knowledge atlas"],
+        read="15 min read",
+    )
+
+
+def prepend_route_hub_sections(target: dict, key: str) -> None:
+    """Existing route pages are canonical content.
+
+    Do not change intro, deck, sections or source text here. Route guidance is
+    rendered as a separate UI module in the page template.
+    """
+    target.setdefault("related", [])
+    target.setdefault("keywords", [])
+
+
+def ensure_nostr_route_hubs() -> None:
+    existing = {item["slug"]: item for item in PAGES}
+    all_about = build_all_about_nostr_page()
+    if "start" in existing:
+        existing["start"].update(all_about)
+    else:
+        PAGES.insert(0, all_about)
+        existing["start"] = all_about
+    for key, slug in ROUTE_HUB_SLUGS.items():
+        if key == "start":
+            continue
+        deep_slug = ROUTE_HUB_DEEP_SLUGS[key]
+        if slug in existing:
+            if deep_slug not in existing:
+                guide = deepcopy(existing[slug])
+                guide["slug"] = deep_slug
+                guide.setdefault("related", [])
+                guide["related"] = list(dict.fromkeys([slug] + guide["related"]))
+                guide.setdefault("keywords", [])
+                guide["keywords"] = list(dict.fromkeys(guide["keywords"] + [f"{ROUTE_LABELS.get(key, key.title())} guide"]))
+                PAGES.append(guide)
+                existing[deep_slug] = guide
+            hub = build_route_hub_page(key)
+            existing[slug].clear()
+            existing[slug].update(hub)
+        else:
+            hub = build_route_hub_page(key)
+            PAGES.append(hub)
+            existing[slug] = hub
+
+
+ensure_nostr_route_hubs()
+
+
 def nostr_href(slug: str) -> str:
-    return f"/nostr/{esc(slug)}/"
+    return esc(nostr_path(slug))
+
+
+COMMUNITY_CANONICAL_SLUGS = {
+    "community": "community",
+    "discussions": "community/discussions",
+    "new-findings": "community/new-findings",
+    "submit-project": "community/projects/submit",
+    "admin/review": "community/moderation",
+    "nostr-login": "community/nostr-login",
+    "questions": "community/questions",
+    "projects": "community/projects",
+    "projects/submit": "community/projects/submit",
+    "apps/submit": "community/apps/submit",
+    "articles": "community/articles",
+    "articles/submit": "community/articles/submit",
+    "suggestions": "community/suggestions",
+    "moderation": "community/moderation",
+    "contributors": "community/contributors",
+    "contribute": "community/contribute",
+    "contribute/guidelines": "community/contribute/guidelines",
+    "contribute/newcomer-tasks": "community/contribute/newcomer-tasks",
+    "launches": "community/launches",
+    "curated-lists": "community/curated-lists",
+}
+
+
+COMMUNITY_CANONICAL_PREFIXES = {
+    "community": "community",
+    "questions": "community/questions",
+    "projects": "community/projects",
+    "articles": "community/articles",
+    "profile": "community/profile",
+    "curated-lists": "community/curated-lists",
+    "contribute": "community/contribute",
+}
+
+
+def canonical_nostr_slug(slug: str) -> str:
+    clean_slug = str(slug or "").strip("/")
+    if not clean_slug:
+        return ""
+    if clean_slug in {"start", "basics"}:
+        return clean_slug
+    segments = clean_slug.split("/")
+    first_segment = segments[0]
+    if len(segments) > 1 and first_segment in CANONICAL_HUB_PREFIXES and first_segment != "community" and segments[1] in CANONICAL_HUB_PREFIXES:
+        return "/".join(segments[1:])
+    if clean_slug in COMMUNITY_CANONICAL_SLUGS:
+        return COMMUNITY_CANONICAL_SLUGS[clean_slug]
+    if first_segment in CANONICAL_HUB_PREFIXES:
+        return clean_slug
+    for legacy_prefix, community_prefix in COMMUNITY_CANONICAL_PREFIXES.items():
+        if clean_slug.startswith(f"{legacy_prefix}/"):
+            tail = clean_slug[len(legacy_prefix) + 1 :]
+            return f"{community_prefix}/{tail}" if tail else community_prefix
+
+    route = primary_nav_key(clean_slug)
+    if route == "start":
+        return f"basics/{clean_slug}"
+    route_slug = ROUTE_HUB_SLUGS.get(route)
+    if route_slug:
+        if clean_slug == route_slug or clean_slug.startswith(f"{route_slug}/"):
+            return clean_slug
+        return f"{route_slug}/{clean_slug}"
+    return f"library/{clean_slug}"
+
+
+def nostr_path(slug: str) -> str:
+    clean_slug = canonical_nostr_slug(slug)
+    return f"/nostr/{clean_slug}/" if clean_slug else "/nostr/"
+
+
+NOSTR_HREF_RE = re.compile(r"""href=(?P<quote>["'])/nostr/(?P<slug>[^"'?#]+?)/?(?P<suffix>[?#][^"']*)?(?P=quote)""")
+
+
+def rewrite_nostr_internal_links(markup: str) -> str:
+    def replace_href(match: re.Match[str]) -> str:
+        quote = match.group("quote")
+        slug = match.group("slug").strip("/")
+        suffix = match.group("suffix") or ""
+        if not slug:
+            return match.group(0)
+        return f"href={quote}{nostr_path(slug)}{suffix}{quote}"
+
+    return NOSTR_HREF_RE.sub(replace_href, markup)
 
 
 STATIC_INLINE_LINKS = [
@@ -3900,6 +5578,12 @@ def render_archive_contents(item):
 
 def archive_area(item):
     slug = item["slug"]
+    if slug in ROUTE_HUB_BY_SLUG:
+        key = ROUTE_HUB_BY_SLUG[slug]
+        return f"{ROUTE_LABELS.get(key, key.title())} hub", f"/nostr/{slug}/"
+    for key, guide_slug in ROUTE_HUB_DEEP_SLUGS.items():
+        if slug == guide_slug:
+            return f"{ROUTE_LABELS.get(key, key.title())} guide", f"/nostr/{ROUTE_HUB_SLUGS[key]}/"
     if slug in {
         "relays",
         "relay-market-directory",
@@ -3928,6 +5612,14 @@ def archive_area(item):
 
 
 def primary_nav_key(slug):
+    if slug in ROUTE_HUB_BY_SLUG:
+        return ROUTE_HUB_BY_SLUG[slug]
+    for key, guide_slug in ROUTE_HUB_DEEP_SLUGS.items():
+        if slug == guide_slug:
+            return key
+    for route_prefix in ("privacy", "wallets", "media", "commerce", "governance", "crays", "library"):
+        if slug.startswith(f"{route_prefix}/"):
+            return route_prefix
     if slug in {"what-is-nostr", "getting-started", "why-nostr", "glossary", "resources", "nostr-media-article-video-archive"} or slug.startswith("reading-paths/"):
         return "start"
     if slug in {
@@ -3998,6 +5690,7 @@ def primary_nav_key(slug):
         "clients",
         "developer-tools",
         "nostr-login",
+        "submit-project",
         "nip-07-signers",
     }:
         return "apps"
@@ -4020,25 +5713,41 @@ def primary_nav_key(slug):
         "nostr-and-crays",
         "crays-super-node",
         "operators-venues",
+        "community",
+        "discussions",
     }:
         return "crays"
+    if slug in {"new-findings", "admin/review"} or slug.startswith("admin/"):
+        return "library"
     return "library"
 
 
 PRIMARY_ROUTE_CARDS = [
-    ("Start", "start", "/nostr/what-is-nostr/", "01", "The clean mental model: keys, clients, relays and why Nostr is useful."),
+    ("Start", "start", "/nostr/start/", "01", "The clean mental model: keys, clients, relays and why Nostr is useful."),
     ("People", "people", "/nostr/people/", "02", "Builders, creators, funders, events and culture around the protocol."),
-    ("Apps", "apps", "/nostr/apps/catalog/", "03", "Crays first, then the wider client, signer, wallet and tool market."),
-    ("Relays", "relays", "/nostr/relay-market-directory/", "04", "Live infrastructure: public relays, paid relays, monitoring and venue paths."),
-    ("NIPs", "nips", "/nostr/nips/complete-index/", "05", "The standards shelf translated into product consequences."),
-    ("Privacy", "privacy", "/nostr/privacy-security/", "06", "Keys, signing, trust, censorship resistance and safer account control."),
-    ("Wallets", "wallets", "/nostr/nip-47-wallet-connect/", "07", "Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records."),
-    ("Media", "media", "/nostr/music-video-media/", "08", "Creators, publishing, music, video, long-form posts and fan access."),
-    ("Commerce", "commerce", "/nostr/content-sale/", "09", "Creator sales, marketplaces, FoundUPS, revenue paths and investor context."),
-    ("Governance", "governance", "/nostr/dao-governance/", "10", "Badges, voting, reputation, moderation, policy and DAO-ready decisions."),
-    ("Crays", "crays", "/nostr/nostr-and-crays/", "11", "How the protocol plugs into Crays, venues, status and governance."),
-    ("Library", "library", "/nostr/archive-library/", "12", "The full archive, research database, source map and long-read routes."),
+    ("Apps", "apps", "/nostr/apps/", "03", "Our stack first, then the wider client, signer, wallet and tool market."),
+    ("Relays", "relays", "/nostr/relays/", "04", "Live infrastructure: public relays, paid relays, monitoring and venue paths."),
+    ("NIPs", "nips", "/nostr/nips/", "05", "The standards shelf translated into product consequences."),
+    ("Privacy", "privacy", "/nostr/privacy/", "06", "Keys, signing, trust, censorship resistance and safer account control."),
+    ("Wallets", "wallets", "/nostr/wallets/", "07", "Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records."),
+    ("Media", "media", "/nostr/media/", "08", "Creators, publishing, music, video, long-form posts and fan access."),
+    ("Commerce", "commerce", "/nostr/commerce/", "09", "Creator sales, marketplaces, FoundUPS, revenue paths and investor context."),
+    ("Governance", "governance", "/nostr/governance/", "10", "Badges, voting, reputation, moderation, policy and DAO-ready decisions."),
+    ("Crays", "crays", "/nostr/crays/", "11", "How Nostr plugs into our profiles, venues, status and governance."),
+    ("Library", "library", "/nostr/library/", "12", "The full archive, research database, source map and long-read routes."),
 ]
+
+
+def route_hub_href(key: str) -> str:
+    if key == "start":
+        return "/nostr/basics/"
+    return f"/nostr/{key}/"
+
+
+def primary_nav_items() -> list[tuple[str, str, str]]:
+    return [("Start", "start", "/nostr/start/"), ("Basics", "basics", "/nostr/basics/")] + [
+        (label, key, href) for label, key, href, _number, _note in PRIMARY_ROUTE_CARDS if key != "start"
+    ]
 
 
 try:
@@ -4075,7 +5784,7 @@ def nostr_start_image(name: str) -> str:
 
 
 ROUTE_HERO_BACKGROUNDS = {
-    "start": free_stock_image("start-bg.jpg"),
+    "start": nostr_start_image("all-about-nostr-hero.jpeg"),
     "people": free_stock_image("people-bg.jpg"),
     "apps": free_stock_image("apps-bg.jpg"),
     "relays": free_stock_image("relays-bg.jpg"),
@@ -4995,6 +6704,82 @@ def render_route_showcase(current_key: str) -> str:
             ("Nostr.band", "relay-market-directory"),
             ("NIP-66", "nips/nip-66"),
         ]
+    elif current_key == "nips":
+        items = [
+            ("NIP-01", "nips/nip-01"),
+            ("NIP-07", "nip-07-signers"),
+            ("NIP-19", "nip-19-addresses"),
+            ("NIP-23", "nip-23-long-form"),
+            ("NIP-47", "nip-47-wallet-connect"),
+            ("NIP-57", "nip-57-zaps-lightning"),
+            ("NIP-65", "nip-65-relay-list"),
+            ("NIP-72", "nips/nip-72"),
+            ("NIP-98", "nip-98-http-auth"),
+        ]
+    elif current_key == "privacy":
+        items = [
+            ("Private keys", "privacy-security"),
+            ("Identity", "keys-identity"),
+            ("NIP-07", "nip-07-signers"),
+            ("NIP-46", "nip-46-remote-signing"),
+            ("NIP-98", "nip-98-http-auth"),
+            ("Web of trust", "search-and-web-of-trust"),
+            ("Threat model", "deep-dives/nostr-security-threat-model"),
+        ]
+    elif current_key == "wallets":
+        items = [
+            ("NWC", "nip-47-wallet-connect"),
+            ("Zaps", "nip-57-zaps-lightning"),
+            ("Alby", "apps/alby"),
+            ("Safebox", "apps/safebox"),
+            ("Content sale", "content-sale"),
+            ("Bitcoin", "nostr-and-bitcoin"),
+        ]
+    elif current_key == "media":
+        items = [
+            ("Creators", "creators"),
+            ("Long-form", "nip-23-long-form"),
+            ("Blossom", "deep-dives/blossom-servers-and-relays"),
+            ("Wavlake", "apps/wavlake"),
+            ("YakiHonne", "apps/yakihonne"),
+            ("Media archive", "nostr-media-article-video-archive"),
+        ]
+    elif current_key == "commerce":
+        items = [
+            ("Content sale", "content-sale"),
+            ("FoundUPS", "apps/foundups-agent"),
+            ("Marketplaces", "apps/category-marketplace"),
+            ("Investors", "deep-dives/nostr-for-investors"),
+            ("Project submit", "projects/submit"),
+            ("Zaps", "nip-57-zaps-lightning"),
+        ]
+    elif current_key == "governance":
+        items = [
+            ("Moderation", "moderation-discovery"),
+            ("Reports", "moderation"),
+            ("Labels", "nips/nip-32"),
+            ("Badges", "nip-58-badges"),
+            ("DAO", "dao-governance"),
+            ("Web of trust", "search-and-web-of-trust"),
+        ]
+    elif current_key == "crays":
+        items = [
+            ("Nostr and Crays", "nostr-and-crays"),
+            ("Crays.net", "deep-dives/crays-net-as-nostr-client"),
+            ("Super Node", "crays-super-node"),
+            ("Venues", "operators-venues"),
+            ("Content sale", "content-sale"),
+            ("DAO", "dao-governance"),
+        ]
+    elif current_key == "library":
+        items = [
+            ("Archive", "archive-library"),
+            ("Search", "search-atlas"),
+            ("Sources", "source-inventory"),
+            ("Deep research", "source-inventory/deep-research-database"),
+            ("Suggestions", "suggestions"),
+            ("Nostr how", "source-inventory/nostr-how"),
+        ]
     else:
         return ""
     chips = []
@@ -5023,6 +6808,480 @@ def render_route_showcase(current_key: str) -> str:
           <div class="crays-nostr-visual-rail" aria-label="{esc(ROUTE_LABELS.get(current_key, "Nostr"))} visual shortcuts">
             {"".join(chips)}
           </div>
+    """
+
+
+def route_hub_image_band(key: str) -> str:
+    pool = STOCK_SCENE_POOLS.get(key, STOCK_SCENE_POOLS["library"])[:5]
+    if not pool:
+        return ""
+    figures = []
+    for idx, (caption, image) in enumerate(pool):
+        wide = " is-wide" if idx in {0, 2} else ""
+        figures.append(
+            f"""
+              <figure class="{wide.strip()}">
+                <img src="{esc(image)}" alt="{esc(crays_voice(caption))}" loading="lazy" decoding="async" />
+              </figure>
+            """
+        )
+    return f"""
+      <section class="crays-nostr-hub-image-band" aria-label="{esc(ROUTE_LABELS.get(key, "Nostr"))} visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+          {"".join(figures)}
+        </div>
+      </section>
+    """
+
+
+def route_hub_pages_by_shelf(key: str, current_slug: str) -> dict[str, list[dict]]:
+    pages = sorted(
+        [
+            p for p in PAGES
+            if primary_nav_key(p["slug"]) == key and p["slug"] != current_slug
+        ],
+        key=lambda page_item: (atlas_group_label(page_item), page_item["title"].lower()),
+    )
+    shelves: dict[str, list[dict]] = {}
+    for page_item in pages:
+        shelves.setdefault(atlas_group_label(page_item), []).append(page_item)
+    return shelves
+
+
+def render_route_hub_shelf_summary(key: str, current_slug: str) -> str:
+    shelves = route_hub_pages_by_shelf(key, current_slug)
+    if not shelves:
+        return ""
+    shelf_cards = []
+    for shelf_label, pages in sorted(shelves.items(), key=lambda pair: pair[0].lower())[:8]:
+        links = []
+        for page_item in pages[:5]:
+            links.append(
+                f'<a href="{nostr_href(page_item["slug"])}">{esc(crays_voice(page_item["title"]))}</a>'
+            )
+        shelf_cards.append(
+            f"""
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>{esc(str(len(pages)).zfill(2))}</span>
+                  <h3>{esc(crays_voice(shelf_label))}</h3>
+                </div>
+                <nav aria-label="{esc(crays_voice(shelf_label))} links">
+                  {"".join(links)}
+                </nav>
+              </article>
+            """
+        )
+    return f"""
+      <section class="crays-nostr-hub-section crays-nostr-hub-shelves" aria-label="Content shelves in this hub">
+        <div class="crays-article-shell">
+          <div class="crays-nostr-hub-section__head">
+            <p class="crays-nostr-live-kicker">What is inside</p>
+            <h2>See the shelves before you dive in.</h2>
+            <p>Each shelf is a smaller map. Open a few first, then use the full directory when you want every page in this route.</p>
+          </div>
+          <div class="crays-nostr-hub-shelf-grid">
+            {"".join(shelf_cards)}
+          </div>
+        </div>
+      </section>
+    """
+
+
+ROUTE_HUB_SIGNATURES = {
+    "people": {
+        "kicker": "People research",
+        "title": "Turn public accounts into useful context.",
+        "lead": "Start with public work, public Nostr identity and verifiable links. Then decide whether the person belongs in People | Users, a builder profile, an event story or a deeper article.",
+        "visual_label": "What to check",
+        "tiles": [
+            ("01", "Public account", "NIP-05, npub, website and obvious impersonation risk.", "people/users"),
+            ("02", "Public work", "Repos, talks, apps, articles, events and maintained projects.", "people/guide"),
+            ("03", "Why it matters", "Protocol, client, relay, creator, funding or culture relevance.", "events"),
+            ("04", "Next action", "Nominate, source, correct, expand or request review.", "suggestions"),
+        ],
+        "cards": [
+            ("Early users", "Build the first People | Users shelf from public Nostr accounts.", "people/users"),
+            ("Builder profiles", "Open the profiles that already have research context.", "people/enoch-root"),
+            ("Culture sources", "Events, media voices and public culture signals.", "events"),
+        ],
+    },
+    "apps": {
+        "kicker": "Product map",
+        "title": "Find the tool, then inspect how it handles identity.",
+        "lead": "This route is for clients, signers, wallets, relays, media tools and developer libraries. Product pages should show platforms, supported NIPs, key handling, maintainers and current status.",
+        "visual_label": "Product checks",
+        "tiles": [
+            ("01", "Client or app", "What can the user actually do with it?", "apps/catalog"),
+            ("02", "Key handling", "Extension, remote signer, local key or unknown.", "nip-07-signers"),
+            ("03", "Protocol fit", "Which NIPs, relays and media flows does it support?", "nips/crays-nip-strategy"),
+            ("04", "Submit update", "Add status, maintainer, screenshots or platform notes.", "projects/submit"),
+        ],
+        "cards": [
+            ("App catalog", "Browse the big product shelf first.", "apps/catalog"),
+            ("Signers", "Check login and signing safety before recommending a tool.", "nip-07-signers"),
+            ("Submit project", "Bring a missing app or update into review.", "projects/submit"),
+        ],
+    },
+    "relays": {
+        "kicker": "Infrastructure map",
+        "title": "Relays are where reach, policy and reliability become visible.",
+        "lead": "Use this route like an operations map: NIP-11 metadata, read/write policy, paid access, search behavior, uptime, moderation rules and local or venue relay ideas.",
+        "visual_label": "Relay checks",
+        "tiles": [
+            ("01", "Read/write", "Can people publish, search and fetch reliably?", "relays/guide"),
+            ("02", "NIP-11", "Relay metadata, limits, payment and contact signals.", "nips/nip-11"),
+            ("03", "Selection", "Which relays make sense for a person, app or community?", "field-guide/relay-selection"),
+            ("04", "Operations", "Monitor status, spam pressure, policy and stale listings.", "relay-market-directory"),
+        ],
+        "cards": [
+            ("Relay market", "Browse public, paid and monitored relay pages.", "relay-market-directory"),
+            ("Relay selection", "Use the field guide before hardcoding defaults.", "field-guide/relay-selection"),
+            ("Super Nodes", "Connect relay thinking to our venue and community plans.", "crays-super-node"),
+        ],
+    },
+    "nips": {
+        "kicker": "Standards matrix",
+        "title": "Read the standard, then decide what it means for product.",
+        "lead": "NIPs are not a feature checklist. This hub separates core identity, comments, communities, media, wallets, search, reports, badges and app data into product-ready questions.",
+        "visual_label": "Protocol checks",
+        "tiles": [
+            ("01", "Use now", "Core flows we can explain and depend on.", "nips/crays-nip-strategy"),
+            ("02", "Prepare next", "Useful standards that need product design or moderation.", "nips/complete-index"),
+            ("03", "Reference only", "Ideas worth tracking without shipping immediately.", "events-and-kinds"),
+            ("04", "Risk review", "Security, auth, private data and moderation consequences.", "nip-98-http-auth"),
+        ],
+        "cards": [
+            ("Complete NIP index", "Open the standards shelf.", "nips/complete-index"),
+            ("Crays NIP strategy", "See which NIPs map to our product layer.", "nips/crays-nip-strategy"),
+            ("Events and kinds", "Start from the event model when a feature feels abstract.", "events-and-kinds"),
+        ],
+    },
+    "privacy": {
+        "kicker": "Safety room",
+        "title": "Protect the key before you invite anyone to contribute.",
+        "lead": "Every login, signer, posting and profile flow has to pass the same test: never ask for private keys, explain public data clearly and keep risky actions reviewable.",
+        "visual_label": "Safety checks",
+        "tiles": [
+            ("01", "No nsec", "Never paste a private key into a website.", "privacy-security"),
+            ("02", "Signer first", "Use NIP-07 or remote signing for write actions.", "nip-07-signers"),
+            ("03", "Public data", "Explain what events, metadata and relays reveal.", "keys-identity"),
+            ("04", "Trust signals", "Use labels, reports and web-of-trust carefully.", "search-and-web-of-trust"),
+        ],
+        "cards": [
+            ("Privacy and security", "Start with the safety overview.", "privacy-security"),
+            ("Remote signing", "Understand NIP-46 before asking users to write.", "nip-46-remote-signing"),
+            ("HTTP auth", "Use signed auth instead of trusting a pasted pubkey.", "nip-98-http-auth"),
+        ],
+    },
+    "wallets": {
+        "kicker": "Value flow",
+        "title": "Money features need clear permissions, not mystery buttons.",
+        "lead": "This hub connects zaps, Lightning, NWC, Safebox, receipts and creator access. The useful question is always: who can spend, who signs, where is the proof and what can go wrong?",
+        "visual_label": "Flow checks",
+        "tiles": [
+            ("01", "Intent", "Tip, pay, unlock, record or reimburse?", "nip-57-zaps-lightning"),
+            ("02", "Permission", "NWC, wallet connection, limit and revoke path.", "nip-47-wallet-connect"),
+            ("03", "Record", "Receipt, note, file, Safebox or app state.", "apps/safebox"),
+            ("04", "Review", "Source, risk, custody and stale claims.", "suggestions"),
+        ],
+        "cards": [
+            ("Nostr Wallet Connect", "Start with permissions and wallet control.", "nip-47-wallet-connect"),
+            ("Zaps", "Understand Lightning zaps before designing rewards.", "nip-57-zaps-lightning"),
+            ("Safebox", "Open the records and wallet stack context.", "apps/safebox"),
+        ],
+    },
+    "media": {
+        "kicker": "Publishing studio",
+        "title": "Creators need publishing, storage, audience and proof in one map.",
+        "lead": "Use this route for writing, video, music, streaming, Blossom, long-form posts, creator pages and the media sources that help the archive feel alive.",
+        "visual_label": "Creator checks",
+        "tiles": [
+            ("01", "Publish", "Long-form posts, creator notes, newsletters and articles.", "nip-23-long-form"),
+            ("02", "Store", "Files, metadata, Blossom and media relay questions.", "deep-dives/blossom-servers-and-relays"),
+            ("03", "Audience", "Fans, follows, comments, zaps and replayable identity.", "creators"),
+            ("04", "Archive", "Videos, talks and public source material for review.", "nostr-media-article-video-archive"),
+        ],
+        "cards": [
+            ("Media archive", "Open the video and article source shelf.", "nostr-media-article-video-archive"),
+            ("Blossom", "Understand media storage before recommending uploads.", "deep-dives/blossom-servers-and-relays"),
+            ("YakiHonne", "See long-form publishing in the app ecosystem.", "apps/yakihonne"),
+        ],
+    },
+    "commerce": {
+        "kicker": "Market map",
+        "title": "Separate real product signals from hopeful claims.",
+        "lead": "This hub is for creator sales, marketplaces, FoundUPS, listings, revenue paths, investor context and project submissions. Evidence matters more than buzz.",
+        "visual_label": "Market checks",
+        "tiles": [
+            ("01", "Offer", "What is being sold, launched, listed or funded?", "content-sale"),
+            ("02", "Proof", "Website, repo, revenue signal, maintainer or public source.", "suggestions"),
+            ("03", "Nostr role", "Identity, listing, wallet, zap, relay or community layer.", "nips/crays-nip-strategy"),
+            ("04", "Review", "Approve, reject, mark stale or request more evidence.", "moderation"),
+        ],
+        "cards": [
+            ("Content sale", "Start with the creator-commerce path.", "content-sale"),
+            ("FoundUPS Agent", "Open the project and compute-focus route.", "apps/foundups-agent"),
+            ("Investors", "Read the market context without mixing it into facts.", "deep-dives/nostr-for-investors"),
+        ],
+    },
+    "governance": {
+        "kicker": "Review room",
+        "title": "A living archive needs rules people can see.",
+        "lead": "This route covers moderation, reports, labels, badges, voting, DAO readiness, review queues and the trust levels that keep contribution useful.",
+        "visual_label": "Review checks",
+        "tiles": [
+            ("01", "Report", "Spam, impersonation, stale claims or unsafe content.", "moderation"),
+            ("02", "Label", "Context, status, verified, duplicate or needs changes.", "nips/nip-32"),
+            ("03", "Badge", "Contributor reputation and public recognition.", "nip-58-badges"),
+            ("04", "Audit", "Decision, moderator, reason and reversible trail.", "admin/review"),
+        ],
+        "cards": [
+            ("Moderation", "Open the review and governance route.", "moderation-discovery"),
+            ("Badges", "Use reputation without pretending it is truth.", "nip-58-badges"),
+            ("DAO readiness", "Connect voting and policy to the longer product path.", "dao-governance"),
+        ],
+    },
+    "crays": {
+        "kicker": "Product bridge",
+        "title": "See how Nostr plugs into what we are building.",
+        "lead": "This hub connects the archive with Crays.net, profiles, creator access, venues, Super Nodes, status, commerce and future DAO participation.",
+        "visual_label": "Product checks",
+        "tiles": [
+            ("01", "Profile", "Nostr identity as the portable account layer.", "nostr-and-crays"),
+            ("02", "Access", "Content, status, creator pages and membership paths.", "content-sale"),
+            ("03", "Venue", "Local relays, Super Nodes and real-world graph ideas.", "operators-venues"),
+            ("04", "Govern", "Awards, voting, badges and DAO participation.", "dao-governance"),
+        ],
+        "cards": [
+            ("Nostr and Crays", "Start with the product connection.", "nostr-and-crays"),
+            ("Crays.net client", "Open the profile and client concept.", "deep-dives/crays-net-as-nostr-client"),
+            ("Super Node", "Connect relays to venues and local graph ideas.", "crays-super-node"),
+        ],
+    },
+    "library": {
+        "kicker": "Research atlas",
+        "title": "When you need the source, not just the summary.",
+        "lead": "This hub is the archive memory: source inventory, deep dives, research branches, crawler findings, Excel URL traces, search and review queues.",
+        "visual_label": "Research checks",
+        "tiles": [
+            ("01", "Source", "Where did the claim, repo, NIP or article come from?", "source-inventory"),
+            ("02", "Search", "Find the exact page, URL, term, person or project.", "search-atlas"),
+            ("03", "Deep read", "Open the long-form archive and research paths.", "archive-library"),
+            ("04", "Review", "Mark duplicate, stale, new, useful or needs more evidence.", "suggestions"),
+        ],
+        "cards": [
+            ("Archive Library", "Open the complete library shelf.", "archive-library"),
+            ("Source Inventory", "Trace sources and deep research pages.", "source-inventory"),
+            ("Search Atlas", "Search canonical and community surfaces separately.", "search-atlas"),
+        ],
+    },
+}
+
+
+def render_route_hub_signature(key: str, by_slug: dict[str, dict]) -> str:
+    spec = ROUTE_HUB_SIGNATURES.get(key)
+    if not spec:
+        return ""
+    theme = VISUAL_THEMES.get(key, VISUAL_THEMES["library"])
+    tile_html = []
+    for icon, title, note, slug in spec["tiles"]:
+        href = slug if str(slug).startswith(("http://", "https://")) else nostr_href(route_hub_target_slug(key, str(slug)))
+        tile_html.append(
+            f"""
+              <a href="{esc(href)}">
+                <span aria-hidden="true">{esc(icon)}</span>
+                <strong>{esc(crays_voice(title))}</strong>
+                <small>{esc(crays_voice(note))}</small>
+              </a>
+            """
+        )
+    card_html = []
+    for title, note, slug in spec["cards"]:
+        href = slug if str(slug).startswith(("http://", "https://")) else nostr_href(route_hub_target_slug(key, str(slug)))
+        card_html.append(
+            f"""
+              <a href="{esc(href)}">
+                {render_card_badge(title, slug)}
+                <strong>{esc(crays_voice(title))}</strong>
+                <span>{esc(crays_voice(note))}</span>
+              </a>
+            """
+        )
+    showcase = render_route_showcase(key)
+    return f"""
+      <section class="crays-nostr-hub-section crays-nostr-hub-signature" data-signature-route="{esc(key)}" aria-label="{esc(spec["kicker"])}">
+        <div class="crays-article-shell crays-nostr-hub-signature__grid">
+          <div class="crays-nostr-hub-signature__copy">
+            <p class="crays-nostr-live-kicker">{esc(crays_voice(spec["kicker"]))}</p>
+            <h2>{esc(crays_voice(spec["title"]))}</h2>
+            <p>{esc(crays_voice(spec["lead"]))}</p>
+          </div>
+          <figure class="crays-nostr-hub-signature__visual">
+            <img src="{esc(theme["image"])}" alt="{esc(crays_voice(ROUTE_LABELS.get(key, key.title())))} visual" loading="lazy" decoding="async" />
+            <figcaption>{esc(crays_voice(spec["visual_label"]))}</figcaption>
+          </figure>
+          <div class="crays-nostr-hub-signature__tiles">
+            {"".join(tile_html)}
+          </div>
+          <div class="crays-nostr-hub-signature__cards">
+            {"".join(card_html)}
+          </div>
+          {showcase}
+        </div>
+      </section>
+    """
+
+
+def render_route_hub_landing_page(item: dict, key: str, by_slug: dict[str, dict]) -> str:
+    blueprint = ROUTE_HUB_BLUEPRINTS.get(key, ROUTE_HUB_BLUEPRINTS["library"])
+    theme = VISUAL_THEMES.get(key, VISUAL_THEMES["library"])
+    section_nav = SECTION_NAVS.get(key, SECTION_NAVS["library"])
+    page_count = len([p for p in PAGES if primary_nav_key(p["slug"]) == key and p["slug"] != item["slug"]])
+    guide_slug = ROUTE_HUB_DEEP_SLUGS.get(key)
+    has_deep_guide = bool(guide_slug and guide_slug in by_slug)
+    guide_href = f"/nostr/{guide_slug}/" if has_deep_guide else ""
+    guide_link = (
+        f'<a class="crays-nostr-hub-guide-link" href="{esc(guide_href)}">Read the full {esc(ROUTE_LABELS.get(key, key.title()))} guide</a>'
+        if has_deep_guide else
+        ""
+    )
+    directory_note = (
+        "The deeper guide is still here too. This page stays calm; the full read lives one level down."
+        if has_deep_guide else
+        "This hub is the calm overview. Use the full directory below when you want every page in this route."
+    )
+    primary_cards = []
+    for label, slug in blueprint["primary"][:6]:
+        target_slug = route_hub_target_slug(key, slug)
+        related = by_slug.get(target_slug)
+        note = related.get("deck", f"Open {label}.") if related else f"Open {label}."
+        primary_cards.append(
+            f"""
+              <a class="crays-nostr-hub-path-card" href="/nostr/{esc(target_slug)}/">
+                {render_card_badge(label, target_slug)}
+                <strong>{esc(crays_voice(label))}</strong>
+                <span>{esc(crays_voice(note))[:170]}</span>
+              </a>
+            """
+        )
+    action_cards = "".join(
+        f"""
+          <a href="{esc(href)}">
+            <strong>{esc(title)}</strong>
+            <span>{esc(note)}</span>
+          </a>
+        """
+        for title, note, href in route_hub_action_cards(key)
+    )
+    route_groups = []
+    for group, links in section_nav.get("groups", [])[:4]:
+        rendered_links = []
+        for label, slug in links[:10]:
+            rendered_links.append(
+                f'<a href="/nostr/{esc(route_hub_target_slug(key, slug))}/">{esc(crays_voice(label))}</a>'
+            )
+        route_groups.append(
+            f"""
+              <section>
+                <h3>{esc(crays_voice(group))}</h3>
+                <nav aria-label="{esc(crays_voice(group))}">
+                  {"".join(rendered_links)}
+                </nav>
+              </section>
+            """
+        )
+    pins = "".join(
+        f'<a href="{nostr_href(slug)}">{esc(label)}</a>'
+        for label, slug in theme.get("pins", [])[:3]
+    )
+    route_directory = render_route_directory(key, item["slug"])
+    shelf_summary = render_route_hub_shelf_summary(key, item["slug"])
+    image_band = route_hub_image_band(key)
+    learning_compass_block = render_learning_compass(item, by_slug)
+    signature_block = render_route_hub_signature(key, by_slug)
+    hub_contribution_block = render_page_community_panel(item)
+    return f"""
+      <section class="crays-nostr-route-hub-landing" data-route-hub="{esc(key)}">
+        <section class="crays-nostr-route-hub-hero" style="--nostr-hero-bg: url({esc(theme["background"])});">
+          <div class="crays-article-shell crays-nostr-route-hub-hero__grid">
+            <div class="crays-nostr-route-hub-hero__copy">
+              <a class="crays-nostr-route-hub-hero__back" href="/nostr/start/">Back to Start</a>
+              <p class="crays-nostr-live-kicker">{esc(crays_voice(theme["kicker"]))}</p>
+              <h1>{esc(crays_voice(blueprint["title"]))}</h1>
+              <p>{esc(crays_voice(blueprint["deck"]))}</p>
+              <div class="crays-nostr-route-hub-hero__actions">
+                <a href="#hub-first-paths">Choose a path</a>
+                <a href="/nostr/search-atlas/">Search the atlas</a>
+                <a href="#hub-bring-back">Bring something back</a>
+              </div>
+            </div>
+            <aside class="crays-nostr-route-hub-hero__panel" aria-label="How this hub works">
+              <p class="crays-nostr-live-kicker">Use this hub to</p>
+              <h2>{esc(crays_voice(blueprint["purpose"]))}</h2>
+              <dl>
+                <div><dt>{esc(str(page_count))}</dt><dd>pages under this route</dd></div>
+                <div><dt>{esc(str(len(section_nav.get("groups", []))))}</dt><dd>navigation shelves</dd></div>
+                <div><dt>Review</dt><dd>{esc(crays_voice(blueprint["community"]))}</dd></div>
+              </dl>
+              <nav>{pins}</nav>
+            </aside>
+          </div>
+        </section>
+
+        {image_band}
+
+        <div class="crays-article-shell crays-nostr-hub-compass-wrap">
+          {learning_compass_block}
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-first-paths" id="hub-first-paths" aria-label="First paths">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Start here</p>
+              <h2>Pick the first path that fits your question.</h2>
+              <p>{esc(crays_voice(blueprint["intro"]))}</p>
+            </div>
+            <div class="crays-nostr-hub-path-grid">
+              {"".join(primary_cards)}
+            </div>
+          </div>
+        </section>
+
+        {signature_block}
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-route-map" aria-label="Route map">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Route map</p>
+              <h2>See how this route is organized.</h2>
+              <p>Use these groups when you want context first. They are the short map of what this category contains.</p>
+            </div>
+            <div class="crays-nostr-hub-route-groups">
+              {"".join(route_groups)}
+            </div>
+          </div>
+        </section>
+
+        {shelf_summary}
+
+        <div class="crays-article-shell crays-nostr-hub-context-wrap">
+          {hub_contribution_block}
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-full-directory" aria-label="All pages in this route">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Full directory</p>
+              <h2>Open every page in {esc(crays_voice(blueprint["title"]))}.</h2>
+              <p>{esc(directory_note)}</p>
+            </div>
+            {guide_link}
+            {route_directory}
+          </div>
+        </section>
+
+      </section>
     """
 
 
@@ -5076,6 +7335,8 @@ def render_route_directory(current_key: str, current_slug: str) -> str:
     if not pages:
         return ""
     label = ROUTE_LABELS.get(current_key, current_key.title())
+    directory_eyebrow = "Basics" if current_key == "start" else crays_voice(label)
+    directory_title = "Start Exploring" if current_key == "start" else f"All {crays_voice(label)} pages"
     shelves: dict[str, list[dict]] = {}
     for page_item in pages:
         shelves.setdefault(atlas_group_label(page_item), []).append(page_item)
@@ -5096,8 +7357,8 @@ def render_route_directory(current_key: str, current_slug: str) -> str:
     return f"""
           <details class="crays-nostr-route-directory" data-route="{esc(current_key)}">
             <summary>
-              <span class="crays-nostr-route-directory__eyebrow">{esc(crays_voice(label))}</span>
-              <strong>All {esc(crays_voice(label))} pages</strong>
+              <span class="crays-nostr-route-directory__eyebrow">{esc(directory_eyebrow)}</span>
+              <strong>{esc(directory_title)}</strong>
               <small><b>{len(pages)} pages in this route</b><em>{esc(shelf_preview)}</em></small>
               <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
             </summary>
@@ -5206,8 +7467,20 @@ def build_search_record(item: dict) -> dict:
 
 
 def write_search_index() -> None:
+    records = [build_search_record(item) for item in PAGES]
+    records.append(
+        {
+            "title": "Basics",
+            "url": "/nostr/basics/",
+            "slug": "basics",
+            "category": "Start",
+            "shelf": "Core concepts",
+            "deck": "Start here when Nostr still feels like a maze: public keys, private keys, clients, relays and first reading paths.",
+            "terms": "Basics Nostr start public key private key clients relays beginner path getting started what is Nostr glossary",
+        }
+    )
     records = sorted(
-        (build_search_record(item) for item in PAGES),
+        records,
         key=lambda record: (record["category"], record["shelf"], record["title"].lower(), record["url"]),
     )
     SEARCH_INDEX.parent.mkdir(parents=True, exist_ok=True)
@@ -5225,11 +7498,19 @@ def write_search_index() -> None:
     )
 
 
-def render_primary_nav(item):
-    current = primary_nav_key(item["slug"])
+def render_primary_nav(item=None, active_key: str | None = None):
+    if active_key is None:
+        if item is None:
+            active_key = "start"
+        elif item["slug"] == "start":
+            active_key = "start"
+        elif primary_nav_key(item["slug"]) == "start":
+            active_key = "basics"
+        else:
+            active_key = primary_nav_key(item["slug"])
     links = []
-    for label, key, href, _number, _note in PRIMARY_ROUTE_CARDS:
-        current_attr = ' aria-current="page"' if key == current else ""
+    for label, key, href in primary_nav_items():
+        current_attr = ' aria-current="page"' if key == active_key else ""
         links.append(f'<a href="{href}" data-route="{esc(key)}"{current_attr}>{esc(label)}</a>')
     return "\n        ".join(links)
 
@@ -5280,6 +7561,1093 @@ def render_article_masthead(item):
     )
 
 
+def learning_stage_for_item(item) -> tuple[str, str]:
+    slug = item["slug"]
+    route = primary_nav_key(slug)
+    if slug in ROUTE_HUB_BY_SLUG:
+        return "Route hub", "Use this as the map for the whole route before you go into the individual pages."
+    if "source-inventory" in slug or "deep-research" in slug or "archive-library" in slug:
+        return "Source depth", "This is evidence territory: inspect sources, compare context and bring better references into review."
+    if route == "start":
+        return "Beginner path", "Start with the concept, then follow the links when a term asks for a deeper explanation."
+    if route in {"apps", "relays", "wallets", "media", "commerce"}:
+        return "Builder path", "Use this page to connect real products, projects, maintainers, repos and implementation details."
+    if route in {"nips", "privacy", "governance"}:
+        return "Protocol path", "Read this with the standard, event kind, signing model, moderation or safety tradeoff in mind."
+    if route == "people":
+        return "People path", "Use public evidence only: roles, projects, public Nostr activity and verifiable links."
+    if route == "crays":
+        return "Crays path", "This is where Crays-specific Nostr product work connects back to the wider archive."
+    return "Research path", "Use this page as a waypoint and follow related pages or the source trail when you need proof."
+
+
+def learning_route_task(route: str) -> str:
+    return {
+        "start": "Understand the core idea, then ask beginner questions or propose missing explainers.",
+        "people": "Map public Nostr people, projects and verifiable roles without turning profiles into private biography.",
+        "apps": "Find products, compare use cases, submit apps, update maintainer data and connect supported NIPs.",
+        "relays": "Inspect relay purpose, policy, NIP-11 data, uptime signals and recommended usage.",
+        "nips": "Move from concept to event shape, implementation status, app support and risk notes.",
+        "privacy": "Check key handling, signer flow, auth, NIP-46/NIP-98 choices and user safety.",
+        "wallets": "Connect wallets, NWC, zaps, custody assumptions and value-flow tooling to real evidence.",
+        "media": "Map creator, publishing, Blossom, file metadata, audio, video and long-form tooling.",
+        "commerce": "Separate listings, marketplaces, project status, evidence and business claims.",
+        "governance": "Route labels, reports, reputation, approvals and moderation decisions into review.",
+        "crays": "Connect Crays product surfaces, Crays identity and Nostr-native contribution flows.",
+        "library": "Search the archive, inspect source trails, add findings and reduce duplicates.",
+    }.get(route, "Read the canonical page, then attach the contribution that best fits the route.")
+
+
+def learning_action_for_route(route: str, slug: str) -> tuple[str, str, str]:
+    page_param = f"?page={esc(slug)}&route={esc(route)}"
+    if route == "people":
+        return ("Nominate public user", "Add a public Nostr account or evidence trail.", f"/nostr/people/users/{page_param}")
+    if route in {"apps", "wallets", "media", "commerce", "crays"}:
+        return ("Submit related project", "Add an app, tool, maintainer update or project proof.", f"/nostr/community/projects/submit/{page_param}")
+    if route in {"relays", "nips", "privacy", "governance", "library"}:
+        return ("Suggest source", "Add a source, correction, report or implementation note.", f"/nostr/community/suggestions/{page_param}")
+    return ("Ask a question", "Open a page-bound learning question.", f"/nostr/community/questions/{page_param}")
+
+
+def render_learning_compass(item, by_slug) -> str:
+    if item["slug"] in {"community"}:
+        return ""
+    route = primary_nav_key(item["slug"])
+    route_label = ROUTE_LABELS.get(route, "Nostr")
+    route_slug = ROUTE_HUB_SLUGS.get(route, "archive-library")
+    stage, stage_note = learning_stage_for_item(item)
+    action_title, action_note, action_href = learning_action_for_route(route, item["slug"])
+    related_cards = []
+    if item["slug"] != route_slug:
+        related_cards.append((f"{route_label} hub", "Open the route map", f"/nostr/{route_slug}/"))
+    for related_slug in item.get("related", [])[:4]:
+        related_slug = str(related_slug).strip("/").removeprefix("nostr/")
+        related = by_slug.get(related_slug)
+        if related and related["slug"] != item["slug"]:
+            related_cards.append((related["title"], ROUTE_LABELS.get(primary_nav_key(related["slug"]), "Nostr"), nostr_href(related["slug"])))
+    seen = set()
+    related_links = []
+    for title, note, href in related_cards:
+        if href in seen:
+            continue
+        seen.add(href)
+        related_links.append(
+            f'<a href="{esc(href)}">{render_card_badge(title, href)}<strong>{esc(crays_voice(title))}</strong><span>{esc(note)}</span></a>'
+        )
+    related_html = "\n".join(related_links[:5])
+    if not related_html:
+        related_html = f'<a href="/nostr/search-atlas/">{render_card_badge("Search Atlas", "search-atlas")}<strong>Search Atlas</strong><span>Find the next concept yourself</span></a>'
+    return f"""
+            <section class="crays-nostr-learning-compass" data-component="LearningCompass" data-learning-route="{esc(route)}" aria-label="Learning compass for this Crays Nostr page">
+              <div class="crays-nostr-learning-compass__intro">
+                <p class="crays-nostr-live-kicker">Learning compass</p>
+                <h3>You are in {esc(route_label)}</h3>
+                <p>{esc(stage)}. {esc(stage_note)}</p>
+              </div>
+              <div class="crays-nostr-learning-compass__task">
+                <strong>Use this page to</strong>
+                <span>{esc(learning_route_task(route))}</span>
+              </div>
+              <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+                <a href="/nostr/start/"><strong>All about Nostr</strong><span>Return to the full map</span></a>
+                <a href="/nostr/search-atlas/"><strong>Search the atlas</strong><span>Find any page, term, source or project</span></a>
+                <a href="{esc(action_href)}"><strong>{esc(action_title)}</strong><span>{esc(action_note)}</span></a>
+              </nav>
+              <details class="crays-nostr-learning-compass__next">
+                <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+                <div>{related_html}</div>
+              </details>
+            </section>
+    """
+
+
+def community_for_route(route: str) -> str:
+    mapping = {
+        "start": "general-nostr",
+        "people": "general-nostr",
+        "apps": "apps",
+        "relays": "relays",
+        "nips": "nips",
+        "privacy": "privacy",
+        "wallets": "wallets",
+        "media": "media",
+        "commerce": "commerce",
+        "governance": "governance",
+        "crays": "crays",
+        "library": "research-new-findings",
+    }
+    return mapping.get(route, "general-nostr")
+
+
+def render_nostr_auth_panel(context: str = "login") -> str:
+    return f"""
+            <section class="crays-nostr-live-surface crays-nostr-auth-surface" data-nostr-login-panel data-component="NostrLoginButton NostrIdentityCard NostrSignerStatus" data-nostr-context="{esc(context)}">
+              <div>
+                <p class="crays-nostr-live-kicker">Nostr identity</p>
+                <h2>Login with Nostr</h2>
+                <p>Use a browser signer, Nostr Connect, read-only npub or local account flow. Private keys stay out of the Crays server path.</p>
+              </div>
+              <div class="crays-nostr-auth-grid">
+                <button type="button" data-nostr-login-launch="welcome">Login with Nostr</button>
+                <button type="button" data-nostr-login-launch="signup">New Nostr account</button>
+                <button type="button" data-nostr-login-launch="login-bunker-url">Nostr Connect</button>
+                <button type="button" data-nostr-login-launch="login-read-only">Read-only login</button>
+              </div>
+              <form class="crays-nostr-inline-form" data-nostr-readonly-form>
+                <label for="crays-nostr-readonly-npub">Read-only npub</label>
+                <div>
+                  <input id="crays-nostr-readonly-npub" name="npub" type="text" autocomplete="off" placeholder="npub1..." />
+                  <button type="submit">Use read-only</button>
+                </div>
+              </form>
+              <div class="crays-nostr-session-card" data-nostr-session-state>
+                <strong>Not connected</strong>
+                <span>Signing actions will ask for a Nostr signer.</span>
+              </div>
+              <div class="crays-nostr-auth-actions">
+                <button type="button" data-nostr-sign-challenge>Sign NIP-98 challenge</button>
+                <button type="button" data-nostr-logout>Log out</button>
+              </div>
+              <pre class="crays-nostr-event-preview" data-nostr-event-preview hidden></pre>
+            </section>
+    """
+
+
+def render_community_operating_board() -> str:
+    actions = "\n".join(
+        f'<a href="{esc(href)}"><strong>{esc(title)}</strong><span>{esc(note)}</span></a>'
+        for title, note, href in CRAYS_COMMUNITY_ACTIONS
+    )
+    lanes = "\n".join(
+        f'<div><strong>{esc(title)}</strong><span>{esc(note)}</span></div>'
+        for title, note in CRAYS_COMMUNITY_LANES
+    )
+    roles = "\n".join(
+        f'<div><strong>{esc(title)}</strong><span>{esc(note)}</span></div>'
+        for title, note in CRAYS_COMMUNITY_ROLES
+    )
+    types = "\n".join(
+        f'<option value="{esc(slugify(title))}">{esc(title)}</option>'
+        for title, _note in CRAYS_CONTRIBUTION_TYPES
+    )
+    return f"""
+            <section class="crays-nostr-community-os" aria-label="Crays community operating model">
+              <div class="crays-nostr-community-os__intro">
+                <p class="crays-nostr-live-kicker">Community OS</p>
+                <h2>What the Nostr community can actually do here</h2>
+                <p>Crays already has the archive. The community layer is the workroom around it: questions, project launches, people nominations, source review, corrections, relay reports, NIP debates and moderator decisions.</p>
+              </div>
+              <div class="crays-nostr-community-actions">{actions}</div>
+              <div class="crays-nostr-community-feed-model">
+                <div>
+                  <h3>Feed lanes</h3>
+                  <div class="crays-nostr-pill-grid">{lanes}</div>
+                </div>
+                <div>
+                  <h3>Participant roles</h3>
+                  <div class="crays-nostr-pill-grid">{roles}</div>
+                </div>
+              </div>
+              <form class="crays-nostr-quick-composer" data-nostr-event-form data-event-type="community_post" data-event-kind="1111">
+                <label>Contribution type<select name="contribution_type">{types}</select></label>
+                <label>Title<input name="title" type="text" maxlength="120" placeholder="What should the community look at?" required></label>
+                <label>Source URL<input name="url" type="url" placeholder="https://"></label>
+                <label>Body<textarea name="content" rows="6" placeholder="Explain the question, source, project, person, relay or correction." required></textarea></label>
+                <button type="submit">Sign contribution</button>
+                <output data-nostr-form-status></output>
+              </form>
+            </section>
+    """
+
+
+def render_product_nav(active: str) -> str:
+    links = []
+    for label, key, href in CRAYS_PRODUCT_NAV:
+        current = ' aria-current="page"' if key == active else ""
+        links.append(f'<a href="{esc(href)}"{current}>{esc(label)}</a>')
+    return "\n".join(links)
+
+
+def render_product_metrics() -> str:
+    return "\n".join(
+        f'<div><strong>{esc(value)}</strong><span>{esc(label)}</span><small>{esc(note)}</small></div>'
+        for value, label, note in CRAYS_PRODUCT_METRICS
+    )
+
+
+def render_product_feed() -> str:
+    cards = []
+    for item in CRAYS_PRODUCT_FEED_ITEMS:
+        vote_key = slugify(item["title"])
+        cards.append(
+            f"""
+                  <article class="crays-nostr-product-feed-card" data-feed-state="{esc(slugify(item["state"]))}" data-feed-kind="{esc(slugify(item["kind"]))}" data-feed-route="{esc(slugify(item["route"]))}" data-vote-key="{esc(vote_key)}">
+                    <div class="crays-nostr-product-feed-votes" aria-label="Vote on this contribution">
+                      <button type="button" data-nostr-vote="+" data-vote-key="{esc(vote_key)}" aria-label="Upvote {esc(item["title"])}">+</button>
+                      <strong data-nostr-vote-score>{esc(item["score"])}</strong>
+                      <button type="button" data-nostr-vote="-" data-vote-key="{esc(vote_key)}" aria-label="Downvote {esc(item["title"])}">-</button>
+                    </div>
+                    <div class="crays-nostr-product-feed-body">
+                      <header>
+                        <span>{esc(item["kind"])}</span>
+                        <span>{esc(item["state"])}</span>
+                        <span>{esc(item["route"])}</span>
+                      </header>
+                      <h3>{esc(item["title"])}</h3>
+                      <p>{esc(item["note"])}</p>
+                      <footer>
+                        <small>{esc(item["tags"])}</small>
+                        <small>{esc(item["comments"])} comments</small>
+                        <a href="{esc(item["href"])}">Open work item</a>
+                      </footer>
+                    </div>
+                  </article>
+        """
+        )
+    return "\n".join(cards)
+
+
+def render_product_workflows() -> str:
+    return "\n".join(
+        f'<div><strong>{esc(step)}</strong><span>{esc(event)}</span><small>{esc(note)}</small></div>'
+        for step, event, note in CRAYS_PRODUCT_WORKFLOWS
+    )
+
+
+def render_product_communities() -> str:
+    return "\n".join(
+        f'<a href="/nostr/community/" data-community="{esc(code)}"><strong>{esc(name)}</strong><span>{esc(category)}</span><small>{esc(description)}</small></a>'
+        for code, name, category, description in CRAYS_NOSTR_COMMUNITIES
+    )
+
+
+def render_product_pipeline() -> str:
+    return "\n".join(
+        f'<div><strong>{idx:02d} {esc(label)}</strong><span>{esc(note)}</span></div>'
+        for idx, (label, note) in enumerate(CRAYS_PROJECT_PIPELINE, start=1)
+    )
+
+
+def render_community_product_home() -> str:
+    actions = "\n".join(
+        f'<a href="{esc(href)}"><strong>{esc(title)}</strong><span>{esc(note)}</span></a>'
+        for title, note, href in CRAYS_COMMUNITY_ACTIONS
+    )
+    types = "\n".join(
+        f'<option value="{esc(slugify(title))}">{esc(title)}</option>'
+        for title, _note in CRAYS_CONTRIBUTION_TYPES
+    )
+    lane_tabs = '<button type="button" data-community-filter="all" aria-pressed="true">All</button>' + "\n".join(
+        f'<button type="button" data-community-filter="{esc(slugify(label))}">{esc(label)}</button>'
+        for label, _note in CRAYS_COMMUNITY_LANES
+    )
+    return f"""
+            <section class="crays-nostr-product-shell" data-nostr-product="community">
+              <nav class="crays-nostr-product-nav" aria-label="Crays Nostr product">{render_product_nav("community")}</nav>
+              <div class="crays-nostr-product-hero">
+                <div>
+                  <p class="crays-nostr-live-kicker">Crays Community HQ</p>
+                  <h1>Build the Nostr knowledge graph with the people who use it</h1>
+                  <p>This is the product layer around the archive: questions, projects, people nominations, source review, relay reports, NIP debates and moderator decisions. The content stays stable; the community makes it alive.</p>
+                </div>
+                <div class="crays-nostr-product-metrics">{render_product_metrics()}</div>
+              </div>
+
+              <div class="crays-nostr-product-layout">
+                <aside class="crays-nostr-product-sidebar">
+                  <h3>Start here</h3>
+                  <div class="crays-nostr-product-actions">{actions}</div>
+                  <h3>Protocol rules</h3>
+                  <ul>
+                    <li>NIP-7D forum roots for Reddit-like topics.</li>
+                    <li>NIP-22 comments for replies and page discussions.</li>
+                    <li>NIP-29 groups for future relay-enforced communities.</li>
+                    <li>NIP-72 only as compatibility with older community clients.</li>
+                    <li>NIP-32 labels and NIP-56 reports for moderation.</li>
+                    <li>No server-side private keys.</li>
+                  </ul>
+                </aside>
+
+                <section class="crays-nostr-product-main" aria-label="Community feed">
+                  <div class="crays-nostr-product-composer">
+                    <div>
+                      <strong>Contribute to Crays</strong>
+                      <span>Choose what you are adding. The event is signed locally and goes to review before it changes editorial content.</span>
+                    </div>
+                    <form data-nostr-event-form data-event-type="community_post" data-event-kind="11">
+                      <select name="contribution_type">{types}</select>
+                      <input name="title" type="text" placeholder="What should the community look at?" required>
+                      <input name="url" type="url" placeholder="Source or project URL">
+                      <textarea name="content" rows="4" placeholder="Question, evidence, project context or correction" required></textarea>
+                      <button type="submit">Sign contribution</button>
+                      <output data-nostr-form-status></output>
+                    </form>
+                  </div>
+
+                  <div class="crays-nostr-product-feed-tools" role="search">
+                    <label for="crays-community-feed-search">Filter community work</label>
+                    <input id="crays-community-feed-search" type="search" placeholder="Search project, people, NIP, relay, source" data-community-search>
+                  </div>
+                  <div class="crays-nostr-product-tabs" aria-label="Feed filters">{lane_tabs}</div>
+                  <div class="crays-nostr-product-feed">{render_product_feed()}</div>
+                </section>
+
+                <aside class="crays-nostr-product-right">
+                  <h3>Community map</h3>
+                  <div class="crays-nostr-product-community-list">{render_product_communities()}</div>
+                  <h3>Signed workflow</h3>
+                  <div class="crays-nostr-product-pipeline">{render_product_workflows()}</div>
+                  <h3>Project pipeline</h3>
+                  <div class="crays-nostr-product-pipeline">{render_product_pipeline()}</div>
+                </aside>
+              </div>
+            </section>
+    """
+
+
+def render_special_nostr_surface(item) -> str:
+    slug = item["slug"]
+    community_options = "\n".join(
+        f'<option value="{esc(code)}">{esc(name)}</option>'
+        for code, name, _category, _description in CRAYS_NOSTR_COMMUNITIES
+    )
+    category_options = "\n".join(
+        f'<option value="{esc(label)}">{esc(label)}</option>'
+        for label in ROUTE_LABELS.values()
+    )
+    if slug == "nostr-login":
+        return render_nostr_auth_panel("nostr-login")
+    if slug == "community":
+        return f"""
+            {render_community_product_home()}
+            {render_nostr_auth_panel("community")}
+        """
+    if slug == "people/users":
+        return f"""
+            {render_nostr_auth_panel("people-users")}
+            <section class="crays-nostr-live-surface" data-nostr-surface="people-users">
+              <div>
+                <p class="crays-nostr-live-kicker">People nomination</p>
+                <h2>Nominate a public Nostr user</h2>
+                <p>Add a public account to the People | Users research queue with evidence. This is about public Nostr work and public projects, not private biography.</p>
+              </div>
+              <form class="crays-nostr-review-form" data-nostr-event-form data-event-type="person_nomination" data-event-kind="30078">
+                <label>Display name<input name="title" type="text" maxlength="140" required></label>
+                <label>npub / pubkey<input name="project_pubkey" type="text" autocomplete="off" placeholder="npub1..."></label>
+                <label>NIP-05 or handle<input name="handle" type="text" placeholder="name@example.com"></label>
+                <label>Website / profile URL<input name="url" type="url" placeholder="https://"></label>
+                <label>Public projects or role<textarea name="content" rows="5" required></textarea></label>
+                <label>Evidence sources<textarea name="sources" rows="4" placeholder="One public URL per line"></textarea></label>
+                <button type="submit">Sign person nomination</button>
+                <output data-nostr-form-status></output>
+              </form>
+              <div class="crays-nostr-local-queue" data-nostr-local-queue></div>
+            </section>
+        """
+    if slug == "discussions":
+        return f"""
+            {render_nostr_auth_panel("discussions")}
+            <section class="crays-nostr-live-surface" data-nostr-surface="discussions">
+              <div>
+                <p class="crays-nostr-live-kicker">NIP-22 discussion</p>
+                <h2>Start a discussion</h2>
+                <p>Sign a page or community discussion event and keep it in the local review queue.</p>
+              </div>
+              <form class="crays-nostr-review-form" data-nostr-event-form data-event-type="discussion" data-event-kind="1111">
+                <label>Community<select name="community">{community_options}</select></label>
+                <label>Related page URL<input name="url" type="url" placeholder="https://www.crays.org/nostr/..."></label>
+                <label>Comment<textarea name="content" rows="6" required></textarea></label>
+                <label class="crays-nostr-check"><input name="publish" type="checkbox" value="1" checked> Publish signed event to public relays</label>
+                <button type="submit">Sign discussion</button>
+                <output data-nostr-form-status></output>
+              </form>
+              <div class="crays-nostr-local-queue" data-nostr-local-queue></div>
+            </section>
+        """
+    if slug == "submit-project":
+        return f"""
+            {render_nostr_auth_panel("submit-project")}
+            <section class="crays-nostr-live-surface" data-nostr-surface="submit-project">
+              <div>
+                <p class="crays-nostr-live-kicker">Project submission</p>
+                <h2>Submit a project</h2>
+                <p>Prepare a NIP-78 Crays review event. Approval creates cards or page drafts later.</p>
+              </div>
+              <form class="crays-nostr-review-form crays-nostr-project-form" data-nostr-event-form data-event-type="project_submission" data-event-kind="30078">
+                <label>Project name<input name="title" type="text" maxlength="140" required></label>
+                <label>Category<select name="category">{category_options}</select></label>
+                <label>Website<input name="website" type="url" placeholder="https://"></label>
+                <label>Repository<input name="repo" type="url" placeholder="https://github.com/..."></label>
+                <label>Project npub or pubkey<input name="project_pubkey" type="text" autocomplete="off"></label>
+                <label>Relevant NIPs<input name="nips" type="text" placeholder="NIP-7D, NIP-29, NIP-89"></label>
+                <label>License / open source status<input name="license" type="text" placeholder="MIT, AGPL-3.0, unknown"></label>
+                <label>Status<select name="status"><option>active</option><option>beta</option><option>experimental</option><option>abandoned</option><option>unknown</option></select></label>
+                <label>Description<textarea name="content" rows="7" required></textarea></label>
+                <label>Sources<textarea name="sources" rows="4" placeholder="One URL per line"></textarea></label>
+                <label class="crays-nostr-check"><input name="publish" type="checkbox" value="1" checked> Publish signed event to public relays</label>
+                <button type="submit">Sign project submission</button>
+                <output data-nostr-form-status></output>
+              </form>
+              <div class="crays-nostr-local-queue" data-nostr-local-queue></div>
+            </section>
+        """
+    if slug == "new-findings":
+        return f"""
+            {render_nostr_auth_panel("new-findings")}
+            <section class="crays-nostr-live-surface" data-nostr-surface="new-findings">
+              <div>
+                <p class="crays-nostr-live-kicker">Crawler finding</p>
+                <h2>Add a finding</h2>
+                <p>Save a source, project tip or NIP update as a review item before it changes editorial content.</p>
+              </div>
+              <form class="crays-nostr-review-form" data-nostr-event-form data-event-type="crawler_finding" data-event-kind="30078">
+                <label>Source URL<input name="url" type="url" placeholder="https://" required></label>
+                <label>Title<input name="title" type="text" maxlength="160" required></label>
+                <label>Category<select name="category">{category_options}</select></label>
+                <label>Relevant NIPs<input name="nips" type="text" placeholder="NIP-50, NIP-B7"></label>
+                <label>Summary<textarea name="content" rows="6" required></textarea></label>
+                <label>Page candidate<input name="target_path" type="text" placeholder="/nostr/apps/.../"></label>
+                <button type="submit">Create review item</button>
+                <output data-nostr-form-status></output>
+              </form>
+              <div class="crays-nostr-local-queue" data-nostr-local-queue></div>
+            </section>
+        """
+    if slug == "admin/review":
+        return """
+            <section class="crays-nostr-live-surface" data-nostr-review-dashboard>
+              <div>
+                <p class="crays-nostr-live-kicker">Local review queue</p>
+                <h2>Pending signed drafts</h2>
+                <p>This first-pass dashboard reads the browser review queue. Backend moderation will replace this with verified storage and audit logs.</p>
+              </div>
+              <div class="crays-nostr-review-tools">
+                <button type="button" data-nostr-export-queue>Export JSON</button>
+                <button type="button" data-nostr-clear-queue>Clear local queue</button>
+              </div>
+              <div class="crays-nostr-local-queue" data-nostr-local-queue></div>
+              <pre class="crays-nostr-event-preview" data-nostr-event-preview hidden></pre>
+            </section>
+        """
+    return ""
+
+
+def render_route_hub_contribution_panel(item, route: str) -> str:
+    blueprint = ROUTE_HUB_BLUEPRINTS.get(route, ROUTE_HUB_BLUEPRINTS["library"])
+    action_cards = route_hub_action_cards(route)
+    path_cards = route_hub_link_cards(route)[:6]
+    primary_cards = "".join(
+        f'<a class="crays-nostr-next-step-card" href="{esc(href)}"><span>{esc(title)}</span><strong>{esc(note)}</strong></a>'
+        for title, note, href in action_cards
+    )
+    path_links = "".join(
+        f'<a href="{esc(href)}">{render_card_badge(label, href)}<strong>{esc(label)}</strong><span>{esc(note)}</span></a>'
+        for label, note, href in path_cards
+    )
+    explainer = {
+        "start": "If you are new, start with the reading path. If you already know Nostr, jump to search, projects, people or Community HQ.",
+        "people": "Use this page to understand the people route. Nomination and profile work happens in People | Users.",
+        "apps": "Use this page to browse product areas first. Builders and users can submit or update projects on the project route.",
+        "relays": "Use this page to choose the relay shelf. Relay reports and status updates go to New Findings.",
+        "nips": "Use this page to find the right standard first. Implementation notes and corrections go through NIP strategy or New Findings.",
+        "privacy": "Use this page before signing, posting or connecting a wallet. Key-safety issues go straight to review.",
+        "wallets": "Use this page to understand value flow. Wallet and zap tools can be submitted as projects.",
+        "media": "Use this page to browse creator and media paths. New media tools, videos and Blossom sources go through review.",
+        "commerce": "Use this page to separate ideas, products, listings and evidence before submitting a project or source.",
+        "governance": "Use this page to understand how open contribution stays reviewable before reports and labels touch the product.",
+        "crays": "Use this page to understand where Nostr touches Crays itself before proposing integrations.",
+        "library": "Use this page when you need the archive, search, source trails or review queue.",
+    }.get(route, "Use this hub as a calm route map before opening a product workflow.")
+    return f"""
+            <section class="crays-nostr-next-steps" aria-label="Next steps for this Nostr route">
+              <div class="crays-nostr-next-steps__head">
+                <p class="crays-nostr-live-kicker">Next step</p>
+                <h2>What do you want to do with {esc(blueprint["title"])}?</h2>
+                <p>{esc(explainer)}</p>
+              </div>
+              <div class="crays-nostr-next-steps__grid">
+                {primary_cards}
+              </div>
+              <details class="crays-nostr-next-steps__paths">
+                <summary><span>Browse first paths</span><small>Open the most useful pages in this route</small></summary>
+                <div>{path_links}</div>
+              </details>
+            </section>
+    """
+
+
+def render_page_community_panel(item) -> str:
+    if canonical_nostr_slug(item["slug"]).startswith("community"):
+        return ""
+    route = primary_nav_key(item["slug"])
+    page_url = f"{BASE_URL}{nostr_path(item['slug'])}"
+    route_label = ROUTE_LABELS.get(route, "Nostr")
+    relation_href = "/nostr/community/projects/submit/"
+    if route == "people":
+        relation_href = "/nostr/community/"
+    elif route in {"nips", "privacy", "library"}:
+        relation_href = "/nostr/community/suggestions/"
+    required_actions = [
+        ("Discuss", "Start or join the community thread attached to this page.", f"/nostr/community/?page={item['slug']}&route={route}&type=discussion", "discuss"),
+        ("Ask a question", "Ask for help with this topic without editing the article.", f"/nostr/community/questions/?page={item['slug']}&route={route}", "question"),
+        ("Suggest source", "Add a useful reference, NIP, repository, article, app, relay or research link.", f"/nostr/community/suggestions/?page={item['slug']}&route={route}&type=source", "source"),
+        ("Suggest correction", "This does not edit the article directly. Your suggestion goes into review.", f"/nostr/community/suggestions/?page={item['slug']}&route={route}&type=correction", "correction"),
+        ("Add related app/project", "Connect a useful project, app, relay, signer, wallet or profile to this page.", f"{relation_href}?page={item['slug']}&route={route}", "relation"),
+    ]
+    required_cards = "".join(
+        f'<a href="{esc(href)}" data-contribution-action="{esc(action)}"><strong>{esc(title)}</strong><span>{esc(note)}</span></a>'
+        for title, note, href, action in required_actions
+    )
+    feature_sets = {
+        "start": [
+            ("Ask about this concept", "Use the community layer when the explanation still leaves a practical question.", f"/nostr/community/?page={item['slug']}&route=start&type=question"),
+            ("Suggest a clearer explainer", "Propose a missing beginner article or simpler wording.", f"/nostr/community/new-findings/?page={item['slug']}&route=start&type=new_article"),
+            ("Add a source", "Attach a better article, video, repo or protocol reference.", f"/nostr/community/new-findings/?page={item['slug']}&route=start&type=source"),
+        ],
+        "people": [
+            ("Suggest a public user", "Nominate a Nostr account, builder, maintainer or creator.", f"/nostr/community/?page={item['slug']}&route=people&type=person"),
+            ("Add public evidence", "Attach talks, repos, posts, websites or profile verification.", f"/nostr/community/new-findings/?page={item['slug']}&route=people&type=source"),
+            ("Flag identity risk", "Report impersonation, stale NIP-05 or private-data risk.", f"/nostr/community/moderation/?page={item['slug']}&route=people&type=report"),
+        ],
+        "apps": [
+            ("Submit or update project", "Add an app, signer, wallet, relay tool or maintainer update.", f"/nostr/community/projects/submit/?page={item['slug']}&route=apps&type=project"),
+            ("Recommend for a use case", "Tell us when this app is useful and what it should be compared with.", f"/nostr/community/?page={item['slug']}&route=apps&type=recommend"),
+            ("Add source or status", "Attach license, platform, repo, release or support evidence.", f"/nostr/community/new-findings/?page={item['slug']}&route=apps&type=source"),
+        ],
+        "relays": [
+            ("Add relay status", "Submit NIP-11 data, policy, uptime, paid/free or search capability.", f"/nostr/community/new-findings/?page={item['slug']}&route=relays&type=relay"),
+            ("Recommend relay use", "Explain when this relay fits onboarding, search, media, paid access or communities.", f"/nostr/community/?page={item['slug']}&route=relays&type=recommend"),
+            ("Report stale data", "Flag outage, policy drift, spam risk or broken relay information.", f"/nostr/community/moderation/?page={item['slug']}&route=relays&type=report"),
+        ],
+        "nips": [
+            ("Add implementation note", "Attach example events, client support, relay behavior or risk notes.", f"/nostr/community/new-findings/?page={item['slug']}&route=nips&type=source"),
+            ("Recommend product use", "Say whether this NIP should be used now, prepared next or kept as reference.", f"/nostr/community/?page={item['slug']}&route=nips&type=recommend"),
+            ("Flag stale standard", "Report deprecated, unrecommended or superseded protocol guidance.", f"/nostr/community/moderation/?page={item['slug']}&route=nips&type=report"),
+        ],
+        "privacy": [
+            ("Report key-safety risk", "Flag wording or UI that could push users toward unsafe key handling.", f"/nostr/community/moderation/?page={item['slug']}&route=privacy&type=report"),
+            ("Add signer evidence", "Attach signer, NIP-46, NIP-98, threat-model or privacy sources.", f"/nostr/community/new-findings/?page={item['slug']}&route=privacy&type=source"),
+            ("Ask safety question", "Use the community layer for practical privacy and trust questions.", f"/nostr/community/?page={item['slug']}&route=privacy&type=question"),
+        ],
+        "wallets": [
+            ("Submit wallet tool", "Add NWC, zap, Lightning or Safebox-related project data.", f"/nostr/community/projects/submit/?page={item['slug']}&route=wallets&type=project"),
+            ("Add payment evidence", "Attach docs, demos, wallet permissions or custody risk notes.", f"/nostr/community/new-findings/?page={item['slug']}&route=wallets&type=source"),
+            ("Report unsafe claim", "Flag payment, custody, permission or wallet-security assumptions.", f"/nostr/community/moderation/?page={item['slug']}&route=wallets&type=report"),
+        ],
+        "media": [
+            ("Submit media project", "Add a music, video, publishing, Blossom or creator tool.", f"/nostr/community/projects/submit/?page={item['slug']}&route=media&type=project"),
+            ("Add media source", "Attach talks, videos, articles, creator archives or storage references.", f"/nostr/community/new-findings/?page={item['slug']}&route=media&type=source"),
+            ("Suggest creator", "Nominate a public creator profile connected to this topic.", f"/nostr/community/?page={item['slug']}&route=media&type=person"),
+        ],
+        "commerce": [
+            ("Submit market project", "Add listings, marketplaces, creator sales or revenue tools.", f"/nostr/community/projects/submit/?page={item['slug']}&route=commerce&type=project"),
+            ("Add business evidence", "Attach revenue, funding, listing or product-status sources.", f"/nostr/community/new-findings/?page={item['slug']}&route=commerce&type=source"),
+            ("Flag stale claim", "Report outdated market, status, investor or revenue context.", f"/nostr/community/moderation/?page={item['slug']}&route=commerce&type=report"),
+        ],
+        "governance": [
+            ("Review report", "Send labels, reports, moderation or reputation issues to review.", f"/nostr/community/moderation/?page={item['slug']}&route=governance&type=report"),
+            ("Add governance source", "Attach rules, badges, labels, voting or moderation references.", f"/nostr/community/new-findings/?page={item['slug']}&route=governance&type=source"),
+            ("Recommend policy", "Use the community layer for moderation and governance proposals.", f"/nostr/community/?page={item['slug']}&route=governance&type=recommend"),
+        ],
+        "crays": [
+            ("Suggest Crays integration", "Add product, venue, Crays.net, Super Node or profile-flow context.", f"/nostr/community/new-findings/?page={item['slug']}&route=crays&type=source"),
+            ("Submit related tool", "Add a tool or service that belongs in the Crays Nostr stack.", f"/nostr/community/projects/submit/?page={item['slug']}&route=crays&type=project"),
+            ("Discuss product path", "Use the community layer for Crays-specific Nostr ideas.", f"/nostr/community/?page={item['slug']}&route=crays&type=question"),
+        ],
+        "library": [
+            ("Add source finding", "Submit a URL, repo, paper, video, NIP or article for review.", f"/nostr/community/new-findings/?page={item['slug']}&route=library&type=source"),
+            ("Search related pages", "Search across the full atlas before adding duplicates.", "/nostr/search-atlas/"),
+            ("Review queue", "Triage crawler findings, duplicates and suggested updates.", f"/nostr/community/moderation/?page={item['slug']}&route=library&type=review"),
+        ],
+    }
+    actions = feature_sets.get(route, feature_sets["library"])
+    cards = "".join(
+        f'<a href="{esc(href)}"><strong>{esc(title)}</strong><span>{esc(note)}</span></a>'
+        for title, note, href in actions
+    )
+    route_label = ROUTE_LABELS.get(route, "Nostr")
+    return f"""
+            <section class="crays-nostr-context-actions" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="{esc(item["slug"])}" data-page-url="{esc(page_url)}" data-community="{esc(community_for_route(route))}" aria-label="Help build the Nostr ecosystem around this page">
+              <div>
+                <p class="crays-nostr-live-kicker">{esc(route_label)} contribution</p>
+                <h3>Help build the Nostr ecosystem around this page.</h3>
+                <p>Ask a question, suggest a source, submit a related app/project, or join the discussion. The canonical archive stays stable; community contributions are reviewed separately.</p>
+              </div>
+              <div class="crays-nostr-context-actions__lanes">
+                <div>
+                  <h4>Core actions</h4>
+                  <nav aria-label="Core contribution actions">{required_cards}</nav>
+                </div>
+                <div>
+                  <h4>Best fit for {esc(route_label)}</h4>
+                  <nav aria-label="Route-specific contribution actions">{cards}</nav>
+                </div>
+              </div>
+            </section>
+    """
+
+
+def render_start_landing_page(item, by_slug) -> str:
+    world_cards = []
+    for label, key, href, number, note in PRIMARY_ROUTE_CARDS:
+        display_label = "Basics" if key == "start" else label
+        card_href = route_hub_href(key)
+        world_cards.append(
+            f"""
+              <a class="crays-nostr-start-world-card" href="{esc(card_href)}" data-route="{esc(key)}">
+                <span>{esc(number)}</span>
+                <strong>{esc(display_label)}</strong>
+                <small>{esc(crays_voice(note))}</small>
+              </a>
+            """
+        )
+    dock_groups = [
+        (
+            "Read first",
+            [
+                ("What is Nostr?", "/nostr/what-is-nostr/"),
+                ("Getting started", "/nostr/getting-started/"),
+                ("Why Nostr matters", "/nostr/why-nostr/"),
+                ("Glossary", "/nostr/glossary/"),
+                ("Useful links", "/nostr/resources/"),
+                ("Media and video archive", "/nostr/nostr-media-article-video-archive/"),
+            ],
+        ),
+        (
+            "Choose your route",
+            [
+                ("Beginner path", "/nostr/reading-paths/beginner/"),
+                ("Developer path", "/nostr/reading-paths/developer/"),
+                ("Creator path", "/nostr/reading-paths/creator/"),
+                ("Operator path", "/nostr/reading-paths/operator/"),
+                ("Culture path", "/nostr/reading-paths/culture/"),
+                ("Research path", "/nostr/reading-paths/research/"),
+            ],
+        ),
+        (
+            "Useful next",
+            [
+                ("Search Atlas", "/nostr/search-atlas/"),
+                ("Community", "/nostr/community/"),
+                ("Discussions", "/nostr/community/"),
+                ("New findings", "/nostr/community/suggestions/"),
+                ("Privacy and security", "/nostr/privacy-security/"),
+                ("Search and trust", "/nostr/search-and-web-of-trust/"),
+                ("Moderation and discovery", "/nostr/privacy/moderation-discovery/"),
+                ("Nostr vs Mastodon", "/nostr/nostr-vs-mastodon/"),
+                ("Crays Circle GitHub", "https://github.com/CraysCircle"),
+            ],
+        ),
+    ]
+    dock_html = "\n".join(
+        f"""
+          <section>
+            <h2>{esc(title)}</h2>
+            <nav aria-label="{esc(title)}">
+              {"".join(f'<a href="{esc(href)}">{esc(label)}</a>' for label, href in links)}
+            </nav>
+          </section>
+        """
+        for title, links in dock_groups
+    )
+    contribute_cards = [
+        ("Ask a question", "If something does not click yet, ask where you got stuck.", "/nostr/community/questions/"),
+        ("Submit a project", "Found or built a client, relay, signer, wallet or media tool? Send it in.", "/nostr/community/projects/submit/"),
+        ("Nominate someone", "Add a public Nostr user, builder or creator with evidence we can check.", "/nostr/people/users/"),
+        ("Suggest a source or fix", "Share a better source, a stale claim, a broken link or a correction.", "/nostr/community/suggestions/"),
+    ]
+    contribute_html = "\n".join(
+        f"""
+          <a href="{esc(href)}">
+            <strong>{esc(title)}</strong>
+            <span>{esc(note)}</span>
+          </a>
+        """
+        for title, note, href in contribute_cards
+    )
+    def render_start_image_band(images, label, modifier="") -> str:
+        figures = "\n".join(
+            f"""
+              <figure class="{esc(css_class)}">
+                <img src="{esc(src)}" alt="{esc(alt)}" loading="lazy" decoding="async" />
+              </figure>
+            """
+            for src, alt, css_class in images
+        )
+        return f"""
+          <section class="crays-nostr-start-image-band {esc(modifier)}" aria-label="{esc(label)}">
+            <div class="crays-article-shell">
+              <div class="crays-nostr-start-image-band__grid">
+                {figures}
+              </div>
+            </div>
+          </section>
+        """
+
+    first_image_band = render_start_image_band(
+        [
+            ("/assets/stock-images/crays-nostr-community-creator-fan-growth.webp", "Creators and fans moving into a Nostr community layer.", "is-wide"),
+            ("/assets/stock-images/crays-nostr-portable-identity-tech-profile.webp", "Portable Nostr identity profile surface.", ""),
+            ("/assets/stock-images/crays-nostr-venue-relay-hospitality-node.webp", "Venue relay and real-world Nostr node.", ""),
+            ("/assets/stock-images/crays-nostr-real-world-venue-demand.webp", "Real-world access connected to social graph demand.", "is-wide"),
+            ("/assets/stock-lifestyle/crays-home-08-lifestyle-guests-using-the-crays-circle-app.webp", "People using the Crays app in a lifestyle setting.", ""),
+        ],
+        "Nostr community, identity and real-world access image band",
+        "crays-nostr-start-image-band--after-hero",
+    )
+    second_image_band = render_start_image_band(
+        [
+            ("/assets/stock-lifestyle/crays-hospitality-16-creators-and-guests-building-a-community-moment.webp", "Creators and guests building a community moment.", "is-wide"),
+            ("/assets/stock-lifestyle/crays-hospitality-13-crays-members-at-a-private-dinner.webp", "Members in a private dinner and venue setting.", ""),
+            ("/assets/stock-lifestyle/crays-association-19-digital-members-working-across-the-crays-lifestyle-network.webp", "Digital members working across the lifestyle network.", ""),
+            ("/assets/stock-lifestyle/crays-finance-12-digital-asset-community-connected-to-crays-funding-ecosystem.webp", "Digital asset community connected to funding context.", "is-wide"),
+            ("/assets/stock-lifestyle/crays-hospitality-network-cities-hotels.jpg", "Crays hospitality network across cities and hotels.", ""),
+        ],
+        "Crays people, venues and builder image band",
+        "crays-nostr-start-image-band--mid",
+    )
+    start_route_directory = render_route_directory("start", item["slug"])
+    hero_bg = esc(ROUTE_HERO_BACKGROUNDS.get("start", free_stock_image("start-bg.jpg")))
+    hero_visual = esc(ROUTE_LIFESTYLE_HEROES.get("start", free_stock_image("start-visual.jpg")))
+    return f"""
+      <section class="crays-nostr-start-page" aria-label="All about Nostr start page">
+        <section class="crays-nostr-start-hero" style="--nostr-start-bg: url({hero_bg}); --nostr-start-visual: url({hero_visual});">
+          <div class="crays-article-shell crays-nostr-start-hero__grid">
+            <div class="crays-nostr-start-hero__copy">
+              <a class="crays-nostr-start-return" href="/nostr/">Back to Nostr overview</a>
+              <p class="crays-nostr-live-kicker">Begin here</p>
+              <h1>All about Nostr</h1>
+              <p class="crays-nostr-start-hero__lead">Nostr gets easier when you see the map first. Start with keys, clients and relays, then choose your path into apps, people, wallets, standards, media, commerce and community work.</p>
+              <div class="crays-nostr-start-hero__actions" aria-label="First actions">
+                <a class="is-primary" href="/nostr/what-is-nostr/">Learn the basics</a>
+                <a href="/nostr/search-atlas/">Search the archive</a>
+                <a href="/nostr/community/nostr-login/">Connect with Nostr</a>
+              </div>
+            </div>
+            <div class="crays-nostr-start-mental-model" aria-label="The first Nostr mental model">
+              <p class="crays-nostr-live-kicker">Four words unlock the rest</p>
+              <ol>
+                <li><strong>Public key</strong><span>How people find you across apps.</span></li>
+                <li><strong>Private key</strong><span>How you sign. Never paste it into a website.</span></li>
+                <li><strong>Clients</strong><span>The apps you choose to read, post and build with.</span></li>
+                <li><strong>Relays</strong><span>Where signed events travel.</span></li>
+              </ol>
+            </div>
+          </div>
+        </section>
+
+        <section class="crays-nostr-start-body">
+          <div class="crays-article-shell">
+            <section class="crays-nostr-start-worlds crays-nostr-start-worlds--first" aria-label="The 12 Nostr routes">
+              <div class="crays-nostr-start-section-head">
+                <p class="crays-nostr-live-kicker">The 12 doors into Nostr</p>
+                <h2>Start broad, then open the pages that matter to you.</h2>
+              </div>
+              <div class="crays-nostr-start-world-grid">
+                {"".join(world_cards)}
+              </div>
+            </section>
+          </div>
+
+          {first_image_band}
+
+          <div class="crays-article-shell">
+            <section class="crays-nostr-start-how" aria-label="How to use this page">
+              <section class="crays-nostr-start-orientation" aria-label="Choose how to enter Nostr">
+                <div>
+                  <p class="crays-nostr-live-kicker">How to use this page</p>
+                  <h2>Pick the door that matches what you came for.</h2>
+                  <p>New to Nostr? Start with the basics. Building something? Choose a route. Looking for one term, app or person? Search. Found something useful? Send it into review.</p>
+                </div>
+                <div class="crays-nostr-start-search" role="search">
+                  <label for="crays-nostr-start-finder">Search the Nostr atlas</label>
+                  <input id="crays-nostr-start-finder" type="search" placeholder="Try Primal, relays, zaps, npub, Blossom..." data-nostr-finder-input />
+                  <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                    <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                    <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+                  </div>
+                </div>
+              </section>
+              <section class="crays-nostr-start-dock" aria-label="Main ways into the Nostr atlas">
+                {dock_html}
+              </section>
+            </section>
+
+            <div class="crays-nostr-start-directory">
+              {start_route_directory}
+            </div>
+          </div>
+
+          {second_image_band}
+
+          <div class="crays-article-shell">
+            <section class="crays-nostr-start-contribute" aria-label="Community contribution paths">
+              <div>
+                <p class="crays-nostr-live-kicker">Bring something back</p>
+                <h2>Ask, suggest, submit or nominate.</h2>
+                <p>Ask a question, send a source, suggest a fix, submit a project or nominate a public Nostr account. The article stays stable; your contribution gets reviewed beside it.</p>
+              </div>
+              <nav aria-label="Ways to contribute">{contribute_html}</nav>
+            </section>
+          </div>
+        </section>
+      </section>
+    """
+
+
+def render_start_hub_dock(groups: list[tuple[str, list[tuple[str, str]]]]) -> str:
+    return "\n".join(
+        f"""
+          <section>
+            <h2>{esc(title)}</h2>
+            <nav aria-label="{esc(title)}">
+              {"".join(f'<a href="{esc(nostr_href(slug))}">{esc(label)}</a>' for label, slug in links)}
+            </nav>
+          </section>
+        """
+        for title, links in groups
+    )
+
+
+def render_basics_hub_page(by_slug) -> str:
+    title = "Nostr Basics | Crays Nostr Archive"
+    desc = "Start here when Nostr still feels like a maze: public keys, private keys, clients, relays, first reading paths and the basic safety model."
+    canonical = f"{BASE_URL}/nostr/basics/"
+    hero_bg = esc(nostr_start_image("basics-hero-adobestock-91989755.jpeg"))
+    groups = SECTION_NAVS["start"]["groups"]
+    dock_html = render_start_hub_dock(groups)
+    start_route_directory = render_route_directory("start", "basics")
+    basics_image_band = route_hub_image_band("start")
+    primary_nav = render_primary_nav(active_key="basics")
+    article = {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "mainEntityOfPage": canonical,
+        "headline": "Nostr Basics",
+        "description": desc,
+        "datePublished": TODAY,
+        "dateModified": TODAY,
+        "publisher": {"@type": "Organization", "name": "Crays.org", "url": BASE_URL},
+        "about": ["Nostr basics", "Nostr protocol", "public keys", "relays", "clients"],
+    }
+    breadcrumb = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Crays", "item": f"{BASE_URL}/"},
+            {"@type": "ListItem", "position": 2, "name": "Nostr", "item": f"{BASE_URL}/nostr/"},
+            {"@type": "ListItem", "position": 3, "name": "Start", "item": f"{BASE_URL}/nostr/start/"},
+            {"@type": "ListItem", "position": 4, "name": "Nostr Basics", "item": canonical},
+        ],
+    }
+    return f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{esc(title)}</title>
+  <meta name="description" content="{esc(desc)}" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="{esc(title)}" />
+  <meta property="og:description" content="{esc(desc)}" />
+  <meta property="og:url" content="{esc(canonical)}" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="{esc(canonical)}" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{json.dumps(article, separators=(",", ":"))}</script>
+  <script type="application/ld+json">{json.dumps(breadcrumb, separators=(",", ":"))}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-start">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        {primary_nav}
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="crays-nostr-basics-page" aria-label="Basics hub">
+      <section class="crays-nostr-basics-hero" style="--nostr-start-bg: url({hero_bg});">
+        <div class="crays-article-shell">
+          <a class="crays-nostr-start-return" href="/nostr/start/">Back to Start</a>
+          <p class="crays-nostr-live-kicker">Basics</p>
+          <h1>Nostr Basics</h1>
+          <p>Start here if Nostr still feels abstract. You get the simple map first: what your key does, why clients and relays are separate, how to stay safe, and where to go next.</p>
+          <div class="crays-nostr-start-hero__actions" aria-label="Basics actions">
+            <a class="is-primary" href="/nostr/what-is-nostr/">Read What is Nostr?</a>
+            <a href="/nostr/getting-started/">Follow the first path</a>
+            <a href="/nostr/search-atlas/">Search a term</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="crays-nostr-start-body">
+        <div class="crays-article-shell">
+          <section class="crays-nostr-start-orientation crays-nostr-basics-intro" aria-label="How Basics works">
+            <div>
+              <p class="crays-nostr-live-kicker">Use this hub when</p>
+              <h2>You want the map before the maze.</h2>
+              <p>If you are new, read the first links in order. If you already know the basics, jump into a reading path or search for the exact term, app or protocol idea you came for.</p>
+            </div>
+            <div class="crays-nostr-start-search" role="search">
+              <label for="crays-nostr-basics-finder">Search the Nostr atlas</label>
+              <input id="crays-nostr-basics-finder" type="search" placeholder="Try public key, relays, client, NIP-07..." data-nostr-finder-input />
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="crays-nostr-start-dock crays-nostr-basics-dock" aria-label="Basics navigation">
+            {dock_html}
+          </section>
+
+          <section class="crays-nostr-basics-first-run" aria-label="Your first Nostr learning path">
+            <div>
+              <p class="crays-nostr-live-kicker">Your first 20 minutes</p>
+              <h2>Read just enough to stop feeling lost.</h2>
+              <p>You do not need every NIP first. You need the mental model: public key, private key, client, relay and signed event. Once that clicks, the rest of the archive becomes a map instead of a maze.</p>
+            </div>
+            <ol>
+              <li>
+                <span>01</span>
+                <strong>Understand the idea</strong>
+                <small>Start with the plain-language explanation.</small>
+                <a href="/nostr/what-is-nostr/">Open What is Nostr?</a>
+              </li>
+              <li>
+                <span>02</span>
+                <strong>Get your first safe path</strong>
+                <small>Learn what to try, what to avoid and why private keys stay private.</small>
+                <a href="/nostr/getting-started/">Open Getting started</a>
+              </li>
+              <li>
+                <span>03</span>
+                <strong>Decode the words</strong>
+                <small>Use the glossary when npub, relay, event or signer suddenly appears.</small>
+                <a href="/nostr/glossary/">Open the glossary</a>
+              </li>
+              <li>
+                <span>04</span>
+                <strong>Choose the next door</strong>
+                <small>Go into apps, people, relays, privacy, wallets or standards when your question gets specific.</small>
+                <a href="/nostr/start/">Back to the 12 doors</a>
+              </li>
+            </ol>
+          </section>
+
+          <section class="crays-nostr-basics-mental-model" aria-label="Nostr basics mental model">
+            <div>
+              <p class="crays-nostr-live-kicker">The model</p>
+              <h2>Four ideas carry most of the weight.</h2>
+            </div>
+            <div class="crays-nostr-basics-terms">
+              <a href="/nostr/keys-identity/"><strong>Public key</strong><span>Your public identity. People can find it across apps.</span></a>
+              <a href="/nostr/privacy-security/"><strong>Private key</strong><span>Your signing secret. Never paste it into a website.</span></a>
+              <a href="/nostr/clients/"><strong>Clients</strong><span>The apps you use to read, post, search and build.</span></a>
+              <a href="/nostr/relays/"><strong>Relays</strong><span>The servers that carry signed events between clients.</span></a>
+            </div>
+          </section>
+        </div>
+
+        {basics_image_band}
+
+        <div class="crays-article-shell">
+          <section class="crays-nostr-learning-compass crays-nostr-basics-compass" data-component="LearningCompass" data-learning-route="start" aria-label="Learning compass for Basics">
+            <div class="crays-nostr-learning-compass__intro">
+              <p class="crays-nostr-live-kicker">Learning compass</p>
+              <h3>You are in Basics</h3>
+              <p>Beginner path. Start with the simple model, then use search or the 12 doors when you want a specific answer.</p>
+            </div>
+            <div class="crays-nostr-learning-compass__task">
+              <strong>Use this page to</strong>
+              <span>Learn the first Nostr concepts, find the right next page and avoid unsafe key handling from the beginning.</span>
+            </div>
+            <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+              <a href="/nostr/what-is-nostr/"><strong>Read the first explainer</strong><span>Get the shortest useful definition.</span></a>
+              <a href="/nostr/search-atlas/"><strong>Search the atlas</strong><span>Find any term, source, app or project.</span></a>
+              <a href="/nostr/community/questions/?route=start"><strong>Ask a beginner question</strong><span>Use the community layer when a concept is still unclear.</span></a>
+            </nav>
+            <details class="crays-nostr-learning-compass__next">
+              <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+              <div>
+                <a href="/nostr/reading-paths/beginner/">{render_card_badge("Beginner path", "reading-paths/beginner")}<strong>Beginner path</strong><span>Read the archive in order.</span></a>
+                <a href="/nostr/privacy-security/">{render_card_badge("Privacy and security", "privacy-security")}<strong>Privacy and security</strong><span>Keep keys and signers safe.</span></a>
+                <a href="/nostr/community/nostr-login/">{render_card_badge("Nostr Login", "nostr-login")}<strong>Nostr Login</strong><span>Connect without pasting private keys.</span></a>
+                <a href="/nostr/apps/">{render_card_badge("Apps", "apps")}<strong>Apps</strong><span>See which clients and tools exist.</span></a>
+              </div>
+            </details>
+          </section>
+
+          <section class="crays-nostr-context-actions crays-nostr-basics-contribution" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="basics" data-page-url="{BASE_URL}/nostr/basics/" data-community="general-nostr" aria-label="Help build the Nostr ecosystem around Basics">
+            <div>
+              <p class="crays-nostr-live-kicker">Basics contribution</p>
+              <h3>Help make the first steps clearer.</h3>
+              <p>Ask a question, suggest a missing source or tell us where the beginner path still feels confusing. The canonical archive stays stable; useful contributions go into review.</p>
+            </div>
+            <div class="crays-nostr-context-actions__lanes">
+              <div>
+                <h4>Core actions</h4>
+                <nav aria-label="Basics contribution actions">
+                  <a href="/nostr/community/?route=start&type=discussion"><strong>Discuss</strong><span>Start or join a beginner thread.</span></a>
+                  <a href="/nostr/community/questions/?route=start"><strong>Ask a question</strong><span>Ask for help before opening deeper routes.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=source"><strong>Suggest source</strong><span>Add a beginner-friendly reference, video or explainer.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=correction"><strong>Suggest correction</strong><span>This goes into review and does not edit the archive directly.</span></a>
+                </nav>
+              </div>
+              <div>
+                <h4>Best fit for Basics</h4>
+                <nav aria-label="Beginner-specific contribution actions">
+                  <a href="/nostr/community/suggestions/?route=start&type=missing_term"><strong>Missing term</strong><span>Tell us which word needs a glossary entry.</span></a>
+                  <a href="/nostr/community/suggestions/?route=start&type=reading_order"><strong>Reading order</strong><span>Suggest a better first path through the archive.</span></a>
+                  <a href="/nostr/community/projects/submit/?route=start"><strong>Beginner tool</strong><span>Submit an app, signer or guide that helps newcomers.</span></a>
+                </nav>
+              </div>
+            </div>
+          </section>
+
+          <div class="crays-nostr-start-directory">
+            {start_route_directory}
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  {render_crays_footer()}
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>
+"""
+
+
 def render_archive_index():
     shelves = []
     shelf_labels = [
@@ -5313,6 +8681,21 @@ def render_archive_index():
     return "\n".join(shelves)
 
 
+CRAYS_FOOTER_SITE_LINKS = [
+    ("Home", "/en/"),
+    ("Association", "/en/association/"),
+    ("Team", "/en/team/"),
+    ("Nostr", "/nostr/"),
+    ("Tech", "/en/tech/"),
+    ("Finance", "/en/finance/"),
+    ("Lifestyle", "/en/lifestyle/"),
+    ("Hospitality", "/en/hospitality/"),
+    ("Real Estate", "/en/real-estate/"),
+    ("Contact", "/en/contact/"),
+    ("Join us", "/en/join-us/"),
+]
+
+
 def render_crays_footer() -> str:
     social_links = [
         ("GitHub", "https://github.com/CraysCircle", "/assets/footer-icons/github.svg"),
@@ -5331,6 +8714,10 @@ def render_crays_footer() -> str:
         f'<img src="{esc(icon)}" alt="{esc(label)}" width="20" height="20" loading="lazy"></a>'
         for label, href, icon in social_links
     )
+    site_nav = "".join(
+        f'<a href="{esc(href)}">{esc(label)}</a>'
+        for label, href in CRAYS_FOOTER_SITE_LINKS
+    )
     return f"""
   <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
     <div class="legal-footer-inner">
@@ -5343,6 +8730,7 @@ def render_crays_footer() -> str:
         </div>
         <div class="legal-footer-social" aria-label="Social links">{social}</div>
       </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links">{site_nav}</nav>
       <div class="legal-footer-bottom">
         <nav class="legal-footer-links" aria-label="Legal pages">
           <a href="/legal/imprint/">Imprint</a>
@@ -5393,21 +8781,41 @@ def render_crays_footer() -> str:
         button.addEventListener('click', function () {{ closePanel(button.getAttribute('data-crays-consent-close')); }});
       }});
     }}());</script>
-  </footer>
-    """
+</footer>
+"""
+
+
+def render_legacy_footer_main_nav() -> str:
+    links = "".join(
+        f'<a class="crays-footer-rebuild__main-nav-link" href="{esc(href)}">{esc(label)}</a>'
+        for label, href in CRAYS_FOOTER_SITE_LINKS
+    )
+    return f'<nav class="crays-footer-rebuild__main-nav" aria-label="Crays site links">{links}</nav>'
+
+
+def inject_legacy_footer_main_nav(text: str) -> str:
+    if 'crays-footer-rebuild__main-nav' in text:
+        return text
+    marker = '<nav class="crays-footer-rebuild__legal" aria-label="Legal pages">'
+    if marker not in text:
+        return text
+    return text.replace(marker, render_legacy_footer_main_nav() + marker, 1)
 
 
 def render_page(item, by_slug):
     title = f"{item['title']} | Crays Nostr Archive"
     desc = crays_voice(item["deck"])
-    canonical = f"{BASE_URL}/nostr/{item['slug']}/"
+    canonical = f"{BASE_URL}{nostr_path(item['slug'])}"
     theme = visual_theme(item)
     visuals = page_visuals(item)
     background = visuals.get("hero_background", {})
     hero_background = background.get("url") or theme.get("background", theme["image"])
     hero_background_position = background.get("position") or theme.get("background_position") or openverse_position(item, "hero_background")
     toc = render_toc(item)
-    archive_contents = render_archive_contents(item)
+    is_start_landing_page = item["slug"] == "start"
+    is_product_first_page = item["slug"] == "community"
+    is_route_hub_page = item["slug"] in ROUTE_HUB_BY_SLUG
+    archive_contents = "" if is_product_first_page or is_start_landing_page else render_archive_contents(item)
     hero_visual = render_hero_visual(item)
     primary_nav = render_primary_nav(item)
     keywords = ", ".join(["Nostr", "Crays", "open social protocol"] + item["keywords"])
@@ -5436,8 +8844,10 @@ def render_page(item, by_slug):
     full_atlas = render_full_atlas(item["slug"]) if item["slug"] == "archive-library" else ""
     structured_links = []
     seen_structured_urls = set()
-    for label, _key, href, _number, _note in PRIMARY_ROUTE_CARDS:
-        url = f"{BASE_URL}{href}"
+    for label, _key, href in primary_nav_items():
+        canonical_href = rewrite_nostr_internal_links(f'href="{href}"')
+        href_match = HREF_ATTR_RE.search(canonical_href)
+        url = f"{BASE_URL}{href_match.group('href')}" if href_match else f"{BASE_URL}{href}"
         if url not in seen_structured_urls:
             seen_structured_urls.add(url)
             structured_links.append({"name": label, "url": url})
@@ -5446,7 +8856,7 @@ def render_page(item, by_slug):
         related = by_slug.get(related_slug)
         if not related:
             continue
-        url = f"{BASE_URL}/nostr/{related['slug']}/"
+        url = f"{BASE_URL}{nostr_path(related['slug'])}"
         if url not in seen_structured_urls:
             seen_structured_urls.add(url)
             structured_links.append({"name": related["title"], "url": url})
@@ -5467,6 +8877,65 @@ def render_page(item, by_slug):
               </div>
             </div>
         """
+    special_surface = render_special_nostr_surface(item)
+    product_first_block = f"""
+      <section class="crays-nostr-product-first">
+        <div class="crays-article-shell">
+          {special_surface}
+        </div>
+      </section>
+    """ if is_product_first_page else ""
+    start_landing_block = render_start_landing_page(item, by_slug) if is_start_landing_page else ""
+    route_hub_landing_block = render_route_hub_landing_page(item, ROUTE_HUB_BY_SLUG[item["slug"]], by_slug) if is_route_hub_page and not is_start_landing_page else ""
+    hero_section = "" if is_product_first_page or is_start_landing_page or (is_route_hub_page and not is_start_landing_page) else f"""
+      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url({esc(hero_background)}); --nostr-hero-bg-position: {esc(hero_background_position)};">
+        <div class="crays-article-shell crays-article-hero__grid">
+          <div class="crays-article-hero__copy">
+            <p class="crays-article-eyebrow">{esc(item["tag"])}</p>
+            <h1>{esc(item["title"])}</h1>
+            <p class="crays-article-deck">{esc(desc)}</p>
+          </div>
+          {hero_visual}
+        </div>
+      </section>
+    """
+    route_hub_actions = ""
+    context_actions = ""
+    learning_compass = ""
+    special_before_sections = context_actions
+    special_after_sections = "" if is_product_first_page else special_surface
+    article_block = "" if is_start_landing_page or (is_route_hub_page and not is_start_landing_page) else f"""
+    <article>
+      {hero_section}
+
+      {route_hub_actions}
+
+      {archive_contents}
+
+      <section class="crays-article-main">
+        <div class="crays-article-reader-shell crays-article-layout">
+          <aside class="crays-article-toc" aria-label="In this article">
+            <p>In this article</p>
+            {toc}
+          </aside>
+
+          <div class="crays-article-content">
+            {render_article_masthead(item)}
+            {learning_compass}
+            {special_before_sections}
+            {render_sections(item)}
+            {special_after_sections}
+
+            {render_related(item, by_slug)}
+            {archive_block}
+            <div class="crays-article-end">
+              <a href="/nostr/">Back to the Crays Nostr page</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+    """
     return f"""<!doctype html>
 <html lang="en">
 <head>
@@ -5492,7 +8961,7 @@ def render_page(item, by_slug):
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
-  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260601-nostr-learning-gate-v2" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
   <script type="application/ld+json">{json.dumps(article, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps(breadcrumb, separators=(",", ":"))}</script>
   <script type="application/ld+json">{json.dumps({
@@ -5513,7 +8982,7 @@ def render_page(item, by_slug):
         {primary_nav}
       </nav>
       <div class="crays-article-header-actions" aria-label="Crays actions">
-        <a class="crays-article-header-cta" href="/nostr/nostr-login/">Join us</a>
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
         <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
@@ -5526,44 +8995,17 @@ def render_page(item, by_slug):
   </header>
 
   <main>
-    <article>
-      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url({esc(hero_background)}); --nostr-hero-bg-position: {esc(hero_background_position)};">
-        <div class="crays-article-shell crays-article-hero__grid">
-          <div class="crays-article-hero__copy">
-            <p class="crays-article-eyebrow">{esc(item["tag"])}</p>
-            <h1>{esc(item["title"])}</h1>
-            <p class="crays-article-deck">{esc(desc)}</p>
-          </div>
-          {hero_visual}
-        </div>
-      </section>
-
-      {archive_contents}
-
-      <section class="crays-article-main">
-        <div class="crays-article-reader-shell crays-article-layout">
-          <aside class="crays-article-toc" aria-label="In this article">
-            <p>In this article</p>
-            {toc}
-          </aside>
-
-          <div class="crays-article-content">
-            {render_article_masthead(item)}
-            {render_sections(item)}
-
-            {render_related(item, by_slug)}
-            {archive_block}
-            <div class="crays-article-end">
-              <a href="/nostr/">Back to the Crays Nostr page</a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </article>
+    {start_landing_block}
+    {route_hub_landing_block}
+    {product_first_block}
+    {article_block}
   </main>
 
   {render_crays_footer()}
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
 <script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
 </body>
 </html>
 """
@@ -5572,43 +9014,227 @@ def render_page(item, by_slug):
 def write_pages():
     by_slug = {p["slug"]: p for p in PAGES}
     write_search_index()
+    generated_canonical_slugs = set()
     for item in PAGES:
-        target = PUBLIC / "nostr" / item["slug"] / "index.html"
+        canonical_slug = canonical_nostr_slug(item["slug"])
+        generated_canonical_slugs.add(canonical_slug)
+        target = PUBLIC / "nostr" / canonical_slug / "index.html"
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(clean_generated_html(ensure_external_links_new_tab(render_page(item, by_slug))), encoding="utf-8")
+        target.write_text(
+            clean_generated_html(ensure_external_links_new_tab(rewrite_nostr_internal_links(render_page(item, by_slug)))),
+            encoding="utf-8",
+        )
+        if canonical_slug != item["slug"]:
+            write_redirect_page(PUBLIC / "nostr" / item["slug"] / "index.html", nostr_path(item["slug"]), item["title"])
+    basics_target = PUBLIC / "nostr" / "basics" / "index.html"
+    basics_target.parent.mkdir(parents=True, exist_ok=True)
+    basics_target.write_text(
+        clean_generated_html(ensure_external_links_new_tab(rewrite_nostr_internal_links(render_basics_hub_page(by_slug)))),
+        encoding="utf-8",
+    )
+    generated_canonical_slugs.add("basics")
+    migrate_existing_community_static_pages(generated_canonical_slugs)
+    redirect_stale_nested_hub_pages(generated_canonical_slugs)
+    write_redirect_page(PUBLIC / "nostr" / "all-about-nostr" / "index.html", "/nostr/start/", "All about Nostr")
+    write_redirect_page(
+        PUBLIC / "nostr" / "community" / "questions" / "how-does-nip-07-login-work" / "index.html",
+        "/nostr/community/questions/how-nip-07-login-works/",
+        "How does NIP-07 login work?",
+    )
+
+
+def redirect_stale_nested_hub_pages(generated_canonical_slugs: set[str]) -> None:
+    """Redirect old duplicate pages like /nostr/media/basics/... to their real hub path."""
+    nostr_root = PUBLIC / "nostr"
+    if not nostr_root.exists():
+        return
+    for index_path in nostr_root.rglob("index.html"):
+        slug = index_path.parent.relative_to(nostr_root).as_posix()
+        if slug == "." or slug in generated_canonical_slugs:
+            continue
+        segments = slug.split("/")
+        if len(segments) < 2:
+            continue
+        first_segment = segments[0]
+        if first_segment == "community" or first_segment not in CANONICAL_HUB_PREFIXES:
+            continue
+        nested_index = next(
+            (idx for idx, segment in enumerate(segments[1:], start=1) if segment in CANONICAL_HUB_PREFIXES),
+            None,
+        )
+        if nested_index is None:
+            continue
+        candidate_slug = "/".join(segments[nested_index:])
+        target_slug = canonical_nostr_slug(candidate_slug)
+        target_path = nostr_root / target_slug / "index.html"
+        target_url = nostr_path(target_slug) if target_path.exists() else f"/nostr/{first_segment}/"
+        title = slug.rsplit("/", 1)[-1].replace("-", " ").title()
+        write_redirect_page(index_path, target_url, title)
+
+
+def migrate_existing_community_static_pages(generated_canonical_slugs: set[str]) -> None:
+    """Move legacy contribution/product routes under /nostr/community/ and leave redirects."""
+    nostr_root = PUBLIC / "nostr"
+    legacy_roots = [
+        "questions",
+        "projects",
+        "articles",
+        "profile",
+        "curated-lists",
+        "contribute",
+    ]
+    legacy_singletons = [
+        "apps/submit",
+        "suggestions",
+        "moderation",
+        "contributors",
+        "launches",
+        "discussions",
+        "new-findings",
+        "submit-project",
+        "admin/review",
+        "nostr-login",
+    ]
+    source_pages: list[tuple[str, Path]] = []
+    for root in legacy_roots:
+        root_path = nostr_root / root
+        if not root_path.exists():
+            continue
+        for index_path in root_path.rglob("index.html"):
+            legacy_slug = index_path.parent.relative_to(nostr_root).as_posix()
+            source_pages.append((legacy_slug, index_path))
+    for slug in legacy_singletons:
+        index_path = nostr_root / slug / "index.html"
+        if index_path.exists():
+            source_pages.append((slug, index_path))
+
+    seen_sources = set()
+    for legacy_slug, source_path in source_pages:
+        if legacy_slug in seen_sources:
+            continue
+        seen_sources.add(legacy_slug)
+        canonical_slug = canonical_nostr_slug(legacy_slug)
+        if canonical_slug == legacy_slug:
+            continue
+        target_url = nostr_path(legacy_slug)
+        target_path = nostr_root / canonical_slug / "index.html"
+        if canonical_slug not in generated_canonical_slugs and not target_path.exists():
+            target_path.parent.mkdir(parents=True, exist_ok=True)
+            html_text = source_path.read_text(encoding="utf-8")
+            html_text = rewrite_nostr_internal_links(html_text)
+            html_text = ensure_external_links_new_tab(html_text)
+            target_path.write_text(clean_generated_html(html_text), encoding="utf-8")
+            generated_canonical_slugs.add(canonical_slug)
+        write_redirect_page(source_path, target_url, legacy_slug.rsplit("/", 1)[-1].replace("-", " ").title())
+
+
+def write_redirect_page(path: Path, target_url: str, title: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        clean_generated_html(
+            f"""<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="0; url={target_url}">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="{BASE_URL}{target_url}">
+  <title>{html.escape(title)} | Crays Nostr Archive</title>
+</head>
+<body>
+  <p><a href="{target_url}">Continue to {html.escape(title)}</a></p>
+</body>
+</html>"""
+        ),
+        encoding="utf-8",
+    )
+
+
+def dedupe_nostr_source_rows(markup: str) -> str:
+    row_re = re.compile(
+        r'(<div class="crays-nostr-source-row"[^>]*>\s*)(.*?)(\s*</div>)',
+        re.IGNORECASE | re.DOTALL,
+    )
+    anchor_re = re.compile(r"<a\b[^>]*>.*?</a>", re.IGNORECASE | re.DOTALL)
+    href_re = re.compile(r"""href=(["'])(.*?)\1""", re.IGNORECASE | re.DOTALL)
+
+    def replace_row(match: re.Match[str]) -> str:
+        anchors = anchor_re.findall(match.group(2))
+        if not anchors:
+            return match.group(0)
+
+        seen = set()
+        unique = []
+        for anchor in anchors:
+            href_match = href_re.search(anchor)
+            label = re.sub(r"<[^>]+>", "", anchor).strip().lower()
+            key = (href_match.group(2) if href_match else anchor, label)
+            if key in seen:
+                continue
+            seen.add(key)
+            unique.append(anchor.strip())
+
+        return f"{match.group(1)}{''.join(unique)}{match.group(3)}"
+
+    return row_re.sub(replace_row, markup)
 
 
 def update_existing_nostr_pages():
     files = [PUBLIC / "nostr" / "index.html"] + [PUBLIC / lang / "nostr" / "index.html" for lang in ["en", "de", "es", "ca", "fr", "pt", "it"]]
     internal_links = (
-        '<a href="/nostr/archive-library/">Nostr library</a>'
-        '<a href="/nostr/what-is-nostr/">Nostr archive</a>'
-        '<a href="/nostr/getting-started/">Getting started</a>'
+        '<a href="/nostr/start/">All about Nostr</a>'
+        '<a href="/nostr/library/archive-library/">Nostr library</a>'
+        '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>'
+        '<a href="/nostr/basics/getting-started/">Getting started</a>'
         '<a href="/nostr/nips/">NIPs guide</a>'
         '<a href="/nostr/apps/">Apps</a>'
-        '<a href="/nostr/lifestyle-culture/">Lifestyle</a>'
+        '<a href="/nostr/people/lifestyle-culture/">Lifestyle</a>'
         '<a href="/nostr/people/">People</a>'
-        '<a href="/nostr/nostr-and-crays/">Nostr and Crays</a>'
+        '<a href="/nostr/crays/nostr-and-crays/">Nostr and Crays</a>'
     )
     marker = '<div class="crays-nostr-source-row" aria-label="Nostr and Crays ecosystem resources">\n        '
     for path in files:
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8")
-        text = text.replace('href="#crays-franchise-system">Understand Nostr</a>', 'href="/nostr/what-is-nostr/">Understand Nostr</a>')
+        text = text.replace(
+            '          <a class="crays-franchise-button crays-franchise-button--primary" href="https://www.crays.net/" target="_blank" rel="noreferrer noopener">Crays Nostr Client</a>\n'
+            '          <a class="crays-franchise-button crays-franchise-button--secondary" href="/nostr/start/">All about Nostr</a>',
+            '          <a class="crays-franchise-button crays-franchise-button--primary" href="/nostr/start/">Click here &mdash; the largest Nostr wiki on the web</a>\n'
+            '          <a class="crays-franchise-button crays-franchise-button--secondary" href="https://www.crays.net/" target="_blank" rel="noreferrer noopener">Crays Nostr Client</a>',
+        )
+        text = text.replace(
+            '          <a class="crays-franchise-button crays-franchise-button--primary" href="/nostr/start/">Click here — the largest Nostr wiki on the web</a>\n'
+            '          <a class="crays-franchise-button crays-franchise-button--secondary" href="https://www.crays.net/" target="_blank" rel="noreferrer noopener">Crays Nostr Client</a>',
+            '          <a class="crays-franchise-button crays-franchise-button--primary" href="/nostr/start/">Click here &mdash; the largest Nostr wiki on the web</a>\n'
+            '          <a class="crays-franchise-button crays-franchise-button--secondary" href="https://www.crays.net/" target="_blank" rel="noreferrer noopener">Crays Nostr Client</a>',
+        )
+        text = text.replace('href="/nostr/all-about-nostr/"', 'href="/nostr/start/"')
+        text = text.replace("href='/nostr/all-about-nostr/'", "href='/nostr/start/'")
+        text = text.replace('href="/nostr/what-is-nostr/">All about Nostr</a>', 'href="/nostr/start/">All about Nostr</a>')
+        text = text.replace("href='/nostr/what-is-nostr/'>All about Nostr</a>", "href='/nostr/start/'>All about Nostr</a>")
+        text = text.replace('href="#crays-franchise-system">Understand Nostr</a>', 'href="/nostr/basics/what-is-nostr/">Understand Nostr</a>')
         text = text.replace('href="https://www.awesome-nostr.com/"', 'href="https://github.com/aljazceru/awesome-nostr"')
-        if marker in text and '<a href="/nostr/what-is-nostr/">Nostr archive</a>' not in text:
+        text = text.replace('href="/nostr/library/basics/what-is-nostr/"', 'href="/nostr/basics/what-is-nostr/"')
+        text = text.replace('href="/nostr/library/basics/getting-started/"', 'href="/nostr/basics/getting-started/"')
+        if marker in text and '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>' not in text:
             text = text.replace(marker, marker + internal_links, 1)
-        if '<a href="/nostr/what-is-nostr/">Nostr archive</a>' in text and '<a href="/nostr/archive-library/">Nostr library</a>' not in text:
+        if '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>' in text and '<a href="/nostr/start/">All about Nostr</a>' not in text:
             text = text.replace(
-                '<a href="/nostr/what-is-nostr/">Nostr archive</a>',
-                '<a href="/nostr/archive-library/">Nostr library</a><a href="/nostr/what-is-nostr/">Nostr archive</a>',
+                '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>',
+                '<a href="/nostr/start/">All about Nostr</a><a href="/nostr/basics/what-is-nostr/">Nostr archive</a>',
                 1,
             )
-        if '<a href="/nostr/lifestyle-culture/">Lifestyle</a><a href="/nostr/nostr-and-crays/">Nostr and Crays</a>' in text:
+        if '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>' in text and '<a href="/nostr/library/archive-library/">Nostr library</a>' not in text:
             text = text.replace(
-                '<a href="/nostr/lifestyle-culture/">Lifestyle</a><a href="/nostr/nostr-and-crays/">Nostr and Crays</a>',
-                '<a href="/nostr/lifestyle-culture/">Lifestyle</a><a href="/nostr/people/">People</a><a href="/nostr/nostr-and-crays/">Nostr and Crays</a>',
+                '<a href="/nostr/basics/what-is-nostr/">Nostr archive</a>',
+                '<a href="/nostr/library/archive-library/">Nostr library</a><a href="/nostr/basics/what-is-nostr/">Nostr archive</a>',
+                1,
+            )
+        if '<a href="/nostr/people/lifestyle-culture/">Lifestyle</a><a href="/nostr/crays/nostr-and-crays/">Nostr and Crays</a>' in text:
+            text = text.replace(
+                '<a href="/nostr/people/lifestyle-culture/">Lifestyle</a><a href="/nostr/crays/nostr-and-crays/">Nostr and Crays</a>',
+                '<a href="/nostr/people/lifestyle-culture/">Lifestyle</a><a href="/nostr/people/">People</a><a href="/nostr/crays/nostr-and-crays/">Nostr and Crays</a>',
             )
         text = re.sub(r'<a\b(?=[^>]*href="https://www\.tiktok\.com/@thorbenbiesenbac1")[^>]*>.*?</a>', "", text, flags=re.IGNORECASE | re.DOTALL)
         text = re.sub(r"\bFor Crays,\s*", "For us, ", text)
@@ -5632,6 +9258,15 @@ def update_existing_nostr_pages():
         text = re.sub(r"\bNostr gives Crays\b", "Nostr gives us", text)
         text = re.sub(r"\bNostr lets Crays\b", "Nostr lets us", text)
         text = re.sub(r"(?<!www\.)\bCrays\.net\b", "Crays", text, flags=re.IGNORECASE)
+        text = re.sub(
+            r'(<a\b(?=[^>]*class="[^"]*crays-nav-cta[^"]*")(?=[^>]*href=")[^>]*href=")[^"]+("[^>]*>)Join us</a>',
+            r'\1/nostr/community/\2Community</a>',
+            text,
+            flags=re.IGNORECASE,
+        )
+        text = inject_legacy_footer_main_nav(text)
+        text = rewrite_nostr_internal_links(text)
+        text = dedupe_nostr_source_rows(text)
         text = ensure_external_links_new_tab(text)
         path.write_text(clean_generated_html(text), encoding="utf-8")
 
@@ -5646,11 +9281,25 @@ def update_sitemap():
         flags=re.S,
     )
     entries = []
+    seen_locs = set()
+    entries.append(
+        f"""  <url>
+    <loc>{BASE_URL}/nostr/basics/</loc>
+    <lastmod>{TODAY}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>"""
+    )
+    seen_locs.add(f"{BASE_URL}/nostr/basics/")
     for item in PAGES:
         priority = "0.88" if item["slug"] in {"what-is-nostr", "nips", "resources", "nostr-and-crays"} else "0.82"
+        canonical_url = f"{BASE_URL}{nostr_path(item['slug'])}"
+        if canonical_url in seen_locs:
+            continue
+        seen_locs.add(canonical_url)
         entries.append(
             f"""  <url>
-    <loc>{BASE_URL}/nostr/{item['slug']}/</loc>
+    <loc>{canonical_url}</loc>
     <lastmod>{TODAY}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>{priority}</priority>

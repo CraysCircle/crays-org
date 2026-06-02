@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Media, Creators and Publishing | Crays Nostr Archive</title>
+  <meta name="description" content="The creator-media route for long-form writing, music, video, streaming, Blossom, file metadata, creator archives and public media sources." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Media, Creators and Publishing, Media, Crays Nostr hub, Nostr navigation, Nostr community" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Media, Creators and Publishing | Crays Nostr Archive" />
+  <meta property="og:description" content="The creator-media route for long-form writing, music, video, streaming, Blossom, file metadata, creator archives and public media sources." />
+  <meta property="og:url" content="https://www.crays.org/nostr/media/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/media/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/media/","headline":"Media, Creators and Publishing","description":"The creator-media route for long-form writing, music, video, streaming, Blossom, file metadata, creator archives and public media sources.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Media, Creators and Publishing","item":"https://www.crays.org/nostr/media/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"Nostr Music, Video and Media","url":"https://www.crays.org/nostr/media/music-video-media/"},{"@type":"ListItem","position":15,"name":"Nostr for Creators","url":"https://www.crays.org/nostr/media/creators/"},{"@type":"ListItem","position":16,"name":"NIP-23: Long-Form Content","url":"https://www.crays.org/nostr/media/nip-23-long-form/"},{"@type":"ListItem","position":17,"name":"Nostr Media, Articles and Video Archive","url":"https://www.crays.org/nostr/basics/nostr-media-article-video-archive/"},{"@type":"ListItem","position":18,"name":"Blossom Servers, Relays and Nostr Media Storage","url":"https://www.crays.org/nostr/library/deep-dives/blossom-servers-and-relays/"},{"@type":"ListItem","position":19,"name":"YakiHonne","url":"https://www.crays.org/nostr/apps/yakihonne/"},{"@type":"ListItem","position":20,"name":"Crays Nostr Community","url":"https://www.crays.org/nostr/community/"},{"@type":"ListItem","position":21,"name":"New Nostr Findings","url":"https://www.crays.org/nostr/community/new-findings/"},{"@type":"ListItem","position":22,"name":"Submit a Nostr Project","url":"https://www.crays.org/nostr/community/projects/submit/"},{"@type":"ListItem","position":23,"name":"Nostr Review Dashboard","url":"https://www.crays.org/nostr/community/moderation/"},{"@type":"ListItem","position":24,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"},{"@type":"ListItem","position":25,"name":"Nostr Clients","url":"https://www.crays.org/nostr/apps/clients/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-media">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media" aria-current="page">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+      <section class="crays-nostr-route-hub-landing" data-route-hub="media">
+        <section class="crays-nostr-route-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/people-bg.jpg);">
+          <div class="crays-article-shell crays-nostr-route-hub-hero__grid">
+            <div class="crays-nostr-route-hub-hero__copy">
+              <a class="crays-nostr-route-hub-hero__back" href="/nostr/start/">Back to Start</a>
+              <p class="crays-nostr-live-kicker">Media route</p>
+              <h1>Media, Creators and Publishing</h1>
+              <p>The creator-media route for long-form writing, music, video, streaming, Blossom, file metadata, creator archives and public media sources.</p>
+              <div class="crays-nostr-route-hub-hero__actions">
+                <a href="#hub-first-paths">Choose a path</a>
+                <a href="/nostr/library/search-atlas/">Search the atlas</a>
+                <a href="#hub-bring-back">Bring something back</a>
+              </div>
+            </div>
+            <aside class="crays-nostr-route-hub-hero__panel" aria-label="How this hub works">
+              <p class="crays-nostr-live-kicker">Use this hub to</p>
+              <h2>Connect Nostr publishing and media tools to real creator workflows, not just protocol references.</h2>
+              <dl>
+                <div><dt>54</dt><dd>pages under this route</dd></div>
+                <div><dt>3</dt><dd>navigation shelves</dd></div>
+                <div><dt>Review</dt><dd>Submit media tools, talks, videos, creator profiles, Blossom servers, publishing clients and archive sources.</dd></div>
+              </dl>
+              <nav><a href="/nostr/media/creators/">Creators</a><a href="/nostr/media/music-video-media/">Music</a><a href="/nostr/media/nip-23-long-form/">Long-form</a></nav>
+            </aside>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-image-band" aria-label="Media visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-finance-use-creators.jpg" alt="Creator commerce should feel direct, warm and owned by the person publishing." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-lifestyle-13-music-film-fashion-art-and-media-inside-the-crays-lifestyle-community.webp" alt="Nostr culture travels through music, media, creators and scenes." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-home-project-tribe-award-cultural-event.jpg" alt="Content becomes stronger when fans can pay, prove access and stay portable." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-home-project-circle-app-digital-community-lifestyle.jpg" alt="Creator profiles should feel like a living room for work, taste and value." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-lifestyle-18-creators-founders-and-fans-meeting-through-crays-community.webp" alt="Creators bring the protocol into public culture." loading="lazy" decoding="async" />
+              </figure>
+
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-compass-wrap">
+
+            <section class="crays-nostr-learning-compass" data-component="LearningCompass" data-learning-route="media" aria-label="Learning compass for this Crays Nostr page">
+              <div class="crays-nostr-learning-compass__intro">
+                <p class="crays-nostr-live-kicker">Learning compass</p>
+                <h3>You are in Media</h3>
+                <p>Route hub. Use this as the map for the whole route before you go into the individual pages.</p>
+              </div>
+              <div class="crays-nostr-learning-compass__task">
+                <strong>Use this page to</strong>
+                <span>Map creator, publishing, Blossom, file metadata, audio, video and long-form tooling.</span>
+              </div>
+              <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+                <a href="/nostr/start/"><strong>All about Nostr</strong><span>Return to the full map</span></a>
+                <a href="/nostr/library/search-atlas/"><strong>Search the atlas</strong><span>Find any page, term, source or project</span></a>
+                <a href="/nostr/community/projects/submit/?page=media&amp;route=media"><strong>Submit related project</strong><span>Add an app, tool, maintainer update or project proof.</span></a>
+              </nav>
+              <details class="crays-nostr-learning-compass__next">
+                <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+                <div><a href="/nostr/media/music-video-media/"><span class="crays-nostr-card-icon" aria-hidden="true">P</span><strong>Nostr Music, Video and Media</strong><span>Media</span></a>
+<a href="/nostr/media/creators/"><span class="crays-nostr-card-icon" aria-hidden="true">P</span><strong>Nostr for Creators</strong><span>Media</span></a>
+<a href="/nostr/media/nip-23-long-form/"><span class="crays-nostr-card-icon" aria-hidden="true">23</span><strong>NIP-23: Long-Form Content</strong><span>Media</span></a>
+<a href="/nostr/basics/nostr-media-article-video-archive/"><span class="crays-nostr-card-icon" aria-hidden="true">NM</span><strong>Nostr Media, Articles and Video Archive</strong><span>Start</span></a></div>
+              </details>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-first-paths" id="hub-first-paths" aria-label="First paths">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Start here</p>
+              <h2>Pick the first path that fits your question.</h2>
+              <p>Use this route when the question is how creators publish, store media, get paid, build audiences and turn public source material into useful Crays content.</p>
+            </div>
+            <div class="crays-nostr-hub-path-grid">
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/media/music-video-media/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">P</span>
+                <strong>Music and media</strong>
+                <span>Nostr lifestyle media: music, streaming, video, file metadata, creator payments and value-for-value culture.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/media/creators/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">P</span>
+                <strong>Creators</strong>
+                <span>How creators can use Nostr for portable audiences, direct value, long-form publishing, zaps, media, our profiles and fan status.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/media/nip-23-long-form/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">23</span>
+                <strong>NIP-23 long-form</strong>
+                <span>Our archive page for NIP-23, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/basics/nostr-media-article-video-archive/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">MA</span>
+                <strong>Media archive</strong>
+                <span>A Start-route research shelf for Nostr articles, blog posts, public explainers, event material and YouTube videos, sorted by reader use.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/library/deep-dives/blossom-servers-and-relays/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>Blossom servers</strong>
+                <span>What Blossom servers are, why they are not relays, and how clients use them with Nostr events, relay discovery, hashes, server lists, mirrors and file metadata.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/apps/yakihonne/">
+                <img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" />
+                <strong>YakiHonne</strong>
+                <span>YakiHonne in the Nostr ecosystem: Nostr publishing and social client. This our archive page explains the public role, where it fits and why it matters.</span>
+              </a>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-signature" data-signature-route="media" aria-label="Publishing studio">
+        <div class="crays-article-shell crays-nostr-hub-signature__grid">
+          <div class="crays-nostr-hub-signature__copy">
+            <p class="crays-nostr-live-kicker">Publishing studio</p>
+            <h2>Creators need publishing, storage, audience and proof in one map.</h2>
+            <p>Use this route for writing, video, music, streaming, Blossom, long-form posts, creator pages and the media sources that help the archive feel alive.</p>
+          </div>
+          <figure class="crays-nostr-hub-signature__visual">
+            <img src="/assets/nostr-free-stock/people-visual.jpg" alt="Media visual" loading="lazy" decoding="async" />
+            <figcaption>Creator checks</figcaption>
+          </figure>
+          <div class="crays-nostr-hub-signature__tiles">
+
+              <a href="/nostr/media/nip-23-long-form/">
+                <span aria-hidden="true">01</span>
+                <strong>Publish</strong>
+                <small>Long-form posts, creator notes, newsletters and articles.</small>
+              </a>
+
+              <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">
+                <span aria-hidden="true">02</span>
+                <strong>Store</strong>
+                <small>Files, metadata, Blossom and media relay questions.</small>
+              </a>
+
+              <a href="/nostr/media/creators/">
+                <span aria-hidden="true">03</span>
+                <strong>Audience</strong>
+                <small>Fans, follows, comments, zaps and replayable identity.</small>
+              </a>
+
+              <a href="/nostr/basics/nostr-media-article-video-archive/">
+                <span aria-hidden="true">04</span>
+                <strong>Archive</strong>
+                <small>Videos, talks and public source material for review.</small>
+              </a>
+
+          </div>
+          <div class="crays-nostr-hub-signature__cards">
+
+              <a href="/nostr/basics/nostr-media-article-video-archive/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">MA</span>
+                <strong>Media archive</strong>
+                <span>Open the video and article source shelf.</span>
+              </a>
+
+              <a href="/nostr/library/deep-dives/blossom-servers-and-relays/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>Blossom</strong>
+                <span>Understand media storage before recommending uploads.</span>
+              </a>
+
+              <a href="/nostr/apps/yakihonne/">
+                <img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" />
+                <strong>YakiHonne</strong>
+                <span>See long-form publishing in the app ecosystem.</span>
+              </a>
+
+          </div>
+
+          <div class="crays-nostr-visual-rail" aria-label="Media visual shortcuts">
+            <a href="/nostr/media/creators/"><span>P</span><strong>Creators</strong></a><a href="/nostr/media/nip-23-long-form/"><span>N</span><strong>Long-form</strong></a><a href="/nostr/library/deep-dives/blossom-servers-and-relays/"><span>N</span><strong>Blossom</strong></a><a href="/nostr/apps/wavlake/"><img src="https://www.google.com/s2/favicons?domain=wavlake.com&amp;sz=128" alt="Wavlake icon" loading="lazy" decoding="async" /><strong>Wavlake</strong></a><a href="/nostr/apps/yakihonne/"><img src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" /><strong>YakiHonne</strong></a><a href="/nostr/basics/nostr-media-article-video-archive/"><span>MA</span><strong>Media archive</strong></a>
+          </div>
+
+        </div>
+      </section>
+
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-route-map" aria-label="Route map">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Route map</p>
+              <h2>See how this route is organized.</h2>
+              <p>Use these groups when you want context first. They are the short map of what this category contains.</p>
+            </div>
+            <div class="crays-nostr-hub-route-groups">
+
+              <section>
+                <h3>Creator layer</h3>
+                <nav aria-label="Creator layer">
+                  <a href="/nostr/media/creators/">Creators</a><a href="/nostr/media/music-video-media/">Music and media</a><a href="/nostr/media/videos/">Videos</a><a href="/nostr/basics/nostr-media-article-video-archive/">Media and video archive</a><a href="/nostr/media/nip-23-long-form/">NIP-23 long-form</a><a href="/nostr/basics/reading-paths/creator/">Creator reading path</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Media apps</h3>
+                <nav aria-label="Media apps">
+                  <a href="/nostr/apps/wavlake/">Wavlake</a><a href="/nostr/apps/yakihonne/">YakiHonne</a><a href="/nostr/apps/habla/">Habla</a><a href="/nostr/media/nip-23-long-form/">Long-form content</a><a href="/nostr/apps/category-streaming/">Streaming apps</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Publishing formats</h3>
+                <nav aria-label="Publishing formats">
+                  <a href="/nostr/apps/category-blogging/">Blogging apps</a><a href="/nostr/apps/category-music/">Music apps</a><a href="/nostr/apps/category-photos/">Photo apps</a><a href="/nostr/apps/category-streaming/">Streaming apps</a><a href="/nostr/commerce/content-sale/">Content sale</a>
+                </nav>
+              </section>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-shelves" aria-label="Content shelves in this hub">
+        <div class="crays-article-shell">
+          <div class="crays-nostr-hub-section__head">
+            <p class="crays-nostr-live-kicker">What is inside</p>
+            <h2>See the shelves before you dive in.</h2>
+            <p>Each shelf is a smaller map. Open a few first, then use the full directory when you want every page in this route.</p>
+          </div>
+          <div class="crays-nostr-hub-shelf-grid">
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>08</span>
+                  <h3>App categories</h3>
+                </div>
+                <nav aria-label="App categories links">
+                  <a href="/nostr/apps/category-blogging/">Nostr Apps: Blogging</a><a href="/nostr/apps/category-media/">Nostr Apps: Media</a><a href="/nostr/apps/category-microblogging/">Nostr Apps: Microblogging</a><a href="/nostr/apps/category-music/">Nostr Apps: Music</a><a href="/nostr/apps/category-photos/">Nostr Apps: Photos</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>06</span>
+                  <h3>App profiles</h3>
+                </div>
+                <nav aria-label="App profiles links">
+                  <a href="/nostr/apps/research/nostrapps-category-blogging/">NostrApps category — Blogging</a><a href="/nostr/apps/research/nostrapps-category-microblogging-clients/">NostrApps category — Microblogging clients</a><a href="/nostr/apps/research/nostrapps-category-music/">NostrApps category — Music</a><a href="/nostr/apps/research/nostrapps-category-photos/">NostrApps category — Photos</a><a href="/nostr/apps/research/nostrapps-category-streaming/">NostrApps category — Streaming</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>06</span>
+                  <h3>Deep dives</h3>
+                </div>
+                <nav aria-label="Deep dives links">
+                  <a href="/nostr/media/deep-dives/long-form-publishing/">Long-Form Publishing</a><a href="/nostr/media/deep-dives/media-attachments-and-blossom/">Media Attachments and Blossom</a><a href="/nostr/media/deep-dives/nostr-for-creators-business/">Nostr for Creator Business</a><a href="/nostr/media/deep-dives/nostr-for-music/">Nostr for Music</a><a href="/nostr/media/deep-dives/nostr-for-photos/">Nostr for Photos</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>07</span>
+                  <h3>Field guides</h3>
+                </div>
+                <nav aria-label="Field guides links">
+                  <a href="/nostr/media/field-guide/creator-diaries/">Creator Diaries: Nostr Field Guide</a><a href="/nostr/media/field-guide/creator-economy/">Creator Economy: Nostr Field Guide</a><a href="/nostr/media/field-guide/long-form-articles/">Long-Form Articles: Nostr Field Guide</a><a href="/nostr/media/field-guide/music/">Music on Nostr: Nostr Field Guide</a><a href="/nostr/media/field-guide/music-scenes/">Music Scenes: Nostr Field Guide</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>08</span>
+                  <h3>Media and creators</h3>
+                </div>
+                <nav aria-label="Media and creators links">
+                  <a href="/nostr/community/projects/creator-media-app/">Creator media app</a><a href="/nostr/community/creators/">Creators</a><a href="/nostr/media/archive-library/reads-research/long-form-content/">Long-form Content</a><a href="/nostr/community/projects/long-form-publishing-client/">Long-form publishing client</a><a href="/nostr/community/media/">Media</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>01</span>
+                  <h3>NIP explainer pages</h3>
+                </div>
+                <nav aria-label="NIP explainer pages links">
+                  <a href="/nostr/media/nip-23-long-form/">NIP-23: Long-Form Content</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>05</span>
+                  <h3>NIP reference pages</h3>
+                </div>
+                <nav aria-label="NIP reference pages links">
+                  <a href="/nostr/nips/research/media-attachments-metadata/">Media Attachments Metadata</a><a href="/nostr/nips/research/nip-23-long-form-content/">NIP-23: Long-form Content</a><a href="/nostr/nips/research/nip-71-video-events/">NIP-71: Video Events</a><a href="/nostr/nips/research/nip-92-media-attachments-metadata/">NIP-92: Media Attachments Metadata</a><a href="/nostr/nips/research/video-events/">Video Events</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>13</span>
+                  <h3>Source inventory</h3>
+                </div>
+                <nav aria-label="Source inventory links">
+                  <a href="/nostr/media/source-inventory/deep-research/apps/divine-video-divine-cc83350d/">Research Source: diVine</a><a href="/nostr/media/source-inventory/deep-research/nips/github-com-long-form-content-2256357c/">Research Source: Long-form Content</a><a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-long-form-content-702ad6ff/">Research Source: Long-form Content</a><a href="/nostr/media/source-inventory/deep-research/nips/github-com-media-attachments-metadata-cc879268/">Research Source: Media Attachments Metadata</a><a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-media-attachments-metadata-74241bd4/">Research Source: Media Attachments Metadata</a>
+                </nav>
+              </article>
+
+          </div>
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-context-wrap">
+
+            <section class="crays-nostr-context-actions" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="media" data-page-url="https://www.crays.org/nostr/media/" data-community="media" aria-label="Help build the Nostr ecosystem around this page">
+              <div>
+                <p class="crays-nostr-live-kicker">Media contribution</p>
+                <h3>Help build the Nostr ecosystem around this page.</h3>
+                <p>Ask a question, suggest a source, submit a related app/project, or join the discussion. The canonical archive stays stable; community contributions are reviewed separately.</p>
+              </div>
+              <div class="crays-nostr-context-actions__lanes">
+                <div>
+                  <h4>Core actions</h4>
+                  <nav aria-label="Core contribution actions"><a href="/nostr/community/?page=media&amp;route=media&amp;type=discussion" data-contribution-action="discuss"><strong>Discuss</strong><span>Start or join the community thread attached to this page.</span></a><a href="/nostr/community/questions/?page=media&amp;route=media" data-contribution-action="question"><strong>Ask a question</strong><span>Ask for help with this topic without editing the article.</span></a><a href="/nostr/community/suggestions/?page=media&amp;route=media&amp;type=source" data-contribution-action="source"><strong>Suggest source</strong><span>Add a useful reference, NIP, repository, article, app, relay or research link.</span></a><a href="/nostr/community/suggestions/?page=media&amp;route=media&amp;type=correction" data-contribution-action="correction"><strong>Suggest correction</strong><span>This does not edit the article directly. Your suggestion goes into review.</span></a><a href="/nostr/community/projects/submit/?page=media&amp;route=media" data-contribution-action="relation"><strong>Add related app/project</strong><span>Connect a useful project, app, relay, signer, wallet or profile to this page.</span></a></nav>
+                </div>
+                <div>
+                  <h4>Best fit for Media</h4>
+                  <nav aria-label="Route-specific contribution actions"><a href="/nostr/community/projects/submit/?page=media&amp;route=media&amp;type=project"><strong>Submit media project</strong><span>Add a music, video, publishing, Blossom or creator tool.</span></a><a href="/nostr/community/new-findings/?page=media&amp;route=media&amp;type=source"><strong>Add media source</strong><span>Attach talks, videos, articles, creator archives or storage references.</span></a><a href="/nostr/community/?page=media&amp;route=media&amp;type=person"><strong>Suggest creator</strong><span>Nominate a public creator profile connected to this topic.</span></a></nav>
+                </div>
+              </div>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-full-directory" aria-label="All pages in this route">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Full directory</p>
+              <h2>Open every page in Media, Creators and Publishing.</h2>
+              <p>This hub is the calm overview. Use the full directory below when you want every page in this route.</p>
+            </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="media">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Media</span>
+              <strong>All Media pages</strong>
+              <small><b>55 pages in this route</b><em>App categories, App profiles, Deep dives and 5 more shelves</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>App categories</h3><div><a href="/nostr/apps/category-blogging/">Nostr Apps: Blogging</a>
+<a href="/nostr/apps/category-media/">Nostr Apps: Media</a>
+<a href="/nostr/apps/category-microblogging/">Nostr Apps: Microblogging</a>
+<a href="/nostr/apps/category-music/">Nostr Apps: Music</a>
+<a href="/nostr/apps/category-photos/">Nostr Apps: Photos</a>
+<a href="/nostr/apps/category-streaming/">Nostr Apps: Streaming</a>
+<a href="/nostr/apps/category-video/">Nostr Apps: Video</a>
+<a href="/nostr/apps/category-videos/">Nostr Apps: Videos</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App profiles</h3><div><a href="/nostr/apps/research/nostrapps-category-blogging/">NostrApps category — Blogging</a>
+<a href="/nostr/apps/research/nostrapps-category-microblogging-clients/">NostrApps category — Microblogging clients</a>
+<a href="/nostr/apps/research/nostrapps-category-music/">NostrApps category — Music</a>
+<a href="/nostr/apps/research/nostrapps-category-photos/">NostrApps category — Photos</a>
+<a href="/nostr/apps/research/nostrapps-category-streaming/">NostrApps category — Streaming</a>
+<a href="/nostr/apps/research/nostrapps-category-video/">NostrApps category — Video</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/media/deep-dives/long-form-publishing/">Long-Form Publishing</a>
+<a href="/nostr/media/deep-dives/media-attachments-and-blossom/">Media Attachments and Blossom</a>
+<a href="/nostr/media/deep-dives/nostr-for-creators-business/">Nostr for Creator Business</a>
+<a href="/nostr/media/deep-dives/nostr-for-music/">Nostr for Music</a>
+<a href="/nostr/media/deep-dives/nostr-for-photos/">Nostr for Photos</a>
+<a href="/nostr/media/deep-dives/nostr-for-video-streaming/">Nostr for Video and Streaming</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/media/field-guide/creator-diaries/">Creator Diaries: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/creator-economy/">Creator Economy: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/long-form-articles/">Long-Form Articles: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/music/">Music on Nostr: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/music-scenes/">Music Scenes: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/photos/">Photos on Nostr: Nostr Field Guide</a>
+<a href="/nostr/media/field-guide/video-events/">Video Events: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Media and creators</h3><div><a href="/nostr/community/projects/creator-media-app/">Creator media app</a>
+<a href="/nostr/community/creators/">Creators</a>
+<a href="/nostr/media/archive-library/reads-research/long-form-content/">Long-form Content</a>
+<a href="/nostr/community/projects/long-form-publishing-client/">Long-form publishing client</a>
+<a href="/nostr/community/media/">Media</a>
+<a href="/nostr/media/" aria-current="page">Media, Creators and Publishing</a>
+<a href="/nostr/media/creators/">Nostr for Creators</a>
+<a href="/nostr/media/music-video-media/">Nostr Music, Video and Media</a>
+<a href="/nostr/media/videos/">Nostr Videos, Talks and Audio Trail</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/media/nip-23-long-form/">NIP-23: Long-Form Content</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/research/media-attachments-metadata/">Media Attachments Metadata</a>
+<a href="/nostr/nips/research/nip-23-long-form-content/">NIP-23: Long-form Content</a>
+<a href="/nostr/nips/research/nip-71-video-events/">NIP-71: Video Events</a>
+<a href="/nostr/nips/research/nip-92-media-attachments-metadata/">NIP-92: Media Attachments Metadata</a>
+<a href="/nostr/nips/research/video-events/">Video Events</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Source inventory</h3><div><a href="/nostr/media/source-inventory/deep-research/apps/divine-video-divine-cc83350d/">Research Source: diVine</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-long-form-content-2256357c/">Research Source: Long-form Content</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-long-form-content-702ad6ff/">Research Source: Long-form Content</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-media-attachments-metadata-cc879268/">Research Source: Media Attachments Metadata</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-media-attachments-metadata-74241bd4/">Research Source: Media Attachments Metadata</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/github-com-nip-71-video-events-894cb3f1/">Research Source: NIP-71: Video Events</a>
+<a href="/nostr/media/source-inventory/deep-research/nips/nips-nostr-com-nip-71-video-events-656374aa/">Research Source: NIP-71: Video Events</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-blogging-e6bfb924/">Research Source: NostrApps category — Blogging</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-microblogging-clients-22a67541/">Research Source: NostrApps category — Microblogging clients</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-music-6cf5785f/">Research Source: NostrApps category — Music</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-photos-d9432208/">Research Source: NostrApps category — Photos</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-streaming-7bec976d/">Research Source: NostrApps category — Streaming</a>
+<a href="/nostr/media/source-inventory/deep-research/apps/nostrapps-com-nostrapps-category-video-5e6a6dbb/">Research Source: NostrApps category — Video</a></div></section>
+            </div>
+          </details>
+
+          </div>
+        </section>
+
+      </section>
+
+
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

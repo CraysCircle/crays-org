@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nostr Relays | Crays Nostr Archive</title>
-  <meta name="description" content="How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr." />
+  <title>Relays and Infrastructure | Crays Nostr Archive</title>
+  <meta name="description" content="The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes." />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-  <meta name="keywords" content="Nostr, Crays, open social protocol, Nostr relays, relay list metadata, paid relays, Crays Super Node" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Relays and Infrastructure, Relays, Crays Nostr hub, Nostr navigation, Nostr community" />
   <meta name="theme-color" content="#040b12" />
   <meta property="og:type" content="article" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Crays.org" />
-  <meta property="og:title" content="Nostr Relays | Crays Nostr Archive" />
-  <meta property="og:description" content="How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr." />
+  <meta property="og:title" content="Relays and Infrastructure | Crays Nostr Archive" />
+  <meta property="og:description" content="The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes." />
   <meta property="og:url" content="https://www.crays.org/nostr/relays/" />
   <meta name="twitter:card" content="summary" />
   <link rel="canonical" href="https://www.crays.org/nostr/relays/" />
@@ -23,31 +23,32 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
-  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260601-nostr-learning-gate-v2" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/relays/","headline":"Nostr Relays","description":"How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr.","datePublished":"2026-05-31","dateModified":"2026-05-31","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Nostr Relays","item":"https://www.crays.org/nostr/relays/"}]}</script>
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/what-is-nostr/"},{"@type":"ListItem","position":2,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":3,"name":"Apps","url":"https://www.crays.org/nostr/apps/catalog/"},{"@type":"ListItem","position":4,"name":"Relays","url":"https://www.crays.org/nostr/relay-market-directory/"},{"@type":"ListItem","position":5,"name":"NIPs","url":"https://www.crays.org/nostr/nips/complete-index/"},{"@type":"ListItem","position":6,"name":"Privacy","url":"https://www.crays.org/nostr/privacy-security/"},{"@type":"ListItem","position":7,"name":"Wallets","url":"https://www.crays.org/nostr/nip-47-wallet-connect/"},{"@type":"ListItem","position":8,"name":"Media","url":"https://www.crays.org/nostr/music-video-media/"},{"@type":"ListItem","position":9,"name":"Commerce","url":"https://www.crays.org/nostr/content-sale/"},{"@type":"ListItem","position":10,"name":"Governance","url":"https://www.crays.org/nostr/dao-governance/"},{"@type":"ListItem","position":11,"name":"Crays","url":"https://www.crays.org/nostr/nostr-and-crays/"},{"@type":"ListItem","position":12,"name":"Library","url":"https://www.crays.org/nostr/archive-library/"},{"@type":"ListItem","position":13,"name":"NIP-65: Relay List Metadata","url":"https://www.crays.org/nostr/nip-65-relay-list/"},{"@type":"ListItem","position":14,"name":"NIP-42: Client Authentication to Relays","url":"https://www.crays.org/nostr/nip-42-relay-auth/"},{"@type":"ListItem","position":15,"name":"Crays Super Node and Nostr","url":"https://www.crays.org/nostr/crays-super-node/"},{"@type":"ListItem","position":16,"name":"Nostr for Operators and Venues","url":"https://www.crays.org/nostr/operators-venues/"},{"@type":"ListItem","position":17,"name":"Moderation and Discovery on Nostr","url":"https://www.crays.org/nostr/moderation-discovery/"},{"@type":"ListItem","position":18,"name":"Nostr Clients","url":"https://www.crays.org/nostr/clients/"},{"@type":"ListItem","position":19,"name":"Nostr Events and Event Kinds","url":"https://www.crays.org/nostr/events-and-kinds/"}]}</script>
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/relays/","headline":"Relays and Infrastructure","description":"The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Relays and Infrastructure","item":"https://www.crays.org/nostr/relays/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"Nostr Relay Market Directory","url":"https://www.crays.org/nostr/relays/relay-market-directory/"},{"@type":"ListItem","position":15,"name":"Relay Selection: Nostr Field Guide","url":"https://www.crays.org/nostr/relays/field-guide/relay-selection/"},{"@type":"ListItem","position":16,"name":"NIP-11: NIP-11","url":"https://www.crays.org/nostr/nips/nip-11/"},{"@type":"ListItem","position":17,"name":"NIP-65: Relay List Metadata","url":"https://www.crays.org/nostr/relays/nip-65-relay-list/"},{"@type":"ListItem","position":18,"name":"Crays Super Node and Nostr","url":"https://www.crays.org/nostr/crays/crays-super-node/"},{"@type":"ListItem","position":19,"name":"Crays Nostr Community","url":"https://www.crays.org/nostr/community/"},{"@type":"ListItem","position":20,"name":"New Nostr Findings","url":"https://www.crays.org/nostr/community/new-findings/"},{"@type":"ListItem","position":21,"name":"Submit a Nostr Project","url":"https://www.crays.org/nostr/community/projects/submit/"},{"@type":"ListItem","position":22,"name":"Nostr Review Dashboard","url":"https://www.crays.org/nostr/community/moderation/"},{"@type":"ListItem","position":23,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"},{"@type":"ListItem","position":24,"name":"Nostr Events and Event Kinds","url":"https://www.crays.org/nostr/nips/events-and-kinds/"},{"@type":"ListItem","position":25,"name":"Blossom Servers, Relays and Nostr Media Storage","url":"https://www.crays.org/nostr/library/deep-dives/blossom-servers-and-relays/"}]}</script>
 </head>
 <body class="crays-article-body crays-nostr-hub-body crays-nostr-area-relays">
   <header class="crays-article-header">
     <div class="crays-article-shell crays-article-header__inner">
       <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
       <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
-        <a href="/nostr/what-is-nostr/" data-route="start">Start</a>
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
         <a href="/nostr/people/" data-route="people">People</a>
-        <a href="/nostr/apps/catalog/" data-route="apps">Apps</a>
-        <a href="/nostr/relay-market-directory/" data-route="relays" aria-current="page">Relays</a>
-        <a href="/nostr/nips/complete-index/" data-route="nips">NIPs</a>
-        <a href="/nostr/privacy-security/" data-route="privacy">Privacy</a>
-        <a href="/nostr/nip-47-wallet-connect/" data-route="wallets">Wallets</a>
-        <a href="/nostr/music-video-media/" data-route="media">Media</a>
-        <a href="/nostr/content-sale/" data-route="commerce">Commerce</a>
-        <a href="/nostr/dao-governance/" data-route="governance">Governance</a>
-        <a href="/nostr/nostr-and-crays/" data-route="crays">Crays</a>
-        <a href="/nostr/archive-library/" data-route="library">Library</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays" aria-current="page">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
       </nav>
       <div class="crays-article-header-actions" aria-label="Crays actions">
-        <a class="crays-article-header-cta" href="/nostr/nostr-login/">Join us</a>
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
         <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
@@ -60,76 +61,350 @@
   </header>
 
   <main>
-    <article>
-      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/relays-bg.jpg); --nostr-hero-bg-position: center 52%;">
-        <div class="crays-article-shell crays-article-hero__grid">
-          <div class="crays-article-hero__copy">
-            <p class="crays-article-eyebrow">Nostr archive</p>
-            <h1>Nostr Relays</h1>
-            <p class="crays-article-deck">How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr.</p>
-          </div>
 
-            <div class="crays-nostr-hero-visual" style="--nostr-hero-visual-position: center;">
-              <figure>
-                <img src="/assets/nostr-free-stock/relays-visual.jpg" alt="Nostr Relays visual" loading="eager" decoding="async" referrerpolicy="no-referrer" />
-              </figure>
-              <div class="crays-nostr-hero-avatar"><img src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Nostr Relays icon" loading="eager" decoding="async" /></div>
-              <div class="crays-nostr-hero-signal">
-                <span>Route</span>
-                <strong>The live infrastructure market</strong>
-                <small>Public, paid, search, community, monitoring and venue relays.</small>
-              </div>
-              <div class="crays-nostr-hero-pins">
-                <a href="/nostr/relay-market-directory/">Market map</a>
-<a href="/nostr/relays/">Relays</a>
-<a href="/nostr/nips/nip-66/">NIP-66</a>
+
+      <section class="crays-nostr-route-hub-landing" data-route-hub="relays">
+        <section class="crays-nostr-route-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/relays-bg.jpg);">
+          <div class="crays-article-shell crays-nostr-route-hub-hero__grid">
+            <div class="crays-nostr-route-hub-hero__copy">
+              <a class="crays-nostr-route-hub-hero__back" href="/nostr/start/">Back to Start</a>
+              <p class="crays-nostr-live-kicker">Relay route</p>
+              <h1>Relays and Infrastructure</h1>
+              <p>The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes.</p>
+              <div class="crays-nostr-route-hub-hero__actions">
+                <a href="#hub-first-paths">Choose a path</a>
+                <a href="/nostr/library/search-atlas/">Search the atlas</a>
+                <a href="#hub-bring-back">Bring something back</a>
               </div>
             </div>
+            <aside class="crays-nostr-route-hub-hero__panel" aria-label="How this hub works">
+              <p class="crays-nostr-live-kicker">Use this hub to</p>
+              <h2>Move relay knowledge from static lists into operational intelligence: metadata, status, policy, use case and health.</h2>
+              <dl>
+                <div><dt>50</dt><dd>pages under this route</dd></div>
+                <div><dt>3</dt><dd>navigation shelves</dd></div>
+                <div><dt>Review</dt><dd>Submit relay findings, NIP-11 data, availability notes, policy changes and venue-relay ideas.</dd></div>
+              </dl>
+              <nav><a href="/nostr/relays/relay-market-directory/">Market map</a><a href="/nostr/relays/">Relays</a><a href="/nostr/nips/nip-66/">NIP-66</a></nav>
+            </aside>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-image-band" aria-label="Relays visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-association-21-crays-venue-layer-with-digital-coordination-and-community-access.webp" alt="Relays are where the network actually lives, moves and remembers." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-tech-03-guests-inside-a-blue-lit-local-venue-environment-representing-mesh-network.webp" alt="We read relay infrastructure as local presence, not abstract hosting." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-hospitality-header-premium-lounge-bar.webp" alt="Venue relays make more sense when you picture rooms, guests and service flow." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-data-city-lounge.jpg" alt="A relay market is still a people market: trust, uptime, geography and use case." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-fintech-supernodes-city.jpg" alt="The Super Node idea belongs where hospitality and infrastructure meet." loading="lazy" decoding="async" />
+              </figure>
 
         </div>
       </section>
 
 
-      <section class="crays-nostr-route-board" aria-label="Nostr archive navigation" data-nostr-route="relays">
-        <div class="crays-article-reader-shell crays-nostr-route-board__inner">
-          <div class="crays-nostr-route-board__top">
-            <div class="crays-nostr-route-board__intro">
-              <span>Relay route</span>
-              <h2>Relay market guide</h2>
-              <p>Relays are the part of Nostr people feel before they understand: speed, missing posts, paid access, spam resistance, local rooms, moderation and archive reliability.</p>
-            </div>
-            <div class="crays-nostr-archive-finder" role="search">
-              <label for="crays-nostr-finder">Search the Nostr atlas</label>
-              <input id="crays-nostr-finder" type="search" placeholder="Search apps, NIPs, people, Crays topics" data-nostr-finder-input />
-              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
-                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
-                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+        <div class="crays-article-shell crays-nostr-hub-compass-wrap">
+
+            <section class="crays-nostr-learning-compass" data-component="LearningCompass" data-learning-route="relays" aria-label="Learning compass for this Crays Nostr page">
+              <div class="crays-nostr-learning-compass__intro">
+                <p class="crays-nostr-live-kicker">Learning compass</p>
+                <h3>You are in Relays</h3>
+                <p>Route hub. Use this as the map for the whole route before you go into the individual pages.</p>
               </div>
+              <div class="crays-nostr-learning-compass__task">
+                <strong>Use this page to</strong>
+                <span>Inspect relay purpose, policy, NIP-11 data, uptime signals and recommended usage.</span>
+              </div>
+              <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+                <a href="/nostr/start/"><strong>All about Nostr</strong><span>Return to the full map</span></a>
+                <a href="/nostr/library/search-atlas/"><strong>Search the atlas</strong><span>Find any page, term, source or project</span></a>
+                <a href="/nostr/community/suggestions/?page=relays&amp;route=relays"><strong>Suggest source</strong><span>Add a source, correction, report or implementation note.</span></a>
+              </nav>
+              <details class="crays-nostr-learning-compass__next">
+                <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+                <div><a href="/nostr/relays/relay-market-directory/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nostr Relay Market Directory</strong><span>Relays</span></a>
+<a href="/nostr/relays/field-guide/relay-selection/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Relay Selection: Nostr Field Guide</strong><span>Relays</span></a>
+<a href="/nostr/nips/nip-11/"><span class="crays-nostr-card-icon" aria-hidden="true">11</span><strong>NIP-11: NIP-11</strong><span>Relays</span></a>
+<a href="/nostr/relays/nip-65-relay-list/"><span class="crays-nostr-card-icon" aria-hidden="true">65</span><strong>NIP-65: Relay List Metadata</strong><span>Relays</span></a></div>
+              </details>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-first-paths" id="hub-first-paths" aria-label="First paths">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Start here</p>
+              <h2>Pick the first path that fits your question.</h2>
+              <p>Use this route when the question is where events live, which relays matter, how relay choice affects reach and how venue or community relays become part of our product layer.</p>
+            </div>
+            <div class="crays-nostr-hub-path-grid">
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/relays/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Nostr Relays icon" loading="lazy" decoding="async" />
+                <strong>Nostr Relays</strong>
+                <span>The infrastructure route for public relays, paid relays, search relays, NIP-11 metadata, relay selection, monitoring, local relays and Crays Super Nodes.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/relays/relay-market-directory/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Relay market directory icon" loading="lazy" decoding="async" />
+                <strong>Relay market directory</strong>
+                <span>Where to find current Nostr relays, paid relays, public relays, specialized relays, relay health, NIP-11 metadata and relay discovery signals.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/relays/field-guide/relay-selection/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=bigbrotr.com&amp;sz=128" alt="Relay selection icon" loading="lazy" decoding="async" />
+                <strong>Relay selection</strong>
+                <span>A reader-friendly Crays guide to choosing where your notes, profile updates, articles and app data are written and read.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/nips/nip-11/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">11</span>
+                <strong>NIP-11</strong>
+                <span>Archive reference for NIP-11: what it covers, which product behavior it can open up and how we should read it without copying the standards text.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/relays/nip-65-relay-list/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">65</span>
+                <strong>NIP-65</strong>
+                <span>Our archive page for NIP-65, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/crays/crays-super-node/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>Crays Super Node</strong>
+                <span>How Crays Super Nodes can connect venue relays, mesh networking, POS/PMS services, Lightning, identity and hospitality operations.</span>
+              </a>
+
             </div>
           </div>
-          <nav class="crays-nostr-route-cards" aria-label="Main Nostr routes">
-            <a class="crays-nostr-route-card" data-route="start" href="/nostr/what-is-nostr/"><span aria-hidden="true">01</span><strong>Start</strong><small>The clean mental model: keys, clients, relays and why Nostr is useful.</small></a><a class="crays-nostr-route-card" data-route="people" href="/nostr/people/"><span aria-hidden="true">02</span><strong>People</strong><small>Builders, creators, funders, events and culture around the protocol.</small></a><a class="crays-nostr-route-card" data-route="apps" href="/nostr/apps/catalog/"><span aria-hidden="true">03</span><strong>Apps</strong><small>Crays first, then the wider client, signer, wallet and tool market.</small></a><a class="crays-nostr-route-card" data-route="relays" href="/nostr/relay-market-directory/" aria-current="page"><span aria-hidden="true">04</span><strong>Relays</strong><small>Live infrastructure: public relays, paid relays, monitoring and venue paths.</small></a><a class="crays-nostr-route-card" data-route="nips" href="/nostr/nips/complete-index/"><span aria-hidden="true">05</span><strong>NIPs</strong><small>The standards shelf translated into product consequences.</small></a><a class="crays-nostr-route-card" data-route="privacy" href="/nostr/privacy-security/"><span aria-hidden="true">06</span><strong>Privacy</strong><small>Keys, signing, trust, censorship resistance and safer account control.</small></a><a class="crays-nostr-route-card" data-route="wallets" href="/nostr/nip-47-wallet-connect/"><span aria-hidden="true">07</span><strong>Wallets</strong><small>Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records.</small></a><a class="crays-nostr-route-card" data-route="media" href="/nostr/music-video-media/"><span aria-hidden="true">08</span><strong>Media</strong><small>Creators, publishing, music, video, long-form posts and fan access.</small></a><a class="crays-nostr-route-card" data-route="commerce" href="/nostr/content-sale/"><span aria-hidden="true">09</span><strong>Commerce</strong><small>Creator sales, marketplaces, FoundUPS, revenue paths and investor context.</small></a><a class="crays-nostr-route-card" data-route="governance" href="/nostr/dao-governance/"><span aria-hidden="true">10</span><strong>Governance</strong><small>Badges, voting, reputation, moderation, policy and DAO-ready decisions.</small></a><a class="crays-nostr-route-card" data-route="crays" href="/nostr/nostr-and-crays/"><span aria-hidden="true">11</span><strong>Crays</strong><small>How the protocol plugs into Crays, venues, status and governance.</small></a><a class="crays-nostr-route-card" data-route="library" href="/nostr/archive-library/"><span aria-hidden="true">12</span><strong>Library</strong><small>The full archive, research database, source map and long-read routes.</small></a>
-          </nav>
-          <div class="crays-nostr-route-groups">
-            <div class="crays-nostr-route-group"><strong>Market map</strong><div><a href="/nostr/relay-market-directory/">Relay market directory</a><a href="/nostr/relays/" aria-current="page">Nostr relays</a><a href="/nostr/relays/research-atlas/">Relay research atlas</a><a href="/nostr/field-guide/relay-selection/">Relay selection</a><a href="/nostr/deep-dives/relay-business-models/">Relay business models</a><a href="/nostr/deep-dives/blossom-servers-and-relays/">Blossom servers</a><a href="/nostr/deep-dives/outbox-model/">Outbox model</a></div></div><div class="crays-nostr-route-group"><strong>Relay standards</strong><div><a href="/nostr/nips/nip-11/">NIP-11 relay information</a><a href="/nostr/nip-42-relay-auth/">NIP-42 relay auth</a><a href="/nostr/nip-65-relay-list/">NIP-65 relay lists</a><a href="/nostr/nips/nip-66/">NIP-66 relay discovery</a><a href="/nostr/nips/nip-50/">NIP-50 search</a></div></div><div class="crays-nostr-route-group"><strong>Crays relay layer</strong><div><a href="/nostr/crays-super-node/">Super Nodes</a><a href="/nostr/operators-venues/">Operators and venues</a><a href="/nostr/deep-dives/crays-world-local-graph/">Crays World local graph</a><a href="/nostr/deep-dives/nostr-for-venues/">Nostr for venues</a></div></div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-signature" data-signature-route="relays" aria-label="Infrastructure map">
+        <div class="crays-article-shell crays-nostr-hub-signature__grid">
+          <div class="crays-nostr-hub-signature__copy">
+            <p class="crays-nostr-live-kicker">Infrastructure map</p>
+            <h2>Relays are where reach, policy and reliability become visible.</h2>
+            <p>Use this route like an operations map: NIP-11 metadata, read/write policy, paid access, search behavior, uptime, moderation rules and local or venue relay ideas.</p>
+          </div>
+          <figure class="crays-nostr-hub-signature__visual">
+            <img src="/assets/nostr-free-stock/relays-visual.jpg" alt="Relays visual" loading="lazy" decoding="async" />
+            <figcaption>Relay checks</figcaption>
+          </figure>
+          <div class="crays-nostr-hub-signature__tiles">
+
+              <a href="/nostr/relays/guide/">
+                <span aria-hidden="true">01</span>
+                <strong>Read/write</strong>
+                <small>Can people publish, search and fetch reliably?</small>
+              </a>
+
+              <a href="/nostr/nips/nip-11/">
+                <span aria-hidden="true">02</span>
+                <strong>NIP-11</strong>
+                <small>Relay metadata, limits, payment and contact signals.</small>
+              </a>
+
+              <a href="/nostr/relays/field-guide/relay-selection/">
+                <span aria-hidden="true">03</span>
+                <strong>Selection</strong>
+                <small>Which relays make sense for a person, app or community?</small>
+              </a>
+
+              <a href="/nostr/relays/relay-market-directory/">
+                <span aria-hidden="true">04</span>
+                <strong>Operations</strong>
+                <small>Monitor status, spam pressure, policy and stale listings.</small>
+              </a>
+
+          </div>
+          <div class="crays-nostr-hub-signature__cards">
+
+              <a href="/nostr/relays/relay-market-directory/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Relay market icon" loading="lazy" decoding="async" />
+                <strong>Relay market</strong>
+                <span>Browse public, paid and monitored relay pages.</span>
+              </a>
+
+              <a href="/nostr/relays/field-guide/relay-selection/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=bigbrotr.com&amp;sz=128" alt="Relay selection icon" loading="lazy" decoding="async" />
+                <strong>Relay selection</strong>
+                <span>Use the field guide before hardcoding defaults.</span>
+              </a>
+
+              <a href="/nostr/crays/crays-super-node/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>Super Nodes</strong>
+                <span>Connect relay thinking to our venue and community plans.</span>
+              </a>
+
           </div>
 
           <div class="crays-nostr-visual-rail" aria-label="Relays visual shortcuts">
-            <a href="/nostr/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Nostr.watch icon" loading="lazy" decoding="async" /><strong>Nostr.watch</strong></a><a href="/nostr/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=bigbrotr.com&amp;sz=128" alt="BigBrotr icon" loading="lazy" decoding="async" /><strong>BigBrotr</strong></a><a href="/nostr/relays/"><img src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Nostr.co.uk icon" loading="lazy" decoding="async" /><strong>Nostr.co.uk</strong></a><a href="/nostr/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=nostrlist.com&amp;sz=128" alt="NostrList icon" loading="lazy" decoding="async" /><strong>NostrList</strong></a><a href="/nostr/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=relay.nostr.band&amp;sz=128" alt="Nostr.band icon" loading="lazy" decoding="async" /><strong>Nostr.band</strong></a><a href="/nostr/nips/nip-66/"><span>66</span><strong>NIP-66</strong></a>
+            <a href="/nostr/relays/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Nostr.watch icon" loading="lazy" decoding="async" /><strong>Nostr.watch</strong></a><a href="/nostr/relays/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=bigbrotr.com&amp;sz=128" alt="BigBrotr icon" loading="lazy" decoding="async" /><strong>BigBrotr</strong></a><a href="/nostr/relays/"><img src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Nostr.co.uk icon" loading="lazy" decoding="async" /><strong>Nostr.co.uk</strong></a><a href="/nostr/relays/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=nostrlist.com&amp;sz=128" alt="NostrList icon" loading="lazy" decoding="async" /><strong>NostrList</strong></a><a href="/nostr/relays/relay-market-directory/"><img src="https://www.google.com/s2/favicons?domain=relay.nostr.band&amp;sz=128" alt="Nostr.band icon" loading="lazy" decoding="async" /><strong>Nostr.band</strong></a><a href="/nostr/nips/nip-66/"><span>66</span><strong>NIP-66</strong></a>
           </div>
 
+        </div>
+      </section>
+
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-route-map" aria-label="Route map">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Route map</p>
+              <h2>See how this route is organized.</h2>
+              <p>Use these groups when you want context first. They are the short map of what this category contains.</p>
+            </div>
+            <div class="crays-nostr-hub-route-groups">
+
+              <section>
+                <h3>Market map</h3>
+                <nav aria-label="Market map">
+                  <a href="/nostr/relays/relay-market-directory/">Relay market directory</a><a href="/nostr/relays/">Nostr relays</a><a href="/nostr/relays/research-atlas/">Relay research atlas</a><a href="/nostr/relays/field-guide/relay-selection/">Relay selection</a><a href="/nostr/relays/deep-dives/relay-business-models/">Relay business models</a><a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom servers</a><a href="/nostr/relays/deep-dives/outbox-model/">Outbox model</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Relay standards</h3>
+                <nav aria-label="Relay standards">
+                  <a href="/nostr/nips/nip-11/">NIP-11 relay information</a><a href="/nostr/relays/nip-42-relay-auth/">NIP-42 relay auth</a><a href="/nostr/relays/nip-65-relay-list/">NIP-65 relay lists</a><a href="/nostr/nips/nip-66/">NIP-66 relay discovery</a><a href="/nostr/nips/nip-50/">NIP-50 search</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Crays relay layer</h3>
+                <nav aria-label="Crays relay layer">
+                  <a href="/nostr/crays/crays-super-node/">Super Nodes</a><a href="/nostr/crays/operators-venues/">Operators and venues</a><a href="/nostr/crays/deep-dives/crays-world-local-graph/">Crays World local graph</a><a href="/nostr/library/deep-dives/nostr-for-venues/">Nostr for venues</a>
+                </nav>
+              </section>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-shelves" aria-label="Content shelves in this hub">
+        <div class="crays-article-shell">
+          <div class="crays-nostr-hub-section__head">
+            <p class="crays-nostr-live-kicker">What is inside</p>
+            <h2>See the shelves before you dive in.</h2>
+            <p>Each shelf is a smaller map. Open a few first, then use the full directory when you want every page in this route.</p>
+          </div>
+          <div class="crays-nostr-hub-shelf-grid">
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>Deep dives</h3>
+                </div>
+                <nav aria-label="Deep dives links">
+                  <a href="/nostr/relays/deep-dives/outbox-model/">Outbox Model</a><a href="/nostr/relays/deep-dives/relay-business-models/">Relay Business Models</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>01</span>
+                  <h3>Field guides</h3>
+                </div>
+                <nav aria-label="Field guides links">
+                  <a href="/nostr/relays/field-guide/relay-selection/">Relay Selection: Nostr Field Guide</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>NIP explainer pages</h3>
+                </div>
+                <nav aria-label="NIP explainer pages links">
+                  <a href="/nostr/relays/nip-42-relay-auth/">NIP-42: Client Authentication to Relays</a><a href="/nostr/relays/nip-65-relay-list/">NIP-65: Relay List Metadata</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>03</span>
+                  <h3>NIP reference pages</h3>
+                </div>
+                <nav aria-label="NIP reference pages links">
+                  <a href="/nostr/nips/nip-11/">NIP-11: NIP-11</a><a href="/nostr/nips/nip-50/">NIP-50: NIP-50</a><a href="/nostr/nips/nip-66/">NIP-66: NIP-66</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>42</span>
+                  <h3>Relay map</h3>
+                </div>
+                <nav aria-label="Relay map links">
+                  <a href="/nostr/relays/research/authentication-of-clients-to-relays/">Authentication of clients to relays</a><a href="/nostr/relays/research/bitvora-wot-relay/">bitvora/wot-relay</a><a href="/nostr/relays/research/citrine/">Citrine</a><a href="/nostr/relays/research/counting-results/">Counting Results</a><a href="/nostr/relays/research/ditto-relay/">Ditto relay</a>
+                </nav>
+              </article>
+
+          </div>
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-context-wrap">
+
+            <section class="crays-nostr-context-actions" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="relays" data-page-url="https://www.crays.org/nostr/relays/" data-community="relays" aria-label="Help build the Nostr ecosystem around this page">
+              <div>
+                <p class="crays-nostr-live-kicker">Relays contribution</p>
+                <h3>Help build the Nostr ecosystem around this page.</h3>
+                <p>Ask a question, suggest a source, submit a related app/project, or join the discussion. The canonical archive stays stable; community contributions are reviewed separately.</p>
+              </div>
+              <div class="crays-nostr-context-actions__lanes">
+                <div>
+                  <h4>Core actions</h4>
+                  <nav aria-label="Core contribution actions"><a href="/nostr/community/?page=relays&amp;route=relays&amp;type=discussion" data-contribution-action="discuss"><strong>Discuss</strong><span>Start or join the community thread attached to this page.</span></a><a href="/nostr/community/questions/?page=relays&amp;route=relays" data-contribution-action="question"><strong>Ask a question</strong><span>Ask for help with this topic without editing the article.</span></a><a href="/nostr/community/suggestions/?page=relays&amp;route=relays&amp;type=source" data-contribution-action="source"><strong>Suggest source</strong><span>Add a useful reference, NIP, repository, article, app, relay or research link.</span></a><a href="/nostr/community/suggestions/?page=relays&amp;route=relays&amp;type=correction" data-contribution-action="correction"><strong>Suggest correction</strong><span>This does not edit the article directly. Your suggestion goes into review.</span></a><a href="/nostr/community/projects/submit/?page=relays&amp;route=relays" data-contribution-action="relation"><strong>Add related app/project</strong><span>Connect a useful project, app, relay, signer, wallet or profile to this page.</span></a></nav>
+                </div>
+                <div>
+                  <h4>Best fit for Relays</h4>
+                  <nav aria-label="Route-specific contribution actions"><a href="/nostr/community/new-findings/?page=relays&amp;route=relays&amp;type=relay"><strong>Add relay status</strong><span>Submit NIP-11 data, policy, uptime, paid/free or search capability.</span></a><a href="/nostr/community/?page=relays&amp;route=relays&amp;type=recommend"><strong>Recommend relay use</strong><span>Explain when this relay fits onboarding, search, media, paid access or communities.</span></a><a href="/nostr/community/moderation/?page=relays&amp;route=relays&amp;type=report"><strong>Report stale data</strong><span>Flag outage, policy drift, spam risk or broken relay information.</span></a></nav>
+                </div>
+              </div>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-full-directory" aria-label="All pages in this route">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Full directory</p>
+              <h2>Open every page in Relays and Infrastructure.</h2>
+              <p>The deeper guide is still here too. This page stays calm; the full read lives one level down.</p>
+            </div>
+            <a class="crays-nostr-hub-guide-link" href="/nostr/relays/guide/">Read the full Relays guide</a>
 
           <details class="crays-nostr-route-directory" data-route="relays">
             <summary>
               <span class="crays-nostr-route-directory__eyebrow">Relays</span>
               <strong>All Relays pages</strong>
-              <small><b>50 pages in this route</b><em>Deep dives, Field guides, NIP explainer pages and 2 more shelves</em></small>
+              <small><b>51 pages in this route</b><em>Deep dives, Field guides, NIP explainer pages and 2 more shelves</em></small>
               <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
             </summary>
             <div class="crays-nostr-route-directory__shelves">
-              <section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/deep-dives/outbox-model/">Outbox Model</a>
-<a href="/nostr/deep-dives/relay-business-models/">Relay Business Models</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/field-guide/relay-selection/">Relay Selection: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/nip-42-relay-auth/">NIP-42: Client Authentication to Relays</a>
-<a href="/nostr/nip-65-relay-list/">NIP-65: Relay List Metadata</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/nip-11/">NIP-11: NIP-11</a>
+              <section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/relays/deep-dives/outbox-model/">Outbox Model</a>
+<a href="/nostr/relays/deep-dives/relay-business-models/">Relay Business Models</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/relays/field-guide/relay-selection/">Relay Selection: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/relays/nip-42-relay-auth/">NIP-42: Client Authentication to Relays</a>
+<a href="/nostr/relays/nip-65-relay-list/">NIP-65: Relay List Metadata</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/nip-11/">NIP-11: NIP-11</a>
 <a href="/nostr/nips/nip-50/">NIP-50: NIP-50</a>
 <a href="/nostr/nips/nip-66/">NIP-66: NIP-66</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Relay map</h3><div><a href="/nostr/relays/research/authentication-of-clients-to-relays/">Authentication of clients to relays</a>
 <a href="/nostr/relays/research/bitvora-wot-relay/">bitvora/wot-relay</a>
@@ -149,9 +424,9 @@
 <a href="/nostr/relays/research/nip-66-relay-liveness-monitoring/">NIP-66: Relay Liveness Monitoring</a>
 <a href="/nostr/relays/research/nip-86-relay-management-api/">NIP-86: Relay Management API</a>
 <a href="/nostr/relays/research/nostr-design-relays/">Nostr Design — Relays</a>
-<a href="/nostr/relay-market-directory/">Nostr Relay Market Directory</a>
+<a href="/nostr/relays/relay-market-directory/">Nostr Relay Market Directory</a>
 <a href="/nostr/relays/research/nostr-relay-tray/">Nostr Relay Tray</a>
-<a href="/nostr/relays/" aria-current="page">Nostr Relays</a>
+<a href="/nostr/relays/guide/">Nostr Relays</a>
 <a href="/nostr/relays/research/nostr-watch/">Nostr Watch</a>
 <a href="/nostr/relays/research/nostr-rs-relay/">nostr-rs-relay</a>
 <a href="/nostr/relays/research/nostr-co-uk-relays/">nostr.co.uk Relays</a>
@@ -169,6 +444,7 @@
 <a href="/nostr/relays/research/relay-setup-101-nostr-com/">Relay Setup 101 — Nostr.com</a>
 <a href="/nostr/relays/research/relay-based-groups/">Relay-based Groups</a>
 <a href="/nostr/relays/research/relay-nostr-net-info/">relay.nostr.net info</a>
+<a href="/nostr/relays/" aria-current="page">Relays and Infrastructure</a>
 <a href="/nostr/relays/research/route66/">route66</a>
 <a href="/nostr/relays/research/sesseor-raw-relay-list/">sesseor raw relay list</a>
 <a href="/nostr/relays/research/sesseor-nostr-relays-list/">sesseor/nostr-relays-list</a>
@@ -176,136 +452,13 @@
             </div>
           </details>
 
-        </div>
-      </section>
-
-
-      <section class="crays-article-main">
-        <div class="crays-article-reader-shell crays-article-layout">
-          <aside class="crays-article-toc" aria-label="In this article">
-            <p>In this article</p>
-            <a href="#what-a-relay-does"><span>01</span>What a relay does</a>
-<a href="#relay-choice-is-product-design"><span>02</span>Relay choice is product design</a>
-<a href="#moderation-and-association"><span>03</span>Moderation and association</a>
-<a href="#crays-venue-relays"><span>04</span>Crays venue relays</a>
-<a href="#infrastructure-role"><span>05</span>Infrastructure role</a>
-<a href="#read-and-write-behavior"><span>06</span>Read and write behavior</a>
-<a href="#policy-and-access"><span>07</span>Policy and access</a>
-<a href="#monitoring-and-failure-modes"><span>08</span>Monitoring and failure modes</a>
-<a href="#operator-questions"><span>09</span>Operator questions</a>
-<a href="#related-relay-concepts"><span>10</span>Related relay concepts</a>
-<a href="#how-to-place-nostr-relays-on-the-map"><span>11</span>How to place Nostr Relays on the map</a>
-<a href="#what-nostr-relays-should-help-you-decide"><span>12</span>What Nostr Relays should help you decide</a>
-<a href="#the-working-example-behind-nostr-relays"><span>13</span>The working example behind Nostr Relays</a>
-<a href="#source-discipline-for-nostr-relays"><span>14</span>Source discipline for Nostr Relays</a>
-<a href="#before-and-after-reading-nostr-relays"><span>15</span>Before and after reading Nostr Relays</a>
-          </aside>
-
-          <div class="crays-article-content">
-                        <header class="crays-nostr-article-masthead">
-              <div class="crays-nostr-article-masthead__meta"><span>Relays</span><span>7 min read</span><span>Nostr archive</span></div>
-              <h2 class="crays-nostr-article-masthead__title">Nostr Relays</h2>
-              <p class="crays-nostr-article-masthead__deck">How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr.</p>
-            </header>
-            <p>Relays are the server side of Nostr, but they are not a single platform server. <a href="/nostr/clients/">Clients</a> can connect to multiple relays. Relays can choose rules, business models, storage policies and <a href="/nostr/field-guide/communities/">communities</a>.</p>
-<div class="crays-nostr-reader-note"><strong>The quick read</strong><span>How relays store, filter, reject, authenticate, monetize and distribute signed events in Nostr.</span></div>
-
-        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
-          <figure><img src="/assets/stock-lifestyle/crays-tech-03-guests-inside-a-blue-lit-local-venue-environment-representing-mesh-network.webp" alt="We read relay infrastructure as local presence, not abstract hosting." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>We read relay infrastructure as local presence, not abstract hosting.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-hospitality-header-premium-lounge-bar.webp" alt="Venue relays make more sense when you picture rooms, guests and service flow." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Venue relays make more sense when you picture rooms, guests and service flow.</figcaption></figure>
-        </div>
-
-<h2 id="what-a-relay-does">What a relay does</h2>
-<p>A relay receives <a href="/nostr/events-and-kinds/">signed events</a> from <a href="/nostr/clients/">clients</a> and responds to client subscriptions. It can store data, filter data, reject events, require authentication, charge for write access, support search or serve a specific <a href="/nostr/apps/category-community/">community</a>. Relays are deliberately simpler than giant centralized social platforms.</p>
-<ul class="crays-article-list">
-<li><strong>Public relay.</strong> Open reach, usually more spam pressure.</li>
-<li><strong>Paid relay.</strong> Payment can reduce spam and fund infrastructure.</li>
-<li><strong>Community relay.</strong> A group or venue can define membership and rules.</li>
-<li><strong>Archival relay.</strong> Storage and history become the main service.</li>
-<li><strong>Search relay.</strong> Indexing and query quality become the product.</li>
-</ul>
-<h2 id="relay-choice-is-product-design">Relay choice is product design</h2>
-<p>A client with poor relay defaults can feel empty or noisy. A client with thoughtful relay strategy can feel fast and coherent. <a href="/nostr/nip-65-relay-list/">NIP-65</a> <a href="/nostr/nip-65-relay-list/">relay list metadata</a> helps users advertise where they write and where they prefer to receive mentions.</p>
-<h2 id="moderation-and-association">Moderation and association</h2>
-<p>Because relays are privately operated, they can reject content according to their rules. <a href="/nostr/clients/">Clients</a> can select relays and apply their own filters. That creates a plural moderation model: no single universal feed, but also no single universal censor.</p>
-<h2 id="crays-venue-relays">Crays venue relays</h2>
-<p>A <a href="/nostr/nostr-and-crays/">Crays Super Node</a> can turn a venue into a local relay and service layer. That matters for guests, creators, staff, access, payments and local demand. The venue is no longer only a location. It becomes a node in the social and commercial network.</p>
-<h2 id="infrastructure-role">Infrastructure role</h2>
-<p><a href="/nostr/what-is-nostr/">Nostr Relays</a> belongs to the relay infrastructure layer. The page should help you answer one concrete question instead of forcing you through a generic Nostr essay.</p>
-<p>The short version is: How relays store, filter, reject, authenticate, monetize and distribute <a href="/nostr/events-and-kinds/">signed events</a> in Nostr. The deeper version is to see which concept, standard, product surface or human decision actually changes because of it.</p>
-<h2 id="read-and-write-behavior">Read and write behavior</h2>
-<p>The useful machinery around <a href="/nostr/what-is-nostr/">Nostr Relays</a> is <a href="/nostr/keys-identity/">keys</a>, <a href="/nostr/clients/">clients</a>, relays, <a href="/nostr/events-and-kinds/">signed events</a>, <a href="/nostr/nips/complete-index/">NIPs</a>, wallets, <a href="/nostr/apps/category-media/">media</a> and search layers. Name those moving parts directly, because vague protocol language is where confusion starts.</p>
-<p>In the relays chapter, A strong page gives you enough context to recognize the term in another client, NIP, relay policy, wallet prompt or source document without pretending every reader is already a protocol engineer.</p>
-<ul class="crays-article-list">
-<li><strong>Read.</strong> Can <a href="/nostr/clients/">clients</a> fetch the expected <a href="/nostr/events-and-kinds/">events</a>?</li>
-<li><strong>Write.</strong> Does the relay accept and acknowledge useful <a href="/nostr/events-and-kinds/">events</a>?</li>
-<li><strong>Policy.</strong> What is rejected, priced, moderated or authenticated?</li>
-</ul>
-<h2 id="policy-and-access">Policy and access</h2>
-<p>Test <a href="/nostr/what-is-nostr/">Nostr Relays</a> by asking what is signed, where it is stored, who renders it, which relays or services are involved and what survives when the first app or server is unavailable.</p>
-<p>In the relays chapter, That test keeps the explanation tied to reality. It also tells us which internal links belong in the body: foundations first, then standards, then practical examples.</p>
-
-        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
-          <figure><img src="/assets/stock-lifestyle/crays-finance-data-city-lounge.jpg" alt="A relay market is still a people market: trust, uptime, geography and use case." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>A relay market is still a people market: trust, uptime, geography and use case.</figcaption></figure><figure><img src="/assets/stock-lifestyle/crays-finance-fintech-supernodes-city.jpg" alt="The Super Node idea belongs where hospitality and infrastructure meet." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>The Super Node idea belongs where hospitality and infrastructure meet.</figcaption></figure>
-        </div>
-
-<h2 id="monitoring-and-failure-modes">Monitoring and failure modes</h2>
-<p>In the relays chapter, The main risk is that the page can become a definition instead of an explanation. The page should say that plainly and then show the safer reading: what works today, what is experimental and what needs source verification.</p>
-<p>In the relays chapter, This is where dense content beats long content. Give the reader facts, constraints, examples and next steps instead of repeating broad claims about openness or decentralization.</p>
-<h2 id="operator-questions">Operator questions</h2>
-<p>For us, <a href="/nostr/what-is-nostr/">Nostr Relays</a> matters only when it improves understanding or helps a real flow: identity, publishing, relay choice, signing, payment, <a href="/nostr/apps/category-media/">media</a>, moderation, commerce, venue context or <a href="/nostr/field-guide/governance/">governance</a>.</p>
-<p>In the relays chapter, That does not mean every page has to become our product pitch. It means the page should make the connection visible when the topic affects our ecosystem, and stay purely educational when it does not.</p>
-<h2 id="related-relay-concepts">Related relay concepts</h2>
-<p>The best next step from <a href="/nostr/what-is-nostr/">Nostr Relays</a> is not a generic link pile. Connect it to the closest prerequisite, the closest technical standard and the closest practical example.</p>
-<p>In the relays chapter, A large archive becomes useful when every page behaves like a node in a knowledge graph: this explains one thing, points to what it depends on and shows where the idea is used.</p>
-<h2 id="how-to-place-nostr-relays-on-the-map">How to place Nostr Relays on the map</h2>
-<p>Read <a href="/nostr/what-is-nostr/">Nostr Relays</a> as part of the Relays route, not as an isolated entry. Its main surface is network infrastructure: storage, delivery, moderation policy, paid access, relay lists, monitoring and local operation. That framing matters because a Nostr page is useful only when you can see which layer it belongs to and which layer it does not solve by itself.</p>
-<p>The first question is practical: what changes for you if <a href="/nostr/what-is-nostr/">Nostr Relays</a> works well? Sometimes the answer is safer signing, sometimes better relay <a href="/nostr/apps/category-discovery/">discovery</a>, sometimes clearer <a href="/nostr/apps/category-media/">media</a> storage, sometimes a stronger source trail. Keep that question in front of you and the page becomes easier to judge.</p>
-<ul class="crays-article-list">
-<li><strong>Layer.</strong> Relays is the parent route, so the page should send you back to that shelf and sideways into adjacent concepts.</li>
-<li><strong>Evidence.</strong> The current source trail starts with NIP-01, <a href="/nostr/nip-65-relay-list/">NIP-65</a>, <a href="/nostr/nip-42-relay-auth/">NIP-42</a>, <a href="/nostr/source-inventory/nostr-com/">nostr.com</a>. Treat those as anchors, then compare product behavior and NIP support.</li>
-</ul>
-<div class="crays-nostr-hub-grid">
-<a class="crays-nostr-hub-mini-card" data-card-kind="protocol" href="/nostr/relay-market-directory/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Relays hub icon" loading="lazy" decoding="async" /><strong>Relays hub</strong><span>Use the parent route when you need the wider shelf around Nostr Relays.</span></a>
-<a class="crays-nostr-hub-mini-card" data-card-kind="protocol" href="/nostr/nip-65-relay-list/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nip 65 Relay List</strong><span>Read this beside Nostr Relays when you want the neighboring concept.</span></a>
-<a class="crays-nostr-hub-mini-card" data-card-kind="protocol" href="/nostr/nip-42-relay-auth/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nip 42 Relay Auth</strong><span>Read this beside Nostr Relays when you want the neighboring concept.</span></a>
-<a class="crays-nostr-hub-mini-card" data-card-kind="crays" href="/nostr/crays-super-node/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Crays Super Node</strong><span>Read this beside Nostr Relays when you want the neighboring concept.</span></a>
-</div>
-<h2 id="what-nostr-relays-should-help-you-decide">What Nostr Relays should help you decide</h2>
-<p>A good page about <a href="/nostr/what-is-nostr/">Nostr Relays</a> should leave you with a decision, not just recognition. You should know whether it is a protocol primitive, a client behavior, a relay operation, a product example, a research source or our implementation question. That distinction keeps the archive from becoming a flat glossary.</p>
-<p>The common mistake is pretending relays are invisible plumbing when they shape speed, <a href="/nostr/apps/category-discovery/">discovery</a>, spam resistance and availability. We avoid that by making the claim, the evidence and the next step visible. If a statement depends on a NIP, the page should point to that NIP. If it depends on a project, the page should show the project source. If it affects user safety, the page should say what can fail.</p>
-<h2 id="the-working-example-behind-nostr-relays">The working example behind Nostr Relays</h2>
-<p>Use this page with a concrete mental test: a relay page should explain what the relay stores, who operates it, how policies are exposed and what <a href="/nostr/clients/">clients</a> can infer. That example is more useful than a generic definition because Nostr is not one product. The same signed event can be read by different clients, stored by different relays and interpreted through different product choices.</p>
-<p>This is also why internal links matter. When the page mentions <a href="/nostr/keys-identity/">keys</a>, <a href="/nostr/clients/">clients</a>, relays, <a href="/nostr/events-and-kinds/">events</a>, <a href="/nostr/nip-57-zaps-lightning/">zaps</a>, <a href="/nostr/deep-dives/blossom-servers-and-relays/">Blossom</a>, <a href="/nostr/deep-dives/safebox-sovereign-wallet-records/">Cashu</a>, <a href="/nostr/deep-dives/foundups-agent-compute-focus-network/">FoundUPS</a> or <a href="/nostr/nips/complete-index/">NIPs</a>, those words should lead to the page that explains the concept more deeply. The goal is not to trap you in tabs; the goal is to let you move with context.</p>
-<h2 id="source-discipline-for-nostr-relays">Source discipline for Nostr Relays</h2>
-<p>The source list is part of the content, not decoration. For Nostr Relays, use primary protocol documents first when the claim is technical, project repositories or product pages when the claim is about an app, and research or directory sources when the claim is about ecosystem position. If the sources disagree, the page should show the uncertainty instead of smoothing it away.</p>
-<p>That source discipline is how a large archive stays trustworthy. It also helps learning: you get a short explanation first, then a route to the source that proves or complicates it. The page should feel like a guided chapter, but the evidence should still be close enough to inspect.</p>
-<h2 id="before-and-after-reading-nostr-relays">Before and after reading Nostr Relays</h2>
-<p>Before reading Nostr Relays, make sure you know the nearby base concepts: a <a href="/nostr/keys-identity/">public key</a> identifies, a <a href="/nostr/keys-identity/">private key</a> signs, relays carry <a href="/nostr/events-and-kinds/">signed events</a>, <a href="/nostr/clients/">clients</a> render those events, and <a href="/nostr/nips/complete-index/">NIPs</a> describe shared behavior. You do not need to memorize the whole protocol, but those pieces prevent most confusion.</p>
-<p>After reading Nostr Relays, the next useful move is to compare it with one neighboring page. If this is an app, compare it with a signer, relay or wallet page. If this is a NIP, compare it with the product behavior it enables. If this is a research source, compare it with the hub that uses it. That is how the archive becomes a learning path instead of a pile.</p>
-
-
-            <div class="crays-nostr-related">
-              <h2>Read next from Nostr Relays</h2>
-              <div class="crays-nostr-related__links">
-                <a href="/nostr/relay-market-directory/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.watch&amp;sz=128" alt="Nostr Relay Market Directory icon" loading="lazy" decoding="async" /><strong>Nostr Relay Market Directory</strong><small>Relay market</small></a>
-<a href="/nostr/nip-65-relay-list/"><span class="crays-nostr-card-icon" aria-hidden="true">65</span><strong>NIP-65: Relay List Metadata</strong><small>Relay market</small></a>
-<a href="/nostr/nip-42-relay-auth/"><span class="crays-nostr-card-icon" aria-hidden="true">42</span><strong>NIP-42: Client Authentication to Relays</strong><small>Relay market</small></a>
-<a href="/nostr/crays-super-node/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Crays Super Node and Nostr</strong><small>Crays implementation</small></a>
-<a href="/nostr/operators-venues/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Nostr for Operators and Venues</strong><small>Crays implementation</small></a>
-<a href="/nostr/moderation-discovery/"><span class="crays-nostr-card-icon" aria-hidden="true">MA</span><strong>Moderation and Discovery on Nostr</strong><small>Core concepts</small></a>
-<a href="/nostr/clients/"><span class="crays-nostr-card-icon" aria-hidden="true">NC</span><strong>Nostr Clients</strong><small>Apps and clients</small></a>
-<a href="/nostr/events-and-kinds/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Nostr Events and Event Kinds</strong><small>Core concepts</small></a>
-              </div>
-            </div>
-
-
-            <div class="crays-article-end">
-              <a href="/nostr/">Back to the Crays Nostr page</a>
-            </div>
           </div>
-        </div>
+        </section>
+
       </section>
-    </article>
+
+
+
   </main>
 
 
@@ -320,6 +473,7 @@
         </div>
         <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
       </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
       <div class="legal-footer-bottom">
         <nav class="legal-footer-links" aria-label="Legal pages">
           <a href="/legal/imprint/">Imprint</a>
@@ -370,8 +524,11 @@
         button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
       });
     }());</script>
-  </footer>
+</footer>
 
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
 <script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
 </body>
 </html>

@@ -23,6 +23,13 @@ const mimeTypes = new Map([
   [".woff2", "font/woff2"],
 ]);
 
+const apiRoutes = new Map([
+  ["/api/nostr/config", () => import("./api/nostr/config.mjs").then((module) => module.default)],
+  ["/api/nostr/events", () => import("./api/nostr/events.mjs").then((module) => module.default)],
+  ["/api/nostr/publish", () => import("./api/nostr/publish.mjs").then((module) => module.default)],
+  ["/api/nostr/moderation", () => import("./api/nostr/moderation.mjs").then((module) => module.default)],
+]);
+
 function resolveRequestPath(requestUrl) {
   const url = new URL(requestUrl, `http://localhost:${port}`);
   const decoded = decodeURIComponent(url.pathname);
@@ -50,6 +57,16 @@ function resolveRequestPath(requestUrl) {
 
 const server = createServer(async (request, response) => {
   try {
+    const requestUrl = new URL(request.url || "/", `http://localhost:${port}`);
+    const apiPath = requestUrl.pathname.replace(/\/$/, "");
+    const loadApiHandler = apiRoutes.get(apiPath);
+
+    if (loadApiHandler) {
+      const handler = await loadApiHandler();
+      await handler(request, response);
+      return;
+    }
+
     const filePath = resolveRequestPath(request.url || "/");
     if (!filePath) {
       response.writeHead(403);

@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nostr Apps Directory Guide | Crays Nostr Archive</title>
+  <meta name="description" content="How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Nostr apps, Nostr directory, Nostr clients, Awesome Nostr, Apps guide" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Nostr Apps Directory Guide | Crays Nostr Archive" />
+  <meta property="og:description" content="How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products." />
+  <meta property="og:url" content="https://www.crays.org/nostr/apps/guide/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/apps/guide/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/apps/guide/","headline":"Nostr Apps Directory Guide","description":"How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Nostr Apps Directory Guide","item":"https://www.crays.org/nostr/apps/guide/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"Complete Nostr Apps Catalog","url":"https://www.crays.org/nostr/apps/catalog/"},{"@type":"ListItem","position":15,"name":"Nostr App and Tool Profiles","url":"https://www.crays.org/nostr/library/app-profiles/"},{"@type":"ListItem","position":16,"name":"Nostr Clients","url":"https://www.crays.org/nostr/apps/clients/"},{"@type":"ListItem","position":17,"name":"Nostr Developer Tools","url":"https://www.crays.org/nostr/apps/developer-tools/"},{"@type":"ListItem","position":18,"name":"Nostr Resources and Links","url":"https://www.crays.org/nostr/basics/resources/"},{"@type":"ListItem","position":19,"name":"NIP-47: Nostr Wallet Connect","url":"https://www.crays.org/nostr/wallets/nip-47-wallet-connect/"},{"@type":"ListItem","position":20,"name":"Nostr Keys and Identity","url":"https://www.crays.org/nostr/privacy/keys-identity/"},{"@type":"ListItem","position":21,"name":"NIP-07: Browser Signers","url":"https://www.crays.org/nostr/apps/nip-07-signers/"},{"@type":"ListItem","position":22,"name":"NIP-57: Lightning Zaps","url":"https://www.crays.org/nostr/wallets/nip-57-zaps-lightning/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-apps">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps" aria-current="page">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+
+
+    <article>
+
+      <section class="crays-article-hero crays-nostr-hub-hero" style="--nostr-hero-bg: url(https://images.rawpixel.com/editor_1024/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEyL2ZsNTE4NTMwODU4NzItaW1hZ2UuanBn.jpg); --nostr-hero-bg-position: center 38%;">
+        <div class="crays-article-shell crays-article-hero__grid">
+          <div class="crays-article-hero__copy">
+            <p class="crays-article-eyebrow">Nostr archive</p>
+            <h1>Nostr Apps Directory Guide</h1>
+            <p class="crays-article-deck">How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products.</p>
+          </div>
+
+            <div class="crays-nostr-hero-visual" style="--nostr-hero-visual-position: center 34%;">
+              <figure>
+                <img src="https://cdn.stocksnap.io/img-thumbs/960w/TO1A2BRB6H.jpg" alt="Nostr Apps Directory Guide: a focused visual for this route." loading="eager" decoding="async" referrerpolicy="no-referrer" />
+              </figure>
+
+              <div class="crays-nostr-hero-signal">
+                <span>Route</span>
+                <strong>The product layer</strong>
+                <small>Clients, signers, publishing tools, wallets and weird useful experiments.</small>
+              </div>
+              <div class="crays-nostr-hero-pins">
+                <a href="/nostr/apps/catalog/">Catalog</a>
+<a href="/nostr/apps/nip-07-signers/">Signers</a>
+<a href="/nostr/community/nostr-login/">Login</a>
+              </div>
+            </div>
+
+        </div>
+      </section>
+
+
+
+
+
+      <section class="crays-nostr-route-board" aria-label="Nostr archive navigation" data-nostr-route="apps">
+        <div class="crays-article-reader-shell crays-nostr-route-board__inner">
+          <div class="crays-nostr-route-board__top">
+            <div class="crays-nostr-route-board__intro">
+              <span>App route</span>
+              <h2>Apps and products guide</h2>
+              <p>Start with Crays, then read the market around it: clients, signers, wallets, publishing tools, discovery layers, media apps and experiments that show what Nostr can become.</p>
+            </div>
+            <div class="crays-nostr-archive-finder" role="search">
+              <label for="crays-nostr-finder">Search the Nostr atlas</label>
+              <input id="crays-nostr-finder" type="search" placeholder="Search apps, NIPs, people, Crays topics" data-nostr-finder-input />
+              <div class="crays-nostr-archive-finder__results" data-nostr-finder-results hidden>
+                <p class="crays-nostr-archive-finder__status" data-nostr-finder-status>Loading the full atlas index.</p>
+                <div class="crays-nostr-archive-finder__list" data-nostr-finder-list role="listbox" aria-label="Nostr atlas search results"></div>
+              </div>
+            </div>
+          </div>
+          <nav class="crays-nostr-route-cards" aria-label="Main Nostr routes">
+            <a class="crays-nostr-route-card" data-route="start" href="/nostr/start/"><span aria-hidden="true">01</span><strong>Start</strong><small>The clean mental model: keys, clients, relays and why Nostr is useful.</small></a><a class="crays-nostr-route-card" data-route="people" href="/nostr/people/"><span aria-hidden="true">02</span><strong>People</strong><small>Builders, creators, funders, events and culture around the protocol.</small></a><a class="crays-nostr-route-card" data-route="apps" href="/nostr/apps/" aria-current="page"><span aria-hidden="true">03</span><strong>Apps</strong><small>Our stack first, then the wider client, signer, wallet and tool market.</small></a><a class="crays-nostr-route-card" data-route="relays" href="/nostr/relays/"><span aria-hidden="true">04</span><strong>Relays</strong><small>Live infrastructure: public relays, paid relays, monitoring and venue paths.</small></a><a class="crays-nostr-route-card" data-route="nips" href="/nostr/nips/"><span aria-hidden="true">05</span><strong>NIPs</strong><small>The standards shelf translated into product consequences.</small></a><a class="crays-nostr-route-card" data-route="privacy" href="/nostr/privacy/"><span aria-hidden="true">06</span><strong>Privacy</strong><small>Keys, signing, trust, censorship resistance and safer account control.</small></a><a class="crays-nostr-route-card" data-route="wallets" href="/nostr/wallets/"><span aria-hidden="true">07</span><strong>Wallets</strong><small>Zaps, Lightning, Nostr Wallet Connect, Safebox and sovereign records.</small></a><a class="crays-nostr-route-card" data-route="media" href="/nostr/media/"><span aria-hidden="true">08</span><strong>Media</strong><small>Creators, publishing, music, video, long-form posts and fan access.</small></a><a class="crays-nostr-route-card" data-route="commerce" href="/nostr/commerce/"><span aria-hidden="true">09</span><strong>Commerce</strong><small>Creator sales, marketplaces, FoundUPS, revenue paths and investor context.</small></a><a class="crays-nostr-route-card" data-route="governance" href="/nostr/governance/"><span aria-hidden="true">10</span><strong>Governance</strong><small>Badges, voting, reputation, moderation, policy and DAO-ready decisions.</small></a><a class="crays-nostr-route-card" data-route="crays" href="/nostr/crays/"><span aria-hidden="true">11</span><strong>Crays</strong><small>How Nostr plugs into our profiles, venues, status and governance.</small></a><a class="crays-nostr-route-card" data-route="library" href="/nostr/library/"><span aria-hidden="true">12</span><strong>Library</strong><small>The full archive, research database, source map and long-read routes.</small></a>
+          </nav>
+          <div class="crays-nostr-route-groups">
+            <div class="crays-nostr-route-group"><strong>Start with apps</strong><div><a href="/nostr/apps/catalog/">Complete app catalog</a><a href="/nostr/apps/">Apps overview</a><a href="/nostr/library/app-profiles/">App profiles</a><a href="/nostr/apps/research-atlas/">Research app atlas</a><a href="/nostr/apps/developer-stack-research/">Developer stack research</a><a href="/nostr/community/projects/submit/">Submit project</a><a href="/nostr/apps/clients/">Clients</a><a href="/nostr/apps/developer-tools/">Developer tools</a><a href="/nostr/community/nostr-login/">Nostr login</a></div></div><div class="crays-nostr-route-group"><strong>Major examples</strong><div><a href="/nostr/apps/damus/">Damus</a><a href="/nostr/apps/amethyst/">Amethyst</a><a href="/nostr/apps/safebox/">Safebox</a><a href="/nostr/library/deep-dives/blossom-servers-and-relays/">Blossom Servers</a><a href="/nostr/apps/primal/">Primal</a><a href="/nostr/apps/iris/">Iris</a><a href="/nostr/apps/coracle/">Coracle</a><a href="/nostr/apps/yakihonne/">Yakihonne</a><a href="/nostr/apps/alby/">Alby</a><a href="/nostr/apps/foundups-agent/">FoundUPS Agent</a><a href="/nostr/apps/amber/">Amber</a><a href="/nostr/apps/wavlake/">Wavlake</a></div></div><div class="crays-nostr-route-group"><strong>Product categories</strong><div><a href="/nostr/apps/category-microblogging/">Microblogging</a><a href="/nostr/apps/category-photos/">Photos</a><a href="/nostr/apps/category-streaming/">Streaming</a><a href="/nostr/apps/category-blogging/">Blogging</a><a href="/nostr/apps/category-group-chat/">Group chat</a><a href="/nostr/apps/category-discovery/">Discovery</a><a href="/nostr/apps/category-marketplace/">Marketplaces</a><a href="/nostr/apps/category-music/">Music</a><a href="/nostr/apps/category-signers/">Signers</a></div></div>
+          </div>
+
+          <div class="crays-nostr-visual-rail" aria-label="Apps visual shortcuts">
+            <a href="https://www.crays.net" target="_blank" rel="noreferrer noopener"><img src="/assets/brand/crays-mark.svg" alt="Crays icon" loading="lazy" decoding="async" /><strong>Crays</strong></a><a href="/nostr/apps/damus/"><img src="https://www.google.com/s2/favicons?domain=damus.io&amp;sz=128" alt="Damus icon" loading="lazy" decoding="async" /><strong>Damus</strong></a><a href="/nostr/apps/amethyst/"><img src="https://www.google.com/s2/favicons?domain=amethyst.social&amp;sz=128" alt="Amethyst icon" loading="lazy" decoding="async" /><strong>Amethyst</strong></a><a href="/nostr/apps/primal/"><img src="https://www.google.com/s2/favicons?domain=primal.net&amp;sz=128" alt="Primal icon" loading="lazy" decoding="async" /><strong>Primal</strong></a><a href="/nostr/apps/coracle/"><img src="https://www.google.com/s2/favicons?domain=coracle.social&amp;sz=128" alt="Coracle icon" loading="lazy" decoding="async" /><strong>Coracle</strong></a><a href="/nostr/apps/iris/"><img src="https://www.google.com/s2/favicons?domain=iris.to&amp;sz=128" alt="Iris icon" loading="lazy" decoding="async" /><strong>Iris</strong></a><a href="/nostr/apps/nostrudel/"><img src="https://www.google.com/s2/favicons?domain=nostrudel.ninja&amp;sz=128" alt="noStrudel icon" loading="lazy" decoding="async" /><strong>noStrudel</strong></a><a href="/nostr/apps/yakihonne/"><img src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" /><strong>YakiHonne</strong></a><a href="/nostr/apps/alby/"><img src="https://www.google.com/s2/favicons?domain=getalby.com&amp;sz=128" alt="Alby icon" loading="lazy" decoding="async" /><strong>Alby</strong></a>
+          </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="apps">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Apps</span>
+              <strong>All Apps pages</strong>
+              <small><b>281 pages in this route</b><em>App catalog entries, App categories, App orientation and 2 more shelves</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>App catalog entries</h3><div><a href="/nostr/apps/catalog/0xchat/">0xchat</a>
+<a href="/nostr/apps/catalog/aegis/">Aegis</a>
+<a href="/nostr/apps/catalog/alby/">Alby</a>
+<a href="/nostr/apps/catalog/alphaama/">alphaama</a>
+<a href="/nostr/apps/catalog/amber/">Amber</a>
+<a href="/nostr/apps/catalog/amethyst/">Amethyst</a>
+<a href="/nostr/apps/catalog/ants/">ants</a>
+<a href="/nostr/apps/catalog/boris/">Boris</a>
+<a href="/nostr/apps/catalog/bouquet/">Bouquet</a>
+<a href="/nostr/apps/catalog/chachi/">Chachi</a>
+<a href="/nostr/apps/catalog/citrine/">Citrine</a>
+<a href="/nostr/apps/catalog/coop/">Coop</a>
+<a href="/nostr/apps/catalog/coracle/">Coracle</a>
+<a href="/nostr/apps/catalog/damus/">Damus</a>
+<a href="/nostr/apps/catalog/ditto/">Ditto</a>
+<a href="/nostr/apps/catalog/dtan/">DTAN</a>
+<a href="/nostr/apps/catalog/emojito/">Emojito</a>
+<a href="/nostr/apps/catalog/flotilla/">Flotilla</a>
+<a href="/nostr/apps/catalog/formstr/">Formstr</a>
+<a href="/nostr/apps/catalog/freefrom/">FreeFrom</a>
+<a href="/nostr/apps/catalog/futr/">futr</a>
+<a href="/nostr/apps/catalog/gifbuddy/">GIF Buddy</a>
+<a href="/nostr/apps/catalog/gossip/">Gossip</a>
+<a href="/nostr/apps/catalog/grimoire/">Grimoire</a>
+<a href="/nostr/apps/catalog/habla/">Habla</a>
+<a href="/nostr/apps/catalog/iris/">Iris</a>
+<a href="/nostr/apps/catalog/jumble/">Jumble</a>
+<a href="/nostr/apps/catalog/keys-band/">Keys Band</a>
+<a href="/nostr/apps/catalog/lantern/">Lantern</a>
+<a href="/nostr/apps/catalog/lumilumi/">lumilumi</a>
+<a href="/nostr/apps/catalog/makimono/">MAKIMONO</a>
+<a href="/nostr/apps/catalog/narr/">Narr</a>
+<a href="/nostr/apps/catalog/nostr-nests/">Nests</a>
+<a href="/nostr/apps/catalog/noflux/">Noflux</a>
+<a href="/nostr/apps/catalog/nos-social/">Nos Social</a>
+<a href="/nostr/apps/catalog/nos2x/">nos2x</a>
+<a href="/nostr/apps/catalog/nosotros/">Nosotros</a>
+<a href="/nostr/apps/catalog/nostr-relay-tray/">Nostr Relay Tray</a>
+<a href="/nostr/apps/catalog/nostrame/">Nostrame</a>
+<a href="/nostr/apps/catalog/nostree/">Nostree</a>
+<a href="/nostr/apps/catalog/nostria/">Nostria</a>
+<a href="/nostr/apps/catalog/nostrmo/">Nostrmo</a>
+<a href="/nostr/apps/catalog/nostrocket/">Nostrocket</a>
+<a href="/nostr/apps/catalog/nostrudel/">noStrudel</a>
+<a href="/nostr/apps/catalog/nostter/">Nostter</a>
+<a href="/nostr/apps/catalog/nostur/">Nostur</a>
+<a href="/nostr/apps/catalog/nstart/">Nstart.me</a>
+<a href="/nostr/apps/catalog/obsidian-nostr-writer/">Obsidian Nostr Writer</a>
+<a href="/nostr/apps/catalog/olas/">Olas</a>
+<a href="/nostr/apps/catalog/oracolo/">Oracolo</a>
+<a href="/nostr/apps/catalog/peridot/">Peridot</a>
+<a href="/nostr/apps/catalog/phoenix/">Phoenix</a>
+<a href="/nostr/apps/catalog/plebeian-market/">Plebeian Market</a>
+<a href="/nostr/apps/catalog/primal/">Primal</a>
+<a href="/nostr/apps/catalog/primal-studio/">Primal Studio</a>
+<a href="/nostr/apps/catalog/primal-web/">Primal Web</a>
+<a href="/nostr/apps/catalog/pyramid/">Pyramid</a>
+<a href="/nostr/apps/catalog/relay-tools/">Relay Tools</a>
+<a href="/nostr/apps/catalog/shakespeare/">Shakespeare</a>
+<a href="/nostr/apps/catalog/shopstr/">Shopstr</a>
+<a href="/nostr/apps/catalog/shosho/">Shosho</a>
+<a href="/nostr/apps/catalog/slidestr/">Slidestr</a>
+<a href="/nostr/apps/catalog/treasures/">Treasures</a>
+<a href="/nostr/apps/catalog/wikifreedia/">Wikifreedia</a>
+<a href="/nostr/apps/catalog/wikistr/">Wikistr</a>
+<a href="/nostr/apps/catalog/yakbak/">YakBak</a>
+<a href="/nostr/apps/catalog/yakihonne/">YakiHonne</a>
+<a href="/nostr/apps/catalog/yondar/">Yondar</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App categories</h3><div><a href="/nostr/apps/category-audio/">Nostr Apps: Audio</a>
+<a href="/nostr/apps/category-community/">Nostr Apps: Community</a>
+<a href="/nostr/apps/category-curation/">Nostr Apps: Curation</a>
+<a href="/nostr/apps/category-direct-message/">Nostr Apps: Direct message</a>
+<a href="/nostr/apps/category-discovery/">Nostr Apps: Discovery</a>
+<a href="/nostr/apps/category-crazy/">Nostr Apps: Experiments</a>
+<a href="/nostr/apps/category-file-sharing/">Nostr Apps: File sharing</a>
+<a href="/nostr/apps/category-group-chat/">Nostr Apps: Group chat</a>
+<a href="/nostr/apps/category-meatspace/">Nostr Apps: Meatspace</a>
+<a href="/nostr/apps/category-onboarding/">Nostr Apps: Onboarding</a>
+<a href="/nostr/apps/category-signers/">Nostr Apps: Signers</a>
+<a href="/nostr/apps/category-tools/">Nostr Apps: Tools</a>
+<a href="/nostr/apps/category-uncategorized/">Nostr Apps: Uncategorized</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App orientation</h3><div><a href="/nostr/apps/">Apps and Products</a>
+<a href="/nostr/apps/clients/">Nostr Clients</a>
+<a href="/nostr/apps/developer-tools/">Nostr Developer Tools</a>
+<a href="/nostr/community/nostr-login/">Nostr Login</a>
+<a href="/nostr/community/projects/submit/">Submit a Nostr Project</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App profiles</h3><div><a href="/nostr/apps/research/0xchat/">0xchat</a>
+<a href="/nostr/apps/research/advanced-nostr-search/">advanced-nostr-search</a>
+<a href="/nostr/apps/research/aegis/">Aegis</a>
+<a href="/nostr/apps/research/alby/">Alby</a>
+<a href="/nostr/apps/research/alby-go/">Alby Go</a>
+<a href="/nostr/apps/research/alby-hub/">Alby Hub</a>
+<a href="/nostr/apps/developer-stack/alby-hub/">Alby Hub</a>
+<a href="/nostr/apps/developer-stack/alby-sdk/">Alby SDK</a>
+<a href="/nostr/apps/amber/">Amber</a>
+<a href="/nostr/apps/research/amber/">Amber</a>
+<a href="/nostr/apps/amethyst/">Amethyst</a>
+<a href="/nostr/apps/research/amethyst/">Amethyst</a>
+<a href="/nostr/apps/research-atlas/">App and product research</a>
+<a href="/nostr/apps/research/application-specific-data/">Application-specific data</a>
+<a href="/nostr/apps/developer-stack/blossom/">Blossom</a>
+<a href="/nostr/apps/developer-stack/blossom-spec-nip-b7/">Blossom spec NIP-B7</a>
+<a href="/nostr/apps/research/bookstr/">Bookstr</a>
+<a href="/nostr/apps/research/boris/">Boris</a>
+<a href="/nostr/apps/research/bouquet/">Bouquet</a>
+<a href="/nostr/apps/research/calendar-by-formstr/">Calendar by Formstr</a>
+<a href="/nostr/apps/research/chachi/">Chachi</a>
+<a href="/nostr/apps/catalog/">Complete Nostr Apps Catalog</a>
+<a href="/nostr/apps/coracle/">Coracle</a>
+<a href="/nostr/apps/research/coracle/">Coracle</a>
+<a href="/nostr/apps/research/corny-chat/">Corny Chat</a>
+<a href="/nostr/crays/">Crays</a>
+<a href="/nostr/apps/damus/">Damus</a>
+<a href="/nostr/apps/research/damus/">Damus</a>
+<a href="/nostr/apps/developer-stack-research/">Developer stack research</a>
+<a href="/nostr/apps/ditto/">Ditto</a>
+<a href="/nostr/apps/research/ditto/">Ditto</a>
+<a href="/nostr/apps/research/divine/">diVine</a>
+<a href="/nostr/apps/research/docstr/">Docstr</a>
+<a href="/nostr/apps/research/dtan/">DTAN</a>
+<a href="/nostr/apps/research/emojito/">Emojito</a>
+<a href="/nostr/apps/research/flotilla/">Flotilla</a>
+<a href="/nostr/apps/research/flycat/">Flycat</a>
+<a href="/nostr/apps/research/formstr/">Formstr</a>
+<a href="/nostr/apps/research/fountain/">Fountain</a>
+<a href="/nostr/apps/research/freefrom/">FreeFrom</a>
+<a href="/nostr/apps/research/fundstr/">Fundstr</a>
+<a href="/nostr/apps/research/futr/">futr</a>
+<a href="/nostr/apps/research/gif-buddy/">GIF Buddy</a>
+<a href="/nostr/apps/research/gittr/">Gittr</a>
+<a href="/nostr/apps/developer-stack/go-nostr/">go-nostr</a>
+<a href="/nostr/apps/gossip/">Gossip</a>
+<a href="/nostr/apps/research/gossip/">Gossip</a>
+<a href="/nostr/apps/research/grimoire/">Grimoire</a>
+<a href="/nostr/apps/research/groups-nip-29/">Groups NIP-29</a>
+<a href="/nostr/apps/habla/">Habla</a>
+<a href="/nostr/apps/research/habla/">Habla</a>
+<a href="/nostr/apps/developer-stack/hello-nostr-resources/">Hello Nostr — Resources</a>
+<a href="/nostr/apps/research/highlighter/">Highlighter</a>
+<a href="/nostr/apps/research/hivetalk/">HiveTalk</a>
+<a href="/nostr/apps/developer-stack/homebrew-nostr/">homebrew-nostr</a>
+<a href="/nostr/apps/developer-stack/hornet-storage/">HORNET Storage</a>
+<a href="/nostr/apps/developer-stack/hugo2nostr/">Hugo2Nostr</a>
+<a href="/nostr/apps/developer-stack/hypernote/">HyperNote</a>
+<a href="/nostr/apps/iris/">Iris</a>
+<a href="/nostr/apps/research/iris/">Iris</a>
+<a href="/nostr/apps/research/jumble/">Jumble</a>
+<a href="/nostr/apps/developer-stack/kanbanstr/">kanbanstr</a>
+<a href="/nostr/apps/research/keys-band/">Keys Band</a>
+<a href="/nostr/apps/research/listr/">Listr</a>
+<a href="/nostr/apps/research/lnbits-nostrmarket/">LNBits Nostrmarket</a>
+<a href="/nostr/apps/research/lume/">Lume</a>
+<a href="/nostr/apps/research/lumilumi/">Lumilumi</a>
+<a href="/nostr/apps/research/lumina/">LUMINA</a>
+<a href="/nostr/apps/research/mapstr/">Mapstr</a>
+<a href="/nostr/apps/developer-stack/marmot-protocol/">Marmot Protocol</a>
+<a href="/nostr/apps/developer-stack/matrix-nostr-bridge/">matrix-nostr-bridge</a>
+<a href="/nostr/apps/research/meetstr/">Meetstr</a>
+<a href="/nostr/apps/research/memestr/">Memestr</a>
+<a href="/nostr/apps/research/minds/">Minds</a>
+<a href="/nostr/apps/developer-stack/monstr/">monstr</a>
+<a href="/nostr/apps/research/mostard/">mostard</a>
+<a href="/nostr/apps/research/mostro/">Mostro</a>
+<a href="/nostr/apps/developer-stack/nak/">nak</a>
+<a href="/nostr/apps/developer-stack/nak-nostr-army-knife/">nak — Nostr Army Knife</a>
+<a href="/nostr/apps/research/nalgorithm/">Nalgorithm</a>
+<a href="/nostr/apps/research/narr/">Narr</a>
+<a href="/nostr/apps/developer-stack/nashboard/">nashboard</a>
+<a href="/nostr/apps/developer-stack/ndk/">NDK</a>
+<a href="/nostr/apps/developer-stack/negentropy/">Negentropy</a>
+<a href="/nostr/apps/developer-stack/ngit/">ngit</a>
+<a href="/nostr/apps/research/noflux/">Noflux</a>
+<a href="/nostr/apps/nos/">Nos</a>
+<a href="/nostr/apps/research/nos-social/">Nos Social</a>
+<a href="/nostr/apps/research/nos2x/">nos2x</a>
+<a href="/nostr/apps/developer-stack/nosbin/">nosbin</a>
+<a href="/nostr/apps/developer-stack/noscl/">noscl</a>
+<a href="/nostr/apps/research/nostorg-feature-matrix/">Nostorg Feature Matrix</a>
+<a href="/nostr/apps/developer-stack/nostr-app-manager/">Nostr App Manager</a>
+<a href="/nostr/apps/guide/" aria-current="page">Nostr Apps Directory Guide</a>
+<a href="/nostr/apps/developer-stack/nostr-clients-feature-list/">Nostr clients feature list</a>
+<a href="/nostr/apps/research/nostr-compass-projects/">Nostr Compass — Projects</a>
+<a href="/nostr/apps/developer-stack/nostr-developer-guide/">Nostr Developer Guide</a>
+<a href="/nostr/apps/ndk/">Nostr Development Kit</a>
+<a href="/nostr/apps/developer-stack/nostr-events-monitor/">Nostr Events Monitor</a>
+<a href="/nostr/apps/developer-stack/nostr-mcp-server/">Nostr MCP Server</a>
+<a href="/nostr/apps/research/nostr-nests/">Nostr Nests</a>
+<a href="/nostr/apps/developer-stack/nostr-playground/">Nostr Playground</a>
+<a href="/nostr/apps/research/nostr-writer/">Nostr Writer</a>
+<a href="/nostr/apps/developer-stack/nostr-post-checker/">nostr-post-checker</a>
+<a href="/nostr/apps/developer-stack/nostr-protocol-nostr/">nostr-protocol/nostr</a>
+<a href="/nostr/apps/developer-stack/nostr-ruby/">nostr-ruby</a>
+<a href="/nostr/apps/developer-stack/nostr-sdk/">nostr-sdk</a>
+<a href="/nostr/apps/developer-stack/nostr-sdk-ffi/">nostr-sdk-ffi</a>
+<a href="/nostr/apps/developer-stack/nostr-sdk-flutter/">nostr-sdk-flutter</a>
+<a href="/nostr/apps/developer-stack/nostr-to-rss/">nostr-to-rss</a>
+<a href="/nostr/apps/developer-stack/nostr-tools/">nostr-tools</a>
+<a href="/nostr/apps/nostr-band/">Nostr.band</a>
+<a href="/nostr/apps/developer-stack/nostr-build/">nostr.build</a>
+<a href="/nostr/apps/research/nostr-co-uk-clients/">nostr.co.uk Clients</a>
+<a href="/nostr/apps/research/nostr-how-clients/">Nostr.how — Clients</a>
+<a href="/nostr/apps/developer-stack/nostr-hs/">nostr.hs</a>
+<a href="/nostr/apps/developer-stack/nostrability/">Nostrability</a>
+<a href="/nostr/apps/research/nostrapps/">NostrApps</a>
+<a href="/nostr/apps/research/nostrapps-category-audio/">NostrApps category — Audio</a>
+<a href="/nostr/apps/research/nostrapps-category-career/">NostrApps category — Career</a>
+<a href="/nostr/apps/research/nostrapps-category-community/">NostrApps category — Community</a>
+<a href="/nostr/apps/research/nostrapps-category-curation/">NostrApps category — Curation</a>
+<a href="/nostr/apps/research/nostrapps-category-direct-message/">NostrApps category — Direct Message</a>
+<a href="/nostr/apps/research/nostrapps-category-discovery/">NostrApps category — Discovery</a>
+<a href="/nostr/apps/research/nostrapps-category-file-sharing/">NostrApps category — File Sharing</a>
+<a href="/nostr/apps/research/nostrapps-category-group-chat/">NostrApps category — Group Chat</a>
+<a href="/nostr/apps/research/nostrapps-category-meatspace/">NostrApps category — Meatspace</a>
+<a href="/nostr/apps/research/nostrapps-category-onboarding/">NostrApps category — Onboarding</a>
+<a href="/nostr/apps/research/nostrapps-category-signers/">NostrApps category — Signers</a>
+<a href="/nostr/apps/research/nostrapps-category-tools/">NostrApps category — Tools</a>
+<a href="/nostr/apps/developer-stack/nostrcheck/">nostrcheck</a>
+<a href="/nostr/apps/developer-stack/nostrdb/">nostrdb</a>
+<a href="/nostr/apps/developer-stack/nostrdb-rs/">nostrdb-rs</a>
+<a href="/nostr/apps/research/nostree/">Nostree</a>
+<a href="/nostr/apps/research/nostria/">Nostria</a>
+<a href="/nostr/apps/research/nostrid/">Nostrid</a>
+<a href="/nostr/apps/research/nostrium-read-nostr-com/">Nostrium / read.nostr.com</a>
+<a href="/nostr/apps/research/nostrmo/">Nostrmo</a>
+<a href="/nostr/apps/research/nostrube/">Nostrube</a>
+<a href="/nostr/apps/nostrudel/">noStrudel</a>
+<a href="/nostr/apps/research/nostrudel/">noStrudel</a>
+<a href="/nostr/apps/research/nostter/">Nostter</a>
+<a href="/nostr/apps/nostur/">Nostur</a>
+<a href="/nostr/apps/research/nostur/">Nostur</a>
+<a href="/nostr/apps/research/notedeck/">Notedeck</a>
+<a href="/nostr/apps/research/npub-pro/">Npub.pro</a>
+<a href="/nostr/apps/research/npub-world/">Npub.world</a>
+<a href="/nostr/apps/developer-stack/nsec-app/">nsec.app</a>
+<a href="/nostr/apps/research/nsite/">Nsite</a>
+<a href="/nostr/apps/developer-stack/nsite/">nsite</a>
+<a href="/nostr/apps/research/nstart-me/">Nstart.me</a>
+<a href="/nostr/apps/research/obsidian-nostr-writer/">Obsidian Nostr Writer</a>
+<a href="/nostr/apps/research/olas/">Olas</a>
+<a href="/nostr/apps/research/openvibe/">Openvibe</a>
+<a href="/nostr/apps/research/oracolo/">Oracolo</a>
+<a href="/nostr/apps/research/ostrich-work/">Ostrich Work</a>
+<a href="/nostr/apps/research/p2p-band/">P2P Band</a>
+<a href="/nostr/apps/research/paz/">Paz</a>
+<a href="/nostr/apps/research/peridot/">Peridot</a>
+<a href="/nostr/apps/research/phoenix/">Phoenix</a>
+<a href="/nostr/apps/research/plebeian-market/">Plebeian Market</a>
+<a href="/nostr/apps/research/postr-write-nostr-com/">Postr / write.nostr.com</a>
+<a href="/nostr/apps/primal/">Primal</a>
+<a href="/nostr/apps/research/primal/">Primal</a>
+<a href="/nostr/apps/research/primal-article-editor-reads-authoring/">Primal Article Editor / Reads authoring</a>
+<a href="/nostr/apps/research/primal-studio/">Primal Studio</a>
+<a href="/nostr/apps/developer-stack/pynostr/">pynostr</a>
+<a href="/nostr/apps/developer-stack/python-nostr/">python-nostr</a>
+<a href="/nostr/apps/research/recommended-application-handlers/">Recommended Application Handlers</a>
+<a href="/nostr/apps/research/relay-tools/">Relay Tools</a>
+<a href="/nostr/apps/developer-stack/rsslay/">rsslay</a>
+<a href="/nostr/apps/rust-nostr/">rust-nostr</a>
+<a href="/nostr/apps/developer-stack/rust-nostr/">rust-nostr</a>
+<a href="/nostr/apps/developer-stack/rust-nostr-docs/">rust-nostr docs</a>
+<a href="/nostr/apps/research/satellite/">Satellite</a>
+<a href="/nostr/apps/satellite-earth/">Satellite Earth</a>
+<a href="/nostr/apps/research/satshoot/">SatShoot</a>
+<a href="/nostr/apps/research/shakespeare/">Shakespeare</a>
+<a href="/nostr/apps/research/shopstr/">Shopstr</a>
+<a href="/nostr/apps/research/slidestr/">Slidestr</a>
+<a href="/nostr/apps/snort/">Snort</a>
+<a href="/nostr/apps/research/snort/">Snort</a>
+<a href="/nostr/apps/research/stemstr/">Stemstr</a>
+<a href="/nostr/community/apps/submit/">Submit a Nostr App</a>
+<a href="/nostr/apps/developer-stack/swift-nostr-client/">swift-nostr-client</a>
+<a href="/nostr/apps/research/treasures/">Treasures</a>
+<a href="/nostr/apps/wavlake/">Wavlake</a>
+<a href="/nostr/apps/research/wavlake/">Wavlake</a>
+<a href="/nostr/apps/research/wikifreedia/">Wikifreedia</a>
+<a href="/nostr/apps/research/wikistr/">Wikistr</a>
+<a href="/nostr/apps/yakihonne/">YakiHonne</a>
+<a href="/nostr/apps/research/yakihonne/">YakiHonne</a>
+<a href="/nostr/apps/research/yakihonne-mobile-web-app-directory/">YakiHonne mobile/web app directory</a>
+<a href="/nostr/apps/research/yondar/">Yondar</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/apps/nip-07-signers/">NIP-07: Browser Signers</a></div></section>
+            </div>
+          </details>
+
+        </div>
+      </section>
+
+
+      <section class="crays-article-main">
+        <div class="crays-article-reader-shell crays-article-layout">
+          <aside class="crays-article-toc" aria-label="In this article">
+            <p>In this article</p>
+            <a href="#app-categories-to-know"><span>01</span>App categories to know</a>
+<a href="#what-directories-are-good-for"><span>02</span>What directories are good for</a>
+<a href="#how-crays-should-read-the-app-market"><span>03</span>How we should read the app market</a>
+<a href="#app-profile-index"><span>04</span>App profile index</a>
+<a href="#what-job-this-product-does"><span>05</span>What job this product does</a>
+<a href="#key-and-signer-behavior"><span>06</span>Key and signer behavior</a>
+<a href="#relay-and-data-assumptions"><span>07</span>Relay and data assumptions</a>
+<a href="#nips-and-services-to-check"><span>08</span>NIPs and services to check</a>
+<a href="#interoperability-test"><span>09</span>Interoperability test</a>
+<a href="#where-it-sits-in-the-app-map"><span>10</span>Where it sits in the app map</a>
+          </aside>
+
+          <div class="crays-article-content">
+                        <header class="crays-nostr-article-masthead">
+              <div class="crays-nostr-article-masthead__meta"><span>Apps</span><span>6 min read</span><span>Nostr archive</span></div>
+              <h2 class="crays-nostr-article-masthead__title">Nostr Apps Directory Guide</h2>
+              <p class="crays-nostr-article-masthead__deck">How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products.</p>
+            </header>
+
+
+            <p>The <a href="/nostr/crays/">Nostr app</a> ecosystem is not one product category. It is a set of <a href="/nostr/apps/clients/">clients</a> and services that use the same identity and event substrate for different experiences.</p>
+<div class="crays-nostr-reader-note"><strong>The quick read</strong><span>How to understand the Nostr app ecosystem: social clients, publishing, search, relays, media, wallets, developer tools and creator products.</span></div>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="https://api.openverse.org/v1/images/20ab059c-8537-4eae-bacb-cbf2166126c5/thumb/" alt="Nostr Apps Directory Guide: a creator-work scene for publishing and fan access." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Nostr Apps Directory Guide: a creator-work scene for publishing and fan access.</figcaption></figure><figure><img src="https://api.openverse.org/v1/images/2dc33f82-342d-4274-bb5a-1bbc58f29511/thumb/" alt="Nostr Apps Directory Guide: a creator-work scene for publishing and fan access." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Nostr Apps Directory Guide: a creator-work scene for publishing and fan access.</figcaption></figure>
+        </div>
+
+<h2 id="app-categories-to-know">App categories to know</h2>
+<p><a href="/nostr/library/app-profiles/">Nostr Apps</a> and <a href="/nostr/library/awesome-nostr/">Awesome Nostr</a> show how wide the ecosystem already is. You will find social <a href="/nostr/apps/clients/">clients</a>, <a href="/nostr/library/field-guide/mobile-clients/">mobile clients</a>, <a href="/nostr/library/field-guide/desktop-clients/">desktop clients</a>, <a href="/nostr/media/deep-dives/long-form-publishing/">long-form publishing</a> <a href="/nostr/apps/category-tools/">tools</a>, <a href="/nostr/apps/catalog/relay-tools/">relay tools</a>, search tools, chat apps, live-streaming experiments, <a href="/nostr/apps/category-music/">music</a> products, <a href="/nostr/commerce/field-guide/marketplaces/">marketplaces</a>, file tools, <a href="/nostr/community/wallets/">wallets</a> and <a href="/nostr/community/developer/">developer</a> libraries.</p>
+<ul class="crays-article-list">
+<li><strong>Social clients.</strong> <a href="/nostr/apps/clients/">Damus</a>, <a href="/nostr/apps/clients/">Amethyst</a>, <a href="/nostr/apps/clients/">Primal</a>, Nos, <a href="/nostr/apps/nostur/">Nostur</a>, <a href="/nostr/apps/coracle/">Coracle</a>, <a href="/nostr/apps/snort/">Snort</a>, <a href="/nostr/apps/iris/">Iris</a>, <a href="/nostr/apps/nostrudel/">Nostrudel</a> and <a href="/nostr/apps/yakihonne/">YakiHonne</a>.</li>
+<li><strong>Writing.</strong> <a href="/nostr/apps/habla/">Habla</a>, <a href="/nostr/apps/yakihonne/">YakiHonne</a> and long-form NIP-23-oriented <a href="/nostr/apps/category-tools/">tools</a>.</li>
+<li><strong>Media.</strong> <a href="/nostr/media/music-video-media/">Wavlake</a>, live-streaming <a href="/nostr/apps/category-tools/">tools</a> and <a href="/nostr/nips/nip-94-files/">file metadata</a> experiments.</li>
+<li><strong>Infrastructure.</strong> Relay dashboards, server <a href="/nostr/apps/category-tools/">tools</a>, signing tools and libraries.</li>
+</ul>
+<h2 id="what-directories-are-good-for">What directories are good for</h2>
+<p>Directories are not endorsements. They are <a href="/nostr/apps/category-discovery/">discovery</a> maps. Use them to understand what builders are attempting, which categories are crowded and where the ecosystem still has missing product quality.</p>
+<h2 id="how-crays-should-read-the-app-market">How we should read the app market</h2>
+<p>We should not copy generic social <a href="/nostr/apps/clients/">clients</a>. It should learn from them and build a purpose-specific Crays client layer: profile, creator monetization, fan access, award voting, venue routing and reputation.</p>
+<h2 id="app-profile-index">App profile index</h2>
+<p>The app archive breaks major <a href="/nostr/apps/clients/">clients</a> and <a href="/nostr/apps/category-tools/">tools</a> into their own pages so readers can move from broad categories into concrete examples.</p>
+<div class="crays-nostr-hub-grid">
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/crays/"><img class="crays-nostr-card-media" data-card-kind="app" src="/assets/brand/crays-mark.svg" alt="Crays icon" loading="lazy" decoding="async" /><strong>Crays</strong><span>Crays Nostr client and ecosystem front door. we are the Crays-facing Nostr surface: profile, creator access, status, venues, awards, payments and portable identity in one lifestyle layer.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/damus/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=damus.io&amp;sz=128" alt="Damus icon" loading="lazy" decoding="async" /><strong>Damus</strong><span>iOS Nostr client. Damus made Nostr visible for many iOS users by turning keys, relays, notes and zaps into a mobile social experience.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/amethyst/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=amethyst.social&amp;sz=128" alt="Amethyst icon" loading="lazy" decoding="async" /><strong>Amethyst</strong><span>Android Nostr client. Amethyst is one of the most complete Android Nostr clients and a major place where newer Nostr features are exposed to mobile users.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/primal/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=primal.net&amp;sz=128" alt="Primal icon" loading="lazy" decoding="async" /><strong>Primal</strong><span>Nostr social client and discovery stack. Primal is a polished Nostr consumer experience with mobile and web apps, feed/discovery work and user-facing onboarding.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/coracle/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=coracle.social&amp;sz=128" alt="Coracle icon" loading="lazy" decoding="async" /><strong>Coracle</strong><span>Web Nostr client and community tool. Coracle focuses on relay choice, communities, Web-of-Trust, recommendations and a web-based Nostr experience.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/iris/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=iris.to&amp;sz=128" alt="Iris icon" loading="lazy" decoding="async" /><strong>Iris</strong><span>Nostr social client. Iris is a Nostr client for social networking across mobile and web surfaces, associated with Martti Malmi and the Iris project family.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/nostur/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=nostur.com&amp;sz=128" alt="Nostur icon" loading="lazy" decoding="async" /><strong>Nostur</strong><span>iOS and Mac Nostr client. Nostur is an Apple-platform Nostr client for users who want a native client experience across iPhone, iPad and Mac.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/nostrudel/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=nostrudel.ninja&amp;sz=128" alt="noStrudel icon" loading="lazy" decoding="async" /><strong>noStrudel</strong><span>Power-user Nostr web client. noStrudel is a fast web client and protocol exploration surface for users and developers who want deeper visibility into Nostr.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/yakihonne/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=yakihonne.com&amp;sz=128" alt="YakiHonne icon" loading="lazy" decoding="async" /><strong>YakiHonne</strong><span>Nostr publishing and social client. YakiHonne combines social posting, content management and built-in Bitcoin support across web and mobile surfaces.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/habla/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=habla.news&amp;sz=128" alt="Habla icon" loading="lazy" decoding="async" /><strong>Habla</strong><span>Long-form Nostr publishing client. Habla shows how Nostr can support article-like writing and publishing beyond short social notes.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/snort/"><span class="crays-nostr-card-icon" aria-hidden="true">SN</span><strong>Snort</strong><span>Web Nostr client. Snort is a web client that helped popularize browser-based Nostr usage and remains part of the wider client ecosystem.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/gossip/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=github.com&amp;sz=128" alt="Gossip icon" loading="lazy" decoding="async" /><strong>Gossip</strong><span>Privacy-oriented Nostr client. Gossip is a Rust Nostr client associated with privacy, security and outbox-model thinking.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/nos/"><span class="crays-nostr-card-icon" aria-hidden="true">NO</span><strong>Nos</strong><span>Nostr social app. Nos is an ad-free social app built on Nostr that emphasizes user control and social media without a single controlling platform.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/amber/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=github.com&amp;sz=128" alt="Amber icon" loading="lazy" decoding="async" /><strong>Amber</strong><span>Android Nostr signer. Amber is an Android Nostr signer that helps users keep their private key out of ordinary apps while still authorizing signatures.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/alby/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=getalby.com&amp;sz=128" alt="Alby icon" loading="lazy" decoding="async" /><strong>Alby</strong><span>Lightning wallet and browser signer. Alby is widely used in Nostr onboarding because it combines browser-based signing and Lightning wallet functionality.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/safebox/"><span class="crays-nostr-card-icon" aria-hidden="true">SA</span><strong>Safebox</strong><span>Nostr-native Cashu wallet, records and secure transmittal experiment. Safebox combines Cashu ecash, Nostr messaging, encrypted records, Blossom blob transfer, NWC extension work, NFC/vault flows and optional ML-KEM payload protection into one experimental sovereign wallet and records stack.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/foundups-agent/"><span class="crays-nostr-card-icon" aria-hidden="true">FA</span><strong>FoundUPS Agent</strong><span>Compute-focus agent orchestration stack. FoundUPS Agent is not a Nostr client. It is an adjacent autonomous-agent and compute-allocation project that matters for our archive because Nostr, Bitcoin, DAO governance and agent coordination will increasingly touch the same product questions.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/wavlake/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=wavlake.com&amp;sz=128" alt="Wavlake icon" loading="lazy" decoding="async" /><strong>Wavlake</strong><span>Music and value-for-value app. Wavlake shows how Nostr-adjacent culture can connect creators, listeners and direct value flows around music.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/nostr-band/"><span class="crays-nostr-card-icon" aria-hidden="true">NB</span><strong>Nostr.band</strong><span>Search and discovery service. Nostr.band is a search and discovery service that helps users find profiles, notes, hashtags and ecosystem activity.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/satellite-earth/"><span class="crays-nostr-card-icon" aria-hidden="true">SE</span><strong>Satellite Earth</strong><span>Community client and infrastructure stack. Satellite Earth combines client and infrastructure ideas for self-sovereign communities and local control.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/ditto/"><img class="crays-nostr-card-media" data-card-kind="app" src="https://www.google.com/s2/favicons?domain=ditto.pub&amp;sz=128" alt="Ditto icon" loading="lazy" decoding="async" /><strong>Ditto</strong><span>Self-hosted Nostr social server. Ditto explores a self-hosted social server with built-in Nostr client and relay compatibility, bridging Nostr with fediverse thinking.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/ndk/"><span class="crays-nostr-card-icon" aria-hidden="true">ND</span><strong>Nostr Development Kit</strong><span>Nostr developer toolkit. NDK is a major developer toolkit for building Nostr apps with outbox-model support and application-level abstractions.</span></a>
+<a class="crays-nostr-hub-mini-card" data-card-kind="app" href="/nostr/apps/rust-nostr/"><span class="crays-nostr-card-icon" aria-hidden="true">RN</span><strong>rust-nostr</strong><span>Rust Nostr implementation. rust-nostr is a Rust implementation of the Nostr protocol with client libraries, Nostr Wallet Connect and related tooling.</span></a>
+</div>
+<h2 id="what-job-this-product-does">What job this product does</h2>
+<p><a href="/nostr/apps/catalog/">Nostr Apps Directory</a> Guide belongs to the <a href="/nostr/apps/clients/">clients</a>, <a href="/nostr/apps/category-tools/">tools</a> and interfaces layer. The page should help you answer one concrete question instead of forcing you through a generic Nostr essay.</p>
+<p>The short version is: How to understand the <a href="/nostr/crays/">Nostr app</a> ecosystem: social <a href="/nostr/apps/clients/">clients</a>, publishing, search, <a href="/nostr/relays/">relays</a>, <a href="/nostr/apps/category-media/">media</a>, <a href="/nostr/community/wallets/">wallets</a>, <a href="/nostr/community/developer/">developer</a> <a href="/nostr/apps/category-tools/">tools</a> and creator products. The deeper version is to see which concept, standard, product surface or human decision actually changes because of it.</p>
+
+        <div class="crays-nostr-stock-scenes" data-count="2" aria-label="Nostr image context">
+          <figure><img src="https://api.openverse.org/v1/images/90e1e0db-bc9c-4a18-b85e-b95d8635aa71/thumb/" alt="Nostr Apps Directory Guide: a creator-work scene for publishing and fan access." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Nostr Apps Directory Guide: a creator-work scene for publishing and fan access.</figcaption></figure><figure><img src="https://api.openverse.org/v1/images/8bf51fc5-2eb6-4e3f-9180-067e66bce966/thumb/" alt="Nostr Apps Directory Guide: a creator-work scene for publishing and fan access." loading="lazy" decoding="async" referrerpolicy="no-referrer" /><figcaption>Nostr Apps Directory Guide: a creator-work scene for publishing and fan access.</figcaption></figure>
+        </div>
+
+<h2 id="key-and-signer-behavior">Key and signer behavior</h2>
+<p>The useful machinery around <a href="/nostr/apps/catalog/">Nostr Apps Directory</a> Guide is client UX, signer safety, relay defaults, platform limits and supported <a href="/nostr/nips/complete-index/">NIPs</a>. Name those moving parts directly, because vague <a href="/nostr/community/protocol/">protocol</a> language is where confusion starts.</p>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, A strong page gives you enough context to recognize the term in another client, NIP, relay policy, wallet prompt or source document without pretending every reader is already a <a href="/nostr/community/protocol/">protocol</a> engineer.</p>
+<ul class="crays-article-list">
+<li><strong>Identity.</strong> Does it use a signer, raw key, remote signer or account wrapper?</li>
+<li><strong>Relays.</strong> Can you see where reads and writes go?</li>
+<li><strong>Exit.</strong> What remains usable in another client?</li>
+</ul>
+<h2 id="relay-and-data-assumptions">Relay and data assumptions</h2>
+<p>Test <a href="/nostr/apps/catalog/">Nostr Apps Directory</a> Guide by asking what is signed, where it is stored, who renders it, which <a href="/nostr/relays/">relays</a> or services are involved and what survives when the first app or server is unavailable.</p>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, That test keeps the explanation tied to reality. It also tells us which internal links belong in the body: foundations first, then standards, then practical examples.</p>
+<h2 id="nips-and-services-to-check">NIPs and services to check</h2>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, The main risk is that a polished interface can still hide weak custody, weak relay handling or limited interoperability. The page should say that plainly and then show the safer reading: what works today, what is experimental and what needs source verification.</p>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, This is where dense content beats long content. Give the reader facts, constraints, examples and next steps instead of repeating broad claims about openness or decentralization.</p>
+<h2 id="interoperability-test">Interoperability test</h2>
+<p>For us, <a href="/nostr/apps/catalog/">Nostr Apps Directory</a> Guide matters only when it improves understanding or helps a real flow: identity, publishing, relay choice, signing, payment, <a href="/nostr/apps/category-media/">media</a>, <a href="/nostr/community/moderation/">moderation</a>, <a href="/nostr/community/commerce/">commerce</a>, venue context or <a href="/nostr/governance/field-guide/governance/">governance</a>.</p>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, That does not mean every page has to become our product pitch. It means the page should make the connection visible when the topic affects our ecosystem, and stay purely educational when it does not.</p>
+<h2 id="where-it-sits-in-the-app-map">Where it sits in the app map</h2>
+<p>The best next step from <a href="/nostr/apps/catalog/">Nostr Apps Directory</a> Guide is not a generic link pile. Connect it to the closest prerequisite, the closest technical standard and the closest practical example.</p>
+<p>In the <a href="/nostr/apps/catalog/">apps</a> chapter, A large archive becomes useful when every page behaves like a node in a knowledge graph: this explains one thing, points to what it depends on and shows where the idea is used.</p>
+
+
+
+            <div class="crays-nostr-related">
+              <h2>Read next from Nostr Apps Directory Guide</h2>
+              <div class="crays-nostr-related__links">
+                <a href="/nostr/apps/catalog/"><img class="crays-nostr-card-media" data-card-kind="app" src="/assets/brand/crays-mark.svg" alt="Complete Nostr Apps Catalog icon" loading="lazy" decoding="async" /><strong>Complete Nostr Apps Catalog</strong><small>Apps and clients</small></a>
+<a href="/nostr/apps/"><span class="crays-nostr-card-icon" aria-hidden="true">AA</span><strong>Apps and Products</strong><small>Apps hub</small></a>
+<a href="/nostr/library/app-profiles/"><span class="crays-nostr-card-icon" aria-hidden="true">NA</span><strong>Nostr App and Tool Profiles</strong><small>Apps and clients</small></a>
+<a href="/nostr/apps/clients/"><span class="crays-nostr-card-icon" aria-hidden="true">NC</span><strong>Nostr Clients</strong><small>Apps and clients</small></a>
+<a href="/nostr/apps/developer-tools/"><span class="crays-nostr-card-icon" aria-hidden="true">ND</span><strong>Nostr Developer Tools</strong><small>Apps and clients</small></a>
+<a href="/nostr/people/"><span class="crays-nostr-card-icon" aria-hidden="true">P</span><strong>People and Users</strong><small>People hub</small></a>
+<a href="/nostr/basics/resources/"><span class="crays-nostr-card-icon" aria-hidden="true">NR</span><strong>Nostr Resources and Links</strong><small>Research map</small></a>
+<a href="/nostr/wallets/nip-47-wallet-connect/"><span class="crays-nostr-card-icon" aria-hidden="true">47</span><strong>NIP-47: Nostr Wallet Connect</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/privacy/keys-identity/"><span class="crays-nostr-card-icon" aria-hidden="true">NK</span><strong>Nostr Keys and Identity</strong><small>Core concepts</small></a>
+<a href="/nostr/apps/nip-07-signers/"><span class="crays-nostr-card-icon" aria-hidden="true">07</span><strong>NIP-07: Browser Signers</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/relays/"><img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=nostr.co.uk&amp;sz=128" alt="Relays and Infrastructure icon" loading="lazy" decoding="async" /><strong>Relays and Infrastructure</strong><small>Relays hub</small></a>
+<a href="/nostr/wallets/nip-57-zaps-lightning/"><span class="crays-nostr-card-icon" aria-hidden="true">57</span><strong>NIP-57: Lightning Zaps</strong><small>Protocol and NIPs</small></a>
+<a href="/nostr/library/deep-dives/blossom-servers-and-relays/"><span class="crays-nostr-card-icon" aria-hidden="true">N</span><strong>Blossom Servers, Relays and Nostr Media Storage</strong><small>Deep dives</small></a>
+<a href="/nostr/wallets/deep-dives/safebox-sovereign-wallet-records/"><span class="crays-nostr-card-icon" aria-hidden="true">SN</span><strong>Safebox: Nostr-Native Wallet and Records Stack</strong><small>Deep dives</small></a>
+<a href="/nostr/apps/safebox/"><span class="crays-nostr-card-icon" aria-hidden="true">SA</span><strong>Safebox</strong><small>Apps and clients</small></a>
+<a href="/nostr/commerce/deep-dives/foundups-agent-compute-focus-network/"><span class="crays-nostr-card-icon" aria-hidden="true">FA</span><strong>FoundUPS Agent and the Compute-Focus Network</strong><small>Deep dives</small></a>
+              </div>
+            </div>
+
+
+            <div class="crays-article-end">
+              <a href="/nostr/">Back to the Crays Nostr page</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>

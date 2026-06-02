@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Governance, Moderation and Reputation | Crays Nostr Archive</title>
+  <meta name="description" content="The governance route for badges, reports, labels, voting, moderation, DAO readiness, review queues, audit trails and community rules." />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+  <meta name="keywords" content="Nostr, Crays, open social protocol, Governance, Moderation and Reputation, Governance, Crays Nostr hub, Nostr navigation, Nostr community" />
+  <meta name="theme-color" content="#040b12" />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="Crays.org" />
+  <meta property="og:title" content="Governance, Moderation and Reputation | Crays Nostr Archive" />
+  <meta property="og:description" content="The governance route for badges, reports, labels, voting, moderation, DAO readiness, review queues, audit trails and community rules." />
+  <meta property="og:url" content="https://www.crays.org/nostr/governance/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="canonical" href="https://www.crays.org/nostr/governance/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="icon" href="/assets/brand/crays-mark.svg?v=crays-favicon-2" sizes="any" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/crays-blog-article.css?v=20260530-nostr-archive-v1" />
+  <link rel="stylesheet" href="/assets/css/crays-nostr-hub.css?v=20260602-start-entry-v8" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":"https://www.crays.org/nostr/governance/","headline":"Governance, Moderation and Reputation","description":"The governance route for badges, reports, labels, voting, moderation, DAO readiness, review queues, audit trails and community rules.","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Organization","name":"Crays Business Nomads Association"},"publisher":{"@type":"Organization","name":"Crays.org","url":"https://www.crays.org"},"about":["Nostr","Nostr protocol","Crays","Bitcoin","Lightning","open social protocol"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Crays","item":"https://www.crays.org/"},{"@type":"ListItem","position":2,"name":"Nostr","item":"https://www.crays.org/nostr/"},{"@type":"ListItem","position":3,"name":"Governance, Moderation and Reputation","item":"https://www.crays.org/nostr/governance/"}]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","name":"Crays Nostr archive navigation","itemListElement":[{"@type":"ListItem","position":1,"name":"Start","url":"https://www.crays.org/nostr/start/"},{"@type":"ListItem","position":2,"name":"Basics","url":"https://www.crays.org/nostr/basics/"},{"@type":"ListItem","position":3,"name":"People","url":"https://www.crays.org/nostr/people/"},{"@type":"ListItem","position":4,"name":"Apps","url":"https://www.crays.org/nostr/apps/"},{"@type":"ListItem","position":5,"name":"Relays","url":"https://www.crays.org/nostr/relays/"},{"@type":"ListItem","position":6,"name":"NIPs","url":"https://www.crays.org/nostr/nips/"},{"@type":"ListItem","position":7,"name":"Privacy","url":"https://www.crays.org/nostr/privacy/"},{"@type":"ListItem","position":8,"name":"Wallets","url":"https://www.crays.org/nostr/wallets/"},{"@type":"ListItem","position":9,"name":"Media","url":"https://www.crays.org/nostr/media/"},{"@type":"ListItem","position":10,"name":"Commerce","url":"https://www.crays.org/nostr/commerce/"},{"@type":"ListItem","position":11,"name":"Governance","url":"https://www.crays.org/nostr/governance/"},{"@type":"ListItem","position":12,"name":"Crays","url":"https://www.crays.org/nostr/crays/"},{"@type":"ListItem","position":13,"name":"Library","url":"https://www.crays.org/nostr/library/"},{"@type":"ListItem","position":14,"name":"Nostr and Crays DAO Governance","url":"https://www.crays.org/nostr/governance/dao-governance/"},{"@type":"ListItem","position":15,"name":"Moderation and Discovery on Nostr","url":"https://www.crays.org/nostr/privacy/moderation-discovery/"},{"@type":"ListItem","position":16,"name":"NIP-58: Badges","url":"https://www.crays.org/nostr/governance/nip-58-badges/"},{"@type":"ListItem","position":17,"name":"Moderation","url":"https://www.crays.org/nostr/community/moderation/"},{"@type":"ListItem","position":18,"name":"Crays Award Voting","url":"https://www.crays.org/nostr/governance/deep-dives/crays-award-voting/"},{"@type":"ListItem","position":19,"name":"Crays NIP Strategy","url":"https://www.crays.org/nostr/nips/crays-nip-strategy/"},{"@type":"ListItem","position":20,"name":"Crays Nostr Community","url":"https://www.crays.org/nostr/community/"},{"@type":"ListItem","position":21,"name":"New Nostr Findings","url":"https://www.crays.org/nostr/community/new-findings/"},{"@type":"ListItem","position":22,"name":"Submit a Nostr Project","url":"https://www.crays.org/nostr/community/projects/submit/"},{"@type":"ListItem","position":23,"name":"Crays Nostr Archive Library","url":"https://www.crays.org/nostr/library/archive-library/"}]}</script>
+</head>
+<body class="crays-article-body crays-nostr-hub-body crays-nostr-area-governance">
+  <header class="crays-article-header">
+    <div class="crays-article-shell crays-article-header__inner">
+      <a class="crays-article-logo" href="/nostr/" aria-label="Crays Nostr home"><img src="/assets/brand/crays-home-logo.webp" alt="Crays" width="264" height="102"></a>
+      <nav class="crays-article-site-nav" aria-label="Nostr archive pages">
+        <a href="/nostr/start/" data-route="start">Start</a>
+        <a href="/nostr/basics/" data-route="basics">Basics</a>
+        <a href="/nostr/people/" data-route="people">People</a>
+        <a href="/nostr/apps/" data-route="apps">Apps</a>
+        <a href="/nostr/relays/" data-route="relays">Relays</a>
+        <a href="/nostr/nips/" data-route="nips">NIPs</a>
+        <a href="/nostr/privacy/" data-route="privacy">Privacy</a>
+        <a href="/nostr/wallets/" data-route="wallets">Wallets</a>
+        <a href="/nostr/media/" data-route="media">Media</a>
+        <a href="/nostr/commerce/" data-route="commerce">Commerce</a>
+        <a href="/nostr/governance/" data-route="governance" aria-current="page">Governance</a>
+        <a href="/nostr/crays/" data-route="crays">Crays</a>
+        <a href="/nostr/library/" data-route="library">Library</a>
+      </nav>
+      <div class="crays-article-header-actions" aria-label="Crays actions">
+        <a class="crays-article-header-cta" href="/nostr/community/">Community</a>
+        <a class="crays-article-header-language" href="/en/" aria-label="Crays English home">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="9.25" stroke="currentColor" stroke-width="1.5"></circle>
+            <path d="M2.75 12h18.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            <path d="M12 2.75c2.7 2.52 4.25 5.69 4.25 9.25S14.7 18.73 12 21.25C9.3 18.73 7.75 15.56 7.75 12S9.3 5.27 12 2.75Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+
+      <section class="crays-nostr-route-hub-landing" data-route-hub="governance">
+        <section class="crays-nostr-route-hub-hero" style="--nostr-hero-bg: url(/assets/nostr-free-stock/nips-bg.jpg);">
+          <div class="crays-article-shell crays-nostr-route-hub-hero__grid">
+            <div class="crays-nostr-route-hub-hero__copy">
+              <a class="crays-nostr-route-hub-hero__back" href="/nostr/start/">Back to Start</a>
+              <p class="crays-nostr-live-kicker">Governance route</p>
+              <h1>Governance, Moderation and Reputation</h1>
+              <p>The governance route for badges, reports, labels, voting, moderation, DAO readiness, review queues, audit trails and community rules.</p>
+              <div class="crays-nostr-route-hub-hero__actions">
+                <a href="#hub-first-paths">Choose a path</a>
+                <a href="/nostr/library/search-atlas/">Search the atlas</a>
+                <a href="#hub-bring-back">Bring something back</a>
+              </div>
+            </div>
+            <aside class="crays-nostr-route-hub-hero__panel" aria-label="How this hub works">
+              <p class="crays-nostr-live-kicker">Use this hub to</p>
+              <h2>Turn community contribution into accountable review rather than chaotic auto-publishing.</h2>
+              <dl>
+                <div><dt>19</dt><dd>pages under this route</dd></div>
+                <div><dt>3</dt><dd>navigation shelves</dd></div>
+                <div><dt>Review</dt><dd>Review reports, label findings, propose moderation rules, add governance sources and test voting assumptions.</dd></div>
+              </dl>
+              <nav><a href="/nostr/governance/dao-governance/">DAO</a><a href="/nostr/governance/nip-58-badges/">Badges</a><a href="/nostr/governance/deep-dives/crays-award-voting/">Voting</a></nav>
+            </aside>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-image-band" aria-label="Governance visual context">
+        <div class="crays-article-shell crays-nostr-hub-image-band__grid">
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-association-03-crays-operating-and-governance-team-in-a-focused-meeting.webp" alt="Standards are boring only until they save the room from chaos." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-association-08-the-system-stays-credible-when-decisions-are-documented-and-account.webp" alt="A good protocol rule is a quiet agreement that lets everyone keep building." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="is-wide">
+                <img src="/assets/stock-lifestyle/crays-home-association-partners-governance-meeting.jpg" alt="NIPs need to feel like shared operating rules, not sacred paperwork." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-finance-data-team-planning.jpg" alt="The protocol shelf works when a reader can see the decision path." loading="lazy" decoding="async" />
+              </figure>
+
+              <figure class="">
+                <img src="/assets/stock-lifestyle/crays-team-extended-20-community-standards.jpeg" alt="Common standards let independent products act like one larger culture." loading="lazy" decoding="async" />
+              </figure>
+
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-compass-wrap">
+
+            <section class="crays-nostr-learning-compass" data-component="LearningCompass" data-learning-route="governance" aria-label="Learning compass for this Crays Nostr page">
+              <div class="crays-nostr-learning-compass__intro">
+                <p class="crays-nostr-live-kicker">Learning compass</p>
+                <h3>You are in Governance</h3>
+                <p>Route hub. Use this as the map for the whole route before you go into the individual pages.</p>
+              </div>
+              <div class="crays-nostr-learning-compass__task">
+                <strong>Use this page to</strong>
+                <span>Route labels, reports, reputation, approvals and moderation decisions into review.</span>
+              </div>
+              <nav class="crays-nostr-learning-compass__actions" aria-label="Useful next actions">
+                <a href="/nostr/start/"><strong>All about Nostr</strong><span>Return to the full map</span></a>
+                <a href="/nostr/library/search-atlas/"><strong>Search the atlas</strong><span>Find any page, term, source or project</span></a>
+                <a href="/nostr/community/suggestions/?page=governance&amp;route=governance"><strong>Suggest source</strong><span>Add a source, correction, report or implementation note.</span></a>
+              </nav>
+              <details class="crays-nostr-learning-compass__next">
+                <summary><span>Continue the path</span><small>Open related concepts without losing your place</small></summary>
+                <div><a href="/nostr/governance/dao-governance/"><span class="crays-nostr-card-icon" aria-hidden="true">C</span><strong>Nostr and Crays DAO Governance</strong><span>Governance</span></a>
+<a href="/nostr/privacy/moderation-discovery/"><span class="crays-nostr-card-icon" aria-hidden="true">MA</span><strong>Moderation and Discovery on Nostr</strong><span>Privacy</span></a>
+<a href="/nostr/governance/nip-58-badges/"><span class="crays-nostr-card-icon" aria-hidden="true">58</span><strong>NIP-58: Badges</strong><span>Governance</span></a>
+<a href="/nostr/community/moderation/"><span class="crays-nostr-card-icon" aria-hidden="true">MO</span><strong>Moderation</strong><span>Library</span></a></div>
+              </details>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-first-paths" id="hub-first-paths" aria-label="First paths">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Start here</p>
+              <h2>Pick the first path that fits your question.</h2>
+              <p>Use this route when the question is how open participation stays useful: labels, reports, voting, badges, approvals, reputation, moderator actions and editorial review.</p>
+            </div>
+            <div class="crays-nostr-hub-path-grid">
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/governance/dao-governance/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>DAO governance</strong>
+                <span>How signed identity, badges, votes, reputation, relays and Association rules can prepare Crays for future DAO participation.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/privacy/moderation-discovery/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">MA</span>
+                <strong>Moderation and discovery</strong>
+                <span>How Nostr handles moderation, spam, search, discovery, feeds, relay rules, client choices and web-of-trust patterns.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/governance/nip-58-badges/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">58</span>
+                <strong>NIP-58 badges</strong>
+                <span>Our archive page for NIP-58, explaining what it does, where it fits in Nostr and why it matters for identity, apps, relays and real-world systems.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/community/moderation/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">RD</span>
+                <strong>Review dashboard</strong>
+                <span>Open Review dashboard.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/governance/deep-dives/crays-award-voting/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>Crays Award voting</strong>
+                <span>A Crays Nostr archive deep dive on how Nostr identity can make creator voting portable and auditable.</span>
+              </a>
+
+              <a class="crays-nostr-hub-path-card" href="/nostr/nips/crays-nip-strategy/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">N</span>
+                <strong>NIP strategy</strong>
+                <span>The product decision matrix for which Nostr standards we should use now, prepare next, keep as reference or avoid.</span>
+              </a>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-signature" data-signature-route="governance" aria-label="Review room">
+        <div class="crays-article-shell crays-nostr-hub-signature__grid">
+          <div class="crays-nostr-hub-signature__copy">
+            <p class="crays-nostr-live-kicker">Review room</p>
+            <h2>A living archive needs rules people can see.</h2>
+            <p>This route covers moderation, reports, labels, badges, voting, DAO readiness, review queues and the trust levels that keep contribution useful.</p>
+          </div>
+          <figure class="crays-nostr-hub-signature__visual">
+            <img src="/assets/nostr-free-stock/nips-visual.jpg" alt="Governance visual" loading="lazy" decoding="async" />
+            <figcaption>Review checks</figcaption>
+          </figure>
+          <div class="crays-nostr-hub-signature__tiles">
+
+              <a href="/nostr/community/moderation/">
+                <span aria-hidden="true">01</span>
+                <strong>Report</strong>
+                <small>Spam, impersonation, stale claims or unsafe content.</small>
+              </a>
+
+              <a href="/nostr/nips/nip-32/">
+                <span aria-hidden="true">02</span>
+                <strong>Label</strong>
+                <small>Context, status, verified, duplicate or needs changes.</small>
+              </a>
+
+              <a href="/nostr/governance/nip-58-badges/">
+                <span aria-hidden="true">03</span>
+                <strong>Badge</strong>
+                <small>Contributor reputation and public recognition.</small>
+              </a>
+
+              <a href="/nostr/community/moderation/">
+                <span aria-hidden="true">04</span>
+                <strong>Audit</strong>
+                <small>Decision, moderator, reason and reversible trail.</small>
+              </a>
+
+          </div>
+          <div class="crays-nostr-hub-signature__cards">
+
+              <a href="/nostr/privacy/moderation-discovery/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">MO</span>
+                <strong>Moderation</strong>
+                <span>Open the review and governance route.</span>
+              </a>
+
+              <a href="/nostr/governance/nip-58-badges/">
+                <img class="crays-nostr-card-media" data-card-kind="protocol" src="https://www.google.com/s2/favicons?domain=badges.page&amp;sz=128" alt="Badges icon" loading="lazy" decoding="async" />
+                <strong>Badges</strong>
+                <span>Use reputation without pretending it is truth.</span>
+              </a>
+
+              <a href="/nostr/governance/dao-governance/">
+                <span class="crays-nostr-card-icon" aria-hidden="true">C</span>
+                <strong>DAO readiness</strong>
+                <span>Connect voting and policy to the longer product path.</span>
+              </a>
+
+          </div>
+
+          <div class="crays-nostr-visual-rail" aria-label="Governance visual shortcuts">
+            <a href="/nostr/privacy/moderation-discovery/"><span>MO</span><strong>Moderation</strong></a><a href="/nostr/community/moderation/"><span>RE</span><strong>Reports</strong></a><a href="/nostr/nips/nip-32/"><span>N</span><strong>Labels</strong></a><a href="/nostr/governance/nip-58-badges/"><img src="https://www.google.com/s2/favicons?domain=badges.page&amp;sz=128" alt="Badges icon" loading="lazy" decoding="async" /><strong>Badges</strong></a><a href="/nostr/governance/dao-governance/"><span>C</span><strong>DAO</strong></a><a href="/nostr/privacy/search-and-web-of-trust/"><span>WO</span><strong>Web of trust</strong></a>
+          </div>
+
+        </div>
+      </section>
+
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-route-map" aria-label="Route map">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Route map</p>
+              <h2>See how this route is organized.</h2>
+              <p>Use these groups when you want context first. They are the short map of what this category contains.</p>
+            </div>
+            <div class="crays-nostr-hub-route-groups">
+
+              <section>
+                <h3>Reputation</h3>
+                <nav aria-label="Reputation">
+                  <a href="/nostr/governance/dao-governance/">DAO governance</a><a href="/nostr/governance/nip-58-badges/">NIP-58 badges</a><a href="/nostr/governance/deep-dives/crays-award-voting/">Crays Award voting</a><a href="/nostr/privacy/search-and-web-of-trust/">Search and trust</a><a href="/nostr/privacy/deep-dives/web-of-trust-in-practice/">Web of trust</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Policy and moderation</h3>
+                <nav aria-label="Policy and moderation">
+                  <a href="/nostr/privacy/moderation-discovery/">Moderation and discovery</a><a href="/nostr/privacy/deep-dives/nostr-legal-and-compliance/">Legal and compliance</a><a href="/nostr/privacy/deep-dives/nostr-spam-and-abuse/">Spam and abuse</a><a href="/nostr/privacy/free-speech-censorship/">Free speech and censorship</a>
+                </nav>
+              </section>
+
+              <section>
+                <h3>Crays governance</h3>
+                <nav aria-label="Crays governance">
+                  <a href="/nostr/governance/deep-dives/crays-dao-readiness/">DAO readiness</a><a href="/nostr/commerce/awards/">Crays Award</a><a href="/nostr/crays/operators-venues/">Operators and venues</a><a href="/nostr/crays/crays-super-node/">Super Nodes</a>
+                </nav>
+              </section>
+
+            </div>
+          </div>
+        </section>
+
+
+      <section class="crays-nostr-hub-section crays-nostr-hub-shelves" aria-label="Content shelves in this hub">
+        <div class="crays-article-shell">
+          <div class="crays-nostr-hub-section__head">
+            <p class="crays-nostr-live-kicker">What is inside</p>
+            <h2>See the shelves before you dive in.</h2>
+            <p>Each shelf is a smaller map. Open a few first, then use the full directory when you want every page in this route.</p>
+          </div>
+          <div class="crays-nostr-hub-shelf-grid">
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>01</span>
+                  <h3>App catalog entries</h3>
+                </div>
+                <nav aria-label="App catalog entries links">
+                  <a href="/nostr/apps/catalog/badges/">Badges Page</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>01</span>
+                  <h3>App profiles</h3>
+                </div>
+                <nav aria-label="App profiles links">
+                  <a href="/nostr/apps/research/badges-page/">Badges Page</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>03</span>
+                  <h3>Deep dives</h3>
+                </div>
+                <nav aria-label="Deep dives links">
+                  <a href="/nostr/governance/deep-dives/badges-status-and-reputation/">Badges, Status and Reputation</a><a href="/nostr/governance/deep-dives/crays-award-voting/">Crays Award Voting</a><a href="/nostr/governance/deep-dives/crays-dao-readiness/">Crays DAO Readiness</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>05</span>
+                  <h3>Field guides</h3>
+                </div>
+                <nav aria-label="Field guides links">
+                  <a href="/nostr/governance/field-guide/badge-status-games/">Badge Status Games: Nostr Field Guide</a><a href="/nostr/governance/field-guide/badges/">Badges: Nostr Field Guide</a><a href="/nostr/governance/field-guide/governance/">Governance: Nostr Field Guide</a><a href="/nostr/governance/field-guide/npub-reputation/">npub Reputation: Nostr Field Guide</a><a href="/nostr/governance/field-guide/software-reputation/">Software Reputation: Nostr Field Guide</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>Governance and reputation</h3>
+                </div>
+                <nav aria-label="Governance and reputation links">
+                  <a href="/nostr/community/governance/">Governance</a><a href="/nostr/governance/dao-governance/">Nostr and Crays DAO Governance</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>01</span>
+                  <h3>NIP explainer pages</h3>
+                </div>
+                <nav aria-label="NIP explainer pages links">
+                  <a href="/nostr/governance/nip-58-badges/">NIP-58: Badges</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>02</span>
+                  <h3>NIP reference pages</h3>
+                </div>
+                <nav aria-label="NIP reference pages links">
+                  <a href="/nostr/nips/research/badges/">Badges</a><a href="/nostr/nips/research/nip-58-badges/">NIP-58: Badges</a>
+                </nav>
+              </article>
+
+              <article class="crays-nostr-hub-shelf-card">
+                <div>
+                  <span>04</span>
+                  <h3>Source inventory</h3>
+                </div>
+                <nav aria-label="Source inventory links">
+                  <a href="/nostr/governance/source-inventory/deep-research/nips/github-com-badges-31ee693d/">Research Source: Badges</a><a href="/nostr/governance/source-inventory/deep-research/nips/nips-nostr-com-badges-71508890/">Research Source: Badges</a><a href="/nostr/governance/source-inventory/deep-research/apps/badges-page-badges-page-828f4ce8/">Research Source: Badges Page</a><a href="/nostr/governance/source-inventory/deep-research/apps/nostrapps-com-badges-page-nostrapps-page-b098cac1/">Research Source: Badges Page — NostrApps page</a>
+                </nav>
+              </article>
+
+          </div>
+        </div>
+      </section>
+
+
+        <div class="crays-article-shell crays-nostr-hub-context-wrap">
+
+            <section class="crays-nostr-context-actions" data-nostr-page-panel data-component="PageContributionBar PageContributionTabs" data-page-slug="governance" data-page-url="https://www.crays.org/nostr/governance/" data-community="governance" aria-label="Help build the Nostr ecosystem around this page">
+              <div>
+                <p class="crays-nostr-live-kicker">Governance contribution</p>
+                <h3>Help build the Nostr ecosystem around this page.</h3>
+                <p>Ask a question, suggest a source, submit a related app/project, or join the discussion. The canonical archive stays stable; community contributions are reviewed separately.</p>
+              </div>
+              <div class="crays-nostr-context-actions__lanes">
+                <div>
+                  <h4>Core actions</h4>
+                  <nav aria-label="Core contribution actions"><a href="/nostr/community/?page=governance&amp;route=governance&amp;type=discussion" data-contribution-action="discuss"><strong>Discuss</strong><span>Start or join the community thread attached to this page.</span></a><a href="/nostr/community/questions/?page=governance&amp;route=governance" data-contribution-action="question"><strong>Ask a question</strong><span>Ask for help with this topic without editing the article.</span></a><a href="/nostr/community/suggestions/?page=governance&amp;route=governance&amp;type=source" data-contribution-action="source"><strong>Suggest source</strong><span>Add a useful reference, NIP, repository, article, app, relay or research link.</span></a><a href="/nostr/community/suggestions/?page=governance&amp;route=governance&amp;type=correction" data-contribution-action="correction"><strong>Suggest correction</strong><span>This does not edit the article directly. Your suggestion goes into review.</span></a><a href="/nostr/community/projects/submit/?page=governance&amp;route=governance" data-contribution-action="relation"><strong>Add related app/project</strong><span>Connect a useful project, app, relay, signer, wallet or profile to this page.</span></a></nav>
+                </div>
+                <div>
+                  <h4>Best fit for Governance</h4>
+                  <nav aria-label="Route-specific contribution actions"><a href="/nostr/community/moderation/?page=governance&amp;route=governance&amp;type=report"><strong>Review report</strong><span>Send labels, reports, moderation or reputation issues to review.</span></a><a href="/nostr/community/new-findings/?page=governance&amp;route=governance&amp;type=source"><strong>Add governance source</strong><span>Attach rules, badges, labels, voting or moderation references.</span></a><a href="/nostr/community/?page=governance&amp;route=governance&amp;type=recommend"><strong>Recommend policy</strong><span>Use the community layer for moderation and governance proposals.</span></a></nav>
+                </div>
+              </div>
+            </section>
+
+        </div>
+
+        <section class="crays-nostr-hub-section crays-nostr-hub-full-directory" aria-label="All pages in this route">
+          <div class="crays-article-shell">
+            <div class="crays-nostr-hub-section__head">
+              <p class="crays-nostr-live-kicker">Full directory</p>
+              <h2>Open every page in Governance, Moderation and Reputation.</h2>
+              <p>This hub is the calm overview. Use the full directory below when you want every page in this route.</p>
+            </div>
+
+
+          <details class="crays-nostr-route-directory" data-route="governance">
+            <summary>
+              <span class="crays-nostr-route-directory__eyebrow">Governance</span>
+              <strong>All Governance pages</strong>
+              <small><b>20 pages in this route</b><em>App catalog entries, App profiles, Deep dives and 5 more shelves</em></small>
+              <span class="crays-nostr-route-directory__action"><span data-open-label>Browse pages</span><span data-close-label>Close shelf</span></span>
+            </summary>
+            <div class="crays-nostr-route-directory__shelves">
+              <section class="crays-nostr-route-directory__shelf"><h3>App catalog entries</h3><div><a href="/nostr/apps/catalog/badges/">Badges Page</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>App profiles</h3><div><a href="/nostr/apps/research/badges-page/">Badges Page</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Deep dives</h3><div><a href="/nostr/governance/deep-dives/badges-status-and-reputation/">Badges, Status and Reputation</a>
+<a href="/nostr/governance/deep-dives/crays-award-voting/">Crays Award Voting</a>
+<a href="/nostr/governance/deep-dives/crays-dao-readiness/">Crays DAO Readiness</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Field guides</h3><div><a href="/nostr/governance/field-guide/badge-status-games/">Badge Status Games: Nostr Field Guide</a>
+<a href="/nostr/governance/field-guide/badges/">Badges: Nostr Field Guide</a>
+<a href="/nostr/governance/field-guide/governance/">Governance: Nostr Field Guide</a>
+<a href="/nostr/governance/field-guide/npub-reputation/">npub Reputation: Nostr Field Guide</a>
+<a href="/nostr/governance/field-guide/software-reputation/">Software Reputation: Nostr Field Guide</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Governance and reputation</h3><div><a href="/nostr/community/governance/">Governance</a>
+<a href="/nostr/governance/" aria-current="page">Governance, Moderation and Reputation</a>
+<a href="/nostr/governance/dao-governance/">Nostr and Crays DAO Governance</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP explainer pages</h3><div><a href="/nostr/governance/nip-58-badges/">NIP-58: Badges</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>NIP reference pages</h3><div><a href="/nostr/nips/research/badges/">Badges</a>
+<a href="/nostr/nips/research/nip-58-badges/">NIP-58: Badges</a></div></section><section class="crays-nostr-route-directory__shelf"><h3>Source inventory</h3><div><a href="/nostr/governance/source-inventory/deep-research/nips/github-com-badges-31ee693d/">Research Source: Badges</a>
+<a href="/nostr/governance/source-inventory/deep-research/nips/nips-nostr-com-badges-71508890/">Research Source: Badges</a>
+<a href="/nostr/governance/source-inventory/deep-research/apps/badges-page-badges-page-828f4ce8/">Research Source: Badges Page</a>
+<a href="/nostr/governance/source-inventory/deep-research/apps/nostrapps-com-badges-page-nostrapps-page-b098cac1/">Research Source: Badges Page — NostrApps page</a></div></section>
+            </div>
+          </details>
+
+          </div>
+        </section>
+
+      </section>
+
+
+
+  </main>
+
+
+  <footer class="legal-footer crays-nostr-footer" aria-label="Crays footer">
+    <div class="legal-footer-inner">
+      <div class="legal-footer-top">
+        <div>
+          <a class="legal-footer-logo-link" href="/" aria-label="Crays Home">
+            <img class="legal-footer-logo" src="/assets/brand/crays-logo.svg" alt="Crays" width="138" height="34" loading="lazy">
+          </a>
+          <p class="legal-footer-tagline">Luxury, Lifestyle, Wealth and Innovation</p>
+        </div>
+        <div class="legal-footer-social" aria-label="Social links"><a href="https://github.com/CraysCircle" aria-label="GitHub" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/github.svg" alt="GitHub" width="20" height="20" loading="lazy"></a><a href="https://x.com/CraysCircle" aria-label="X" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/x.svg" alt="X" width="20" height="20" loading="lazy"></a><a href="https://opencollective.com/crays" aria-label="Open Collective" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/opencollective.svg" alt="Open Collective" width="20" height="20" loading="lazy"></a><a href="https://www.reddit.com/r/Crays/" aria-label="Reddit" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/reddit.svg" alt="Reddit" width="20" height="20" loading="lazy"></a><a href="https://t.me/craysclub" aria-label="Telegram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/telegram.svg" alt="Telegram" width="20" height="20" loading="lazy"></a><a href="https://www.youtube.com/@CraysCircle" aria-label="YouTube" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/youtube.svg" alt="YouTube" width="20" height="20" loading="lazy"></a><a href="https://www.linkedin.com/company/crays/" aria-label="LinkedIn" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/linkedin.svg" alt="LinkedIn" width="20" height="20" loading="lazy"></a><a href="https://www.instagram.com/crays_circle/" aria-label="Instagram" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/instagram.svg" alt="Instagram" width="20" height="20" loading="lazy"></a><a href="https://www.crays.net" aria-label="Nostr" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/nostr.webp" alt="Nostr" width="20" height="20" loading="lazy"></a><a href="https://discord.gg/dpYZk8xAvR" aria-label="Discord" target="_blank" rel="noreferrer noopener"><img src="/assets/footer-icons/discord.svg" alt="Discord" width="20" height="20" loading="lazy"></a></div>
+      </div>
+      <nav class="legal-footer-main-nav" aria-label="Crays site links"><a href="/en/">Home</a><a href="/en/association/">Association</a><a href="/en/team/">Team</a><a href="/nostr/">Nostr</a><a href="/en/tech/">Tech</a><a href="/en/finance/">Finance</a><a href="/en/lifestyle/">Lifestyle</a><a href="/en/hospitality/">Hospitality</a><a href="/en/real-estate/">Real Estate</a><a href="/en/contact/">Contact</a><a href="/en/join-us/">Join us</a></nav>
+      <div class="legal-footer-bottom">
+        <nav class="legal-footer-links" aria-label="Legal pages">
+          <a href="/legal/imprint/">Imprint</a>
+          <a href="/legal/terms-conditions/">Terms and Conditions</a>
+          <a href="/legal/data-protection/">Data Protection</a>
+          <a href="/legal/privacy-policy/">Privacy Policy</a>
+          <a href="/blog/">Blog</a>
+        </nav>
+        <div class="legal-footer-copy">2026 Copyright &copy; and Trademark&trade; by CRAYS</div>
+        <span class="crays-consent-footer-slot">
+          <button class="crays-consent-footer-button" type="button" data-crays-consent-open="true">Cookie Settings</button>
+        </span>
+      </div>
+    </div>
+    <section class="crays-consent-panel" data-crays-consent-panel="true" aria-label="Cookie consent" hidden="hidden">
+      <p class="crays-consent-kicker">Cookie Consent</p>
+      <h2 class="crays-consent-title">Privacy &amp; Cookie Settings</h2>
+      <p class="crays-consent-copy">We use strictly necessary cookies to run this website. With your consent, we may also use preferences, analytics and marketing technologies to improve the site and measure campaigns.</p>
+      <div class="crays-consent-actions">
+        <button class="crays-consent-button crays-consent-button-reject" type="button" data-crays-consent-close="rejected">Reject optional</button>
+        <button class="crays-consent-button crays-consent-button-text" type="button" data-crays-consent-open="true">Privacy &amp; Cookie Settings</button>
+        <button class="crays-consent-button crays-consent-button-primary" type="button" data-crays-consent-close="accepted">Accept all</button>
+      </div>
+      <div class="crays-consent-links">
+        <a href="/legal/privacy-policy/">Privacy Policy</a>
+        <a href="/legal/data-protection/">Data Protection</a>
+      </div>
+    </section>
+    <script>(function () {
+      var panel = document.querySelector('[data-crays-consent-panel]');
+      if (!panel) return;
+      var storageKey = 'crays-cookie-consent';
+      function openPanel() {
+        panel.hidden = false;
+        panel.classList.add('is-open');
+      }
+      function closePanel(value) {
+        if (value) {
+          try { window.localStorage.setItem(storageKey, value); } catch (error) {}
+        }
+        panel.classList.remove('is-open');
+        panel.hidden = true;
+      }
+      document.querySelectorAll('[data-crays-consent-open]').forEach(function (button) {
+        button.addEventListener('click', openPanel);
+      });
+      panel.querySelectorAll('[data-crays-consent-close]').forEach(function (button) {
+        button.addEventListener('click', function () { closePanel(button.getAttribute('data-crays-consent-close')); });
+      });
+    }());</script>
+</footer>
+
+<script src="https://www.unpkg.com/nostr-login@1.7.12/dist/unpkg.js" defer data-no-banner="true" data-methods="connect,extension,readOnly,local" data-theme="default" data-dark-mode="false" data-title="Crays Nostr Login" data-description="Login to Crays with a signer, Nostr Connect, read-only npub or a local account. Private keys stay client-side." data-bunkers="nsec.app,highlighter.com" data-perms="sign_event:1111,sign_event:4550,sign_event:7,sign_event:1984,sign_event:30078,sign_event:27235" integrity="sha384-pRVGG5v+lZWr+RZdYqqo2EKY77aRftK5wrToZpRAe4Yv4fBfUVsXRLj9FgySs1Zg" crossorigin="anonymous"></script>
+<script src="/assets/js/crays-nostr-atlas-search.js?v=20260601-real-atlas-search-v2" defer></script>
+<script src="/assets/js/crays-nostr-contribution-services.js?v=20260602-learning-product-v4" defer></script>
+<script src="/assets/js/crays-nostr-community.js?v=20260602-learning-product-v4" defer></script>
+</body>
+</html>
