@@ -1732,8 +1732,20 @@ body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card-
 
 body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision {
   grid-column: 1 / -1 !important;
-  grid-template-columns: minmax(0, 0.72fr) minmax(360px, 0.88fr) !important;
-  align-items: end !important;
+  grid-template-columns: 1fr !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+  gap: 18px !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision :is(span, h3, p) {
+  grid-column: 1 / -1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision h3,
+body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-operating-card--vision p {
+  width: 100% !important;
+  max-width: none !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas .crays-nostr-stack-list {
