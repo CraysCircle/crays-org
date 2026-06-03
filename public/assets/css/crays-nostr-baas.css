@@ -4000,6 +4000,12 @@ body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nost
   margin: 0 !important;
 }
 
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-inline-award-link {
+  color: inherit !important;
+  text-decoration-color: rgba(255, 255, 255, 0.68) !important;
+  text-underline-offset: 0.12em !important;
+}
+
 body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-lifestyle-chapter--action .crays-nostr-lifestyle-chapter__copy {
   align-content: center !important;
 }
