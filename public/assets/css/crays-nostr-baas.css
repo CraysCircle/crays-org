@@ -6021,15 +6021,15 @@ body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#pro
 
 /* Final rollout polish: keep the operating cards light and put steps on the three phase stories. */
 body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-projects-section-title {
-  max-width: 19ch !important;
-  font-size: clamp(38px, 3.4vw, 60px) !important;
-  line-height: 1.02 !important;
+  max-width: 23ch !important;
+  font-size: clamp(32px, 2.65vw, 46px) !important;
+  line-height: 1.08 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-existing-grid article h3 {
-  max-width: 15ch !important;
-  font-size: clamp(24px, 1.85vw, 34px) !important;
-  line-height: 1.05 !important;
+  max-width: 18ch !important;
+  font-size: clamp(21px, 1.45vw, 27px) !important;
+  line-height: 1.1 !important;
 }
 
 body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card {
@@ -6155,8 +6155,232 @@ body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nost
 }
 
 @media (max-width: 760px) {
-  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-projects-section-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-projects-section-title {
+    font-size: clamp(30px, 8vw, 38px) !important;
+  }
+
   body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body h3 {
     font-size: clamp(32px, 10vw, 44px) !important;
+  }
+}
+
+/* Final Nostr QA pass: red active tabs, grey inactive tabs, hard section boundaries. */
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs {
+  border-top: 1px solid #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab {
+  border-color: #ff1f57 !important;
+  color: #06111d !important;
+  background: #e5e9ec !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab :is(span, strong) {
+  color: inherit !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab:hover {
+  border-color: #ff1f57 !important;
+  background: #d9dde1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab.is-active,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab[aria-selected="true"] {
+  border-color: #ff1f57 !important;
+  color: #ffffff !important;
+  background: #ff1f57 !important;
+  box-shadow: 0 18px 42px rgba(255, 31, 87, 0.2) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab.is-active :is(span, strong),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-tabs__tab[aria-selected="true"] :is(span, strong) {
+  color: #ffffff !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-panel-system .crays-franchise-card-grid .crays-franchise-card {
+  border-left: 5px solid #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__rail,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tabs {
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab {
+  border-color: #ff1f57 !important;
+  color: #ffffff !important;
+  background: rgba(119, 130, 141, 0.34) !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab :is(span, strong, small),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab :is(span, strong, small) {
+  color: inherit !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab:hover,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab:hover {
+  border-color: #ff1f57 !important;
+  background: rgba(119, 130, 141, 0.48) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab.is-active,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab[aria-selected="true"],
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab.is-active,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab[aria-selected="true"] {
+  border-color: #ff1f57 !important;
+  color: #ffffff !important;
+  background: #ff1f57 !important;
+  box-shadow: 0 18px 44px rgba(255, 31, 87, 0.24) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab.is-active :is(span, strong, small),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-owner-alliance-tabs-v1__tab[aria-selected="true"] :is(span, strong, small),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab.is-active :is(span, strong, small),
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__tab[aria-selected="true"] :is(span, strong, small) {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-foundation-depth__lead {
+  border-left: 5px solid #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body h3 {
+  max-width: 24ch !important;
+  font-size: clamp(27px, 2.2vw, 38px) !important;
+  line-height: 1.07 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial {
+  border-bottom: 0 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 {
+  border-top: 0 !important;
+  border-bottom: 0 !important;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(118deg, #073f55 0%, #0d5d86 48%, #14699a 100%) !important;
+  background-size: 96px 96px, 96px 96px, auto !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1::before {
+  background: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-nostr-existing-depth {
+  border-top: 0 !important;
+}
+
+/* Final type scale: keep Nostr section heads close to Hospitality/Lifestyle. */
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2 {
+  font-size: clamp(30px, 2.55vw, 40px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit .crays-join-fit-tabs-v1__intro .crays-projects-eyebrow,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit .crays-nostr-existing-depth__head .crays-projects-eyebrow {
+  color: #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-fitomat-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2.crays-nostr-video-culture-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-alliance-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-foundation-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#nostr-existing-products-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-franchise-upgrade h2 {
+  font-size: clamp(30px, 2.55vw, 40px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas :is(
+  .crays-owner-alliance-tabs-v1__panel-head h3,
+  .crays-owner-alliance-tabs-v1__panel-copy h3,
+  .crays-join-fit-tabs-v1__panel-head h3,
+  .crays-nostr-foundation-depth__lead h3
+) {
+  font-size: clamp(26px, 2.25vw, 34px) !important;
+  line-height: 1.1 !important;
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2 {
+    font-size: clamp(29px, 8.5vw, 34px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-fitomat-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2.crays-nostr-video-culture-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-alliance-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-foundation-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#nostr-existing-products-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-franchise-upgrade h2 {
+    font-size: clamp(29px, 8.5vw, 34px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body h3 {
+    font-size: clamp(26px, 8vw, 36px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas :is(
+    .crays-owner-alliance-tabs-v1__panel-head h3,
+    .crays-owner-alliance-tabs-v1__panel-copy h3,
+    .crays-join-fit-tabs-v1__panel-head h3,
+    .crays-nostr-foundation-depth__lead h3
+  ) {
+    font-size: clamp(24px, 7.5vw, 31px) !important;
+  }
+}
+
+/* Final QA guard: specific overrides that must win over older section rules. */
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__intro .crays-projects-eyebrow,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-nostr-existing-depth__head p.crays-projects-eyebrow {
+  color: #ff1f57 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-fitomat-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-video-culture-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-alliance-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-foundation-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#nostr-existing-products-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-head h2#crays-owner-system-title,
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section.crays-franchise-final-cta h2 {
+  font-size: clamp(30px, 2.55vw, 40px) !important;
+  line-height: 1.08 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__panel-head h3 {
+  font-size: clamp(26px, 2.25vw, 34px) !important;
+  line-height: 1.1 !important;
+}
+
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-fitomat-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-video-culture-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-franchise-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-owner-alliance-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#crays-nostr-foundation-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas h2#nostr-existing-products-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#franchise-model.crays-franchise-owner-stack-v2 .crays-franchise-stack-head h2#crays-owner-system-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section.crays-franchise-final-cta h2 {
+    font-size: clamp(29px, 8.5vw, 34px) !important;
+  }
+
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-join-fit-tabs-v1__panel-head h3 {
+    font-size: clamp(24px, 7.5vw, 31px) !important;
   }
 }
