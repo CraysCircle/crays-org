@@ -1,4 +1,4 @@
-﻿/* Crays Nostr page - strict Brand-as-a-Service layout adaptation */
+/* Crays Nostr page - strict Brand-as-a-Service layout adaptation */
 body.crays-mirror.route-nostr {
   overflow-x: hidden !important;
 }
@@ -4799,7 +4799,7 @@ body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-fran
 
 body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas #crays-franchise-system .crays-franchise-upgrade__lead {
   max-width: 790px !important;
-  font-weight: 760 !important;
+  font-weight: 400 !important;
   line-height: 1.6 !important;
 }
 
