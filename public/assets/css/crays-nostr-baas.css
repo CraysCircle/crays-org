@@ -6019,134 +6019,144 @@ body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#pro
   }
 }
 
-/* Premium operating board: three lifestyle steps instead of plain stacked cards */
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-grid {
+/* Final rollout polish: keep the operating cards light and put steps on the three phase stories. */
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-projects-section-title {
+  max-width: 19ch !important;
+  font-size: clamp(38px, 3.4vw, 60px) !important;
+  line-height: 1.02 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-existing-grid article h3 {
+  max-width: 15ch !important;
+  font-size: clamp(24px, 1.85vw, 34px) !important;
+  line-height: 1.05 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card {
   position: relative !important;
-  isolation: isolate !important;
-  grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.58fr) !important;
-  gap: clamp(14px, 1.6vw, 22px) !important;
-  padding: clamp(16px, 2vw, 28px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.16) !important;
-  color: #ffffff !important;
-  background:
-    linear-gradient(135deg, rgba(6, 17, 29, 0.98) 0%, rgba(7, 50, 76, 0.98) 54%, rgba(10, 74, 112, 0.98) 100%) !important;
-  box-shadow: 0 34px 90px rgba(6, 17, 29, 0.24) !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-grid::before {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: -1 !important;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.042) 1px, transparent 1px) !important;
-  background-size: 96px 96px !important;
-  opacity: 0.42 !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card {
-  position: relative !important;
-  overflow: hidden !important;
-  border: 1px solid rgba(255, 255, 255, 0.18) !important;
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.07) !important;
-  box-shadow: 0 24px 58px rgba(0, 0, 0, 0.18) !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card::before {
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card::before {
   content: "Step 1" !important;
   position: absolute !important;
-  top: clamp(18px, 1.6vw, 24px) !important;
-  left: clamp(18px, 1.8vw, 28px) !important;
-  z-index: 4 !important;
-  padding: 6px 10px !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
-  border-radius: 999px !important;
+  top: clamp(18px, 1.8vw, 26px) !important;
+  left: clamp(18px, 2vw, 28px) !important;
+  z-index: 5 !important;
   color: #ff1f57 !important;
-  background: rgba(6, 17, 29, 0.72) !important;
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(255, 31, 87, 0.22) !important;
+  border-radius: 999px !important;
+  padding: 6px 10px !important;
   font-size: 11px !important;
   font-weight: 950 !important;
   line-height: 1 !important;
   letter-spacing: 0 !important;
   text-transform: uppercase !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.22) !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--stack::before {
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-rollout-scene--venue::before {
   content: "Step 2" !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--vision::before {
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-rollout-scene--coordination::before {
   content: "Step 3" !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image {
-  grid-template-columns: minmax(260px, 0.42fr) minmax(0, 1fr) !important;
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body h3 {
+  max-width: 20ch !important;
+  font-size: clamp(34px, 3.15vw, 54px) !important;
+  line-height: 1 !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image > img,
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-vision-panorama {
-  min-height: clamp(340px, 26vw, 470px) !important;
-  filter: saturate(1.08) contrast(1.06) brightness(0.9) !important;
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body > p {
+  font-size: clamp(15px, 1vw, 18px) !important;
+  line-height: 1.5 !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image::after,
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--vision::after {
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-points article {
+  border: 1px solid rgba(6, 17, 29, 0.12) !important;
+  border-left: 5px solid #ff1f57 !important;
+  color: #06111d !important;
+  background: #f3f5f7 !important;
+  box-shadow: none !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-points article strong {
+  color: #06111d !important;
+  font-size: clamp(15px, 1vw, 18px) !important;
+  line-height: 1.12 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-points article p {
+  color: rgba(6, 17, 29, 0.76) !important;
+  font-size: clamp(14px, 0.95vw, 17px) !important;
+  line-height: 1.42 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article {
+  position: relative !important;
+  overflow: hidden !important;
+  min-height: clamp(118px, 9vw, 156px) !important;
+  padding: 18px 18px 20px 20px !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  border-left: 5px solid #ff1f57 !important;
+  color: #ffffff !important;
+  background:
+    linear-gradient(90deg, rgba(6, 17, 29, 0.92), rgba(6, 17, 29, 0.74)),
+    var(--nostr-stack-image) center / cover no-repeat !important;
+  box-shadow: 0 16px 34px rgba(6, 17, 29, 0.16) !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article:nth-child(1) {
+  --nostr-stack-image: url("/assets/stock-images/crays-nostr-portable-identity-tech-profile.webp");
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article:nth-child(2) {
+  --nostr-stack-image: url("/assets/stock-lifestyle/crays-finance-tools-wallets-mobile.jpg");
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article:nth-child(3) {
+  --nostr-stack-image: url("/assets/stock-lifestyle/crays-team-extended-15-proptech-tokenization.jpeg");
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article:nth-child(4) {
+  --nostr-stack-image: url("/assets/stock-images/association-venue-tech/association-venue-tech-digital-rails.webp");
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article:nth-child(5) {
+  --nostr-stack-image: url("/assets/stock-lifestyle/crays-tech-03-guests-inside-a-blue-lit-local-venue-environment-representing-mesh-network.webp");
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article::before {
   content: "" !important;
   position: absolute !important;
   inset: 0 !important;
   pointer-events: none !important;
-  background:
-    linear-gradient(90deg, rgba(6, 17, 29, 0.12) 0%, rgba(6, 17, 29, 0) 36%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)) !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--stack {
-  background:
-    linear-gradient(180deg, rgba(6, 17, 29, 0.42), rgba(6, 17, 29, 0.88)),
-    url("/assets/stock-images/association-venue-tech/association-venue-tech-digital-rails.webp") center / cover !important;
-  padding-top: clamp(62px, 5vw, 84px) !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image div,
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-vision-copy {
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article > * {
   position: relative !important;
-  z-index: 2 !important;
-  padding-top: clamp(62px, 5vw, 84px) !important;
+  z-index: 1 !important;
+}
+
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list strong {
   color: #ffffff !important;
-  background: linear-gradient(135deg, rgba(6, 17, 29, 0.84), rgba(10, 74, 112, 0.42)) !important;
+  font-size: clamp(16px, 1.05vw, 19px) !important;
+  line-height: 1.12 !important;
+  text-shadow: 0 10px 22px rgba(0, 0, 0, 0.28) !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--stack > span,
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image span,
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-vision-copy > span {
-  color: rgba(255, 255, 255, 0.72) !important;
-  text-shadow: 0 10px 26px rgba(0, 0, 0, 0.36) !important;
+body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list p {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-size: clamp(14px, 0.95vw, 17px) !important;
+  line-height: 1.42 !important;
+  text-shadow: 0 10px 22px rgba(0, 0, 0, 0.28) !important;
 }
 
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card :is(h3, p, strong) {
-  color: #ffffff !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card p {
-  color: rgba(255, 255, 255, 0.84) !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article {
-  border-color: rgba(255, 255, 255, 0.16) !important;
-  color: #ffffff !important;
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(10px) !important;
-}
-
-body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-stack-list article p {
-  color: rgba(255, 255, 255, 0.78) !important;
-}
-
-@media (max-width: 1180px) {
-  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--image,
-  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-operating-card--vision {
-    grid-template-columns: 1fr !important;
+@media (max-width: 760px) {
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas section#project-fit.crays-join-fit-tabs-v1 .crays-projects-section-title,
+  body.crays-mirror.route-nostr main.crays-nostr-baas.crays-nostr-baas .crays-nostr-rollout-editorial .crays-nostr-phase-card__body h3 {
+    font-size: clamp(32px, 10vw, 44px) !important;
   }
 }
