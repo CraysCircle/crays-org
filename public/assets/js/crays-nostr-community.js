@@ -851,42 +851,32 @@
     return saved;
   }
 
+  function renderStartContributionPanel(panel) {
+    if (!panel || panel.getAttribute("data-start-contribution-rendered") === "true") return;
+    var pageSlug = panel.getAttribute("data-page-slug") || "";
+    var pageRoute = pageSlug || (window.location.pathname || "").replace(/^\/nostr\/|\/$/g, "") || "start";
+    var query = "?page=" + encodeURIComponent(pageSlug || pageRoute) + "&amp;route=" + encodeURIComponent(pageRoute);
+    panel.classList.add("crays-nostr-start-contribute", "crays-nostr-context-actions--start-style");
+    panel.setAttribute("data-start-contribution-rendered", "true");
+    panel.setAttribute("data-component", "PageContributionBar StartContributionPanel");
+    panel.innerHTML = [
+      '<div>',
+      '<p class="crays-nostr-live-kicker">Bring something back</p>',
+      '<h2>Ask, suggest, submit or nominate.</h2>',
+      '<p>Ask a question, send a source, suggest a fix, submit a project or nominate a public Nostr account. The article stays stable; your contribution gets reviewed beside it.</p>',
+      '</div>',
+      '<nav aria-label="Ways to contribute">',
+      '<a href="/nostr/community/questions/' + query + '"><strong>Ask a question</strong><span>If something does not click yet, ask where you got stuck.</span></a>',
+      '<a href="/nostr/community/projects/submit/' + query + '"><strong>Submit a project</strong><span>Found or built a client, relay, signer, wallet or media tool? Send it in.</span></a>',
+      '<a href="/nostr/community/suggestions/' + query + '&amp;type=source"><strong>Suggest a source or fix</strong><span>Share a better source, a stale claim, a broken link or a correction.</span></a>',
+      '<a href="/nostr/people/users/' + query + '"><strong>Nominate someone</strong><span>Add a public Nostr user, builder or creator with evidence we can check.</span></a>',
+      '</nav>'
+    ].join("");
+  }
+
   function renderPageContributionSummaries() {
-    var services = contributionServices();
-    if (!services) return;
     $("[data-nostr-page-panel]").forEach(function (panel) {
-      if (panel.querySelector("[data-page-community-summary]")) return;
-      var target = targetFromPanel(panel);
-      var local = services.ContributionService.byTarget(target.id);
-      var counts = {
-        discussion: local.filter(function (item) { return item.type === "page_comment"; }).length + 1,
-        questions: local.filter(function (item) { return item.type === "question"; }).length,
-        sources: local.filter(function (item) { return item.type === "source_suggestion"; }).length,
-        projects: local.filter(function (item) { return item.type === "project_submission" || item.type === "app_submission" || item.type === "related_app_project"; }).length
-      };
-      var summary = document.createElement("div");
-      summary.className = "crays-nostr-page-community-summary";
-      summary.setAttribute("data-page-community-summary", "");
-      summary.setAttribute("data-component", "PageCommunitySummary PageContributionTabs");
-      summary.innerHTML = [
-        '<span><strong>', counts.discussion, '</strong> discussions</span>',
-        '<span><strong>', counts.questions, '</strong> open questions</span>',
-        '<span><strong>', counts.sources, '</strong> suggested sources</span>',
-        '<span><strong>', counts.projects, '</strong> related apps/projects</span>',
-        '<span data-relay-activity><strong>...</strong> relay events</span>',
-        '<button type="button" data-contribution-action="report">Report</button>'
-      ].join("");
-      var nav = panel.querySelector("nav");
-      panel.insertBefore(summary, nav || null);
-      services.NostrRelayService.fetchEventsByTarget(target.canonicalUrl, { limit: 30 }).then(function (result) {
-        var relayNode = summary.querySelector("[data-relay-activity]");
-        if (!relayNode) return;
-        var events = result && Array.isArray(result.events) ? result.events : [];
-        relayNode.innerHTML = '<strong>' + events.length + '</strong> public relay events';
-      }).catch(function () {
-        var relayNode = summary.querySelector("[data-relay-activity]");
-        if (relayNode) relayNode.innerHTML = '<strong>0</strong> public relay events';
-      });
+      renderStartContributionPanel(panel);
     });
   }
 
