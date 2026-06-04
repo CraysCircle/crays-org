@@ -147,3 +147,29 @@ if (clock) {
   updateClock();
   window.setInterval(updateClock, 1000);
 }
+
+function craysInitNostrVideoCards() {
+  document.querySelectorAll(".crays-nostr-video-card").forEach((card) => {
+    const video = card.querySelector("video");
+    if (!video) return;
+
+    const markIdle = () => card.classList.remove("is-playing");
+    const markPlaying = () => {
+      video.muted = false;
+      card.classList.add("is-playing");
+    };
+
+    video.addEventListener("pointerdown", () => {
+      video.muted = false;
+    });
+    video.addEventListener("play", markPlaying);
+    video.addEventListener("pause", markIdle);
+    video.addEventListener("ended", markIdle);
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", craysInitNostrVideoCards);
+} else {
+  craysInitNostrVideoCards();
+}
