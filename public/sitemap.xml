@@ -1307,7 +1307,13 @@
   </url>
   <url>
     <loc>https://www.crays.org/nostr/media/videos/</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.82</priority>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/media/articles/</loc>
+    <lastmod>2026-06-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.82</priority>
   </url>
@@ -10168,5 +10174,57 @@
     <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/creators/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/odell/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/ben-arc/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/max-demarco/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/the-nostr-report/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/joe-nakamoto/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/daniel-prince/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/jeff-booth/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/jameson-lopp/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/erik-cason/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/plebchain-radio/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/karnage/</loc>
+    <lastmod>2026-06-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.crays.org/nostr/people/openmike/</loc>
+    <lastmod>2026-06-05</lastmod>
   </url>
 </urlset>
